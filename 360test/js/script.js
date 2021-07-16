@@ -51,7 +51,7 @@ function main() {
   {
     const loader = new THREE.TextureLoader();
     const texture = loader.load(
-      '../images/spot.01.jpg',
+      '../images/1.jpg',
       () => {
         const rt = new THREE.WebGLCubeRenderTarget(texture.image.height);
         rt.fromEquirectangularTexture(renderer, texture);
