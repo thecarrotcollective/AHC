@@ -61,14 +61,14 @@ var imageurl,personiltyType,infoText
 
 
 function LoadPage() {
-	console.log("dasdasds"+copyJSON['Feeler'])
+	// console.log(copyJSON['Feeler'])
 	if(selectedPersonality === 'fe'){
 
 	imageurl ="../personalitytest/images/opt/arch5.webp";
 	spaText=copyJSON.Feeler[languageID]
 	personiltyType = copyJSON.FeelerHeadline[languageID]
 	infoText=copyJSON.FeelerExplanation[languageID]
-	
+
 	}else if(selectedPersonality === 'in'){
 		imageurl ="../personalitytest/images/opt/arch4.webp";
 		spaText=copyJSON.Introvert[languageID]
@@ -88,28 +88,28 @@ function LoadPage() {
 		infoText=copyJSON.ExtrovertExplanation[languageID]
 	}
 
-	document.getElementById('archid').style.display = 'flex';
-	document.getElementById('infoText').style.display = 'flex';
-	document.getElementById('middleText').style.display = 'flex';
-	document.getElementById('controls_id').style.display = 'flex';
-	document.getElementById('quesitonDiv').style.display = 'flex';
+	// document.getElementById('archid').style.display = 'flex';
+	// document.getElementById('infoText').style.display = 'flex';
+	// document.getElementById('middleText').style.display = 'flex';
+	// document.getElementById('controls_id').style.display = 'flex';
+	// document.getElementById('quesitonDiv').style.display = 'flex';
 	var spaText = "<h1 >"+spaText+"</h1>";
 	var element = document.getElementById("personality");
-	element.style.display = "flex"
+	// element.style.display = "flex"
 	element.innerHTML = spaText;
 
-	var buttonText =" <button id='start-btn' class='bn3639 bn39'>"+copyJSON.GoToSpa[languageID]+"</button>";
-	var element3 = document.getElementById("controls_id")
+	var buttonText = copyJSON.GoToSpa[languageID];
+	var element3 = document.getElementById("start-btn")
 	element3.innerHTML = buttonText;
 
-	var resultImg = "<img src="+ imageurl +">";
+	var resultImg = "<img id=\"arch-image\" src="+ imageurl +">";
 	var element4 = document.getElementById("archid");
 	element4.innerHTML = resultImg
 
-	var personiltyTypeHtml = "<h3 id='question' >"+personiltyType+"</h3>";
+	var personiltyTypeHtml = personiltyType;
 	var element2 = document.getElementById("question")
 	element2.innerHTML = personiltyTypeHtml;
-	var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";
+	var infoTextHtml = infoText;
 	var element5 = document.getElementById("infoText")
 	element5.innerHTML = infoTextHtml;
 }
@@ -213,10 +213,10 @@ var POOLENTRACE =9
 var PRODUCTBASE = 10
 var sound;
 
-document.getElementById("controls_id").addEventListener("click", function() {
+document.getElementById("start-btn").addEventListener("click", function() {
 	console.log("clicked")
 	if(selectedPersonality === 'fe'){
-		
+
 		playAudio('sounds/sfx/feeler.mp3')
 
 
@@ -244,8 +244,8 @@ document.getElementById("controls_id").addEventListener("click", function() {
 	document.getElementById('archid').style.display = 'none';
 	document.getElementById('infoText').style.display = 'none';
 	document.getElementById('middleText').style.display = 'none';
-	document.getElementById('controls_id').style.display = 'none';
-	document.getElementById('quesitonDiv').style.display = 'none';
+	document.getElementById('start-btn').style.display = 'none';
+	document.getElementById('questionDiv').style.display = 'none';
 	loadSounds()
   });
 
@@ -366,7 +366,7 @@ function init() {
 	scene.add(filterScene)
 	scene.add(SceneObjectVideo1)
 	scene.add(BottleRoomVideoPlayScene)
-  
+
 
 
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
@@ -406,10 +406,10 @@ function init() {
 	};
 
 	manager.onLoad = function ( ) {
-		
+
 		for ( let i = 0; i < 6; i ++ ) {
 			new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
-	
+
 			runTween()
 		}
 		console.log( 'Loading complete!');
@@ -1157,12 +1157,12 @@ function animate() {
 				orbVideo.addEventListener("ended",function(){
 					orbGlowVideo.play()
 					orbGlowVideoMask.play()
-			
+
 
 				})
 
 				orbVideoPlayed = true
-				
+
 			}
 			orbVideo.addEventListener("ended",function(){
 				flagOrb = true
@@ -1178,7 +1178,7 @@ function animate() {
 			}
 
 
-	
+
 		} else {
 			document.getElementById('orb-text').style.opacity = 0;
 			document.getElementById('orb-btn').style.opacity = 0;
@@ -1249,7 +1249,7 @@ function clickTrigger(){
 		var intersectsMiddleRoom = raycaster.intersectObjects( MiddleRoomScene.children, false );
 		var intersectsOrbPlus = raycaster.intersectObjects( orbPlusScene.children, false );
 		if ( intersectsOrbPlus.length > 0 ) {
-			
+
 
 		}
 

@@ -10,11 +10,11 @@
   font-family: "Pangram-ExtraBold";
   src:url("../shared/fonts/Pangram-ExtraBold.otf") format("opentype");
 }
-.mainIntroPage{
-
-
-
+@font-face {
+  font-family: "Pangram-Bold";
+  src:url("../shared/fonts/Pangram-Bold.otf") format("opentype");
 }
+
 body {
   height: 100%;
   margin: 0 !important;
@@ -33,6 +33,54 @@ video{
   /* transform: translate(50%,50%);  */
   /* top: 50%;
   transform: translateY(-50%); */
+}
+
+#IntroDiv{
+  background-color: #fff4ee;
+  width: 100%;
+  height: 100%;
+}
+
+#ahc-logo-Intro{
+  position: absolute;
+
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+#ahc-logo-beauty-imgIntro{
+  max-height: 1.5em;
+}
+
+.bottom-btn{
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Pangram-Bold";
+
+  letter-spacing: 0.1em;
+  backface-visibility: hidden;
+  border: 2px solid;
+  border-radius: 5rem;
+  padding: 1em 2em;
+
+  max-width: 80%;
+  width: max-content;
+  transition: padding 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
+
+}
+
+.transparent-btn{
+  background-color: rgba(0,0,0, 0);
+  border-color: rgb(0, 0, 0);
+}
+
+
+.bottom-btn:hover{
+  padding: 1.2em 2.4em;
 }
 
 /* .beauty-options{
@@ -327,6 +375,71 @@ video{
 
   @media only screen and (min-width: 600px) {
 
+
+    #questionDiv{
+      display: block;
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-family: "Pangram-Bold";
+      letter-spacing:0.1em;
+      font-size: 1.2em;
+      z-index: 1;
+      width:80%;
+    }
+
+    #archid{
+      display: block;
+      position: absolute;
+      width: 300px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #arch-image{
+      display: block;
+      position: absolute;
+      width: 300px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #middleText{
+      display: block;
+      position: absolute;
+      width: 300px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #personality{
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: "Pangram-Bold";
+      font-size: 2.5em;
+      z-index: 1;
+      position: absolute;
+      text-align: center;
+    }
+    #infoText{
+      /* padding: 3em; */
+      width: 100%;
+      text-align: center;
+      top: 6em;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: "Pangram-Bold";
+      font-size: 1.2em;
+      width:inherit;
+      letter-spacing: 0.1em;
+      z-index: 1;
+      position: absolute;
+    }
+
     .productIntro {
       position: absolute;
         /* width: 50%; */
@@ -527,6 +640,71 @@ video{
      margin-top: 5%;
     /* margin-bottom: 2em; */
   }
+
+
+  #questionDiv{
+    display: block;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: "Pangram-Bold";
+    letter-spacing:0.1em;
+    z-index: 1;
+    width:80%;
+  }
+
+  #archid{
+    display: block;
+    position: absolute;
+    width: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #arch-image{
+    display: block;
+    position: absolute;
+    width: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #middleText{
+    display: block;
+    position: absolute;
+    width: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #personality{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    font-family: "Pangram-Bold";
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+  }
+  #infoText{
+    /* padding: 3em; */
+    width: 100%;
+    text-align: center;
+    top: 5em;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Pangram-Bold";
+
+    letter-spacing: 0.1em;
+    z-index: 1;
+    position: absolute;
+  }
+
+
   canvas{
     z-index: -1;
   }
