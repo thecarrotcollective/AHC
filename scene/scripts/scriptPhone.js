@@ -367,7 +367,7 @@ function init() {
 	scene.add(BottleRoomVideoPlayScene)
   
 
-	
+
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
 
 	skydome = {
@@ -408,6 +408,7 @@ function init() {
 		setTimeout(function(){
 			for ( let i = 0; i < 6; i ++ ) {
 				new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
+				console.log("loadingggggg")
 				runTween()
 			}
 		}, 250);
@@ -1499,10 +1500,10 @@ function envLoad(textureUrl){
 
 
 	skyBox.geometry.scale( 1, 1, -1 );
-	for ( let i = 0; i < 6; i ++ ) {
-		new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
-		runTween()
-	}
+	// for ( let i = 0; i < 6; i ++ ) {
+	// 	new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
+	// 	runTween()
+	// }
 
 	setTimeout(function(){
 		for ( let i = 0; i < 6; i ++ ) {
