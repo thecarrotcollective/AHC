@@ -1,5 +1,2 @@
-# QReal-AHC-tests
-
-[main page](https://glimpsegroup.github.io/QReal-AHC-tests/360test/pages/index.html)
-
-QReal-AHC-tests/360test/pages/
+# AHC 360 SCENE
+https://hakanqreal.github.io/AHC-360Scene-V2/

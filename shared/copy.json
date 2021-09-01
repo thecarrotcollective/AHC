@@ -1,0 +1,192 @@
+{
+  "langLabel": [
+    "English",
+    "Korean",
+    "Chinese"
+  ],
+  "code":[
+    "en",
+    "ko",
+    "zh"
+  ],
+  "StartJourney":[
+    "START YOUR JOURNEY",
+    "시작하기",
+    "悦享SPA之旅"
+  ],
+  "PrivacyPolicy":[
+    "BY CLICKING \"START YOUR JOURNEY!\"<br> YOU AGREE TO OUR <a class=\"links\" href=\"privacy.html\">PRIVACY POLICY</a>",
+    "시작하기 버튼을 누르면 <br><a class=\"links\" href=\"privacy.html\">개인정보보호방침</a>에 동의하게 됩니다",
+    "<a class=\"links\" href=\"privacy-cn.html\">智能测肤隐私政策</a>"
+  ],
+  "Skip":[
+    "SKIP",
+    "건너뛰기",
+    "跳过"
+  ],
+  "SensorsPermission":[
+    "THIS EXPERIENCE NEEDS TO ACCESS TO YOUR DEVICE'S ORIENTATION SENSORS.",
+    "원활한 서비스 이용을 위해 방향센서 접근 권한을 요청합니다",
+    "体验需要获取您的设备定位"
+  ],
+  "Accept":[
+    "ACCEPT",
+    "동의",
+    "接受"
+  ],
+  "PersonalityTestTitle":[
+    "PERSONALITY TESTS ARE AN ESSENTIAL<br>TRAIT OF KOREAN CULTURE.",
+    "내 성향에 따른 맞춤형 <br>스파를 경험해보세요",
+    "性格测试，开启你的专属肌疗SPA之旅"
+  ],
+  "PersonalityTest":[
+    "PERSONALITY<br>TEST",
+    "성격 테스트",
+    "性格测试"
+  ],
+  "StartExperience":[
+    "START EXPERIENCE",
+    "시작하기",
+    "开始"
+  ],
+  "PersonalityTestQ1":[
+    "CHOOSE AN IMAGE THAT <br> REPRESENTS YOU BEST",
+    "당신을 이미지로 표현한다면 다음 <br> 중 어떤 것이 가장 어울리나요?",
+    "选择最能代表你的图片"
+  ],
+  "PersonalityTestQ2":[
+    "CHOOSE AN IMAGE THAT <br> MAKES YOU FEEL MORE RELAXED",
+    "가장 안정감이 느껴지는 <br>이미지는 무엇인가요?",
+    "选择最让你放松的图片"
+  ],
+  "PersonalityTestQ3":[
+    "CHOOSE A COLOR THAT  <br> YOU LIKE THE MOST",
+    "가장 마음에 드는 <br>색깔은 무엇인가요?",
+    "选择你最喜欢的颜色"
+  ],
+  "ExtrovertHeadline":[
+    "IT SEEMS LIKE YOU ARE AN",
+    "",
+    ""
+  ],
+  "Extrovert":[
+    "EXTROVERT!",
+    "외향적",
+    "外向型"
+  ],
+  "ExtrovertExplanation":[
+    "EXTROVERTS ARE OFTEN<br> OUTGOING AND ACTIVE!",
+    "인 성격인 것 같아요 외향적인 <br>사람들은 활발하고 활동적인 편이에요",
+    "通常表现得开朗且积极主动"
+  ],
+  "IntrovertHeadline":[
+    "IT SEEMS LIKE YOU ARE AN",
+    "",
+    ""
+  ],
+  "Introvert":[
+    "INTROVERT!",
+    "내향적",
+    "内向型"
+  ],
+  "IntrovertExplanation":[
+    "INTROVERTS ARE OFTEN <br> CALM AND RELIABLE!",
+    "인 성격인 것 같아요 내향적인 <br> 사람들은 침착하고 듬직한 편이에요",
+    "通常表现得冷静且可靠"
+  ],
+  "FeelerHeadline":[
+    "IT SEEMS LIKE YOU ARE A",
+    "",
+    ""
+  ],
+  "Feeler":[
+    "FEELER!",
+    "감성적",
+    "感知型"
+  ],
+  "FeelerExplanation":[
+    "FEELERS ARE OFTEN <br> ARTISTIC AND CONSIDERATE!",
+    "인 성격인 것 같아요 감성적인 <br> 사람들은 예술적이고 배려심이 많은 편이에요",
+    "富有艺术感且细心体贴"
+  ],
+  "ThinkerHeadline":[
+    "IT SEEMS LIKE YOU ARE A",
+    "",
+    ""
+  ],
+  "Thinker":[
+    "THINKER!",
+    "사상가적",
+    "思考型"
+  ],
+  "ThinkerExplanation":[
+    "THINKERS OFTEN <br> CREATE GREAT IDEAS!",
+    "인 성격인 것 같아요 사상가적인 <br> 사람들은 좋은 아이디어가 많은 편이에요",
+    "总是能创造出伟大的想法"
+  ],
+  "GoToSpa":[
+    "TAKE ME TO MY SPA",
+    "나만의 스파 경험하기",
+    "即刻前往AHC肌疗美肤馆"
+  ],
+  "TakeSelfieCTA":[
+    "TAKE A SELFIE WITH OUR SUPERSTAR AMBASSADOR<br> KRYSTAL JUNG!",
+    "AHC의 앰버서더 크리스탈과 셀카를 찍어보세요!",
+    "与韩国巨星Krystal郑秀晶合影吧！"
+  ],
+  "CameraPermission":[
+    "THE EXPERIENCE NEEDS ACCESS TO YOUR CAMERA",
+    "사진 촬영을 위해 카메라 접근 권한이 필요합니다",
+    "体验需要访问您的相机"
+  ],
+  "AccessButton":[
+    "ACCESS",
+    "동의",
+    "访问"
+  ],
+  "SharePopUp":[
+    "SHARE THIS EXPERIENCE. ",
+    "친구에게 AHC SPA 공유하기",
+    "SHARE THIS EXPERIENCE."
+  ],
+  "EnterPhone":[
+    "ENTER YOUR PHONE NUMBER",
+    "휴대전화 번호 입력",
+    "ENTER YOUR PHONE NUMBER"
+  ],
+  "ShareButton":[
+    "SHARE",
+    "공유하기",
+    "分享"
+  ],
+  "SensorialCTAExtrovertFeeler":[
+    "TRY AHC COLOR THERAPY SENSORIAL TREATMENT.",
+    "컬러 테라피로 에너지를 충전해보세요",
+    "尝试AHC色彩肌疗法"
+  ],
+  "SensorialCTAIntrovertThinker":[
+    "TRY AHC SENSORIAL BRAIN MASSAGE.",
+    "디지털 스파 테라피로 안정을 취해보세요",
+    "尝试AHC脑电波肌疗法"
+  ],
+  "StartTherapyButton":[
+    "START YOUR THERAPY",
+    "테라피 시작하기",
+    "分享，邀请朋友们奢享肌疗体验"
+  ],
+  "ShareWithFriend":[
+    "SHARE WITH A FRIEND",
+    "친구와 공유하기",
+    "分享"
+  ],
+  "WatchAHCKBeauty":[
+    "WATCH AHC’S KOREAN AESTHETIC TUTORIALS HERE.",
+    "튜토리얼을 통해 K-뷰티 사용법을 확인해보세요!",
+    "观看AHC肌疗美肤私教课"
+  ],
+  "FindOutMore":[
+    "FIND OUT MORE",
+    "AHC 제품 둘러보기",
+    "探索更多精彩"
+  ]
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    import Mai from 'maijs/latest.min.js';
+
+    const mai = new Mai('usp-staging', '57bd51aa5b5529760f8b4567');
+
+    mai.member.signin({channelId: ''});
+    // channelId provided by the environment account informationchannelId
+
+    mai.member.addTags(['ACT_2_1', 'ACT_2_3'])
+
+    mai.memberEvent.log('c_Page_Loading', {Campaign_ID: 'xxx'});
+
+
+</script>
+</body>
+</html>

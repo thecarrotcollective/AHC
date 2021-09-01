@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <title>Selfie with Krystal Jung</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <audio preload id="camera-flash">
+      <source src="../sceneFolder/sounds/sfx/flash.mp3"  type="audio/mpeg">
+      Your browser does not support audio
+    </audio>
+    <canvas class="deepar" id="deepar-canvas" oncontextmenu="event.preventDefault()"></canvas>
+    <div id="loader-wrapper">
+      <span class="loader"></span>
+    </div>
+    <div id="ui-container">
+      <button id="back-button" class="singlespace selfie-close">
+        <img class="icon" src="imgs/close_icon.png">
+      </button>
+    </div>
+    <button id="close-button" class="doublespace selfie-button">
+      <img class="icon" src="imgs/close_icon.png">
+    </button>
+    <button id="download-button" class="doublespace selfie-button">
+      <img class="icon" src="imgs/capture_icon.png">
+    </button>
+    <button id="share-button" class="singlespace selfie-button">
+      <img class="icon" src="imgs/share_icon.png">
+    </button>
+
+    <div id="share-container">
+      <div id="share-ui">
+        <img id="share-close" src="imgs/close_icon.png">
+        <div>Share this experience</div>
+        <br><br>
+        <form id="userform" method="post">
+          <label for="phone">Enter Your Phone Number</label><br>
+          <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+86 139 1099 8888"
+                  pattern="[0-9]{1,18}">
+          <br><br>
+          <button id="share-submit" type="button">SHARE</button>
+        </form>
+      </div>
+    </div>
+
+
+    <button id="takepic-button" class="selfie-button">
+      Take A Selfie
+    </button>
+
+    <div id="canvas-fullscreen"></div>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="lib/deepar.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+  </body>
+</html>

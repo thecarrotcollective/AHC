@@ -1,0 +1,316 @@
+@font-face {
+  font-family: "Pangram-Regular";
+  src:url("../../sceneFolder/fonts/Pangram-Regular.otf") format("opentype");
+}
+
+canvas.deepar {
+    border: 0px none;
+    background-color: black;
+    display: block;
+    margin: auto;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #fff4ee;
+    font-family: "Pangram-Regular";
+}
+
+
+#loader-wrapper {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    text-align: center;
+}
+
+.loader {
+
+    display: inline-block;
+    position: relative;
+    top: 42%;
+    z-index: 1000;
+
+    width: 90px;
+    height: 90px;
+    margin: auto;
+    background-color: #00f;
+
+    border-radius: 100%;
+    -webkit-animation: sk-scaleout 1.5s infinite ease-in-out;
+    animation: sk-scaleout 1.5s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+    0% { -webkit-transform: scale(0) }
+    100% {
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+@keyframes sk-scaleout {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    } 100% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+          opacity: 0;
+      }
+}
+
+.effect-carousel {
+    position: fixed !important;
+    width: 100%;
+    height: 130px;
+    bottom: 0px;
+    z-index: 999999;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.thumb {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    opacity: 0.8;
+    transition: all 300ms ease;
+    height: 100px;
+}
+
+.slick-center .thumb {
+    -moz-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    -o-transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+    color: #e67e22;
+    opacity: 1;
+    transform: scale(1.3);
+}
+.slick-slide {
+    width: 130px;
+}
+
+#canvas-fullscreen{
+  position: absolute;
+  top:0;
+  z-index: 0;
+  background-color: #fff4ee;
+  width:100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.2;
+}
+
+.icon{
+  height: 60%;
+  width: 100%;
+  object-fit: contain;
+  object-position: left center;
+  padding-left: 0.45em;
+  /* padding: ; */
+  padding-top: 0.25em;
+}
+
+.doublespace{
+  width:5em !important;
+  /* padding:0.3em; */
+}
+
+.singlespace{
+  width:3em !important;
+  /* padding:0.3em; */
+}
+
+#takepic-button{
+  /* display: none; */
+}
+#back-button{
+  display: none;
+  padding:0 !important;
+  -ms-transform: translate(200%, 100%) !important;
+  transform: translate(200%, 100%) !important;
+  transition: all 0.5s;
+}
+#close-button{
+  padding:0 !important;
+  -ms-transform: translate(-100%, 0) !important;
+  transform: translate(-100%, 0) !important;
+  transition: all 0.5s;
+
+}
+
+#download-button{
+  padding:0 !important;
+  -ms-transform: translate(-50%, 0) !important;
+  transform: translate(-50.%, 0) !important;
+  transition: all 0.5s;
+}
+
+#share-button{
+  padding:0 !important;
+  -ms-transform: translate(0%, 0) !important;
+  transform: translate(0%, 0) !important;
+  transition: all 1s;
+}
+
+.selfie-button {
+  width: 10em;
+  height: 3em;
+  position: absolute;
+  z-index: 5;
+  bottom: 5%;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  font-size: larger;
+  background-color: #fff4ee;
+  opacity: 0;
+  /* display:inline-block; */
+  padding:0.3em 1.2em;
+  margin:0 0.1em 0.1em 0;
+  border:0.16em solid rgba(255,255,255,0);
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family: "Pangram-Regular";
+  /* font-weight:300; */
+  text-transform: uppercase;
+  color:#000000;
+  /* text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35); */
+  text-align:center;
+  transition: all 0.2s;
+  box-shadow: 0em 0em 1em rgba(0,0,0,0.5);
+}
+
+#ui-container{
+  max-width: 600px;
+  width: 100%;
+  height: 100%;
+  /* background-color: green; */
+  display: block;
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 0;
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+.selfie-close {
+  width: 10em;
+  height: 3em;
+  /* position: absolute; */
+  z-index: 5;
+  /* top: 5%; */
+  /* left: 50%; */
+  /* -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0); */
+  font-size: larger;
+  background-color: #fff4ee;
+  opacity: 1;
+  /* display:inline-block; */
+  padding:0.3em 1.2em;
+  margin:0 0.1em 0.1em 0;
+  border:0.16em solid rgba(255,255,255,0);
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family: "Pangram-Regular";
+  /* font-weight:300; */
+  text-transform: uppercase;
+  color:#000000;
+  /* text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35); */
+  text-align:center;
+  transition: all 0.2s;
+  box-shadow: 0em 0em 1em rgba(0,0,0,0.5);
+}
+.button4:hover{
+    border-color: rgba(255,255,255,1);
+}
+@media all and (max-width:30em){
+    .button4{
+        display:block;
+        margin:0.2em auto;
+        }
+}
+
+
+#share-container {
+    z-index: 1000;
+    display:none;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 350px;
+    margin: 0 auto;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%);
+
+    /*color:  #000000;*/
+    background-color: #FFFFFF;
+
+    padding: 2rem;
+    font-family: "Pangram-Regular";
+    /*letter-spacing: 5px;*/
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1em;
+
+    text-decoration: none;
+    backface-visibility: hidden;
+    border: 0.3rem solid transparent;
+    border-radius: 3rem;
+    box-shadow: 5px 10px 18px #888888;
+}
+
+#share-ui {
+    width:75%;
+    margin: 0 auto;
+}
+#phone {
+    width: 100%;
+    height: 2rem;
+    margin-top: 1rem;
+}
+
+#share-submit {
+    margin: 0 auto;
+    background-color: black;
+    color: white;
+    padding:1em;
+    border-radius: 3rem;
+    width: 100%;
+
+}
+
+#share-close {
+    position: absolute;
+    right: 2em;
+    top: 1.5em;
+    border: none;
+    background-color: transparent;
+    /*color: white;*/
+    text-align: center;
+    border-radius: 3rem;
+    width: 25px;
+    filter: invert(1);
+}
+
+
+@media only screen and (max-width: 599px) {
+    #share-container {
+        width: 70%;
+    }
+}

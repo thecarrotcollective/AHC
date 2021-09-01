@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Selfie with Krystal</title>
+     <link rel="stylesheet" href="../style.css" as="style" > <!-- references the parent css for consistency-->
+    <!-- <link rel="preload" href="quizScene/script.js" as="script"> -->
+    <!-- <link rel="preload" href="../style.css" as="style"> -->
+</head>
+<body class="mainIntroPage">
+    <div id="IntroDiv">
+      <div class="container">
+        <div class="safe_area">
+            <div class="ahc-logo-Intro" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="../quizScene/images/AHCLOGO.png"></div>
+            <div class="quizquestion" style="display: flex;" id="quesitonDiv">
+              <h2 id='question'  class="question">TAKE A SELFIE WITH KOREAN SUPERSTAR KRYSTAL JUNG!</h2>
+            </div>
+
+            <div class="grid_container" id="grid_container">
+                <section>
+                    <div class="header" id="header">
+
+                    </div>
+                </section>
+                <section>
+                    <div class="content" id="content">
+                      <div class="productIntro"  id="productIntro1">
+                        <img id="productIntroImage" src="../quizScene/images/camera-perm.png" alt="Snow">
+                  
+                        <button id="selfie-btn" class="selfie-btn" >ACCEPT</button>
+                      </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="footer" id="footer">
+                      <div class="controls" style="display: flex;" id="controls_id">
+                        <button id="start-quiz-btn" class="bn3639 bn39" >TAKE A SELFIE</button>
+                    </div>
+
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+    </div>
+    <script>
+      document.getElementById('start-quiz-btn').addEventListener('click', function(e) {
+        document.getElementById('productIntro1').style.display = 'flex';
+        document.getElementById('start-quiz-btn').style.display = 'none';
+        document.getElementById('quesitonDiv').style.display = 'none';
+      });
+      document.getElementById('selfie-btn').addEventListener('click', function(e) {
+        window.location.href="../selfie/camera.html";
+      });
+
+    </script>
+</body>
+</html>
