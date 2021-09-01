@@ -1505,9 +1505,9 @@ function envLoad(textureUrl){
 
 	setTimeout(function(){
 		for ( let i = 0; i < 6; i ++ ) {
-			materials[i].transparent = false
+			materials[i].transparent = true
 		}
-	}, 1000);
+	}, 500);
 	// manager.onLoad = function ( ) {
 
 	// 	console.log( 'Loading complete!');
