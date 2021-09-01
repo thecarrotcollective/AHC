@@ -365,7 +365,9 @@ function init() {
 	scene.add(filterScene)
 	scene.add(SceneObjectVideo1)
 	scene.add(BottleRoomVideoPlayScene)
+  
 
+	
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
 
 	skydome = {
