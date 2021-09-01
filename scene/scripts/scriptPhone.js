@@ -403,10 +403,13 @@ function init() {
 	};
 
 	manager.onLoad = function ( ) {
-		for ( let i = 0; i < 6; i ++ ) {
-			new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
-			runTween()
-		}
+		setTimeout(function(){
+			for ( let i = 0; i < 6; i ++ ) {
+				new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
+				runTween()
+			}
+		}, 250);
+		
 		console.log( 'Loading complete!');
 
 		if(currState === INTRO){
@@ -685,7 +688,7 @@ function init() {
 			  PoolEntranceScene.add(PoolEntranceArrow);
 			  RoomVideoPlayScene.add(RoomVideoPlay);
 			  orbGlowScene.add(orbGlow)
-			  orbPlusScene.add(orbPlus)
+			//   orbPlusScene.add(orbPlus)
 
 
 			orbPlus.position.set(-7,-0.5,1.8)
