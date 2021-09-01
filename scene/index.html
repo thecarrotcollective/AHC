@@ -245,7 +245,7 @@
             enquire.unregister("screen and (max-width: 599px)");
             enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
             enquire.unregister("screen and (min-width: 900px)");
-          
+
         }
     });
 
@@ -270,7 +270,8 @@
     document.getElementById('beauty-btn').addEventListener("click", openBeauty);
 
     function openSelfie(){
-      window.open('../selfie/index.html')
+      window.location.href="../selfie/index.html"
+      // window.open('../selfie/index.html')
     }
 
     function openTherapy(){
