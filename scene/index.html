@@ -4,7 +4,7 @@
 
   <link rel="stylesheet" type="text/css" href="styles.css">
     <!-- <meta name="viewport" content="width=device-width"> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <!--      <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />-->
     <link href="styles/video-js.css" rel="stylesheet" />
 <!--      <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet"/>-->
@@ -21,7 +21,9 @@
 
   <!-- <script src="//vjs.zencdn.net/5.4.6/video.min.js"></script> TODO delete this later if it doesnt break anything-->
   <script type="text/javascript">
-
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          alert("mobile detected")
+}
     // This loads JS files in the head element
         function loadJS(url)
         {
