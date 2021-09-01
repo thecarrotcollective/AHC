@@ -405,14 +405,12 @@ function init() {
 	};
 
 	manager.onLoad = function ( ) {
-		setTimeout(function(){
-			for ( let i = 0; i < 6; i ++ ) {
-				new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
-				console.log("loadingggggg")
-				runTween()
-			}
-		}, 250);
 		
+		for ( let i = 0; i < 6; i ++ ) {
+			new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
+	
+			runTween()
+		}
 		console.log( 'Loading complete!');
 
 		if(currState === INTRO){
