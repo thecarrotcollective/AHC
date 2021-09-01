@@ -184,6 +184,9 @@
       <div id="pool-text" class="hover-text">
 
       </div>
+      <div id="orb-text" class="hover-text">
+
+      </div>
 
       <div id="beauty-text" class="hover-text">
         <!-- Watch AHC's KOREAN AESTHETIC TUTORIALS here. -->
@@ -202,6 +205,9 @@
 
       <button id="beauty-btn" class="CTA-btn">
         WATCH AHC's KOREAN AESTHETIC TUTORIALS HERE
+      </button>
+      <button id="orb-btn" class="CTA-btn">
+        FOUND OUT MORE
       </button>
 
     </div>
@@ -267,6 +273,66 @@
     // }
     document.getElementById('pool-btn').addEventListener("click", openTherapy);
     document.getElementById('beauty-btn').addEventListener("click", openBeauty);
+    document.getElementById('orb-btn').addEventListener("click", openOrbVideo);
+
+    function openOrbVideo(){
+      document.getElementById('orb-vid').style.display = 'block';
+      document.getElementById('vid-2').style.display = "none"
+      document.getElementById('vid-1').style.display = "none"
+      document.getElementById('vid-3').style.display = "none"
+      document.getElementById('video2').style.display = 'none';
+      document.getElementById('video_id').style.display = 'block';
+			document.getElementById('blackScreen').style.display = 'block';
+      document.getElementById('close-btn').style.display = 'block';
+      document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
+      var player = videojs('#orb-vid');
+      player.src('video/orbvideo.mp4')
+      var video = document.getElementById('orb-vid');
+      // video.requestFullscreen();
+      player.play();
+      document.getElementById('orb-text').style.opacity = 0;
+			document.getElementById('orb-btn').style.opacity = 0;
+			document.getElementById('orb-btn').style.pointerEvents = "none";
+      document.getElementById('orb-vid').addEventListener("click", function(e){
+        console.log("clicked")
+
+        makeFullScreen()
+        player.play();
+        document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+
+      });
+      document.getElementById('close-btn').addEventListener("click", function(e){
+        document.getElementById('orb-text').style.opacity = 1;
+			document.getElementById('orb-btn').style.opacity = 1;
+			document.getElementById('orb-btn').style.pointerEvents = "auto";
+      });
+      document.getElementById('close-btn').addEventListener("click", closeVideo);
+
+      player.on('ended', function () {
+            closeVideo();
+            document.getElementById('orb-text').style.opacity = 1;
+            document.getElementById('orb-btn').style.opacity = 1;
+            document.getElementById('orb-btn').style.pointerEvents = "auto";
+          })
+      player.on('fullscreenchange', function () {
+        if (this.isFullscreen()){
+          console.log('fullscreen');
+        } else {
+
+          closeVideo();
+          document.getElementById('orb-text').style.opacity = 1;
+            document.getElementById('orb-btn').style.opacity = 1;
+            document.getElementById('orb-btn').style.pointerEvents = "auto";
+        }
+      })
+      player.on('tap', function () {
+        console.log("clicked")
+
+        makeFullScreen()
+        player.play();
+        document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+      })
+		}
 
     function openTherapy(){
       document.getElementById('orb-vid').style.display = 'none';
@@ -303,6 +369,9 @@
 
       player.on('ended', function () {
             closeVideo();
+            document.getElementById('pool-text').style.opacity = 1;
+            document.getElementById('pool-btn').style.opacity = 1;
+            document.getElementById('pool-btn').style.pointerEvents = "auto";
           })
       player.on('fullscreenchange', function () {
         if (this.isFullscreen()){
@@ -543,6 +612,7 @@
       console.log('close video');
       document.getElementById('video2').removeEventListener("click", closeVideo);
       // document.getElementById('video-close-overlay').style.display = 'none';
+      document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('video2').style.display = 'none';
       document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('vid-1').style.display = 'none';

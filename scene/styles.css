@@ -1,14 +1,14 @@
 @font-face {
   font-family: "Pangram-Regular";
-  src:url("../fonts/Pangram-Regular.otf") format("opentype");
+  src:url("../shared/fonts/Pangram-Regular.otf") format("opentype");
 }
 @font-face {
   font-family: "Pangram-Light";
-  src:url("../fonts/Pangram-Light.otf") format("opentype");
+  src:url("../shared/fonts/Pangram-Light.otf") format("opentype");
 }
 @font-face {
   font-family: "Pangram-ExtraBold";
-  src:url("../fonts/Pangram-ExtraBold.otf") format("opentype");
+  src:url("../shared/fonts/Pangram-ExtraBold.otf") format("opentype");
 }
 .mainIntroPage{
 
@@ -529,6 +529,9 @@ video{
   }
   canvas{
     z-index: -1;
+  }
+  #orb-btn{
+    left: 25%;
   }
   .productIntro {
     display: flex;
