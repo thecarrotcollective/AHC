@@ -1,6 +1,47 @@
 var canvasHeight = window.innerHeight;
 var canvasWidth = window.innerWidth;
 
+var copyJSON;
+var languageID = 0;
+
+var url = window.location.href;
+var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
+var url_params = url.substr(url.indexOf('#')+1)
+var selectedPersonality = url_params.substr(url_params.indexOf('-')+1, 2);
+console.log(selectedLanguage+":"+selectedPersonality);
+function loadJSON(callback) {
+   var xobj = new XMLHttpRequest();
+   xobj.overrideMimeType("application/json");
+   xobj.open('GET', '../shared/copy.json', true);
+   xobj.onreadystatechange = function () {
+         if (xobj.readyState == 4 && xobj.status == "200") {
+           // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+           callback(xobj.responseText);
+         }
+   };
+   xobj.send(null);
+}
+
+function setLang(id){
+  document.getElementById('takepic-button').innerHTML = copyJSON.TakeSelfieBtn[id]
+}
+
+loadJSON(function(response) {
+
+ // Parse JSON string into object
+   copyJSON = JSON.parse(response);
+   console.log(copyJSON);
+   console.log("language is "+selectedLanguage);
+   if(selectedLanguage.localeCompare("zh") === 0){
+     languageID = 2
+   } else if (selectedLanguage.localeCompare("ko") === 0){
+     languageID = 1
+   } else {
+     languageID = 0
+   }
+   setLang(languageID)
+});
+
 // desktop, the width of the canvas is 0.66 * window height and on mobile it's fullscreen
 if (window.innerWidth > window.innerHeight) {
     canvasWidth = Math.floor(window.innerHeight*0.66);
@@ -194,7 +235,7 @@ shareBtn.addEventListener("click", async () => {
 });
 
 backBtn.addEventListener("click", async () => {
-  window.location.href="../sceneFolder/index.html";
+  window.location.href="../scene/index.html#"+url_params+"-selfie";
 });
 
 /* Canvas Donwload */

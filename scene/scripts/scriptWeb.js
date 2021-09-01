@@ -1618,6 +1618,15 @@ function sendUser() {
 	}
 }
 
+
+document.getElementById('selfie-btn').addEventListener("click", openSelfie);
+
+function openSelfie(){
+  window.location.href="../selfie/camera.html#"+url_params
+  // window.open('../selfie/index.html')
+}
+
+
 function transferComplete(evt) {
 	console.log("The transfer is complete.");
 	input.value = "";

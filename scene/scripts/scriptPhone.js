@@ -35,7 +35,7 @@ function setLang(id){
 	document.getElementById('productButton-1').innerHTML = copyJSON.FindOutMore[id]
 	document.getElementById('productButton-2').innerHTML = copyJSON.FindOutMore[id]
 	document.getElementById('productButton-3').innerHTML = copyJSON.FindOutMore[id]
-	
+
 	document.documentElement.lang = copyJSON.code[id];
 	fakeButton.click();
 }
@@ -158,7 +158,7 @@ var fakeButton =document.getElementById('fakeButton_id');
 fakeButton.addEventListener('click', (event) => {
 	buttonClicked();
 });
-// 
+//
 // document.addEventListener('load', (event) => {
 // 	console.log("DOMContentLoaded worked")
 
@@ -167,7 +167,7 @@ fakeButton.addEventListener('click', (event) => {
 function buttonClicked(){
 	console.log("fake button")
 	if(selectedPersonality === 'fe'){
-		
+
 		playAudio('sounds/sfx/feeler.mp3')
 
 
@@ -210,9 +210,9 @@ function playAudio(audioUrl){
 		sound.setBuffer( buffer );
 		sound.setLoop( true );
 		sound.setVolume( 0.65 );
-	
+
 		sound.play();
-		
+
 	});
 }
 
@@ -1626,6 +1626,12 @@ function transferComplete(evt) {
 	input.value = "";
 	shareContainer.style.display = 'none';
 	copyLink();
+}
+
+document.getElementById('selfie-btn').addEventListener("click", openSelfie);
+function openSelfie(){
+  window.location.href="../selfie/camera.html#"+url_params
+  // window.open('../selfie/index.html')
 }
 
 function sharePopup() {
