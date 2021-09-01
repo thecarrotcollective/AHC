@@ -15,9 +15,9 @@
     "悦享SPA之旅"
   ],
   "PrivacyPolicy":[
-    "BY CLICKING \"START YOUR JOURNEY!\"<br> YOU AGREE TO OUR <a class=\"links\" href=\"privacy.html\">PRIVACY POLICY</a>",
-    "시작하기 버튼을 누르면 <br><a class=\"links\" href=\"privacy.html\">개인정보보호방침</a>에 동의하게 됩니다",
-    "<a class=\"links\" href=\"privacy-cn.html\">智能测肤隐私政策</a>"
+    "BY CLICKING \"START YOUR JOURNEY!\"<br> YOU AGREE TO OUR <a class=\"links\" href=\"legal/privacy.html\">PRIVACY POLICY</a>",
+    "시작하기 버튼을 누르면 <br><a class=\"links\" href=\"legal/privacy.html\">개인정보보호방침</a>에 동의하게 됩니다",
+    "<a class=\"links\" href=\"legal/privacy-cn.html\">智能测肤隐私政策</a>"
   ],
   "Skip":[
     "SKIP",

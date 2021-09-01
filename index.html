@@ -9,8 +9,8 @@
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
     <!-- <script src="sceneFolder/scripts/scriptPhone.js"></script> -->
     <title>AHC Spa at Home</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preload" href="quizScene/script.js" as="script">
+    <link rel="stylesheet" href="shared/intro.css">
+    <link rel="preload" href="personalitytest/script.js" as="script">
     <!-- <link rel="preload" href="style.css" as="style"> -->
 </head>
 <body class="mainIntroPage">
@@ -18,7 +18,7 @@
 
         <div class="container">
                 <div class="safe_area">
-                    <div class="ahc-logo-Intro" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="quizScene/images/opt/AHCLOGO_white.webp"></div>
+                    <div class="ahc-logo-Intro" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="shared/images/AHCLOGO_white.webp"></div>
                     <div class="quizquestion" id="quesitonDiv">
                         <h2 id='question' class="question">PERSONALITY TESTS ARE AN ESSENTIAL<br>TRAIT OF KOREAN CULTURE.</h2>
                     </div>
@@ -32,7 +32,7 @@
                         <section>
                             <div class="content" id="content">
                                 <div class ="arch", id="archid">
-                                    <img class="image" src="quizScene/images/opt/arch1.webp" alt="" >
+                                    <img class="image" src="personalitytest/images/opt/arch1.webp" alt="" >
                                 </div>
                                 <div class="middleText" id="middleText">
                                     <h1 id="personality"></h1>
@@ -59,7 +59,7 @@
                             <div class="footer" id="footer">
                                 <div class="controlsIntro" id="controlsIntro">
                                     <button id="start-btnIntro" class="startBtn startBtn1 whiteClr" >START YOUR JOURNEY!</button>
-                                    <div id="tandc">BY CLICKING "START YOUR JOURNEY!"<br> YOU AGREE TO OUR <a class="links" href="privacy.html">PRIVACY POLICY</a></div>
+                                    <div id="tandc">BY CLICKING "START YOUR JOURNEY!"<br> YOU AGREE TO OUR <a class="links" href="legal/privacy.html">PRIVACY POLICY</a></div>
                                     <div id="language" class="language">
                                         <button id="en-btn" class="language-btn language-btn1">EN</button>
                                         <button id="ko-btn" class="language-btn language-btn1" style="opacity: 0.5;">KR</button>
@@ -73,79 +73,25 @@
                                 <div class="controls", id="controls_id">
                                     <button id="start-quiz-btn" class="bn3639 bn39" >START EXPERIENCE!</button>
                                 </div>
-
                                 <div class="process", id="process_id">
                                     <div>
                                         <label for="i1" class="dots" id="dot1"></label>
                                         <label for="i2" class="dots" id="dot2"></label>
                                         <label for="i3" class="dots" id="dot3"></label>
                                     </div>
-
                                 </div>
                                 <div id="btnCSS2"><button class="bn3636 bn36" id="skipLinkScene">SKIP</button></div>
-
                             </div>
                         </section>
                     </div>
-
                 </div>
             </div>
             <video playsInline  id="firstVideo">
-                <source src="quizScene/videos/Spa%20Zoom%208Mbps%2037_comp.webm" type="video/webm">
+                <source src="personalitytest/videos/Spa%20Zoom%208Mbps%2037_comp.webm" type="video/webm">
             </video>
-
         </div>
     </div>
-
-
-<script src="quizScene/script.js"></script>
-
-<script>
-
-        document.getElementById('start-btnIntro').addEventListener('click', function(e) {
-          document.getElementById('firstVideo').style.display="block";
-          document.getElementById('language').style.display="none";
-          document.getElementById('skipButton').style.display="flex";
-          document.getElementById('skipLink').style.display="flex";
-          document.getElementById('controlsIntro').style.display = "none";
-          document.getElementById('firstVideo').play();
-         });
-
-        document.getElementById('firstVideo').addEventListener("ended",function(){
-          document.getElementById('skipButton').style.display="none";
-          document.getElementById('firstVideo').style.display="none";
-
-          document.getElementById('skipLink').style.display="none";
-          document.getElementById('controls_id').style.display="flex";
-          document.getElementById('quesitonDiv').style.display="flex";
-          document.getElementById('archid').style.display="flex";
-          document.getElementById('middleText2').style.display="flex";
-          document.getElementById('btnCSS2').style.display="flex";
-
-          document.getElementById('firstVideo').pause();
-          document.getElementById("ahc-logo-beauty-imgIntro").src="quizScene/images/opt/AHCLOGO.webp"
-          document.getElementById('IntroDiv').style.backgroundImage = "url(quizScene/images/opt/colorPalette.webp)";
-          document.getElementById('IntroDiv').style.backgroundRepeat = "no-repeat";
-      },false);
-
-    document.getElementById('skipLink').addEventListener('click', function(e) {
-        document.getElementById('skipButton').style.display="none";
-        document.getElementById('firstVideo').style.display="none";
-
-        document.getElementById('skipLink').style.display="none";
-        document.getElementById('controls_id').style.display="flex";
-        document.getElementById('quesitonDiv').style.display="flex";
-        document.getElementById('archid').style.display="flex";
-        document.getElementById('middleText2').style.display="flex";
-        document.getElementById('btnCSS2').style.display="flex";
-
-        document.getElementById('firstVideo').pause();
-        document.getElementById("ahc-logo-beauty-imgIntro").src="quizScene/images/opt/AHCLOGO.webp"
-        document.getElementById('IntroDiv').style.backgroundImage = "url(quizScene/images/opt/colorPalette.webp)";
-        document.getElementById('IntroDiv').style.backgroundRepeat = "no-repeat";
-    });
-
-</script>
+<script src="personalitytest/script.js"></script>
 
 </body>
 </html>

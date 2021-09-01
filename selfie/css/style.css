@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Pangram-Regular";
-  src:url("../../sceneFolder/fonts/Pangram-Regular.otf") format("opentype");
+  src:url("../../shared/fonts/Pangram-Regular.otf") format("opentype");
 }
 
 canvas.deepar {
