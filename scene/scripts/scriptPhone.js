@@ -246,7 +246,7 @@ document.getElementById("controls_id").addEventListener("click", function() {
 	document.getElementById('middleText').style.display = 'none';
 	document.getElementById('controls_id').style.display = 'none';
 	document.getElementById('quesitonDiv').style.display = 'none';
-
+	loadSounds()
   });
 
 
@@ -288,9 +288,9 @@ function toRadians(degrees) {
   var pi = Math.PI;
   return degrees * (pi/180);
 }
+var flashSound, listener, audioLoader;
 
-
-document.getElementById('container_2').addEventListener('click', loadSounds)
+// document.getElementById('container_2').addEventListener('click', loadSounds)
 
 function loadSounds(){
 	audioLoader = new THREE.AudioLoader();
@@ -301,11 +301,11 @@ function loadSounds(){
 		flashSound.setVolume( 0.5 );
 		// flashSound.play();
 	});
-	document.getElementById('container_2').removeEventListener('touchend', loadSounds)
+	// document.getElementById('container_2').removeEventListener('touchend', loadSounds)
 
 }
 
-var flashSound, listener, audioLoader;
+
 var flashHasPlayed = false;
 
 function init() {
