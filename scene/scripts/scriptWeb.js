@@ -63,6 +63,7 @@ loadJSON(function(response) {
      languageID = 0
    }
    setLang(languageID)
+
    LoadPage();
 
 });
@@ -95,7 +96,9 @@ function LoadPage() {
 		spaText=copyJSON.Extrovert[languageID]
 		infoText=copyJSON.ExtrovertExplanation[languageID]
 	}
-
+	var personiltyTypeHtml = "<h2 id='question'  >"+personiltyType+"</h2>";
+	var element2 = document.getElementById("question")
+	element2.innerHTML = personiltyTypeHtml;
 	document.getElementById('archid').style.display = 'flex';
 	document.getElementById('infoText').style.display = 'flex';
 	document.getElementById('middleText').style.display = 'flex';
@@ -114,9 +117,7 @@ function LoadPage() {
 	var element4 = document.getElementById("archid");
 	element4.innerHTML = resultImg
 
-	var personiltyTypeHtml = "<h3 id='question' >"+personiltyType+"</h3>";
-	var element2 = document.getElementById("question")
-	element2.innerHTML = personiltyTypeHtml;
+
 	var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";
 	var element5 = document.getElementById("infoText")
 	element5.innerHTML = infoTextHtml;
@@ -405,7 +406,10 @@ function init() {
 	manager.onLoad = function ( ) {
 
 		console.log( 'Loading complete!');
-
+		for ( let i = 0; i < 6; i ++ ) {
+			new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
+			runTween()
+		}
 		if(currState === INTRO){
 			video.currentTime = 0;
 			video2.currentTime = 0;
@@ -992,7 +996,7 @@ document.getElementById('pool-btn').addEventListener("click", function(e){
 });
 document.getElementById('orb-btn').addEventListener("click", function(e){
 	hoverButtonChecker = true
-	sound.pause()
+	
 });
 document.getElementById('beauty-btn').addEventListener("click", function(e){
 	console.log("clicked")
@@ -1042,7 +1046,7 @@ player.on('ended', function () {
   })
   var player3 = videojs('#orb-vid');
   player3.on('ended', function () {
-	sound.play()
+	
 	hoverButtonChecker = false
   })
 var orbVideoPlayed = false
@@ -1158,7 +1162,7 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 		document.getElementById('close-btn').addEventListener("click", function(e){
 			hoverButtonChecker = false
-			sound.play();
+		
 
 		});
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
@@ -1491,16 +1495,14 @@ function envLoad(textureUrl){
 
 
 	skyBox.geometry.scale( 1, 1, -1 );
-	for ( let i = 0; i < 6; i ++ ) {
-		new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
-		runTween()
-	}
+
 
 	setTimeout(function(){
 		for ( let i = 0; i < 6; i ++ ) {
-			materials[i].transparent = false
+			materials[i].transparent = true
 		}
-	}, 1000);
+	
+	}, 500);
 	// manager.onLoad = function ( ) {
 
 	// 	console.log( 'Loading complete!');
@@ -1517,6 +1519,7 @@ function runTween(){
 }
 
 function DisableEverything(){
+
 	firtVideoChecker = false
 	secondVideoChecker = false
 	clickableVideo = false
@@ -1557,6 +1560,10 @@ function DisableEverything(){
 		}
 	}, 200);
 	TweenFadeOutForVideos()
+	// for ( let i = 0; i < 6; i ++ ) {
+	// 	new TWEEN.Tween(materials[i]).to( { opacity: 0 }, 100 ).start();
+	// 	runTween()
+	// }
 }
 
 function TweenFadeOutForVideos(){

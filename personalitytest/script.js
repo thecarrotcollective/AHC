@@ -215,6 +215,10 @@ function showProgress() {
 };
 var personiltyType;
 function showScores() {
+  var personiltyTypeHtml = "<h3 id='question' ></h3>";
+	var element2 = document.getElementById("question")
+	element2.innerHTML = personiltyTypeHtml;
+  document.getElementById('question').style.display = 'none';
   var buttonColor;
   var imageurl;
   var spaText;
@@ -250,30 +254,30 @@ function showScores() {
 
   document.getElementById('process_id').style.display = 'none';
 
-  var personiltyTypeHtml = "<h3 id='question' >"+personiltyType+"</h3>";
-  var  gameOverHTML = '';
-  document.getElementById("middleText2").style.top = "45%";
-  gameOverHTML += "<h1 id='score'> Option: " + optionChoice + "</h1>";
-  var spaText = "<h1 >"+spaText+"</h1>";
-  var element = document.getElementById("personality");
-  element.innerHTML = spaText;
-  var element2 = document.getElementById("question")
-  element2.innerHTML = personiltyTypeHtml;
+  // var personiltyTypeHtml = "<h3 id='question' >"+personiltyType+"</h3>";
+  // var  gameOverHTML = '';
+  // document.getElementById("middleText2").style.top = "45%";
+  // gameOverHTML += "<h1 id='score'> Option: " + optionChoice + "</h1>";
+  // var spaText = "<h1 >"+spaText+"</h1>";
+  // var element = document.getElementById("personality");
+  // element.innerHTML = spaText;
+  // var element2 = document.getElementById("question")
+  // element2.innerHTML = personiltyTypeHtml;
 
-  var buttonText =" <button id='start-btn' class='bn3639 bn39'  >"+copyJSON.GoToSpa[languageID]+"</button>";
-  var element3 = document.getElementById("controls_id")
-  element3.innerHTML = buttonText;
+  // var buttonText =" <button id='start-btn' class='bn3639 bn39'  >"+copyJSON.GoToSpa[languageID]+"</button>";
+  // var element3 = document.getElementById("controls_id")
+  // element3.innerHTML = buttonText;
 
-  var resultImg = "<img src="+ imageurl +">";
-  var element4 = document.getElementById("archid");
-  element4.innerHTML = resultImg;
-  var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";
-  var element5 = document.getElementById("infoText")
-  element5.innerHTML = infoTextHtml;
+  // var resultImg = "<img src="+ imageurl +">";
+  // var element4 = document.getElementById("archid");
+  // element4.innerHTML = resultImg;
+  // var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";
+  // var element5 = document.getElementById("infoText")
+  // element5.innerHTML = infoTextHtml;
   window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[currState];
   document.getElementById('start-btn').addEventListener('click', function(e) {
     console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[currState]);
-    
+ 
   });
 };
 

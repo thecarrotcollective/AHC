@@ -403,7 +403,10 @@ function init() {
 	};
 
 	manager.onLoad = function ( ) {
-
+		for ( let i = 0; i < 6; i ++ ) {
+			new TWEEN.Tween(materials[i]).to( { opacity: 1 }, 500 ).start();
+			runTween()
+		}
 		console.log( 'Loading complete!');
 
 		if(currState === INTRO){
@@ -989,7 +992,7 @@ document.getElementById('beauty-btn').addEventListener("click", function(e){
 });
 document.getElementById('orb-btn').addEventListener("click", function(e){
 	hoverButtonChecker = true
-	sound.pause()
+	// sound.pause()
 });
 document.getElementById('beauty-vid-1').addEventListener("click", function(e){
 	sound.pause()
@@ -1034,7 +1037,7 @@ player.on('ended', function () {
   })
   var player3 = videojs('#orb-vid');
   player3.on('ended', function () {
-	sound.play()
+	// sound.play()
 	hoverButtonChecker = false
   })
 var flagOrb = false
@@ -1138,7 +1141,7 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 		document.getElementById('close-btn').addEventListener("click", function(e){
 			hoverButtonChecker = false
-			sound.play();
+			// sound.play();
 
 		});
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);

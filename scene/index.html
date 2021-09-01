@@ -1,10 +1,10 @@
 <html>
   <head>
     <meta charset="UTF-8">
-
+    <meta name="viewport" content="width=999, maximum-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="styles.css">
     <!-- <meta name="viewport" content="width=device-width"> -->
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  
 <!--      <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />-->
     <link href="styles/video-js.css" rel="stylesheet" />
 <!--      <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet"/>-->
@@ -21,9 +21,7 @@
 
   <!-- <script src="//vjs.zencdn.net/5.4.6/video.min.js"></script> TODO delete this later if it doesnt break anything-->
   <script type="text/javascript">
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          alert("mobile detected")
-}
+
     // This loads JS files in the head element
         function loadJS(url)
         {
@@ -36,6 +34,7 @@
            // fire the loading
            head.appendChild(script);
         }
+  
 
   </script>
 
@@ -44,9 +43,9 @@
     <script src="https://unpkg.com/@seregpie/three.text-sprite"></script>
   </head>
   <body id="mainPage" >
-    <div id="IntroDiv" style="background: url('') no-repeat; background-color:  #fff4ee;">
+    <div id="IntroDiv" style="background: url('') no-repeat; background-color:  #fff4ee;" >
 
-      <div class="container">
+      <div class="container" >
               <div class="safe_area">
                   <div class="ahc-logo-Intro" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="../shared/images/AHCLOGO.webp"></div>
                   <div class="quizquestion" id="quesitonDiv">
@@ -269,60 +268,66 @@
     </div>
   </div>
   <script type="text/javascript">
-
-    enquire.register("screen and (max-width: 599px)", {
-        match : function() {
-            // Load a mobile JS file
-            loadJS('scripts/scriptPhone.js');
-            console.log('phone loaded');
-            enquire.unregister("screen and (max-width: 599px)");
-            enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
-            enquire.unregister("screen and (min-width: 900px)");
-        //     document.body.style.backgroundImage = "url('./UIAssets/OPENNING_qual80.jpg') ";  // compressed with squoosh mozjpeg quality 80%
-        //     document.body.style.backgroundRepeat = "no-repeat";
-        //     document.getElementById('productIntro1').style.display = 'flex'
-        //     document.getElementById('video2').addEventListener("click", function(e){
-        //     console.log("clicked")
-
-
-        //     });
-        //     if(window.innerWidth > window.innerHeight){
-        //       document.getElementsByTagName("body")[0].style.transform = "rotate(90deg)";
-        //       }
-
-        // }
-      }
-    });
-
-
-
-    enquire.register("screen and (min-width: 600px) and (max-width: 899px)", {
-        match : function() {
-            // Load a tablet JS file
-            loadJS('scripts/scriptPhone.js');
-
-
-            console.log('tablet loaded');
-            enquire.unregister("screen and (max-width: 599px)");
-            enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
-            enquire.unregister("screen and (min-width: 900px)");
-
+          if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          console.log("PHONE LOADED")
+          loadJS('scripts/scriptPhone.js');
+        }else{
+          console.log("WEB LOADED")
+          loadJS('scripts/scriptWeb.js');
         }
-    });
+    // enquire.register("screen and (max-width: 599px)", {
+    //     match : function() {
+    //         // Load a mobile JS file
+    //         loadJS('scripts/scriptPhone.js');
+    //         console.log('phone loaded');
+    //         enquire.unregister("screen and (max-width: 599px)");
+    //         enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
+    //         enquire.unregister("screen and (min-width: 900px)");
+    //     //     document.body.style.backgroundImage = "url('./UIAssets/OPENNING_qual80.jpg') ";  // compressed with squoosh mozjpeg quality 80%
+    //     //     document.body.style.backgroundRepeat = "no-repeat";
+    //     //     document.getElementById('productIntro1').style.display = 'flex'
+    //     //     document.getElementById('video2').addEventListener("click", function(e){
+    //     //     console.log("clicked")
 
 
-    enquire.register("screen and (min-width: 900px)", {
-        match : function() {
-            // Load a desktop JS file
-            loadJS('scripts/scriptWeb.js');
+    //     //     });
+    //     //     if(window.innerWidth > window.innerHeight){
+    //     //       document.getElementsByTagName("body")[0].style.transform = "rotate(90deg)";
+    //     //       }
 
-            console.log('desktop loaded');
-            enquire.unregister("screen and (max-width: 599px)");
-            enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
-            enquire.unregister("screen and (min-width: 900px)");
-            document.getElementById('productIntro1').style.display = 'none'
-        }
-    });
+    //     // }
+    //   }
+    // });
+
+
+
+    // enquire.register("screen and (min-width: 600px) and (max-width: 899px)", {
+    //     match : function() {
+    //         // Load a tablet JS file
+    //         loadJS('scripts/scriptPhone.js');
+
+
+    //         console.log('tablet loaded');
+    //         enquire.unregister("screen and (max-width: 599px)");
+    //         enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
+    //         enquire.unregister("screen and (min-width: 900px)");
+
+    //     }
+    // });
+
+
+    // enquire.register("screen and (min-width: 900px)", {
+    //     match : function() {
+    //         // Load a desktop JS file
+    //         loadJS('scripts/scriptWeb.js');
+
+    //         console.log('desktop loaded');
+    //         enquire.unregister("screen and (max-width: 599px)");
+    //         enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
+    //         enquire.unregister("screen and (min-width: 900px)");
+    //         document.getElementById('productIntro1').style.display = 'none'
+    //     }
+    // });
     // if(window.innerHeight > window.innerWidth){
     // document.getElementsByTagName("body")[0].style.transform = "rotate(90deg)";
     // }
