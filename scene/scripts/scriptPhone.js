@@ -301,6 +301,7 @@ function loadSounds(){
 		flashSound.setVolume( 0.5 );
 		// flashSound.play();
 	});
+	document.getElementById('container_2').removeEventListener('touchend', loadSounds)
 
 }
 
