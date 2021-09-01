@@ -4,12 +4,12 @@
 
   <link rel="stylesheet" type="text/css" href="styles.css">
     <!-- <meta name="viewport" content="width=device-width"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 <!--      <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />-->
     <link href="styles/video-js.css" rel="stylesheet" />
 <!--      <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet"/>-->
     <link href="styles/vjs-index.css" rel="stylesheet"/>
-
+    <link href="../shared/intro.css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!--  <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>-->
     <script src="scripts/video.min.js"></script>
@@ -35,24 +35,78 @@
            head.appendChild(script);
         }
 
-    </script>
+  </script>
 
     <script src="https://unpkg.com/three"></script>
     <script src="https://unpkg.com/@seregpie/three.text-texture"></script>
     <script src="https://unpkg.com/@seregpie/three.text-sprite"></script>
   </head>
-  <body id="mainPage">
+  <body id="mainPage" >
+    <div id="IntroDiv" style="background: url('') no-repeat; background-color:  #fff4ee;">
 
+      <div class="container">
+              <div class="safe_area">
+                  <div class="ahc-logo-Intro" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="../shared/images/AHCLOGO.webp"></div>
+                  <div class="quizquestion" id="quesitonDiv">
+                      <h2 id='question' class="question"></h2>
+                  </div>
+
+                  <div class="grid_container" id="grid_container">
+                      <section>
+                          <div class="header" id="header">
+
+                          </div>
+                      </section>
+                      <section>
+                          <div class="content" id="content" style="display: flex;">
+                              <div class ="arch", id="archid" style="display: flex;">
+                                  <img class="image" src=""alt="" >
+                       
+                              </div>
+                              <div class="middleText" id="middleText">
+                                  <h1 id="personality"></h1>
+                              </div>
+                              <div class="middleText2" id="middleText2">
+                                  <h1 id="personality2">PERSONALITY<br>TEST</h1>
+                              </div>
+                              <div class="infoText" id="infoText" style="display: flex;">
+                                  <h2 id="infoText"></h2>
+                              </div>
+                            
+                          </div>
+                      </section>
+
+                      <section>
+                          <div class="footer" id="footer">
+                            <div class="controls", id="controls_id">
+                              <button id='start-btn' class='bn3639 bn39'></button>
+                          </div>
+                    
+                      
+                              <div id="btnCSS2"><button class="bn3636 bn36" id="skipLinkScene">SKIP</button></div>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+          </div>
+          <video playsInline  id="firstVideo">
+              <source src="personalitytest/videos/Spa%20Zoom%208Mbps%2037_comp.webm" type="video/webm">
+          </video>
+      </div>
+  </div>
+
+
+  <div id="main" style="display: none;">
     <div class="productIntro" style="display: none;" id="productIntro1">
       <img id="productIntroImage" src="UIAssets/productAHC.png" alt="Snow">
 
-      <button id="start-btn" class="start-btn" >ACCEPT</button>
+      <button id="start-btn2" class="start-btn2" >ACCEPT</button>
     </div>
     <a type="fakeButton" id="fakeButton_id" style="display: none;" >Click Me!</a>
       <div id="blackScreen"></div>
       <div id="whiteScreen"></div>
 
-      <div id="container">
+      <div id="container_2">
 
         <div id="beauty-treatment-overlay">
           <div id = "ahc-logo-beauty"><img id="ahc-logo-beauty-img" src="UIAssets/AHCLOGO_white.png"></div>
@@ -211,7 +265,7 @@
       </button>
 
     </div>
-
+  </div>
   <script type="text/javascript">
 
     enquire.register("screen and (max-width: 599px)", {
@@ -244,8 +298,7 @@
         match : function() {
             // Load a tablet JS file
             loadJS('scripts/scriptPhone.js');
-            document.body.style.backgroundImage = "url('./UIAssets/OPENNING_qual80.jpg') ";  // compressed with squoosh mozjpeg quality 80%
-            document.body.style.backgroundRepeat = "no-repeat";
+
 
             console.log('tablet loaded');
             enquire.unregister("screen and (max-width: 599px)");
@@ -271,6 +324,8 @@
     // if(window.innerHeight > window.innerWidth){
     // document.getElementsByTagName("body")[0].style.transform = "rotate(90deg)";
     // }
+
+
     document.getElementById('pool-btn').addEventListener("click", openTherapy);
     document.getElementById('beauty-btn').addEventListener("click", openBeauty);
     document.getElementById('orb-btn').addEventListener("click", openOrbVideo);

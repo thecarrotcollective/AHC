@@ -37,7 +37,7 @@ function setLang(id){
 	document.getElementById('productButton-3').innerHTML = copyJSON.FindOutMore[id]
 
 	document.documentElement.lang = copyJSON.code[id];
-	fakeButton.click();
+
 }
 
 loadJSON(function(response) {
@@ -54,7 +54,66 @@ loadJSON(function(response) {
      languageID = 0
    }
    setLang(languageID)
+   LoadPage();
 });
+
+var imageurl,personiltyType,infoText
+
+
+function LoadPage() {
+	console.log("dasdasds"+copyJSON['Feeler'])
+	if(selectedPersonality === 'fe'){
+
+	imageurl ="../personalitytest/images/opt/arch5.webp";
+	spaText=copyJSON.Feeler[languageID]
+	personiltyType = copyJSON.FeelerHeadline[languageID]
+	infoText=copyJSON.FeelerExplanation[languageID]
+	
+	}else if(selectedPersonality === 'in'){
+		imageurl ="../personalitytest/images/opt/arch4.webp";
+		spaText=copyJSON.Introvert[languageID]
+		infoText=copyJSON.IntrovertExplanation[languageID]
+		personiltyType = copyJSON.IntrovertHeadline[languageID]
+	}
+	else if(selectedPersonality === 'th'){
+		imageurl ="../personalitytest/images/opt/arch3.webp";
+		spaText=copyJSON.Thinker[languageID]
+		infoText=copyJSON.ThinkerExplanation[languageID]
+		personiltyType = copyJSON.ThinkerHeadline[languageID]
+	}else{
+		imageurl ="../personalitytest/images/opt/arch2.webp";
+		spaText=copyJSON.Extrovert[languageID]
+		personiltyType = copyJSON.ExtrovertHeadline[languageID]
+		spaText=copyJSON.Extrovert[languageID]
+		infoText=copyJSON.ExtrovertExplanation[languageID]
+	}
+
+	document.getElementById('archid').style.display = 'flex';
+	document.getElementById('infoText').style.display = 'flex';
+	document.getElementById('middleText').style.display = 'flex';
+	document.getElementById('controls_id').style.display = 'flex';
+	document.getElementById('quesitonDiv').style.display = 'flex';
+	var spaText = "<h1 >"+spaText+"</h1>";
+	var element = document.getElementById("personality");
+	element.style.display = "flex"
+	element.innerHTML = spaText;
+
+	var buttonText =" <button id='start-btn' class='bn3639 bn39'>"+copyJSON.GoToSpa[languageID]+"</button>";
+	var element3 = document.getElementById("controls_id")
+	element3.innerHTML = buttonText;
+
+	var resultImg = "<img src="+ imageurl +">";
+	var element4 = document.getElementById("archid");
+	element4.innerHTML = resultImg
+
+	var personiltyTypeHtml = "<h3 id='question' >"+personiltyType+"</h3>";
+	var element2 = document.getElementById("question")
+	element2.innerHTML = personiltyTypeHtml;
+	var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";
+	var element5 = document.getElementById("infoText")
+	element5.innerHTML = infoTextHtml;
+}
+
 
 var sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneUrl7,sceneUrl8,sceneUrl9,sceneUrl10
 console.log("language is " + selectedLanguage);
@@ -154,20 +213,10 @@ var POOLENTRACE =9
 var PRODUCTBASE = 10
 var sound;
 
-var fakeButton =document.getElementById('fakeButton_id');
-fakeButton.addEventListener('click', (event) => {
-	buttonClicked();
-});
-//
-// document.addEventListener('load', (event) => {
-// 	console.log("DOMContentLoaded worked")
-
-
-// } );
-function buttonClicked(){
-	console.log("fake button")
+document.getElementById("controls_id").addEventListener("click", function() {
+	console.log("clicked")
 	if(selectedPersonality === 'fe'){
-
+		
 		playAudio('sounds/sfx/feeler.mp3')
 
 
@@ -186,14 +235,21 @@ function buttonClicked(){
 	animate();
 	currState = INTRO
 	renderer.autoclear = false;
-	// setTimeout(function(){
-	// 	sound.play()
-	// }, 500);
-
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
+	document.getElementById('main').style.display = 'block'
+	document.getElementById('IntroDiv').style.display = 'none';
+	document.getElementById('productIntro1').style.display = 'none'
 	document.getElementById('ui-container').style.display = 'block'
-}
+	document.getElementById('archid').style.display = 'none';
+	document.getElementById('infoText').style.display = 'none';
+	document.getElementById('middleText').style.display = 'none';
+	document.getElementById('controls_id').style.display = 'none';
+	document.getElementById('quesitonDiv').style.display = 'none';
+
+  });
+
+
 
 
 function playAudio(audioUrl){
@@ -234,7 +290,7 @@ function toRadians(degrees) {
 }
 
 
-document.getElementById('container').addEventListener('touchend', loadSounds)
+document.getElementById('container_2').addEventListener('click', loadSounds)
 
 function loadSounds(){
 	audioLoader = new THREE.AudioLoader();
@@ -245,7 +301,7 @@ function loadSounds(){
 		flashSound.setVolume( 0.5 );
 		// flashSound.play();
 	});
-	document.getElementById('container').removeEventListener('touchend', loadSounds)
+
 }
 
 var flashSound, listener, audioLoader;
@@ -253,7 +309,7 @@ var flashHasPlayed = false;
 
 function init() {
 
-	const container = document.getElementById( 'container' );
+	const container = document.getElementById( 'container_2' );
 
 	renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
 	renderer.setPixelRatio( window.devicePixelRatio );

@@ -15,13 +15,16 @@ function loadJSON(callback) {
    var xobj = new XMLHttpRequest();
    xobj.overrideMimeType("application/json");
    xobj.open('GET', '../shared/copy.json', true);
-   xobj.onreadystatechange = function () {
+   xobj.onreadystatechange = function (){ 
+
          if (xobj.readyState == 4 && xobj.status == "200") {
            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
            callback(xobj.responseText);
+		   copyJSON = JSON.parse(xobj.responseText);
          }
    };
    xobj.send(null);
+  
 }
 
 function setLang(id){
@@ -42,13 +45,15 @@ function setLang(id){
 	document.getElementById('share-submit').innerHTML = copyJSON.ShareButton[id]
 
 	document.documentElement.lang = copyJSON.code[id];
+	
+	
 }
 
 loadJSON(function(response) {
 
  // Parse JSON string into object
    copyJSON = JSON.parse(response);
-   console.log(copyJSON);
+//    console.log(copyJSON);
    console.log("language is "+selectedLanguage);
    if(selectedLanguage.localeCompare("zh") === 0){
      languageID = 2
@@ -58,13 +63,71 @@ loadJSON(function(response) {
      languageID = 0
    }
    setLang(languageID)
+   LoadPage();
+
 });
+var imageurl,personiltyType,infoText
+
+
+function LoadPage() {
+	if(selectedPersonality === 'fe'){
+
+	imageurl ="../personalitytest/images/opt/arch5.webp";
+	spaText=copyJSON.Feeler[languageID]
+	personiltyType = copyJSON.FeelerHeadline[languageID]
+	infoText=copyJSON.FeelerExplanation[languageID]
+	
+	}else if(selectedPersonality === 'in'){
+		imageurl ="../personalitytest/images/opt/arch4.webp";
+		spaText=copyJSON.Introvert[languageID]
+		infoText=copyJSON.IntrovertExplanation[languageID]
+		personiltyType = copyJSON.IntrovertHeadline[languageID]
+	}
+	else if(selectedPersonality === 'th'){
+		imageurl ="../personalitytest/images/opt/arch3.webp";
+		spaText=copyJSON.Thinker[languageID]
+		infoText=copyJSON.ThinkerExplanation[languageID]
+		personiltyType = copyJSON.ThinkerHeadline[languageID]
+	}else{
+		imageurl ="../personalitytest/images/opt/arch2.webp";
+		spaText=copyJSON.Extrovert[languageID]
+		personiltyType = copyJSON.ExtrovertHeadline[languageID]
+		spaText=copyJSON.Extrovert[languageID]
+		infoText=copyJSON.ExtrovertExplanation[languageID]
+	}
+
+	document.getElementById('archid').style.display = 'flex';
+	document.getElementById('infoText').style.display = 'flex';
+	document.getElementById('middleText').style.display = 'flex';
+	document.getElementById('controls_id').style.display = 'flex';
+	document.getElementById('quesitonDiv').style.display = 'flex';
+	var spaText = "<h1 >"+spaText+"</h1>";
+	var element = document.getElementById("personality");
+	element.style.display = "flex"
+	element.innerHTML = spaText;
+
+	var buttonText =" <button id='start-btn' class='bn3639 bn39'>"+copyJSON.GoToSpa[languageID]+"</button>";
+	var element3 = document.getElementById("controls_id")
+	element3.innerHTML = buttonText;
+
+	var resultImg = "<img src="+ imageurl +">";
+	var element4 = document.getElementById("archid");
+	element4.innerHTML = resultImg
+
+	var personiltyTypeHtml = "<h3 id='question' >"+personiltyType+"</h3>";
+	var element2 = document.getElementById("question")
+	element2.innerHTML = personiltyTypeHtml;
+	var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";
+	var element5 = document.getElementById("infoText")
+	element5.innerHTML = infoTextHtml;
+}
+
 
 var sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneUrl7,sceneUrl8,sceneUrl9,sceneUrl10
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
 if(selectedPersonality === 'fe'){
-	playAudio('sounds/sfx/feeler.mp3')
+	
 	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0002.jpg"
@@ -78,7 +141,7 @@ if(selectedPersonality === 'fe'){
 	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
 
 }else if(selectedPersonality === 'in'){
-	playAudio('sounds/sfx/introvert.mp3')
+
 	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
@@ -92,7 +155,7 @@ if(selectedPersonality === 'fe'){
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
 }
 else if(selectedPersonality === 'th'){
-	playAudio('sounds/sfx/thinker.mp3')
+
 	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
@@ -105,7 +168,7 @@ else if(selectedPersonality === 'th'){
 	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
 }else{
-	playAudio('sounds/sfx/extrovert.mp3')
+
 	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0001.jpg"
 	sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0002.jpg"
@@ -157,16 +220,39 @@ var PRODENTRANCE = 7
 var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
+document.getElementById("controls_id").addEventListener("click", function() {
+	if(selectedPersonality === 'fe'){
+		
+		playAudio('sounds/sfx/feeler.mp3')
 
-window.addEventListener('load', (event) => {
+
+	}else if(selectedPersonality === 'in'){
+		playAudio('sounds/sfx/introvert.mp3')
+
+	}
+	else if(selectedPersonality === 'th'){
+		playAudio('sounds/sfx/thinker.mp3')
+
+	}else{
+		playAudio('sounds/sfx/extrovert.mp3')
+
+	}
+	console.log("clicked")
 	init();
 	animate();
 	currState = INTRO
 	renderer.autoclear = false;
 	// TweenFadeInForVideos(videoMat)
 	checkTheVideoLoad()
+	document.getElementById('main').style.display = 'block'
+	document.getElementById('IntroDiv').style.display = 'none';
 	document.getElementById('productIntro1').style.display = 'none'
 	document.getElementById('ui-container').style.display = 'block'
+	document.getElementById('archid').style.display = 'none';
+	document.getElementById('infoText').style.display = 'none';
+	document.getElementById('middleText').style.display = 'none';
+	document.getElementById('controls_id').style.display = 'none';
+	document.getElementById('quesitonDiv').style.display = 'none';
 
   });
 
@@ -207,8 +293,7 @@ function toRadians(degrees) {
   return degrees * (pi/180);
 }
 
-
-document.getElementById('container').addEventListener('click', loadSounds)
+document.getElementById('container_2').addEventListener('click', loadSounds)
 
 function loadSounds(){
 	audioLoader = new THREE.AudioLoader();
@@ -219,7 +304,6 @@ function loadSounds(){
 		flashSound.setVolume( 0.5 );
 		// flashSound.play();
 	});
-	document.getElementById('container').removeEventListener('click', loadSounds)
 
 }
 
@@ -228,7 +312,7 @@ function loadSounds(){
 
 function init() {
 
-	const container = document.getElementById( 'container' );
+	const container = document.getElementById( 'container_2' );
 
 	renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
 	renderer.setPixelRatio( window.devicePixelRatio );
@@ -605,7 +689,7 @@ function init() {
 			MiddleRoomScene.add(MiddleRoomArrow)
 			PoolEntranceScene.add(PoolEntranceArrow);
 			RoomVideoPlayScene.add(RoomVideoPlay);
-			orbPlusScene.add(orbPlus)
+
 
 
 

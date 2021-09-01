@@ -223,41 +223,29 @@ function showScores() {
   console.log(finalOption)
   var optionChoice;
   if(option1Counter ==finalOption){
-    optionChoice = 1
-    personiltyType = copyJSON.ExtrovertHeadline[languageID]
-    imageurl ="personalitytest/images/opt/arch2.webp";
-    spaText=copyJSON.Extrovert[languageID]
+
     currState = EXTROVERT
-    infoText=copyJSON.ExtrovertExplanation[languageID]
+
   }else if(option2Counter ==finalOption){
-    optionChoice = 2
-    personiltyType = copyJSON.IntrovertHeadline[languageID]
-    imageurl ="personalitytest/images/opt/arch4.webp";
-    spaText=copyJSON.Introvert[languageID]
+
     currState = INTROVERT
-    infoText=copyJSON.IntrovertExplanation[languageID]
+
   }
   else if(option3Counter ==finalOption){
-    optionChoice = 3
-    personiltyType = copyJSON.ThinkerHeadline[languageID]
-    imageurl ="personalitytest/images/opt/arch3.webp";
-    spaText=copyJSON.Thinker[languageID]
+
     currState = THINKER
-    infoText=copyJSON.ThinkerExplanation[languageID]
+    
   }else if(option4Counter ==finalOption){
-    optionChoice = 4
-    personiltyType = copyJSON.FeelerHeadline[languageID]
-    imageurl ="personalitytest/images/opt/arch5.webp";
-    spaText=copyJSON.Feeler[languageID]
+   
     currState = FEELER
-    infoText=copyJSON.FeelerExplanation[languageID]
+  
   }
   console.log("last option = " + finalOption)
   // document.getElementById('fist-page').style.display = 'grid';
-  document.getElementById('archid').style.display = 'flex';
-  document.getElementById('infoText').style.display = 'flex';
-  document.getElementById('middleText').style.display = 'flex';
-  document.getElementById('controls_id').style.display = 'flex';
+  // document.getElementById('archid').style.display = 'flex';
+  // document.getElementById('infoText').style.display = 'flex';
+  // document.getElementById('middleText').style.display = 'flex';
+  // document.getElementById('controls_id').style.display = 'flex';
   document.getElementById('quiz_id').style.display = 'none';
 
   document.getElementById('process_id').style.display = 'none';
@@ -282,10 +270,10 @@ function showScores() {
   var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";
   var element5 = document.getElementById("infoText")
   element5.innerHTML = infoTextHtml;
-
+  window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[currState];
   document.getElementById('start-btn').addEventListener('click', function(e) {
     console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[currState]);
-    window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[currState];
+    
   });
 };
 
