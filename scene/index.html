@@ -84,6 +84,7 @@
 
 
   <div id="main" style="display: none;">
+    
     <div class="productIntro" style="display: none;" id="productIntro1">
       <img id="productIntroImage" src="UIAssets/productAHC.png" alt="Snow">
 
@@ -94,7 +95,7 @@
       <div id="whiteScreen"></div>
 
       <div id="container_2">
-
+        <div class="lds-ring" id="lds-ring"><div></div><div></div><div></div><div></div></div>
         <div id="beauty-treatment-overlay">
           <div id = "ahc-logo-beauty"><img id="ahc-logo-beauty-img" src="UIAssets/AHCLOGO_white.png"></div>
           <div id="beauty-title">CHOOSE YOUR <br> AHC KOREAN AESTHETIC TREATMENT</div>
@@ -344,15 +345,15 @@
       document.getElementById('orb-vid').addEventListener("click", function(e){
         console.log("clicked")
 
-        makeFullScreen()
-        player.play();
-        document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+        // makeFullScreen()
+        // player.play();
+        // document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
 
       });
       document.getElementById('close-btn').addEventListener("click", function(e){
         document.getElementById('orb-text').style.opacity = 1;
-			document.getElementById('orb-btn').style.opacity = 1;
-			document.getElementById('orb-btn').style.pointerEvents = "auto";
+        document.getElementById('orb-btn').style.opacity = 1;
+        document.getElementById('orb-btn').style.pointerEvents = "auto";
       });
       document.getElementById('close-btn').addEventListener("click", closeVideo);
 
@@ -362,24 +363,30 @@
             document.getElementById('orb-btn').style.opacity = 1;
             document.getElementById('orb-btn').style.pointerEvents = "auto";
           })
-      player.on('fullscreenchange', function () {
-        if (this.isFullscreen()){
-          console.log('fullscreen');
-        } else {
+      // player.on('fullscreenchange', function () {
+      //   if (this.isFullscreen()){
+      //     console.log('fullscreen');
+      //   } else {
 
-          closeVideo();
-          document.getElementById('orb-text').style.opacity = 1;
-            document.getElementById('orb-btn').style.opacity = 1;
-            document.getElementById('orb-btn').style.pointerEvents = "auto";
-        }
-      })
-      player.on('tap', function () {
-        console.log("clicked")
+      //     // closeVideo();
+      //     // document.getElementById('orb-text').style.opacity = 1;
+      //     //   document.getElementById('orb-btn').style.opacity = 1;
+      //     //   document.getElementById('orb-btn').style.pointerEvents = "auto";
+      //   }
+      // })
+      // player.on('closed', function () {
+      //   closeVideo();
+      //       document.getElementById('orb-text').style.opacity = 1;
+      //       document.getElementById('orb-btn').style.opacity = 1;
+      //       document.getElementById('orb-btn').style.pointerEvents = "auto";
+      //     })
+      // player.on('tap', function () {
+      //   console.log("clicked")
 
-        makeFullScreen()
-        player.play();
-        document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-      })
+      //   makeFullScreen()
+      //   player.play();
+      //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+      // })
 		}
 
     function openTherapy(){
@@ -400,41 +407,47 @@
       document.getElementById('pool-text').style.opacity = 0;
 			document.getElementById('pool-btn').style.opacity = 0;
 			document.getElementById('pool-btn').style.pointerEvents = "none";
-      document.getElementById('video2').addEventListener("click", function(e){
-        console.log("clicked")
+      // document.getElementById('video2').addEventListener("click", function(e){
+      //   console.log("clicked")
 
-        makeFullScreen()
-        player.play();
-        document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+      //   makeFullScreen()
+      //   player.play();
+      //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
 
-      });
+      // });
+ 
       document.getElementById('close-btn').addEventListener("click", function(e){
         document.getElementById('pool-text').style.opacity = 1;
-			document.getElementById('pool-btn').style.opacity = 1;
-			document.getElementById('pool-btn').style.pointerEvents = "auto";
+        document.getElementById('pool-btn').style.opacity = 1;
+        document.getElementById('pool-btn').style.pointerEvents = "auto";
       });
+     
       document.getElementById('close-btn').addEventListener("click", closeVideo);
-
       player.on('ended', function () {
             closeVideo();
             document.getElementById('pool-text').style.opacity = 1;
             document.getElementById('pool-btn').style.opacity = 1;
             document.getElementById('pool-btn').style.pointerEvents = "auto";
           })
-      player.on('fullscreenchange', function () {
-        if (this.isFullscreen()){
-          console.log('fullscreen');
-        } else {
-          closeVideo();
-        }
-      })
-      player.on('tap', function () {
-        console.log("clicked")
+          player.on('closed', function () {
+            document.getElementById('pool-text').style.opacity = 1;
+            document.getElementById('pool-btn').style.opacity = 1;
+            document.getElementById('pool-btn').style.pointerEvents = "auto";
+          })
+      // player.on('fullscreenchange', function () {
+      //   if (this.isFullscreen()){
+      //     console.log('fullscreen');
+      //   } else {
+      //     closeVideo();
+      //   }
+      // })
+      // player.on('tap', function () {
+      //   console.log("clicked")
 
-        makeFullScreen()
-        player.play();
-        document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-      })
+      //   makeFullScreen()
+      //   player.play();
+      //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+      // })
     }
 
 
@@ -472,26 +485,31 @@
       player.play();
 
 
-      document.getElementById('vid-1').addEventListener("click",function(e){
-        makeFullScreen()
-        document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-        player.play();
-      })
-      document.getElementById('close-btn').addEventListener("click", closeVideo);
+      // document.getElementById('vid-1').addEventListener("click",function(e){
+      //   makeFullScreen()
+      //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+      //   player.play();
+      // })
+      document.getElementById('close-btn').addEventListener("click",function(e){
+            document.getElementById('close-btn').style.display = 'none'
+            document.getElementById('vid-1').style.display = 'none';
+          })
 
       setTimeout(function(){
         document.getElementById('close-btn').addEventListener("click", openBeauty);
 
 				}, 50)
       player.on('ended', function () {
-            closeVideo();
+        document.getElementById('close-btn').style.display = 'none'
+            document.getElementById('vid-1').style.display = 'none';
             setTimeout(function(){
             document.getElementById('close-btn').addEventListener("click", openBeauty);
-
+            openBeauty();
             }, 50)
           })
           player.on('closed', function () {
-            openBeauty();
+            document.getElementById('close-btn').style.display = 'none'
+            document.getElementById('vid-1').style.display = 'none';
           })
       // player.on('fullscreenchange', function () {
       //   if (this.isFullscreen()){
@@ -500,9 +518,9 @@
       //     closeVideo();
       //   }
       // })
-      player.on('tap', function () {
-        closeVideo();
-      })
+      // player.on('tap', function () {
+      //   closeVideo();
+      // })
     }
 
     function playVideo2(){
@@ -523,13 +541,16 @@
       var video = document.getElementById('vid-2');
       // video.requestFullscreen();
       player.play();
-      document.getElementById('vid-2').addEventListener("click",function(e){
-        makeFullScreen()
-        document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-        player.play();
-      })
+      // document.getElementById('vid-2').addEventListener("click",function(e){
+      //   makeFullScreen()
+      //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+      //   player.play();
+      // })
 
-      document.getElementById('close-btn').addEventListener("click", closeVideo);
+      document.getElementById('close-btn').addEventListener("click",function(e){
+            document.getElementById('close-btn').style.display = 'none'
+            document.getElementById('vid-2').style.display = 'none';
+          })
       setTimeout(function(){
         document.getElementById('close-btn').addEventListener("click", openBeauty);
 
@@ -537,26 +558,29 @@
 
 
       player.on('ended', function () {
-            closeVideo();
+        document.getElementById('close-btn').style.display = 'none'
+            document.getElementById('vid-2').style.display = 'none';
+          // document.getElementById('blackScreen').style.display = 'block';
             setTimeout(function(){
             document.getElementById('close-btn').addEventListener("click", openBeauty);
-
+            openBeauty();
             }, 50)
           })
-      // player.on('fullscreenchange', function () {
-      //   if (this.isFullscreen()){
-      //     console.log('fullscreen');
-      //   } else {
-      //     closeVideo();
-      //   }
+          player.on('closed', function () {
+            document.getElementById('close-btn').style.display = 'none'
+            document.getElementById('vid-2').style.display = 'none';
+          })
+
+      // player.on('tap', function () {
+      //   closeVideo();
       // })
-      player.on('tap', function () {
-        closeVideo();
-      })
     }
 
         function playVideo3(){
           document.getElementById('orb-vid').style.display = 'none';
+          document.getElementById('vid-2_html5_api').style.display = "none"
+          document.getElementById('vid-1_html5_api').style.display = "none"
+          document.getElementById('vid-3_html5_api').style.display = "block"
           document.getElementById('beauty-treatment-overlay').style.display = "none"
           document.getElementById('vid-1').style.display = 'none';
           document.getElementById('vid-2').style.display = 'none';
@@ -570,23 +594,33 @@
           var video = document.getElementById('vid-3');
           // video.requestFullscreen();
           player.play();
-          document.getElementById('vid-3').addEventListener("click",function(e){
-            makeFullScreen()
-            document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-            player.play();
+          // document.getElementById('vid-3').addEventListener("click",function(e){
+          //   makeFullScreen()
+          //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
+          //   player.play();
+          // })
+          document.getElementById('close-btn').addEventListener("click",function(e){
+            document.getElementById('close-btn').style.display = 'none'
+            document.getElementById('vid-3').style.display = 'none';
           })
-          document.getElementById('close-btn').addEventListener("click", closeVideo);
+          // document.getElementById('close-btn').addEventListener("click", closeVideo);
           setTimeout(function(){
             document.getElementById('close-btn').addEventListener("click", openBeauty);
 
             }, 50)
           // document.getElementById('vid-3').addEventListener("ended",closeVideo);
           player.on('ended', function () {
-            closeVideo();
+            document.getElementById('close-btn').style.display = 'none'
+            document.getElementById('vid-3').style.display = 'none';
+            
             setTimeout(function(){
             document.getElementById('close-btn').addEventListener("click", openBeauty);
-
+            openBeauty();
             }, 50)
+          })
+          player.on('closed', function () {
+            document.getElementById('close-btn').style.display = 'none'
+            document.getElementById('vid-1').style.display = 'none';
           })
           // player.on('fullscreenchange', function () {
           //   if (this.isFullscreen()){
@@ -604,7 +638,7 @@
       // window.open('https://us.ahcbeauty.com/')
       document.getElementById('beauty-treatment-overlay').style.display = "flex"
       document.getElementById('blackScreen').style.display = 'block';
-      document.getElementById('blackScreen').style.animation = " opacityAnim 1.5s ease-in-out forwards";
+      document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
       document.getElementById('blackScreen').style.zIndex = '1';
 
       document.getElementById('beauty-text').style.opacity = 0;
@@ -649,7 +683,11 @@
     function closeBeauty(){
       document.getElementById('beauty-treatment-overlay').style.display = "none"
       document.getElementById('blackScreen').style.display = 'none';
+      document.getElementById('video_id').style.display = 'none';
       document.getElementById('blackScreen').style.zIndex = '';
+      document.getElementById("video_id").style.height= "50%"
+      document.getElementById("video_id").style.width= "50%"
+      document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
     }
 
 
@@ -658,11 +696,11 @@
       document.getElementById("video_id").style.width= "50%"
       document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
       console.log('close video');
-      document.getElementById('video2').removeEventListener("click", closeVideo);
+      // document.getElementById('video2').removeEventListener("click", closeVideo);
       // document.getElementById('video-close-overlay').style.display = 'none';
       document.getElementById('orb-vid').style.display = 'none';
       document.getElementById('video2').style.display = 'none';
-      document.getElementById('orb-vid').style.display = 'none';
+   
       document.getElementById('vid-1').style.display = 'none';
       document.getElementById('vid-2').style.display = 'none';
       document.getElementById('vid-3').style.display = 'none';
