@@ -133,10 +133,11 @@ body {
   /* display: none; */
 }
 #back-button{
+  position: absolute;
+  left: 5%;
+  top: 5%;
   display: none;
   padding:0 !important;
-  -ms-transform: translate(200%, 100%) !important;
-  transform: translate(200%, 100%) !important;
   transition: all 0.5s;
 }
 #close-button{
@@ -162,7 +163,7 @@ body {
 }
 
 .selfie-button {
-  width: 10em;
+  width: max-content;
   height: 3em;
   position: absolute;
   z-index: 5;
@@ -305,7 +306,7 @@ body {
     text-align: center;
     border-radius: 3rem;
     width: 25px;
-    filter: invert(1);
+    /* filter: invert(1); */
 }
 
 

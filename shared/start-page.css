@@ -131,7 +131,7 @@ a {
   transform: translate(-50%, -50%);
   width:100%;
   /* max-width: 800px; */
-  height:65%;
+  height:60%;
 }
 
 .arch{
@@ -231,7 +231,7 @@ a {
   width: 100%;
   height: 5%;
   position: absolute;
-  bottom: 50px;
+  bottom: 13%;
 }
 
 .dots{
@@ -285,7 +285,7 @@ a {
 #btnCSS2{
   display: none;
   /* position: ; */
-  bottom: 0px !important;
+  /* bottom: 0px !important; */
 }
 
 #controlsIntro{
@@ -336,7 +336,7 @@ a {
   z-index: 200;
   position: absolute;
   right: 50px;
-  bottom: 50px;
+  bottom: 15%;
 }
 
 .skipBtn{

@@ -22,6 +22,37 @@ function loadJSON(callback) {
    xobj.send(null);
 }
 
+var CHINA = 0
+var KOREA = 1
+var TAIWAN = 2
+var JAPAN = 3
+
+var region =  CHINA;
+
+fetch('https://extreme-ip-lookup.com/json/')
+  .then(res => res.json())
+  .then(response => {
+    code =  response.countryCode
+    console.log("Country: ", response.countryCode);
+    if (code.localeCompare('CN') === 0) {
+      region =  CHINA;
+    } else if (code.localeCompare('KR') === 0) {
+      region =  KOREA;
+    } else if (code.localeCompare('TW') === 0) {
+      region =  TAIWAN;
+    } else if (code.localeCompare('JP') === 0) {
+      region =  JAPAN;
+    } else {
+      region =  CHINA;
+    }
+    console.log("region set to " + region);
+  })
+  .catch((data, status) => {
+    console.log('Request failed');
+    region =  CHINA;
+    console.log("region set failed");
+  })
+
 function setLang(id){
   document.getElementById('takepic-button').innerHTML = copyJSON.TakeSelfieBtn[id]
 }
@@ -70,7 +101,7 @@ console.log("selfie not ready");
 var deepAR = DeepAR({
     canvasWidth: canvasWidth,
     canvasHeight: canvasHeight,
-    licenseKey: '15611f67d939bddce1f0ddec66f4764b409577cbce0e7e9d7899911eebfef21688fa8a3bd37d018e\n',
+    licenseKey: '9671256f94cf868474e49130dba67da26c375e9757d4124d6a7e58f44b767bd193b6b07dec402130',
     canvas: document.getElementById('deepar-canvas'),
     numberOfFaces: 1,
     libPath: './lib',
@@ -229,6 +260,15 @@ downloadBtn.addEventListener("click", async () => {
 });
 
 shareBtn.addEventListener("click", async () => {
+
+  if(region === CHINA){
+  	document.getElementById('share-experience-title').innerHTML = copyJSON.SharePopUp[languageID]
+  	document.getElementById('enter-phone').innerHTML = copyJSON.EnterPhone[languageID]
+  } else {
+  	document.getElementById('share-experience-title').innerHTML = ""
+    document.getElementById('enter-phone').innerHTML = copyJSON.SharePopUp[languageID]
+    document.getElementById('phone').style.display = 'none'
+  }
   sharePopup();
 
     // share(screenshot);
@@ -342,9 +382,8 @@ $(document).ready(function() {
 function sendUser() {
     let phoneNumber = document.getElementById('phone').value;
     console.log(phoneNumber)
-    if (phoneNumber==null || phoneNumber === ""){
-        alert("Phone number invalid, try again");
-
+    if (phoneNumber==null){
+        // alert("Phone number invalid, try again");
     } else {
         xmlhttp=new XMLHttpRequest();
         xmlhttp.open("POST", post_url, true);
