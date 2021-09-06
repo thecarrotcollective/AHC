@@ -1,6 +1,9 @@
 import * as THREE from './three.module.js';
 import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
 
+//DELETE AFTER CSS FIX
+import {OrbitControls} from './Orbit.js';
+
 var copyJSON;
 var languageID = 0;
 
@@ -8,113 +11,116 @@ var url = window.location.href;
 var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
 var url_params = url.substr(url.indexOf('#')+1)
 var selectedPersonality = url_params.substr(url_params.indexOf('-')+1, 2);
-
-function loadJSON(callback) {
-   var xobj = new XMLHttpRequest();
-   xobj.overrideMimeType("application/json");
-   xobj.open('GET', '../shared/copy.json', true);
-   xobj.onreadystatechange = function () {
-         if (xobj.readyState == 4 && xobj.status == "200") {
-           // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-           callback(xobj.responseText);
-         }
-   };
-   xobj.send(null);
-}
-
-function setLang(id){
-  document.getElementById('share-btn').innerHTML = copyJSON.ShareWithFriend[id]
-	if(selectedPersonality.localeCompare("fe") === 0 || selectedPersonality.localeCompare("ex") === 0){
-		document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAExtrovertFeeler[id] +' '+ copyJSON.StartTherapyButton[id]
-	} else {
-		document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAIntrovertThinker[id] +' '+ copyJSON.StartTherapyButton[id]
-	}
-	document.getElementById('selfie-btn').innerHTML = copyJSON.TakeSelfieCTA[id]
-	document.getElementById('beauty-btn').innerHTML = copyJSON.WatchAHCKBeauty[id]
-	document.getElementById('orb-btn').innerHTML = copyJSON.FindOutMore[id]
-	document.getElementById('productButton-1').innerHTML = copyJSON.FindOutMore[id]
-	document.getElementById('productButton-2').innerHTML = copyJSON.FindOutMore[id]
-	document.getElementById('productButton-3').innerHTML = copyJSON.FindOutMore[id]
-
-	document.documentElement.lang = copyJSON.code[id];
-
-}
-
-loadJSON(function(response) {
-
- // Parse JSON string into object
-   copyJSON = JSON.parse(response);
-   console.log(copyJSON);
-   console.log("language is "+selectedLanguage);
-   if(selectedLanguage.localeCompare("zh") === 0){
-     languageID = 2
-   } else if (selectedLanguage.localeCompare("ko") === 0){
-     languageID = 1
-   } else {
-     languageID = 0
-   }
-   setLang(languageID)
-   LoadPage();
-
-});
+//
+// function loadJSON(callback) {
+//    var xobj = new XMLHttpRequest();
+//    xobj.overrideMimeType("application/json");
+//    xobj.open('GET', '../shared/copy.json', true);
+//    xobj.onreadystatechange = function () {
+//          if (xobj.readyState == 4 && xobj.status == "200") {
+//            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+//            callback(xobj.responseText);
+// 		   copyJSON = JSON.parse(xobj.responseText);
+//          }
+//    };
+//    xobj.send(null);
+// }
+//
+// function setLang(id){
+//   document.getElementById('share-btn').innerHTML = copyJSON.ShareWithFriend[id]
+// 	if(selectedPersonality.localeCompare("fe") === 0 || selectedPersonality.localeCompare("ex") === 0){
+// 		document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAExtrovertFeeler[id] +' '+ copyJSON.StartTherapyButton[id]
+// 	} else {
+// 		document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAIntrovertThinker[id] +' '+ copyJSON.StartTherapyButton[id]
+// 	}
+// 	document.getElementById('selfie-btn').innerHTML = copyJSON.TakeSelfieCTA[id]
+// 	document.getElementById('beauty-btn').innerHTML = copyJSON.WatchAHCKBeauty[id]
+// 	document.getElementById('orb-btn').innerHTML = copyJSON.FindOutMore[id]
+// 	document.getElementById('productButton-1').innerHTML = copyJSON.FindOutMore[id]
+// 	document.getElementById('productButton-2').innerHTML = copyJSON.FindOutMore[id]
+// 	document.getElementById('productButton-3').innerHTML = copyJSON.FindOutMore[id]
+// 	document.getElementById('share-experience-title').innerHTML = copyJSON.SharePopUp[id]
+// 	document.getElementById('enter-phone').innerHTML = copyJSON.EnterPhone[id]
+// 	document.getElementById('share-submit').innerHTML = copyJSON.ShareButton[id]
+// 	document.documentElement.lang = copyJSON.code[id];
+//
+// }
+//
+// loadJSON(function(response) {
+//
+//  // Parse JSON string into object
+//    copyJSON = JSON.parse(response);
+//    console.log(copyJSON);
+//    console.log("language is "+selectedLanguage);
+//    if(selectedLanguage.localeCompare("zh") === 0){
+//      languageID = 2
+//    } else if (selectedLanguage.localeCompare("ko") === 0){
+//      languageID = 1
+//    } else {
+//      languageID = 0
+//    }
+//    setLang(languageID)
+//    LoadPage();
+//
+// });
 
 var imageurl,personiltyType,infoText
 
-
-function LoadPage() {
-
-	// console.log(copyJSON['Feeler'])
-	if(selectedPersonality === 'fe'){
-
-	imageurl ="../personalitytest/images/opt/arch5.webp";
-	spaText=copyJSON.Feeler[languageID]
-	personiltyType = copyJSON.FeelerHeadline[languageID]
-	infoText=copyJSON.FeelerExplanation[languageID]
-
-	}else if(selectedPersonality === 'in'){
-		imageurl ="../personalitytest/images/opt/arch4.webp";
-		spaText=copyJSON.Introvert[languageID]
-		infoText=copyJSON.IntrovertExplanation[languageID]
-		personiltyType = copyJSON.IntrovertHeadline[languageID]
-	}
-	else if(selectedPersonality === 'th'){
-		imageurl ="../personalitytest/images/opt/arch3.webp";
-		spaText=copyJSON.Thinker[languageID]
-		infoText=copyJSON.ThinkerExplanation[languageID]
-		personiltyType = copyJSON.ThinkerHeadline[languageID]
-	}else{
-		imageurl ="../personalitytest/images/opt/arch2.webp";
-		spaText=copyJSON.Extrovert[languageID]
-		personiltyType = copyJSON.ExtrovertHeadline[languageID]
-		spaText=copyJSON.Extrovert[languageID]
-		infoText=copyJSON.ExtrovertExplanation[languageID]
-	}
-
-	// document.getElementById('archid').style.display = 'flex';
-	// document.getElementById('infoText').style.display = 'flex';
-	// document.getElementById('middleText').style.display = 'flex';
-	// document.getElementById('controls_id').style.display = 'flex';
-	// document.getElementById('quesitonDiv').style.display = 'flex';
-	var spaText = "<h1 >"+spaText+"</h1>";
-	var element = document.getElementById("personality");
-	// element.style.display = "flex"
-	element.innerHTML = spaText;
-
-	var buttonText = copyJSON.GoToSpa[languageID];
-	var element3 = document.getElementById("start-btn")
-	element3.innerHTML = buttonText;
-
-	var resultImg = "<img id=\"arch-image\" src="+ imageurl +">";
-	var element4 = document.getElementById("archid");
-	element4.innerHTML = resultImg
-
-	var personiltyTypeHtml = personiltyType;
-	var element2 = document.getElementById("question")
-	element2.innerHTML = personiltyTypeHtml;
-	var infoTextHtml = infoText;
-	var element5 = document.getElementById("infoText")
-	element5.innerHTML = infoTextHtml;
-}
+//
+// function LoadPage() {
+//
+// 	// console.log(copyJSON['Feeler'])
+// 	if(selectedPersonality === 'fe'){
+//
+// 	imageurl ="../personalitytest/images/opt/arch5.webp";
+// 	spaText=copyJSON.Feeler[languageID]
+// 	personiltyType = copyJSON.FeelerHeadline[languageID]
+// 	infoText=copyJSON.FeelerExplanation[languageID]
+//
+// 	}else if(selectedPersonality === 'in'){
+// 		imageurl ="../personalitytest/images/opt/arch4.webp";
+// 		spaText=copyJSON.Introvert[languageID]
+// 		infoText=copyJSON.IntrovertExplanation[languageID]
+// 		personiltyType = copyJSON.IntrovertHeadline[languageID]
+// 	}
+// 	else if(selectedPersonality === 'th'){
+// 		imageurl ="../personalitytest/images/opt/arch3.webp";
+// 		spaText=copyJSON.Thinker[languageID]
+// 		infoText=copyJSON.ThinkerExplanation[languageID]
+// 		personiltyType = copyJSON.ThinkerHeadline[languageID]
+// 	}else{
+// 		imageurl ="../personalitytest/images/opt/arch2.webp";
+// 		spaText=copyJSON.Extrovert[languageID]
+// 		personiltyType = copyJSON.ExtrovertHeadline[languageID]
+// 		spaText=copyJSON.Extrovert[languageID]
+// 		infoText=copyJSON.ExtrovertExplanation[languageID]
+// 	}
+//
+// 	// document.getElementById('archid').style.display = 'flex';
+// 	// document.getElementById('infoText').style.display = 'flex';
+// 	// document.getElementById('middleText').style.display = 'flex';
+// 	// document.getElementById('controls_id').style.display = 'flex';
+// 	// document.getElementById('quesitonDiv').style.display = 'flex';
+// 	var spaText = "<h1 >"+spaText+"</h1>";
+// 	var element = document.getElementById("personality");
+// 	// element.style.display = "flex"
+// 	element.innerHTML = spaText;
+//
+// 	var buttonText = copyJSON.GoToSpa[languageID];
+// 	var element3 = document.getElementById("start-btn")
+// 	element3.innerHTML = buttonText;
+//
+// 	var resultImg = "<img id=\"arch-image\" src="+ imageurl +">";
+// 	var element4 = document.getElementById("archid");
+// 	element4.innerHTML = resultImg
+//
+// 	var personiltyTypeHtml = personiltyType;
+// 	var element2 = document.getElementById("question")
+// 	element2.innerHTML = personiltyTypeHtml;
+// 	var infoTextHtml = infoText;
+// 	var element5 = document.getElementById("infoText")
+// 	element5.innerHTML = infoTextHtml;
+// }
 
 
 var sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneUrl7,sceneUrl8,sceneUrl9,sceneUrl10
@@ -136,17 +142,17 @@ if(selectedPersonality === 'fe'){
 
 }else if(selectedPersonality === 'in'){
 
-	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
-	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
-	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
-	sceneUrl3 ="scenes/THINKER/THINKER_CUBEMAP_0003.jpg"
-	sceneUrl4 ="scenes/THINKER/THINKER_CUBEMAP_0004.jpg"
-	sceneUrl5 ="scenes/THINKER/THINKER_CUBEMAP_0005.jpg"
-	sceneUrl6 ="scenes/THINKER/THINKER_CUBEMAP_0006.jpg"
-	sceneUrl7 ="scenes/THINKER/THINKER_CUBEMAP_0007.jpg"
-	sceneUrl8 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
-	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
-	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
+	sceneUrl0 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0000.jpg"
+	sceneUrl1 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0001.jpg"
+	sceneUrl2 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0002.jpg"
+	sceneUrl3 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0003.jpg"
+	sceneUrl4 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0004.jpg"
+	sceneUrl5 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0005.jpg"
+	sceneUrl6 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0006.jpg"
+	sceneUrl7 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0007.jpg"
+	sceneUrl8 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0008.jpg"
+	sceneUrl9 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0009.jpg"
+	sceneUrl10 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0010.jpg"
 }
 else if(selectedPersonality === 'th'){
 
@@ -161,6 +167,7 @@ else if(selectedPersonality === 'th'){
 	sceneUrl8 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
 	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
+
 }else{
 
 	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
@@ -175,8 +182,6 @@ else if(selectedPersonality === 'th'){
 	sceneUrl9 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0009.jpg"
 	sceneUrl10 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0010.jpg"
 }
-//DELETE AFTER CSS FIX
-import {OrbitControls} from './Orbit.js';
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
 let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2,videoTexture;
@@ -191,13 +196,15 @@ let bilboardVideo, bilboardVideoTex,orbProductPlane, orbProductTex,orbProductAlp
 let PoolEntranceArrow, ProcuctBaseArrow ,PoolEntranceScene, ProcuctBaseScene
 let orbGlowPlane, orbGlowVideo, orbGlowVideoMask,orbGlowVideoTex,orbGlowVideoMaskTex,orbGlowMat,orbGlow
 let orbPlusScene,orbPlus,orbPlusMat,orbProductScene,bilboardClickable,orbClickable;
+var selfieLoad,poolLoad, beautyLoad, productBaseLoad, procutLoad
 const mouse = new THREE.Vector2();
-var clickableVideo,manager,videoManager,arrowMat;
+var clickableVideo,manager,videoManager,arrowMat,glow,glowMat,glowScene,videoManager
 var loaderCheck = false;
 var arrowDist = 25
 var arrowHeight = -12
-let arrowUrl ="UIAssets/arrow_white.png";
+let arrowUrl ="UIAssets/arrow_white_v3.png";
 let ProductIconUrl ="UIAssets/plus.png";
+let glowUrl ="UIAssets/glow.png";
 var bool = false
 var currState = -1 // use this for statemachine
 
@@ -213,15 +220,25 @@ var PRODENTRANCE = 7
 var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
-var sound;
+
 var startScenePos = 0
+
+if(url_params[url_params.length-1].indexOf('M') ===0 || url_params[url_params.length-1].indexOf('U') === 0){
+	console.log("starting at selfie");
+  startScenePos = 2
+}
+
 document.getElementById("start-btn").addEventListener("click", function() {
+	document.getElementById("mute-unmute-btn").style.display="block"
+
 	console.log("clicked")
 	init();
 	animate();
+
 	if(selectedPersonality === 'fe'){
 
 		playAudio('sounds/sfx/feeler.mp3')
+
 
 
 	}else if(selectedPersonality === 'in'){
@@ -247,13 +264,13 @@ document.getElementById("start-btn").addEventListener("click", function() {
 		envLoad(sceneUrl10)
 	}
 
-	
+
 	renderer.autoclear = false;
 	// TweenFadeInForVideos(videoMat)
 	// checkTheVideoLoad()
 	document.getElementById('main').style.display = 'block'
 	document.getElementById('IntroDiv').style.display = 'none';
-	document.getElementById('productIntro1').style.display = 'none'
+	// document.getElementById('productIntro1').style.display = 'none'
 	document.getElementById('ui-container').style.display = 'block'
 	document.getElementById('archid').style.display = 'none';
 	document.getElementById('infoText').style.display = 'none';
@@ -265,8 +282,32 @@ document.getElementById("start-btn").addEventListener("click", function() {
 
 
 
+var sound;
+var volume;
+var muted = (url_params[url_params.length-1].indexOf('m')===0 || url_params[url_params.length-1].indexOf('M')===0 )
+console.log(muted);
+var mainVolumeMultiplier = muted?0:1
+document.getElementById("mute-unmute-btn").src=muted?"../shared/images/Mute_Icon.svg":"../shared/images/Speaker_Icon.svg";
+
+document.getElementById('mute-unmute-btn').addEventListener('click', function(e) {
+  muted = !muted;
+  console.log(muted);
+  if(muted){
+    document.getElementById("mute-unmute-btn").src="../shared/images/Mute_Icon.svg";
+    mainVolumeMultiplier = 0;
+  } else {
+    document.getElementById("mute-unmute-btn").src="../shared/images/Speaker_Icon.svg";
+    mainVolumeMultiplier = 1;
+  }
+  sound.setVolume( volume * mainVolumeMultiplier);
+  flashSound.setVolume( volume * mainVolumeMultiplier);
+
+  console.log(volume * mainVolumeMultiplier);
+  // sound.gain = volume * mainVolumeMultiplier
+});
 
 function playAudio(audioUrl){
+	volume = 0.65
 	console.log("play audio")
 	const listener = new THREE.AudioListener();
 	// camera.add( listener );
@@ -279,7 +320,7 @@ function playAudio(audioUrl){
 	audioLoader.load( audioUrl, function( buffer ) {
 		sound.setBuffer( buffer );
 		sound.setLoop( true );
-		sound.setVolume( 0.65 );
+		sound.setVolume( volume * mainVolumeMultiplier);
 		sound.play();
 
 	});
@@ -311,7 +352,7 @@ function loadSounds(){
 	audioLoader.load('sounds/sfx/flash.mp3', function( buffer ) {
 		flashSound.setBuffer( buffer );
 		flashSound.setLoop( false );
-		flashSound.setVolume( 0.5 );
+		flashSound.setVolume( 0.5 * mainVolumeMultiplier);
 		// flashSound.play();
 	});
 	// document.getElementById('container_2').removeEventListener('touchend', loadSounds)
@@ -356,6 +397,8 @@ function init() {
 	orbProductScene = new THREE.Scene();
 	orbGlowScene = new THREE.Scene();
 	orbPlusScene = new THREE.Scene();
+	glowScene = new THREE.Scene();
+	scene.add(glowScene)
 	scene.add(orbPlusScene)
 	scene.add(orbGlowScene)
 	scene.add(orbProductScene)
@@ -410,7 +453,7 @@ function init() {
 	listener = new THREE.AudioListener();
 	camera.add(listener)
 
-
+	videoManager = new THREE.LoadingManager();
 	manager = new THREE.LoadingManager();
 	manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
 
@@ -425,14 +468,14 @@ function init() {
 		video.onloadeddata  = function() {
 			console.log("played")
 			sceneVideoBool = true
-			
+
 		}
 		return true;
 	}
 	function sceneAlphaVideo(){
 		video2.onloadeddata  = function() {
 			sceneVideoAlphaBooo = true
-		
+
 		}
 		return true;
 	}
@@ -442,6 +485,12 @@ function init() {
 		orbProductVideoMask.onloadeddata  = function() {
 		}
 		return true;
+	}
+	function calculateScale(glowScale,x,y,z){
+		var sx = x + x*0.125
+		var sy = y + y*0.125
+		var sz = z + z*0.125
+		glowScale.scale.set(sx,sy,sz)
 	}
 
 
@@ -458,6 +507,11 @@ function init() {
 			video.currentTime = 0;
 			video2.currentTime = 0;
 			video3.currentTime = 0;
+			orbVideo.play()
+			orbVideoMask.play()
+
+			orbProductVideo.play()
+			orbProductVideoMask.play()
 			console.log("intro scene runned")
 			async function playSceneVideo(){
 				let played = await sceneVideo()
@@ -477,17 +531,21 @@ function init() {
 
 
 			MainRoomScene.add(MainRoomArrow);
+			glowScene.add(glow);
 			MiddleRoomScene.add(MiddleRoomArrow)
+			glow.position.set(arrowDist * Math.sin(toRadians(0)) , arrowHeight, -arrowDist * Math.cos(toRadians(0)));
 			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(0)) , arrowHeight, -arrowDist * Math.cos(toRadians(0)));
 			MiddleRoomArrow.position.set(1.8*arrowDist * Math.sin(toRadians(80)) , arrowHeight, -arrowDist* 1.8 * Math.cos(toRadians(80)));
 			// MiddleRoomArrow.scale.copy(navArrowScale)
 			MiddleRoomArrow.scale.set(5,2.5,5)
-			console.log(MiddleRoomArrow.scale)
+
+			calculateScale(glow,4,2,4)
 			MainRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
-			tweenScaleForArrows(MainRoomArrow,4,2,4)
-			tweenScaleForArrows(MiddleRoomArrow,5,2.5,5)
+			tweenScaleForArrows()
+			// tweenScaleForArrows(MainRoomArrow,4,2,4)
+			// tweenScaleForArrows(MiddleRoomArrow,5,2.5,5)
 		}
 		if(currState === POOL){
 			video.currentTime = 0;
@@ -519,8 +577,16 @@ function init() {
 
 			clickableVideo = true
 			//*************NOTE MY SELF DONT FORGET THE CHANGE SCALE */
-			tweenScaleForArrows(PoolEntranceArrow,6,3,6)
-			tweenScaleForArrows(selfieRoomArrow,7,3.4,7)
+			// tweenScaleForArrows(PoolEntranceArrow,6,3,6)
+			// tweenScaleForArrows(selfieRoomArrow,7,3.4,7)
+			poolLoad = true
+			document.getElementById('close-btn').addEventListener("click", function(e){
+				console.log(" pool btn worked")
+				hoverButtonChecker = false
+				volumeUp()
+				clickableVideo = true
+
+			});
 		}
 
 		if(currState === SELFIE){
@@ -554,10 +620,11 @@ function init() {
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
 			selfieSceneClick = true
-						
-			tweenScaleForArrows(PoolEntranceArrow,4.5,2.1,4.5)
-			tweenScaleForArrows(PoolRoomArrow,4.5,2.1,4.5)
+
+			// tweenScaleForArrows(PoolEntranceArrow,4.5,2.1,4.5)
+			// tweenScaleForArrows(PoolRoomArrow,4.5,2.1,4.5)
 			runTween()
+			selfieLoad = true
 		}
 		if(currState === COUCH){
 			bilboardVideo.currentTime = 0;
@@ -573,7 +640,7 @@ function init() {
 			VideoPlayBottleScene.rotation.set(0,1.5,0)
 			VideoPlayBottleScene.scale.set(7.2,7.5,1)
 			bilboardVideo.play();
-			
+
 			ProductRoomArrow.position.set(1.25*arrowDist * Math.sin(toRadians(-40)) , arrowHeight, -arrowDist*1.25 * Math.cos(toRadians(-40)));
 			MiddleRoomArrow.position.set(3*arrowDist * Math.sin(toRadians(-90)) , arrowHeight, -arrowDist *3* Math.cos(toRadians(-90)));
 			MiddleRoomArrow.scale.set(6,3,6)
@@ -582,11 +649,11 @@ function init() {
 			// ProductRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
 			TweenFadeInForBilboardVideos()
-			tweenScaleForArrows(MiddleRoomArrow,6,3,6)
-			tweenScaleForArrows(ProductRoomArrow,5,2.4,5)
+			// tweenScaleForArrows(MiddleRoomArrow,6,3,6)
+			// tweenScaleForArrows(ProductRoomArrow,5,2.4,5)
 		}
 		if(currState === PRODENTRANCE){
-			
+
 			bilboardVideo.currentTime = 0;
 			console.log("product scene runned")
 			VideoRoomScene.add(videoRoomArrow)
@@ -619,10 +686,10 @@ function init() {
 			// BottleRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
 			TweenFadeInForBilboardVideos()
-			tweenScaleForArrows(videoRoomArrow,5.5,2.8,5.5)
-			tweenScaleForArrows(BottleRoomArrow,6,3,6)
-			tweenScaleForArrows(MiddleRoomArrow,5,2.4,5)
-			tweenScaleForArrows(CoachRoomArrow,4,2,4)
+			// tweenScaleForArrows(videoRoomArrow,5.5,2.8,5.5)
+			// tweenScaleForArrows(BottleRoomArrow,6,3,6)
+			// tweenScaleForArrows(MiddleRoomArrow,5,2.4,5)
+			// tweenScaleForArrows(CoachRoomArrow,4,2,4)
 
 		}
 		if(currState === BEAUTY){
@@ -649,8 +716,14 @@ function init() {
 			TweenFadeInForArrow()
 			TweenFadeInForBilboardVideos()
 			bilboardClickable = true
-			tweenScaleForArrows(ProductRoomArrow,3,1.5,3)
-			tweenScaleForArrows(ProcuctBaseArrow,4,2,4)
+			// tweenScaleForArrows(ProductRoomArrow,3,1.5,3)
+			// tweenScaleForArrows(ProcuctBaseArrow,4,2,4)
+			beautyLoad = true
+			document.getElementById('close-btn').addEventListener("click", function(e){
+				hoverButtonChecker = true
+				volumeUp()
+			});
+
 		}
 		if(currState === PRODUCTS){
 			bilboardVideo.currentTime = 0;
@@ -689,8 +762,9 @@ function init() {
 			TweenFadeInForArrow()
 			TweenFadeInForBilboardVideos()
 			// RoomVideoPlayScene.add(RoomVideoPlay);
-			tweenScaleForArrows(ProductRoomArrow,4,2,4)
-			tweenScaleForArrows(ProcuctBaseArrow,4,2,4)
+			// tweenScaleForArrows(ProductRoomArrow,4,2,4)
+			// tweenScaleForArrows(ProcuctBaseArrow,4,2,4)
+			procutLoad = true
 		}
 		if(currState === PRODUCTBASE){
 			bilboardVideo.currentTime = 0;
@@ -726,9 +800,10 @@ function init() {
 			ProductIcon3.rotation.set(0,0,0)
 			TweenFadeInForArrow()
 			TweenFadeInForBilboardVideos()
-			tweenScaleForArrows(BottleRoomArrow,4,2,4)
-			tweenScaleForArrows(videoRoomArrow,4,2,4)
-			tweenScaleForArrows(ProductRoomArrow,4,2,4)
+			// tweenScaleForArrows(BottleRoomArrow,4,2,4)
+			// tweenScaleForArrows(videoRoomArrow,4,2,4)
+			// tweenScaleForArrows(ProductRoomArrow,4,2,4)
+			productBaseLoad =true
 		}
 		if(currState === POOLENTRACE){
 			video.currentTime = 0;
@@ -742,8 +817,8 @@ function init() {
 
 			MiddleRoomScene.add(MiddleRoomArrow)
 			selfieRoomArrow.scale.set(6,3,6)
-			PoolRoomArrow.scale.set(6.2,3.2,6.2)
-			MiddleRoomArrow.scale.set(5,2.4,5)
+			PoolRoomArrow.scale.set(6.2,3.1,6.2)
+			MiddleRoomArrow.scale.set(5,2.5,5)
 			// selfieRoomArrow.scale.copy(navArrowScale)
 			// PoolRoomArrow.scale.copy(navArrowScale)
 			MainRoomArrow.scale.copy(navArrowScale)
@@ -762,14 +837,15 @@ function init() {
 
 			TweenFadeInForArrow()
 			TweenFadeInForVideos(videoMat)
-			
-			tweenScaleForArrows(MainRoomArrow,4,2,4)
-			tweenScaleForArrows(selfieRoomArrow,6,3,6)
-			tweenScaleForArrows(PoolRoomArrow,6.2,3.1,6.2)
-			tweenScaleForArrows(MiddleRoomArrow,5,2.5,5)
+
+			// tweenScaleForArrows(MainRoomArrow,4,2,4)
+			// tweenScaleForArrows(selfieRoomArrow,6,3,6)
+			// tweenScaleForArrows(PoolRoomArrow,6.2,3.1,6.2)
+			// tweenScaleForArrows(MiddleRoomArrow,5,2.5,5)
 			runTween()
 		}
 		if(currState === MAIN){
+			videoManager.itemStart( "video/Ahc.Reveal.v5.BASE.mp4" );
 			video.currentTime = 0;
 			video3.currentTime = 0;
 			orbVideo.currentTime = 0;
@@ -810,30 +886,44 @@ function init() {
 			  PoolEntranceArrow.scale.copy(navArrowScale)
 			//   orbVideoMask.play()
 			//   orbVideo.play()
-			async function playProductVideo(){
-				let played = await productVideoFunc()
-		
-				if(played == true){
-					orbProductVideo.currentTime = 0;
-					orbProductVideoMask.currentTime = 0;
-					orbProductVideo.play()
-					orbProductVideoMask.play()
-					
-				}
-			}
-				playProductVideo()
+			// async function playProductVideo(){
+			// 	let played = await productVideoFunc()
+
+			// 	if(played == true){
+			// 		orbProductVideo.currentTime = 0;
+			// 		orbProductVideoMask.currentTime = 0;
+			// 		orbProductVideo.play()
+			// 		orbProductVideoMask.play()
+
+			// 	}
+			// }
+				// playProductVideo()
 			  video.play()
 			  video3.play()
 			  orbProductVideo.play()
 			  orbProductVideoMask.play()
+			  setTimeout(function(){
+				  if(orbProductVideo.currentTime != orbProductVideoMask.currentTime){
+					  console.log("RUNNED")
+					  orbProductVideo.currentTime = 0;
+					  orbProductVideoMask.currentTime = 0;
+				  }
+			  }, 2500);
 			  videoMat.alphaMap = videoMask2
 
 			  TweenFadeInForVideos(videoMat)
 			  TweenFadeInForArrow()
-			  orbClickable = true
-			  tweenScaleForArrows(PoolEntranceArrow,4,2,4)
-			  tweenScaleForArrows(MiddleRoomArrow,5,2.5,5)
+			//   orbClickable = true
+			//   tweenScaleForArrows(PoolEntranceArrow,4,2,4)
+			//   tweenScaleForArrows(MiddleRoomArrow,5,2.5,5)
 			  runTween()
+			  document.getElementById('close-btn').addEventListener("click", function(e){
+				hoverButtonChecker = false
+				orbClickable = true
+			});
+			orbVideo.addEventListener("ended",function(){
+				orbClickable = true
+			})
 		}
 		else{
 			video.currentTime = 0;
@@ -861,11 +951,11 @@ function init() {
 		//   PoolEntranceArrow.scale.copy(navArrowScale)
 
 		  TweenFadeInForArrow()
-		  tweenScaleForArrows(CoachRoomArrow,5.5,3,5.5)
-		  tweenScaleForArrows(ProductRoomArrow,5.5,3,5.5)
-		  tweenScaleForArrows(MainRoomArrow,5.5,3,5.5)
-		  tweenScaleForArrows(PoolEntranceArrow,6,3,6)
-			TweenFadeInForArrow()
+		//   tweenScaleForArrows(CoachRoomArrow,5.5,3,5.5)
+		//   tweenScaleForArrows(ProductRoomArrow,5.5,3,5.5)
+		//   tweenScaleForArrows(MainRoomArrow,5.5,3,5.5)
+		//   tweenScaleForArrows(PoolEntranceArrow,6,3,6)
+
 	}
 	};
 
@@ -884,7 +974,10 @@ function init() {
 	const light = new THREE.DirectionalLight(color, intensity);
 	light.position.set(-1, 2, 4);
 	scene.add(light);
-
+	var glowTex = new THREE.TextureLoader().load( glowUrl );
+	glowMat = new THREE.SpriteMaterial( { map: glowTex ,rotation:0,transparent: true ,opacity:0.6} );
+	glow = new THREE.Sprite( glowMat );
+	glow.scale.copy(navArrowScale)
 	//***********************ARROWS********************
 	var arrowTexture = new THREE.TextureLoader().load( arrowUrl );
 	arrowMat = new THREE.SpriteMaterial( { map: arrowTexture ,rotation:0,transparent: true,opacity:1} );
@@ -892,13 +985,14 @@ function init() {
 	// CoachRoomArrow.position.set(-18,-8,25);
 	CoachRoomArrow.scale.copy(navArrowScale)
 
+	glow.scale.copy(navArrowScale)
 	PoolRoomArrow = new THREE.Sprite( arrowMat );
 	// PoolRoomArrow.position.set(9,-4,4);
 	PoolRoomArrow.scale.copy(navArrowScale)
 
 	MainRoomArrow = new THREE.Sprite( arrowMat );
 	// MainRoomArrow.position.set(0,-12,-22);
-	MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
+	// MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist * Math.cos(toRadians(-20)));
 
 	MainRoomArrow.scale.copy(navArrowScale)
 
@@ -1014,6 +1108,7 @@ orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: tru
 	video = document.createElement('video');
 	video.src = "video/sceneVideo.mp4"; // Set video address
 	video.setAttribute("id", "videoScene");
+	video.preload = true
 	video.playsInline = true;
 	video.muted = true;
 	video.loop = true;
@@ -1046,7 +1141,7 @@ orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: tru
     // ***********************VIDEO2********************
 	videoMeshBottleScene = new THREE.PlaneGeometry( 9, 16 );
 	bilboardVideo  = document.createElement('video');
-	bilboardVideo.src = "video/K-Beauty Treatment Area Krystal Logo-1.mp4"; // Set video address
+	bilboardVideo.src = "video/K-BeautyTreatmentAreaKrystalLogo-1.mp4"; // Set video address
 	bilboardVideo.playsInline = true;
 	bilboardVideo.muted = true;
 	bilboardVideo.loop = true;
@@ -1106,19 +1201,33 @@ function onWindowResize() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }
 var endbool;
+function onVideoLoad() {
+
+	orbVideo.removeEventListener( 'loadedmetadata', onVideoLoad, false );
+	videoManager.itemEnd( "video/Ahc.Reveal.v5.BASE.mp4" ); // notifying about end of loading process
+	orbVideo.play();
+	orbVideoMask.play()
+	console.log("LOADED")
+}
+
+
 var hoverButtonChecker = false
 document.getElementById('pool-btn').addEventListener("click", function(e){
 	hoverButtonChecker = true
+	clickableVideo = false
 	volumeDown()
+	runTween()
+});
+document.getElementById('orb-btn').addEventListener("click", function(e){
+	hoverButtonChecker = true
+	orbClickable = false
+
 });
 document.getElementById('beauty-btn').addEventListener("click", function(e){
 	console.log("clicked")
 	hoverButtonChecker = true
+	bilboardClickable = false
 
-});
-document.getElementById('orb-btn').addEventListener("click", function(e){
-	hoverButtonChecker = true
-	// sound.pause()
 });
 document.getElementById('beauty-vid-1').addEventListener("click", function(e){
 	volumeDown()
@@ -1139,6 +1248,7 @@ if( currState === MAIN){
 
 document.getElementById('back-btn').addEventListener("click", function(e){
 	hoverButtonChecker = false
+	bilboardClickable = true
 	document.getElementById('beauty-treatment-overlay').style.display = "none"
 	volumeUp()
 });
@@ -1147,6 +1257,7 @@ player.on('ended', function () {
 	hoverButtonChecker = false
 	volumeUp()
   })
+
 //   var player1 = videojs('#vid-1');
 //   player1.on('ended', function () {
 // 	sound.pause()
@@ -1162,13 +1273,17 @@ player.on('ended', function () {
 // 	sound.pause()
 // 	hoverButtonChecker = false
 //   })
-  var player4 = videojs('#orb-vid');
-  player4.on('ended', function () {
-	// sound.play()
+  var player3 = videojs('#orb-vid');
+  player3.on('ended', function () {
+
 	hoverButtonChecker = false
   })
-var flagOrb = false
+
 var orbVideoPlayed = false
+var flagOrb = false
+var orbVidBool = false
+var orbVidMaskBool = false
+
 function loadOrbVide(){
 	orbVideo.onloadeddata  = function() {
 		orbVidBool = true
@@ -1181,35 +1296,11 @@ function loadOrbVide(){
 	return true;
 
 }
+
+var setonetime = false
+var videoClickfalse = false
 function animate() {
 
-	// console.log("video" + video.currentTime)
-	// console.log("video2" + video2.currentTime)
-	// controls.addEventListener( 'change', function(){
-	// 	endbool =false
-	// 	if(currState == POOL){
-	// 		clickableVideo = false
-	// 	}
-	// 	if(currState == SELFIE){
-	// 		selfieSceneClick = false
-	// 	}
-	// });
-
-	// controls.addEventListener( 'end', function(){
-	// 	endbool = true
-	// 	if(currState == POOL && endbool == true){
-	// 		setTimeout(function(){
-	// 			clickableVideo = true
-	// 		}, 500);
-	// 	}
-	// 	if(currState == SELFIE && endbool == true){
-	// 		setTimeout(function(){
-	// 			selfieSceneClick = true
-	// 		}, 500);
-
-
-	// 	}
-	// });
 
 
 	//***********************TWEEN********************
@@ -1224,7 +1315,7 @@ function animate() {
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
-		if(dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
+		if(selfieLoad == true && dirVector.z > 0.25 && dirVector.z < 0.75 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
 			document.getElementById('selfie-text').style.opacity = 1;
 			document.getElementById('selfie-btn').style.opacity = 1;
 			document.getElementById('selfie-btn').style.pointerEvents = "auto";
@@ -1247,12 +1338,8 @@ function animate() {
 	 else if(currState === POOL){
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
-		document.getElementById('close-btn').addEventListener("click", function(e){
-			hoverButtonChecker = false
-			volumeUp()
 
-		});
-		if(hoverButtonChecker === false && dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
+		if(poolLoad == true && hoverButtonChecker === false && dirVector.z > -0.4 && dirVector.z < 0.9 && dirVector.y > -0.3 && dirVector.x > 0 && dirVector.x < 1   ){ // need to stress test
 			document.getElementById('pool-text').style.opacity = 1;
 			document.getElementById('pool-btn').style.opacity = 1;
 			document.getElementById('pool-btn').style.pointerEvents = "auto";
@@ -1264,11 +1351,8 @@ function animate() {
 	} else if(currState === BEAUTY){
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
-		document.getElementById('close-btn').addEventListener("click", function(e){
-			hoverButtonChecker = true
-			volumeUp()
-		});
-		if(hoverButtonChecker === false && dirVector.z > -0.95 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.35 ){ // need to stress test
+
+		if(beautyLoad == true && hoverButtonChecker === false && dirVector.z > -0.95 && dirVector.z < 0 && dirVector.y > -0.3 && dirVector.x < -0.35 ){ // need to stress test
 			document.getElementById('beauty-text').style.opacity = 1;
 			document.getElementById('beauty-btn').style.opacity = 1;
 			document.getElementById('beauty-btn').style.pointerEvents = "auto";
@@ -1279,42 +1363,49 @@ function animate() {
 		}
 	}else if(currState === MAIN){
 		camera.getWorldDirection(dirVector)
-		document.getElementById('close-btn').addEventListener("click", function(e){
-			hoverButtonChecker = false
-			// sound.play();
 
-		});
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 		if(hoverButtonChecker == false && dirVector.z > -0.8 && dirVector.z < 0.8 && dirVector.y > -0.3 && dirVector.x < 0 ){ // need to stress test
-			
-			async function playVideo(){
-				let played = await loadOrbVide()
-				console.log(played)
-				if(played === true){
-					orbVideo.currentTime = 0;
-					orbVideoMask.currentTime = 0;
-					orbVideo.play();
-					orbVideoMask.play()
-				}
-			}
-		
+
+			// async function playVideo(){
+			// 	let played = await loadOrbVide()
+			// 	console.log(played)
+			// 	if(played === true){
+			// 		orbVideo.currentTime = 0;
+			// 		orbVideoMask.currentTime = 0;
+			// 		orbVideo.play();
+			// 		orbVideoMask.play()
+			// 	}
+			// }
+
 			if(orbVideoPlayed == false){
-			
-			
+
+
 				orbVideo.addEventListener("ended",function(){
-					
+
+					if(orbProductVideo.currentTime != orbProductVideoMask.currentTime){
+						orbProductVideo.currentTime = 2;
+						orbProductVideoMask.currentTime = 2;
+					}
 					orbGlowVideo.play()
 					orbGlowVideoMask.play()
 
 
+
 				})
-				playVideo()
-		
+				orbVideo.currentTime = 0;
+				orbVideoMask.currentTime = 0;
+				onVideoLoad()
+				if(orbVideo.currentTime != orbVideoMask.currentTime){
+					orbVideo.currentTime = 0;
+					orbVideoMask.currentTime = 0;
+				}
+
 				orbVideoPlayed = true
-			
+
 
 			}
-		
+
 			orbVideo.addEventListener("ended",function(){
 				flagOrb = true
 				document.getElementById('orb-text').style.opacity = 1;
@@ -1517,7 +1608,7 @@ function clickTrigger(){
 			}, 500);
 
 			DisableEverything()
-			
+
 		}
 
 		//***********************Video ROOM SCENE**************************
@@ -1569,7 +1660,7 @@ function clickTrigger(){
 		// 	alert("Video Clicked");
 		// }
 		var productbool;
-		if(intersectsProductPlusIcon1.length > 0 ) {
+		if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon1.length > 0 ) {
 			productbool = true
             console.log("video clicked")
             document.getElementById('product1').style.display = 'block';
@@ -1577,14 +1668,14 @@ function clickTrigger(){
 
             //window.open('https://us.ahcbeauty.com/')
         }
-        if(intersectsProductPlusIcon2.length> 0) {
+        if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon2.length > 0) {
 			productbool = true
             console.log("video clicked")
             document.getElementById('product2').style.display = 'block';
 			document.getElementById('productButton-2').style.display = 'block';
             //window.open('https://us.ahcbeauty.com/')
         }
-        if(intersectsProductPlusIcon3.length> 0 ) {
+        if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon3.length > 0 ) {
 			productbool = true
             console.log("video clicked")
             document.getElementById('product3').style.display = 'block';
@@ -1598,17 +1689,17 @@ function clickTrigger(){
 		}
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
-		if ( intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
+		if (poolLoad == true && intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
 			document.getElementById('pool-btn').click();
-			
+
 		}
-		if ( intersectsMultipleVideo.length > 0 && bilboardClickable == true) {
+		if (beautyLoad == true && intersectsMultipleVideo.length > 0 && bilboardClickable == true) {
 			document.getElementById('beauty-btn').click();
-			
+
 		}
 		if ( intersectsorbProductScene.length > 0 && orbClickable == true) {
 			document.getElementById('orb-btn').click();
-			
+
 		}
 	});
 }
@@ -1671,6 +1762,11 @@ function DisableEverything(){
 	bilboardClickable = false
 	orbClickable = false
 	flagOrb = false
+	selfieLoad = false
+	poolLoad = false
+	beautyLoad = false
+	productBaseLoad = false
+	procutLoad = false
 	console.log(loaderCheck)
 	new TWEEN.Tween( orbPlusMat ).to( { opacity: 0 }, 250 ).start();
 	document.getElementById('selfie-text').style.display = 'none';
@@ -1687,16 +1783,16 @@ function DisableEverything(){
 	document.getElementById('pool-btn').style.pointerEvents = 'none';
 	document.getElementById('selfie-btn').style.pointerEvents = 'none';
 
-	let ArrowArray = [orbPlus,orbGlow,orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
-	let ArrowScene = [orbPlusScene,orbGlowScene,orbProductScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
-
+	let ArrowArray = [glowScene,orbPlus,orbGlow,orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
+	let ArrowScene = [glow,orbPlusScene,orbGlowScene,orbProductScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
+	glowScene.remove(glow)
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {
 			ArrowScene[i].remove(ArrowArray[i]);
 			console.log("DISABLE THINGS RUNNED")
 		}
 	}, 200);
-	TweenFadeOutForVideos(videoMat)
+	// TweenFadeOutForVideos(videoMat)
 	TweenFadeOutForVideos()
 }
 
@@ -1713,7 +1809,7 @@ function TweenFadeInForVideos(VideoOpacityMat){
 }
 
 function volumeDown(){
-	
+
 	new TWEEN.Tween(sound.gain.gain)
 	.to(
 	{
@@ -1727,27 +1823,24 @@ function volumeUp(){
 new TWEEN.Tween(sound.gain.gain)
 .to(
 {
-	value: 0.65,
+	value: 0.65*mainVolumeMultiplier,
 },
 1250
 ).start()
 }
-function tweenScaleForArrows(arrow,sx,sy,sz){
-	var scaleX = sx+sx*0.08;
-	var scaleY = sy + sy*0.08;
-	var scaleZ =  sz + sz*0.08;
-	new TweenMax.fromTo(arrow.scale, 2.25,{
-		x:sx,
-		y:sy,
-		z:sz,
+function tweenScaleForArrows(){
+	// var scaleX = sx+sx*0.1;
+	// var scaleY = sy + sy*0.1;
+	// var scaleZ =  sz + sz*0.1;
+	new TweenMax.fromTo(glowMat, 1,{
+		opacity:0,
 		},
-		{ x: scaleX,
-		  y: scaleY,
-		  z: scaleZ,
+		{ opacity:0.45,
 		  ease: Sine.easeInOut,
 		  yoyo: true,
-		  repeat: -1,
-		  delay:0.5,
+
+		  repeat:-1,
+
 	});
 }
 function TweenFadeInForArrow(){
@@ -1793,7 +1886,7 @@ $(document).ready(function() {
 function sendUser() {
 	let phoneNumber = document.getElementById('phone').value;
 	console.log(phoneNumber)
-	if (phoneNumber==null || phoneNumber === ""){
+	if (phoneNumber==null){
 		alert("Phone number invalid, try again");
 
 	} else {
@@ -1814,11 +1907,11 @@ function transferComplete(evt) {
 	copyLink();
 }
 
-document.getElementById('selfie-btn').addEventListener("click", openSelfie);
-function openSelfie(){
-  window.location.href="../selfie/camera.html#"+url_params
-  // window.open('../selfie/index.html')
-}
+// document.getElementById('selfie-btn').addEventListener("click", openSelfie);
+// function openSelfie(){
+//   window.location.href="../selfie/camera.html#"+url_params
+//   // window.open('../selfie/index.html')
+// }
 
 function sharePopup() {
 	shareContainer.style.display = 'block';

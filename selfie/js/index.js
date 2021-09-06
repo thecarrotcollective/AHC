@@ -235,7 +235,12 @@ shareBtn.addEventListener("click", async () => {
 });
 
 backBtn.addEventListener("click", async () => {
-  window.location.href="../scene/index.html#"+url_params+"-selfie";
+  if(url_params[url_params.length-1] === 'u'){
+    url_params = url_params.substr(0, url_params.length-1) + "U"
+  } else if(url_params[url_params.length-1] === 'm'){
+    url_params = url_params.substr(0, url_params.length-1) + "M"
+  }
+  window.location.href="../scene/index.html#"+url_params;
 });
 
 /* Canvas Donwload */

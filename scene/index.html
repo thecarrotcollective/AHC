@@ -1,10 +1,20 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=999, maximum-scale=1.0" /> -->
-  <link rel="stylesheet" type="text/css" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#ffffff">
+    <!-- <script src="sceneFolder/scripts/scriptPhone.js"></script> -->
+    <title>AHC Spa at Home</title>
+
+    <!-- <meta name="viewport" content="width=999, maximum-scale=1.0" /> -->
+    <link rel="stylesheet" type="text/css" href="../shared/start-page.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="video/sceneVideo.mp4" as="video" type="video/mp4">
 <!--      <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />-->
     <link href="styles/video-js.css" rel="stylesheet" />
 <!--      <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet"/>-->
@@ -35,70 +45,62 @@
            head.appendChild(script);
         }
 
+        // document.getElementById('question').style.opacity = 1;
+        // document.getElementById('questionDiv').style.top = '12%';
+
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          console.log("PHONE LOADED")
+          loadJS('scripts/scriptPhone.js');
+        }else{
+          console.log("WEB LOADED")
+          loadJS('scripts/scriptWeb.js');
+        }
+
 
   </script>
 
-    <script src="https://unpkg.com/three"></script>
+    <!-- <script src="https://unpkg.com/three"></script>
     <script src="https://unpkg.com/@seregpie/three.text-texture"></script>
-    <script src="https://unpkg.com/@seregpie/three.text-sprite"></script>
+    <script src="https://unpkg.com/@seregpie/three.text-sprite"></script> -->
   </head>
   <body id="mainPage" >
     <div id="IntroDiv" >
 
       <div class="container" >
               <div class="safe_area">
-                  <div class="ahc-logo-Intro" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="../shared/images/AHCLOGO.webp"></div>
+                  <div class="ahc-logo-Intro ahc-logo" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="../shared/images/AHCLOGO.webp"></div>
                   <div class="quizquestion" id="questionDiv">
                       <div id='question' class="question"></div>
                   </div>
-
-                  <div class="grid_container" id="grid_container">
-
-                      <section>
-                          <div class="content" id="content">
-                              <div class ="arch" id="archid">
-                                  <img id="arch-image" src=""alt="" >
-                              </div>
-                              <div class="middleText" id="middleText">
-                                  <h1 id="personality"></h1>
-                                  <div id="infoText"></div>
-
-                              </div>
-                              <!-- <div class="middleText2" id="middleText2">
-                                  <h1 id="personality2">PERSONALITY<br>TEST</h1>
-                              </div> -->
-                              <!-- <div class="infoText" id="infoText"> -->
-                              <!-- </div> -->
-
+                  <section>
+                      <div class="content" id="content">
+                          <div class ="arch" id="archid">
+                              <img id="arch-image" src=""alt="" >
                           </div>
-                      </section>
-                      <button id='start-btn' class='bottom-btn transparent-btn'></button>
+                          <div class="middleText2" id="middleText">
+                              <h1 id="personality"></h1>
+                              <div id="infoText"></div>
+                          </div>
+                      </div>
+                  </section>
+                  <div class="grid_container" id="grid_container">
+                      <button id='start-btn' class='bottomButtonsMain bottomBtn blackClr noTextShadow'></button>
                   </div>
               </div>
           </div>
-          <!-- <video playsInline  id="firstVideo">
-              <source src="personalitytest/videos/Spa%20Zoom%208Mbps%2037_comp.webm" type="video/webm">
-          </video> -->
       </div>
   </div>
 
 
   <div id="main" style="display: none;">
-    
-    <div class="productIntro" style="display: none;" id="productIntro1">
-      <img id="productIntroImage" src="UIAssets/productAHC.png" alt="Snow">
-
-      <button id="start-btn2" class="start-btn2" >ACCEPT</button>
-    </div>
-    <a type="fakeButton" id="fakeButton_id" style="display: none;" >Click Me!</a>
       <div id="blackScreen"></div>
       <div id="whiteScreen"></div>
 
       <div id="container_2">
         <div class="lds-ring" id="lds-ring"><div></div><div></div><div></div><div></div></div>
         <div id="beauty-treatment-overlay">
-          <div id = "ahc-logo-beauty"><img id="ahc-logo-beauty-img" src="UIAssets/AHCLOGO_white.png"></div>
-          <div id="beauty-title">CHOOSE YOUR <br> AHC KOREAN AESTHETIC TREATMENT</div>
+          <div class="ahc-logo" id = "ahc-logo-beauty"><img id="ahc-logo-beauty-img" src="UIAssets/AHCLOGO_white.png"></div>
+          <div id="beauty-title" class="quizquestion"><h2 class="beauty-treatment-title">CHOOSE YOUR <br> AHC KOREAN AESTHETIC TREATMENT</h2></div>
           <div class="beauty-options-container">
             <div class="beauty-options" id="beauty-vid-1"><img class="beauty-thumbnails" src="images/treatment1.jpg"></div>
             <div class="beauty-options" id="beauty-vid-2"><img class="beauty-thumbnails" src="images/treatment2.jpg"></div>
@@ -112,14 +114,12 @@
           id="video2"
           class="video-js vjs-default-skin"
           controls: true
-          preload="auto"
+          preload="none"
           width="auto"
           height="auto"
           aspectRatio= '9:16'
-          data-setup='{"controls": true}'
-        >
-        <source src="video/AHC-SPA-VIDEO.mp4" type="video/mp4" />
-            <!-- <source type="video/mp4" /> -->
+          data-setup='{"controls": true}'>
+          <source src="video/therapy/int-en.mp4" type="video/mp4" />
           </video>
           <video
           id="vid-1"
@@ -130,7 +130,7 @@
           height="auto"
           aspectRatio= '9:16'
           data-setup='{"controls": true}'>
-            <source src="video/beauty1.mp4" type="video/mp4">
+            <source src="video/beauty/Ton.mp4" type="video/mp4">
           </video>
           <video
           id="vid-2"
@@ -141,7 +141,7 @@
           height="auto"
           aspectRatio= '9:16'
           data-setup='{"controls": true}'>
-            <source src="video/beauty2.mp4" type="video/mp4">
+            <source src="video/beauty/Eff-Eng.mp4" type="video/mp4">
           </video>
           <video
           id="vid-3"
@@ -152,7 +152,7 @@
           height="auto"
           aspectRatio= '9:16'
           data-setup='{"controls": true}'>
-            <source src="video/beauty3.mp4" type="video/mp4">
+            <source src="video/beauty/Amp.mp4" type="video/mp4">
           </video>
           <video
           id="orb-vid"
@@ -163,7 +163,7 @@
           height="auto"
           aspectRatio= '9:16'
           data-setup='{"controls": true}'>
-            <source src="video/orbvideo.mp4" type="video/mp4">
+            <source src="video/orb/orbvideo.mp4" type="video/mp4">
           </video>
         </div>
         <!-- <div id="video-close-overlay"></div> -->
@@ -172,21 +172,31 @@
 
 
         <div class="product" style="display: none;" id="product1">
-          <img id="productImage"src="./UIAssets/product3.png" alt="Snow">
+
+          <div class="square">
+              <h2>Premium EX Hydra B5 Biome Capsule Concentrate</h2>
+             <img src="./UIAssets/just_product3.png">
+          </div>
           <img id="close-product" src="UIAssets/close.png">
           <button id="productButton-1" class="btn" >SHOP NOW</button>
         </div>
 
         <div class="product" style="display: none;" id="product2">
           <img id="close-product2" src="UIAssets/close.png">
-          <img src="./UIAssets/product2.png" alt="Snow">
+          <div class="square">
+            <h2>Premium EX Hydra B5 Toner</h2>
+           <img src="./UIAssets/just_product2.png">
+        </div>
 
           <button id="productButton-2" class="btn">SHOP NOW</button>
         </div>
 
         <div  class="product" style="display: none;" id="product3">
           <img id="close-product3" src="UIAssets/close.png">
-          <img src="./UIAssets/product1.png" alt="Snow">
+          <div class="square">
+            <h2>EFF Gold</h2>
+           <img src="./UIAssets/just_product1.png">
+        </div>
 
           <button id="productButton-3"  class="btn">SHOP NOW</button>
         </div>
@@ -246,7 +256,7 @@
       </button>
 
       <button id="beauty-btn" class="CTA-btn">
-        WATCH AHC's KOREAN AESTHETIC TUTORIALS HERE
+        WATCH AHC'S KOREAN AESTHETIC TUTORIALS HERE
       </button>
       <button id="orb-btn" class="CTA-btn">
         FOUND OUT MORE
@@ -254,469 +264,12 @@
 
     </div>
   </div>
-  <script type="text/javascript">
-          if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          console.log("PHONE LOADED")
-          loadJS('scripts/scriptPhone.js');
-        }else{
-          console.log("WEB LOADED")
-          loadJS('scripts/scriptWeb.js');
-        }
-    // enquire.register("screen and (max-width: 599px)", {
-    //     match : function() {
-    //         // Load a mobile JS file
-    //         loadJS('scripts/scriptPhone.js');
-    //         console.log('phone loaded');
-    //         enquire.unregister("screen and (max-width: 599px)");
-    //         enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
-    //         enquire.unregister("screen and (min-width: 900px)");
-    //     //     document.body.style.backgroundImage = "url('./UIAssets/OPENNING_qual80.jpg') ";  // compressed with squoosh mozjpeg quality 80%
-    //     //     document.body.style.backgroundRepeat = "no-repeat";
-    //     //     document.getElementById('productIntro1').style.display = 'flex'
-    //     //     document.getElementById('video2').addEventListener("click", function(e){
-    //     //     console.log("clicked")
-
-
-    //     //     });
-    //     //     if(window.innerWidth > window.innerHeight){
-    //     //       document.getElementsByTagName("body")[0].style.transform = "rotate(90deg)";
-    //     //       }
-
-    //     // }
-    //   }
-    // });
-
-
-
-    // enquire.register("screen and (min-width: 600px) and (max-width: 899px)", {
-    //     match : function() {
-    //         // Load a tablet JS file
-    //         loadJS('scripts/scriptPhone.js');
-
-
-    //         console.log('tablet loaded');
-    //         enquire.unregister("screen and (max-width: 599px)");
-    //         enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
-    //         enquire.unregister("screen and (min-width: 900px)");
-
-    //     }
-    // });
-
-
-    // enquire.register("screen and (min-width: 900px)", {
-    //     match : function() {
-    //         // Load a desktop JS file
-    //         loadJS('scripts/scriptWeb.js');
-
-    //         console.log('desktop loaded');
-    //         enquire.unregister("screen and (max-width: 599px)");
-    //         enquire.unregister("screen and (min-width: 600px) and (max-width: 899px)");
-    //         enquire.unregister("screen and (min-width: 900px)");
-    //         document.getElementById('productIntro1').style.display = 'none'
-    //     }
-    // });
-    // if(window.innerHeight > window.innerWidth){
-    // document.getElementsByTagName("body")[0].style.transform = "rotate(90deg)";
-    // }
-
-
-    document.getElementById('pool-btn').addEventListener("click", openTherapy);
-    document.getElementById('beauty-btn').addEventListener("click", openBeauty);
-    document.getElementById('orb-btn').addEventListener("click", openOrbVideo);
-
-    function openOrbVideo(){
-      document.getElementById('orb-vid').style.display = 'block';
-      document.getElementById('vid-2').style.display = "none"
-      document.getElementById('vid-1').style.display = "none"
-      document.getElementById('vid-3').style.display = "none"
-      document.getElementById('video2').style.display = 'none';
-      document.getElementById('video_id').style.display = 'block';
-			document.getElementById('blackScreen').style.display = 'block';
-      document.getElementById('close-btn').style.display = 'block';
-      document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
-      var player = videojs('#orb-vid');
-      player.src('video/orbvideo.mp4')
-      var video = document.getElementById('orb-vid');
-      // video.requestFullscreen();
-      player.play();
-      document.getElementById('orb-text').style.opacity = 0;
-			document.getElementById('orb-btn').style.opacity = 0;
-			document.getElementById('orb-btn').style.pointerEvents = "none";
-      document.getElementById('orb-vid').addEventListener("click", function(e){
-        console.log("clicked")
-
-        // makeFullScreen()
-        // player.play();
-        // document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-
-      });
-      document.getElementById('close-btn').addEventListener("click", function(e){
-        document.getElementById('orb-text').style.opacity = 1;
-        document.getElementById('orb-btn').style.opacity = 1;
-        document.getElementById('orb-btn').style.pointerEvents = "auto";
-      });
-      document.getElementById('close-btn').addEventListener("click", closeVideo);
-
-      player.on('ended', function () {
-            closeVideo();
-            document.getElementById('orb-text').style.opacity = 1;
-            document.getElementById('orb-btn').style.opacity = 1;
-            document.getElementById('orb-btn').style.pointerEvents = "auto";
-          })
-      // player.on('fullscreenchange', function () {
-      //   if (this.isFullscreen()){
-      //     console.log('fullscreen');
-      //   } else {
-
-      //     // closeVideo();
-      //     // document.getElementById('orb-text').style.opacity = 1;
-      //     //   document.getElementById('orb-btn').style.opacity = 1;
-      //     //   document.getElementById('orb-btn').style.pointerEvents = "auto";
-      //   }
-      // })
-      // player.on('closed', function () {
-      //   closeVideo();
-      //       document.getElementById('orb-text').style.opacity = 1;
-      //       document.getElementById('orb-btn').style.opacity = 1;
-      //       document.getElementById('orb-btn').style.pointerEvents = "auto";
-      //     })
-      // player.on('tap', function () {
-      //   console.log("clicked")
-
-      //   makeFullScreen()
-      //   player.play();
-      //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-      // })
-		}
-
-    function openTherapy(){
-      document.getElementById('orb-vid').style.display = 'none';
-      document.getElementById('vid-2').style.display = "none"
-      document.getElementById('vid-1').style.display = "none"
-      document.getElementById('vid-3').style.display = "none"
-      document.getElementById('video2').style.display = 'block';
-      document.getElementById('video_id').style.display = 'block';
-			document.getElementById('blackScreen').style.display = 'block';
-      document.getElementById('close-btn').style.display = 'block';
-      document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
-      var player = videojs('#video2');
-      player.src('video/AHC-SPA-VIDEO.mp4')
-      var video = document.getElementById('video2');
-      // video.requestFullscreen();
-      player.play();
-      document.getElementById('pool-text').style.opacity = 0;
-			document.getElementById('pool-btn').style.opacity = 0;
-			document.getElementById('pool-btn').style.pointerEvents = "none";
-      // document.getElementById('video2').addEventListener("click", function(e){
-      //   console.log("clicked")
-
-      //   makeFullScreen()
-      //   player.play();
-      //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-
-      // });
- 
-      document.getElementById('close-btn').addEventListener("click", function(e){
-        document.getElementById('pool-text').style.opacity = 1;
-        document.getElementById('pool-btn').style.opacity = 1;
-        document.getElementById('pool-btn').style.pointerEvents = "auto";
-      });
-     
-      document.getElementById('close-btn').addEventListener("click", closeVideo);
-      player.on('ended', function () {
-            closeVideo();
-            document.getElementById('pool-text').style.opacity = 1;
-            document.getElementById('pool-btn').style.opacity = 1;
-            document.getElementById('pool-btn').style.pointerEvents = "auto";
-          })
-          player.on('closed', function () {
-            document.getElementById('pool-text').style.opacity = 1;
-            document.getElementById('pool-btn').style.opacity = 1;
-            document.getElementById('pool-btn').style.pointerEvents = "auto";
-          })
-      // player.on('fullscreenchange', function () {
-      //   if (this.isFullscreen()){
-      //     console.log('fullscreen');
-      //   } else {
-      //     closeVideo();
-      //   }
-      // })
-      // player.on('tap', function () {
-      //   console.log("clicked")
-
-      //   makeFullScreen()
-      //   player.play();
-      //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-      // })
-    }
-
-
-
-
-    function makeFullScreen(){
-      document.getElementById("video_id").style.height= "100%"
-        document.getElementById("video_id").style.width= "100%"
-        document.getElementById("video_id").style.transform = `translateX(0%) translateY(0%)`;
-
-    }
-
-    document.getElementById('back-btn').addEventListener("click", closeBeauty);
-    document.getElementById('beauty-vid-1').addEventListener("click", playVideo1);
-    document.getElementById('beauty-vid-2').addEventListener("click", playVideo2);
-    document.getElementById('beauty-vid-3').addEventListener("click", playVideo3);
-
-    function playVideo1(){
-      document.getElementById('orb-vid').style.display = 'none';
-      document.getElementById('vid-2_html5_api').style.display = "none"
-      document.getElementById('vid-1_html5_api').style.display = "block"
-      document.getElementById('vid-3_html5_api').style.display = "none"
-      document.getElementById('beauty-treatment-overlay').style.display = "none"
-      document.getElementById('vid-1').style.display = 'block';
-      document.getElementById('vid-2').style.display = 'none';
-      document.getElementById('vid-3').style.display = 'none';
-      document.getElementById('video_id').style.display = 'block';
-      document.getElementById('blackScreen').style.display = 'block';
-      document.getElementById('close-btn').style.display = 'block';
-      document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
-      var player = videojs('#vid-1');
-      player.src('video/beauty1.mp4')
-      var video = document.getElementById('vid-1');
-      // video.requestFullscreen();
-      player.play();
-
-
-      // document.getElementById('vid-1').addEventListener("click",function(e){
-      //   makeFullScreen()
-      //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-      //   player.play();
-      // })
-      document.getElementById('close-btn').addEventListener("click",function(e){
-            document.getElementById('close-btn').style.display = 'none'
-            document.getElementById('vid-1').style.display = 'none';
-          })
-
-      setTimeout(function(){
-        document.getElementById('close-btn').addEventListener("click", openBeauty);
-
-				}, 50)
-      player.on('ended', function () {
-        document.getElementById('close-btn').style.display = 'none'
-            document.getElementById('vid-1').style.display = 'none';
-            setTimeout(function(){
-            document.getElementById('close-btn').addEventListener("click", openBeauty);
-            openBeauty();
-            }, 50)
-          })
-          player.on('closed', function () {
-            document.getElementById('close-btn').style.display = 'none'
-            document.getElementById('vid-1').style.display = 'none';
-          })
-      // player.on('fullscreenchange', function () {
-      //   if (this.isFullscreen()){
-      //     console.log('fullscreen');
-      //   } else {
-      //     closeVideo();
-      //   }
-      // })
-      // player.on('tap', function () {
-      //   closeVideo();
-      // })
-    }
-
-    function playVideo2(){
-      document.getElementById('orb-vid').style.display = 'none';
-      document.getElementById('beauty-treatment-overlay').style.display = "none"
-      document.getElementById('vid-2_html5_api').style.display = "block"
-      document.getElementById('vid-1_html5_api').style.display = "none"
-      document.getElementById('vid-3_html5_api').style.display = "none"
-      document.getElementById('vid-1').style.display = 'none';
-      document.getElementById('vid-2').style.display = 'block';
-      document.getElementById('vid-3').style.display = 'none';
-      document.getElementById('video_id').style.display = 'block';
-      document.getElementById('blackScreen').style.display = 'block';
-      document.getElementById('close-btn').style.display = 'block';
-      document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
-      var player = videojs('#vid-2');
-      player.src('video/beauty2.mp4')
-      var video = document.getElementById('vid-2');
-      // video.requestFullscreen();
-      player.play();
-      // document.getElementById('vid-2').addEventListener("click",function(e){
-      //   makeFullScreen()
-      //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-      //   player.play();
-      // })
-
-      document.getElementById('close-btn').addEventListener("click",function(e){
-            document.getElementById('close-btn').style.display = 'none'
-            document.getElementById('vid-2').style.display = 'none';
-          })
-      setTimeout(function(){
-        document.getElementById('close-btn').addEventListener("click", openBeauty);
-
-				}, 50)
-
-
-      player.on('ended', function () {
-        document.getElementById('close-btn').style.display = 'none'
-            document.getElementById('vid-2').style.display = 'none';
-          // document.getElementById('blackScreen').style.display = 'block';
-            setTimeout(function(){
-            document.getElementById('close-btn').addEventListener("click", openBeauty);
-            openBeauty();
-            }, 50)
-          })
-          player.on('closed', function () {
-            document.getElementById('close-btn').style.display = 'none'
-            document.getElementById('vid-2').style.display = 'none';
-          })
-
-      // player.on('tap', function () {
-      //   closeVideo();
-      // })
-    }
-
-        function playVideo3(){
-          document.getElementById('orb-vid').style.display = 'none';
-          document.getElementById('vid-2_html5_api').style.display = "none"
-          document.getElementById('vid-1_html5_api').style.display = "none"
-          document.getElementById('vid-3_html5_api').style.display = "block"
-          document.getElementById('beauty-treatment-overlay').style.display = "none"
-          document.getElementById('vid-1').style.display = 'none';
-          document.getElementById('vid-2').style.display = 'none';
-          document.getElementById('vid-3').style.display = 'block';
-          document.getElementById('video_id').style.display = 'block';
-          document.getElementById('blackScreen').style.display = 'block';
-          document.getElementById('close-btn').style.display = 'block';
-          document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
-          var player = videojs('#vid-3');
-          player.src('video/beauty3.mp4')
-          var video = document.getElementById('vid-3');
-          // video.requestFullscreen();
-          player.play();
-          // document.getElementById('vid-3').addEventListener("click",function(e){
-          //   makeFullScreen()
-          //   document.getElementById('blackScreen').style.animation = " opacityAnim3 0.2s ease-in-out forwards";
-          //   player.play();
-          // })
-          document.getElementById('close-btn').addEventListener("click",function(e){
-            document.getElementById('close-btn').style.display = 'none'
-            document.getElementById('vid-3').style.display = 'none';
-          })
-          // document.getElementById('close-btn').addEventListener("click", closeVideo);
-          setTimeout(function(){
-            document.getElementById('close-btn').addEventListener("click", openBeauty);
-
-            }, 50)
-          // document.getElementById('vid-3').addEventListener("ended",closeVideo);
-          player.on('ended', function () {
-            document.getElementById('close-btn').style.display = 'none'
-            document.getElementById('vid-3').style.display = 'none';
-            
-            setTimeout(function(){
-            document.getElementById('close-btn').addEventListener("click", openBeauty);
-            openBeauty();
-            }, 50)
-          })
-          player.on('closed', function () {
-            document.getElementById('close-btn').style.display = 'none'
-            document.getElementById('vid-1').style.display = 'none';
-          })
-          // player.on('fullscreenchange', function () {
-          //   if (this.isFullscreen()){
-          //     console.log('fullscreen');
-          //   } else {
-          //     closeVideo();
-          //   }
-          // })
-          // player.on('tap', function () {
-
-          // })
-        }
-
-    function openBeauty(){
-      // window.open('https://us.ahcbeauty.com/')
-      document.getElementById('beauty-treatment-overlay').style.display = "flex"
-      document.getElementById('blackScreen').style.display = 'block';
-      document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
-      document.getElementById('blackScreen').style.zIndex = '1';
-
-      document.getElementById('beauty-text').style.opacity = 0;
-			document.getElementById('beauty-btn').style.opacity = 0;
-			document.getElementById('beauty-btn').style.pointerEvents = "none";
-    }
-
-    document.getElementById('productButton-1').addEventListener("click", productLink1);
-    document.getElementById('productButton-2').addEventListener("click", productLink2);
-    document.getElementById('productButton-3').addEventListener("click", productLink3);
-    document.getElementById('close-product').addEventListener("click", closeProductPreview);
-    document.getElementById('close-product2').addEventListener("click", closeProductPreview);
-    document.getElementById('close-product3').addEventListener("click", closeProductPreview);
-    function productLink1(){
-      // window.open('https://www.ahc.co.kr/brand/product/productView?prdIdx=462')
-      window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517')
-
-      document.getElementById('product1').style.display = 'none';
-
-    }
-    function productLink2(){
-      // window.open('https://www.ahc.co.kr/brand/product/productView?prdIdx=462')
-      window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67')
-
-      document.getElementById('product2').style.display = 'none';
-
-    }
-    function productLink3(){
-      // window.open('https://www.ahc.co.kr/shop/product/productView?prdIdx=270&prdCategory=0078&skinCategory=0089')
-      window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085')
-
-      document.getElementById('product3').style.display = 'none';
-
-    }
-    function closeProductPreview(){
-      console.log("clicked")
-      document.getElementById('product1').style.display = 'none';
-      document.getElementById('product2').style.display = 'none';
-      document.getElementById('product3').style.display = 'none';
-    }
-
-    function closeBeauty(){
-      document.getElementById('beauty-treatment-overlay').style.display = "none"
-      document.getElementById('blackScreen').style.display = 'none';
-      document.getElementById('video_id').style.display = 'none';
-      document.getElementById('blackScreen').style.zIndex = '';
-      document.getElementById("video_id").style.height= "50%"
-      document.getElementById("video_id").style.width= "50%"
-      document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
-    }
-
-
-    function closeVideo(){
-      document.getElementById("video_id").style.height= "50%"
-      document.getElementById("video_id").style.width= "50%"
-      document.getElementById("video_id").style.transform = `translateX(50%) translateY(50%)`;
-      console.log('close video');
-      // document.getElementById('video2').removeEventListener("click", closeVideo);
-      // document.getElementById('video-close-overlay').style.display = 'none';
-      document.getElementById('orb-vid').style.display = 'none';
-      document.getElementById('video2').style.display = 'none';
-   
-      document.getElementById('vid-1').style.display = 'none';
-      document.getElementById('vid-2').style.display = 'none';
-      document.getElementById('vid-3').style.display = 'none';
-      document.getElementById('blackScreen').style.display = 'none';
-      document.getElementById('video_id').style.display = 'none';
-      document.getElementById('close-btn').style.display = 'none';
-      document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
-      // player
-      videojs('#video2').reset()
-      videojs('#orb-vid').reset()
-      videojs('#vid-1').reset()
-      videojs('#vid-2').reset()
-      videojs('#vid-3').reset()
-    }
-
-    </script>
+  <div class="audio-btn">
+    <img class="speaker-btn beigeBtn" id="mute-unmute-btn"
+      src="../shared/images/Speaker_Icon.svg"
+      alt="mute/unmute"/>
+  </div>
+  <script type="text/javascript" src="scripts/scriptShared.js"></script>
   </body>
 
 </html>

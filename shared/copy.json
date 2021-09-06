@@ -40,7 +40,7 @@
     "性格测试，开启你的专属肌疗SPA之旅"
   ],
   "PersonalityTest":[
-    "PERSONALITY<br>TEST",
+    "START<br>PERSONALITY<br>TEST",
     "성격 테스트",
     "性格测试"
   ],
@@ -152,12 +152,12 @@
   "SharePopUp":[
     "SHARE THIS EXPERIENCE. ",
     "친구에게 AHC SPA 공유하기",
-    "SHARE THIS EXPERIENCE."
+    "分享"
   ],
   "EnterPhone":[
     "ENTER YOUR PHONE NUMBER",
     "휴대전화 번호 입력",
-    "ENTER YOUR PHONE NUMBER"
+    "请输入您的手机号"
   ],
   "ShareButton":[
     "SHARE",
@@ -185,7 +185,7 @@
     "分享"
   ],
   "WatchAHCKBeauty":[
-    "WATCH AHC’S KOREAN AESTHETIC TUTORIALS HERE.",
+    "WATCH AHC'S KOREAN AESTHETIC TUTORIALS HERE.",
     "튜토리얼을 통해 K-뷰티 사용법을 확인해보세요!",
     "观看AHC肌疗美肤私教课"
   ],

@@ -5,6 +5,8 @@ var INTROVERT = 1
 var FEELER = 2
 var THINKER = 3
 
+console.log("test");
+
 var personalityTypes = ["extrovert", "introvert", "feeler", "thinker"]
 
 function loadJSON(callback) {
@@ -97,40 +99,38 @@ var images = {
     "color3"   : "personalitytest/images/opt/color3.webp",
     "color4"   : "personalitytest/images/opt/color4.webp"
     }
-var myimages=new Array()
-function preloadimages(){
-  for (i=0;i<preloadimages.arguments.length;i++){
-    myimages[i]=new Image()
-    myimages[i].src=preloadimages.arguments[i]
-  }
-  console.log("loaded")
-}
-preloadimages("personalitytest/images/opt/1-dog.webp",
-"personalitytest/images/opt/1-mountain.webp",
-"personalitytest/images/opt/1-city.webp",
-"personalitytest/images/opt/1-math.webp",
-"personalitytest/images/opt/2-beach.webp",
-"personalitytest/images/opt/2-math.webp",
-"personalitytest/images/opt/2-light.webp",
-"personalitytest/images/opt/2-tech.webp",
-"personalitytest/images/opt/color1.webp",
-"personalitytest/images/opt/color2.webp",
-"personalitytest/images/opt/color3.webp",
-"personalitytest/images/opt/color4.webp");
+// var myimages=new Array()
+// function preloadimages(){
+//   for (i=0;i<preloadimages.arguments.length;i++){
+//     myimages[i]=new Image()
+//     myimages[i].src=preloadimages.arguments[i]
+//   }
+//   // console.log("loaded")
+// }
+// preloadimages("personalitytest/images/opt/1-dog.webp",
+// "personalitytest/images/opt/1-mountain.webp",
+// "personalitytest/images/opt/1-city.webp",
+// "personalitytest/images/opt/1-math.webp",
+// "personalitytest/images/opt/2-beach.webp",
+// "personalitytest/images/opt/2-math.webp",
+// "personalitytest/images/opt/2-light.webp",
+// "personalitytest/images/opt/2-tech.webp",
+// "personalitytest/images/opt/color1.webp",
+// "personalitytest/images/opt/color2.webp",
+// "personalitytest/images/opt/color3.webp",
+// "personalitytest/images/opt/color4.webp");
 
 var option1Counter = 0
 var option2Counter = 0
 var option3Counter = 0
 var option4Counter = 0
 
-const startButton = document.getElementById('start-quiz-btn');
+// const startButton = document.getElementById('start-quiz-btn');
+const startButton = document.getElementById('arch-img');
 startButton.addEventListener('click', startGame);
 
-document.getElementById('firstVideo').addEventListener("ended",function(){
-  setTimeout(function(){
-    startGame()
-  }, 5000)
-},false);
+var gameStarted = false;
+
 document.getElementById('skipLink').addEventListener('click', function(e) {
   setTimeout(function(){
     startGame()
@@ -138,29 +138,42 @@ document.getElementById('skipLink').addEventListener('click', function(e) {
 });
 
 function startGame() {
-  console.log(document.getElementById('controls_id').style.display === "flex")
-  document.getElementById('archid').style.display = 'none';
-  document.getElementById('middleText2').style.display = 'none';
-  document.getElementById('controls_id').style.display = 'none';
-  document.getElementById('quiz_id').style.display = 'flex';
-  document.getElementById('process_id').style.display = 'flex';
-  // document.getElementById('btnCSS2').style.display = 'none';
+  if(!gameStarted){
+    animationButton(buttonID,"btnAnim")
 
-  document.getElementById('IntroDiv').style.background ="rgb(254, 245, 240)";
-  populate();
+    console.log("triggered");
+    buttonID.classList.remove("btnAnim");
+    buttonID.offsetWidth;
+    buttonID.classList.add("btnAnim");
+
+    gameStarted = true;
+    console.log("started personality test");
+    // console.log(document.getElementById('controls_id').style.display === "flex")
+    document.getElementById('archid').style.display = 'none';
+    document.getElementById('middleText2').style.display = 'none';
+    document.getElementById('controls_id').style.display = 'none';
+    document.getElementById('quiz_id').style.display = 'flex';
+    document.getElementById('btnCSS2').style.display = 'block';
+
+    document.getElementById('IntroDiv').style.background ="#fff4ee";
+    populate();
+  }
 }
 var buttonID = document.getElementById("buttons_id");
 function animationButton(getId,className){
+  console.log("triggered 1");
+
   getId.addEventListener("click", function(e){
+    console.log("triggered");
     e.preventDefault;
     getId.classList.remove(className);
     void getId.offsetWidth;
     getId.classList.add(className);
   }, false);
 }
-animationButton(buttonID,"buttons")
 
 function populate() {
+  console.log("populate");
   if (quiz.isEnded()) {
     showScores();
   } else {
@@ -170,10 +183,10 @@ function populate() {
 
   var choices = quiz.getQuestionIndex().choices;
   shuffle(choices);
-  // animationButton(buttonID,"buttons")
+  animationButton(buttonID,"btnAnim")
   for (var i = 0; i < choices.length; i++) {
     var element = document.getElementById("choice" + i);
-    element.innerHTML = images[choices[i]]? '<img id="choiceImage"src="'+images[choices[i]]+'"/>':choices[i];
+    element.innerHTML = images[choices[i]]? '<img class="imageChoice" id="choiceImage"src="'+images[choices[i]]+'"/>':choices[i];
     guess("btn" + i, choices[i]);
 
   }
@@ -194,24 +207,28 @@ function showProgress() {
   var currentQuestionNumber = quiz.questionIndex + 1;
   var element_process = document.getElementById("process_id");
   console.log(currentQuestionNumber);
-
+  var skipBtnEl = "<div id=\"btnCSS2\" class=\"skipButton\"><button class=\"skipBtn blackClrTextOnly\" id=\"skipLinkScene\">" + copyJSON.Skip[languageID] + "</button></div>"
   if(currentQuestionNumber == 1){
     var process_html1 = "<label for='i1' class='dots' style='background-color: rgb(0, 0, 0);'id='dot1'></label>"
     process_html1 += "<label for='i1' class='dots' id='dot2'></label>"
     process_html1 += "<label for='i1' class='dots' id='dot3'></label>"
-    element_process.innerHTML = process_html1;
+    element_process.innerHTML = process_html1 + skipBtnEl;
   }else if(currentQuestionNumber == 2){
     var process_html2 = "<label for='i1' class='dots' style='background-color: transparent;'id='dot1'></label>"
     process_html2 += "<label for='i1' class='dots' style='background-color: rgb(0, 0, 0);' id='dot2'></label>"
     process_html2 += "<label for='i1' class='dots' id='dot3'></label>"
-    element_process.innerHTML = process_html2;
+    element_process.innerHTML = process_html2 + skipBtnEl;
   }else{
     var process_html3 = "<label for='i1' class='dots' id='dot1'></label>"
     process_html3 += "<label for='i1' class='dots' style='background-color: transparent;' id='dot2'></label>"
     process_html3 += "<label for='i1' class='dots' style='background-color: rgb(0, 0, 0);' id='dot3'></label>"
-    element_process.innerHTML = process_html3;
+    element_process.innerHTML = process_html3 + skipBtnEl;
   }
-
+  document.getElementById('btnCSS2').style.display = 'block';
+  document.getElementById('skipLinkScene').addEventListener('click', function(e) {
+    console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[2]);
+    window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[2]+'-'+mutedString;
+  })
 };
 var personiltyType;
 function showScores() {
@@ -238,11 +255,11 @@ function showScores() {
   else if(option3Counter ==finalOption){
 
     currState = THINKER
-    
+
   }else if(option4Counter ==finalOption){
-   
+
     currState = FEELER
-  
+
   }
   console.log("last option = " + finalOption)
   // document.getElementById('fist-page').style.display = 'grid';
@@ -252,7 +269,7 @@ function showScores() {
   // document.getElementById('controls_id').style.display = 'flex';
   document.getElementById('quiz_id').style.display = 'none';
 
-  document.getElementById('process_id').style.display = 'none';
+  // document.getElementById('process_id').style.display = 'none';
 
   // var personiltyTypeHtml = "<h3 id='question' >"+personiltyType+"</h3>";
   // var  gameOverHTML = '';
@@ -274,16 +291,28 @@ function showScores() {
   // var infoTextHtml = "<h2 id='infoText'>"+ infoText+"</h2>";
   // var element5 = document.getElementById("infoText")
   // element5.innerHTML = infoTextHtml;
-  window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[currState];
-  document.getElementById('start-btn').addEventListener('click', function(e) {
-    console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[currState]);
- 
-  });
+
+  window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[currState]+'-'+mutedString;
+  // document.getElementById('start-btn').addEventListener('click', function(e) {
+  //   console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[currState]);
+  //
+  // });
 };
 
-document.getElementById('skipLinkScene').addEventListener('click', function(e) {
-  console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[2]);
-  window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[2];
+var muted = false;
+var mutedString = "u"
+document.getElementById('mute-unmute-btn').addEventListener('click', function(e) {
+  muted = !muted;
+  console.log(muted);
+  if(muted){
+    mutedString = "m"
+    document.getElementById('firstVideo').volume = 0;
+    document.getElementById("mute-unmute-btn").src="shared/images/Mute_Icon.svg";
+  } else {
+    mutedString = "u"
+    document.getElementById('firstVideo').volume = 0.8;
+    document.getElementById("mute-unmute-btn").src="shared/images/Speaker_Icon.svg";
+  }
 });
 
 var questions = [
@@ -368,6 +397,34 @@ Quiz.prototype.isEnded = function() {
 
 var quiz = new Quiz(questions);
 
+// console.log(document.getElementById('IntroDiv'));
+console.log(document.readyState);
+if(document.readyState !== 'loading') {
+    onDOMLoaded();
+}
+else {
+    document.addEventListener('DOMContentLoaded', function () {
+        onDOMLoaded()
+    });
+}
+// window.addEventListener('DOMContentLoaded', (event) => {
+//
+// });
+
+function onDOMLoaded(){
+  console.log("Dom Loaded");
+  document.getElementById('controlsIntro').style.opacity = 1;
+  // document.getElementById('video-element-container').innerHTML = "<video playsInline  id=\"firstVideo\"> <source src=\"personalitytest/videos/Spa_Zoom_8mbps_37.mp4\" type=\"video/mp4\"></video>";
+  // CDN Video link
+  document.getElementById('video-element-container').innerHTML = "<video playsInline  id=\"firstVideo\"> <source src=\"https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/personalitytest/videos/Spa_Zoom_8mbps_37.mp4\" type=\"video/mp4\"></video>";
+
+  document.getElementById('firstVideo').addEventListener("ended",function(){
+    setTimeout(function(){
+      startGame()
+    }, 5000)
+  },false);
+  document.getElementById('firstVideo').addEventListener("ended",endVideo);
+}
 
 
 document.getElementById('start-btnIntro').addEventListener('click', function(e) {
@@ -376,39 +433,36 @@ document.getElementById('start-btnIntro').addEventListener('click', function(e) 
   document.getElementById('skipButton').style.display="flex";
   document.getElementById('skipLink').style.display="flex";
   document.getElementById('controlsIntro').style.display = "none";
+  document.getElementById('mute-unmute-btn').style.display="block";
   document.getElementById('firstVideo').play();
+  console.log("video played");
  });
 
-document.getElementById('firstVideo').addEventListener("ended",function(){
+
+document.getElementById('skipLink').addEventListener('click', endVideo)
+
+function endVideo(){
+  document.getElementById('video-container').style.display="none";
   document.getElementById('skipButton').style.display="none";
   document.getElementById('firstVideo').style.display="none";
 
   document.getElementById('skipLink').style.display="none";
-  document.getElementById('controls_id').style.display="flex";
-  document.getElementById('quesitonDiv').style.display="flex";
-  document.getElementById('archid').style.display="flex";
-  document.getElementById('middleText2').style.display="flex";
-  document.getElementById('btnCSS2').style.display="flex";
+  document.getElementById('process_id').style.display = 'block';
+  document.getElementById('btnCSS2').style.display = 'block';
+  setTimeout(function(){
+    document.getElementById('skipLinkScene').addEventListener('click', function(e) {
+      console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[2]);
+      window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[2]+'-'+mutedString;
+    })
+  }, 500);
+
+
+  document.getElementById('content').style.opacity = 1;
+  document.getElementById('question').style.opacity = 1;
 
   document.getElementById('firstVideo').pause();
+  document.getElementById('mute-unmute-btn').style.display="none";
   document.getElementById("ahc-logo-beauty-imgIntro").src="shared/images/AHCLOGO.webp"
   document.getElementById('IntroDiv').style.backgroundImage = "url(personalitytest/images/opt/colorPalette.webp)";
   document.getElementById('IntroDiv').style.backgroundRepeat = "no-repeat";
-},false);
-
-document.getElementById('skipLink').addEventListener('click', function(e) {
-  document.getElementById('skipButton').style.display="none";
-  document.getElementById('firstVideo').style.display="none";
-
-  document.getElementById('skipLink').style.display="none";
-  document.getElementById('controls_id').style.display="flex";
-  document.getElementById('quesitonDiv').style.display="flex";
-  document.getElementById('archid').style.display="flex";
-  document.getElementById('middleText2').style.display="flex";
-  document.getElementById('btnCSS2').style.display="flex";
-
-  document.getElementById('firstVideo').pause();
-  document.getElementById("ahc-logo-beauty-imgIntro").src="shared/images/AHCLOGO.webp"
-  document.getElementById('IntroDiv').style.backgroundImage = "url(personalitytest/images/opt/colorPalette.webp)";
-  document.getElementById('IntroDiv').style.backgroundRepeat = "no-repeat";
-});
+}
