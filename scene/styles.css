@@ -24,6 +24,17 @@ video{
   transform: translateY(-50%); */
 }
 
+
+@keyframes glow {
+  0% {
+    box-shadow:0 0px 18px #eeede8;
+  }
+
+  100% {
+    box-shadow:0 0px 5px #eeede8;
+  }
+}
+
 #IntroDiv{
   background-color: #fff4ee;
   width: 100%;
@@ -191,7 +202,7 @@ video{
   height: 100%;
   width: 90%;
   padding: 0% 5%;
-  font-size: 3.5em;
+  font-size: 3em;
   color: rgb(0, 0, 0);
   position: absolute;
   text-align: center;
@@ -556,7 +567,7 @@ video{
   border-radius: 30rem;
   border-color: transparent;
   transition: all 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
-
+  animation: glow 2s ease-in infinite alternate;
 }
 
 #video_id{

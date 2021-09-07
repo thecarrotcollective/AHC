@@ -11,6 +11,9 @@ var url = window.location.href;
 var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
 var url_params = url.substr(url.indexOf('#')+1)
 var selectedPersonality = url_params.substr(url_params.indexOf('-')+1, 2);
+
+var clickAllowed = true;
+var prevDirVector = new THREE.Vector3();
 //
 // function loadJSON(callback) {
 //    var xobj = new XMLHttpRequest();
@@ -123,64 +126,64 @@ var imageurl,personiltyType,infoText
 // }
 
 
-var sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneUrl7,sceneUrl8,sceneUrl9,sceneUrl10
+var orbVideoUrl,sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneUrl7,sceneUrl8,sceneUrl9,sceneUrl10
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
 if(selectedPersonality === 'fe'){
-
+	orbVideoUrl = "video/orb/Feeler.V5.mp4"
 	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
-	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
-	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0002.jpg"
-	sceneUrl3 ="scenes/FEELER/FEELER_CUBEMAP_0003.jpg"
-	sceneUrl4 ="scenes/FEELER/FEELER_CUBEMAP_0004.jpg"
-	sceneUrl5 ="scenes/FEELER/FEELER_CUBEMAP_0005.jpg"
-	sceneUrl6 ="scenes/FEELER/FEELER_CUBEMAP_0006.jpg"
-	sceneUrl7 ="scenes/FEELER/FEELER_CUBEMAP_0007.jpg"
-	sceneUrl8 ="scenes/FEELER/FEELER_CUBEMAP_0008.jpg"
-	sceneUrl9 ="scenes/FEELER/FEELER_CUBEMAP_0009.jpg"
-	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
+	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
+	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
+	sceneUrl3 ="scenes/FEELER/FEELER_CUBEMAP_0002.jpg"
+	sceneUrl4 ="scenes/FEELER/FEELER_CUBEMAP_0003.jpg"
+	sceneUrl5 ="scenes/FEELER/FEELER_CUBEMAP_0004.jpg"
+	sceneUrl6 ="scenes/FEELER/FEELER_CUBEMAP_0005.jpg"
+	sceneUrl7 ="scenes/FEELER/FEELER_CUBEMAP_0006.jpg"
+	sceneUrl8 ="scenes/FEELER/FEELER_CUBEMAP_0007.jpg"
+	sceneUrl9 ="scenes/FEELER/FEELER_CUBEMAP_0008.jpg"
+	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0009.jpg"
 
 }else if(selectedPersonality === 'in'){
-
-	sceneUrl0 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0000.jpg"
-	sceneUrl1 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0001.jpg"
-	sceneUrl2 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0002.jpg"
-	sceneUrl3 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0003.jpg"
-	sceneUrl4 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0004.jpg"
-	sceneUrl5 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0005.jpg"
-	sceneUrl6 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0006.jpg"
-	sceneUrl7 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0007.jpg"
-	sceneUrl8 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0008.jpg"
-	sceneUrl9 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0009.jpg"
-	sceneUrl10 ="scenes/INTROVERT/INTROVERT_CUBEMAP_0010.jpg"
+	orbVideoUrl = "video/orb/Introvert.V5.mp4"
+	sceneUrl0 ="scenes/INTROVERT/INTRO_CUBEMAP_0000.jpg"
+	sceneUrl1 ="scenes/INTROVERT/INTRO_CUBEMAP_0010.jpg"
+	sceneUrl2 ="scenes/INTROVERT/INTRO_CUBEMAP_0001.jpg"
+	sceneUrl3 ="scenes/INTROVERT/INTRO_CUBEMAP_0002.jpg"
+	sceneUrl4 ="scenes/INTROVERT/INTRO_CUBEMAP_0003.jpg"
+	sceneUrl5 ="scenes/INTROVERT/INTRO_CUBEMAP_0004.jpg"
+	sceneUrl6 ="scenes/INTROVERT/INTRO_CUBEMAP_0005.jpg"
+	sceneUrl7 ="scenes/INTROVERT/INTRO_CUBEMAP_0006.jpg"
+	sceneUrl8 ="scenes/INTROVERT/INTRO_CUBEMAP_0007.jpg"
+	sceneUrl9 ="scenes/INTROVERT/INTRO_CUBEMAP_0008.jpg"
+	sceneUrl10 ="scenes/INTROVERT/INTRO_CUBEMAP_0009.jpg"
 }
 else if(selectedPersonality === 'th'){
-
+	
+	orbVideoUrl = "video/orb/Thinker.V5.mp4"
 	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
-	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
-	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
-	sceneUrl3 ="scenes/THINKER/THINKER_CUBEMAP_0003.jpg"
-	sceneUrl4 ="scenes/THINKER/THINKER_CUBEMAP_0004.jpg"
-	sceneUrl5 ="scenes/THINKER/THINKER_CUBEMAP_0005.jpg"
-	sceneUrl6 ="scenes/THINKER/THINKER_CUBEMAP_0006.jpg"
-	sceneUrl7 ="scenes/THINKER/THINKER_CUBEMAP_0007.jpg"
-	sceneUrl8 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
-	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
-	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
-
+	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
+	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
+	sceneUrl3 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
+	sceneUrl4 ="scenes/THINKER/THINKER_CUBEMAP_0003.jpg"
+	sceneUrl5 ="scenes/THINKER/THINKER_CUBEMAP_0004.jpg"
+	sceneUrl6 ="scenes/THINKER/THINKER_CUBEMAP_0005.jpg"
+	sceneUrl7 ="scenes/THINKER/THINKER_CUBEMAP_0006.jpg"
+	sceneUrl8 ="scenes/THINKER/THINKER_CUBEMAP_0007.jpg"
+	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
+	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
 }else{
-
+	orbVideoUrl = "video/orb/Extrovert.V5.mp4"
 	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
-	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0001.jpg"
-	sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0002.jpg"
-	sceneUrl3 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0003.jpg"
-	sceneUrl4 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0004.jpg"
-	sceneUrl5 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0005.jpg"
-	sceneUrl6 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0006.jpg"
-	sceneUrl7 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0007.jpg"
-	sceneUrl8 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0008.jpg"
-	sceneUrl9 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0009.jpg"
-	sceneUrl10 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0010.jpg"
+	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0010.jpg"
+	sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0001.jpg"
+	sceneUrl3 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0002.jpg"
+	sceneUrl4 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0003.jpg"
+	sceneUrl5 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0004.jpg"
+	sceneUrl6 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0005.jpg"
+	sceneUrl7 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0006.jpg"
+	sceneUrl8 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0007.jpg"
+	sceneUrl9 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0008.jpg"
+	sceneUrl10 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0009.jpg"
 }
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
@@ -203,11 +206,14 @@ var loaderCheck = false;
 var arrowDist = 25
 var arrowHeight = -12
 let arrowUrl ="UIAssets/arrow_white_v3.png";
-let ProductIconUrl ="UIAssets/plus.png";
+let ProductIconUrl ="UIAssets/plus_v1.png";
 let glowUrl ="UIAssets/glow.png";
 var bool = false
 var currState = -1 // use this for statemachine
+var ProductMat,orbVideoFinished ;
 
+let glowMain, glowMiddle, glowPoolEntracen, glowSlefie, glowPool,glowCoach,glowBeauty, glowEntrace, glowBaseProduct,glowProduct
+let productGlow1, productGlow2,productGlow3
 // Please reorder this to match the assets
 var INTRO = 0
 var MAIN = 1
@@ -232,26 +238,27 @@ document.getElementById("start-btn").addEventListener("click", function() {
 	document.getElementById("mute-unmute-btn").style.display="block"
 
 	console.log("clicked")
-	init();
-	animate();
 
-	if(selectedPersonality === 'fe'){
+	if(selectedPersonality == 'fe'){
 
 		playAudio('sounds/sfx/feeler.mp3')
+	
 
 
-
-	}else if(selectedPersonality === 'in'){
+	}else if(selectedPersonality == 'in'){
 		playAudio('sounds/sfx/introvert.mp3')
-
+	
 	}
-	else if(selectedPersonality === 'th'){
+	else if(selectedPersonality == 'th'){
 		playAudio('sounds/sfx/thinker.mp3')
 
 	}else{
 		playAudio('sounds/sfx/extrovert.mp3')
-
+		
 	}
+	
+	init();
+	animate();
 
 	if(startScenePos == 0){
 		currState = INTRO
@@ -479,13 +486,13 @@ function init() {
 		}
 		return true;
 	}
-	function productVideoFunc (){
-		orbProductVideo.onloadeddata  = function() {
-		}
-		orbProductVideoMask.onloadeddata  = function() {
-		}
-		return true;
-	}
+	// function productVideoFunc (){
+	// 	orbProductVideo.onloadeddata  = function() {
+	// 	}
+	// 	orbProductVideoMask.onloadeddata  = function() {
+	// 	}
+	// 	return true;
+	// }
 	function calculateScale(glowScale,x,y,z){
 		var sx = x + x*0.125
 		var sy = y + y*0.125
@@ -510,8 +517,8 @@ function init() {
 			orbVideo.play()
 			orbVideoMask.play()
 
-			orbProductVideo.play()
-			orbProductVideoMask.play()
+			// orbProductVideo.play()
+			// orbProductVideoMask.play()
 			console.log("intro scene runned")
 			async function playSceneVideo(){
 				let played = await sceneVideo()
@@ -532,14 +539,17 @@ function init() {
 
 			MainRoomScene.add(MainRoomArrow);
 			glowScene.add(glow);
+			glowScene.add(glowMiddle);
 			MiddleRoomScene.add(MiddleRoomArrow)
 			glow.position.set(arrowDist * Math.sin(toRadians(0)) , arrowHeight, -arrowDist * Math.cos(toRadians(0)));
 			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(0)) , arrowHeight, -arrowDist * Math.cos(toRadians(0)));
 			MiddleRoomArrow.position.set(1.8*arrowDist * Math.sin(toRadians(80)) , arrowHeight, -arrowDist* 1.8 * Math.cos(toRadians(80)));
+			glowMiddle.position.set(1.8*arrowDist * Math.sin(toRadians(80)) , arrowHeight, -arrowDist* 1.8 * Math.cos(toRadians(80)));
 			// MiddleRoomArrow.scale.copy(navArrowScale)
 			MiddleRoomArrow.scale.set(5,2.5,5)
 
 			calculateScale(glow,4,2,4)
+			calculateScale(glowMiddle,5,2.5,5)
 			MainRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForVideos(videoMat)
 			TweenFadeInForArrow()
@@ -564,8 +574,13 @@ function init() {
 			selfieRoomArrow.position.set(3*arrowDist * Math.sin(toRadians(-103)) , arrowHeight, -arrowDist *3* Math.cos(toRadians(-103)));
 			PoolEntranceArrow.scale.set(6,3,6)
 			selfieRoomArrow.scale.set(7,3.4,7)
+
+			glowScene.add(glowPoolEntracen);
+			glowScene.add(glowSlefie);
 			// PoolEntranceArrow.scale.copy(navArrowScale)
 			// selfieRoomArrow.scale.copy(navArrowScale)
+			glowPoolEntracen.position.set(2.5*arrowDist * Math.sin(toRadians(-146)) , arrowHeight, -arrowDist*2.5 * Math.cos(toRadians(-146)));
+			glowSlefie.position.set(3*arrowDist * Math.sin(toRadians(-103)) , arrowHeight, -arrowDist *3* Math.cos(toRadians(-103)));
 
 			RoomVideoPlay.position.set(100,-20.5,52.5)
 			RoomVideoPlay.rotation.set(0,4.7,0)
@@ -576,6 +591,8 @@ function init() {
 			TweenFadeInForArrow()
 
 			clickableVideo = true
+			calculateScale(glowPoolEntracen,6,3,6)
+			calculateScale(glowSlefie,7,3.4,7)
 			//*************NOTE MY SELF DONT FORGET THE CHANGE SCALE */
 			// tweenScaleForArrows(PoolEntranceArrow,6,3,6)
 			// tweenScaleForArrows(selfieRoomArrow,7,3.4,7)
@@ -600,17 +617,27 @@ function init() {
 			PoolEntranceScene.add(PoolEntranceArrow)
 			PoolRoomScene.add(PoolRoomArrow);
 			SelfiePlaneScene.add(SelfiePlane)
+
+			glowScene.add(glowPoolEntracen);
+			glowScene.add(glowPool);
+
 			SelfiePlane.position.set(-1,0,1)
 			SelfiePlane.rotation.set(0,-1,0)
 			SelfiePlane.scale.set(2,1.5,1)
 
 			PoolEntranceArrow.position.set(1.5*arrowDist * Math.sin(toRadians(-210)) , arrowHeight, -arrowDist*1.5 * Math.cos(toRadians(-210)));
 			PoolRoomArrow.position.set(1.65*arrowDist * Math.sin(toRadians(65)) , arrowHeight, -arrowDist *1.65* Math.cos(toRadians(65)));
+			
+			glowPoolEntracen.position.set(1.5*arrowDist * Math.sin(toRadians(-210)) , arrowHeight, -arrowDist*1.5 * Math.cos(toRadians(-210)));
+			glowPool.position.set(1.65*arrowDist * Math.sin(toRadians(65)) , arrowHeight, -arrowDist *1.65* Math.cos(toRadians(65)));
+			
+			
 			PoolEntranceArrow.scale.set(4.5,2.1,4.5)
 			PoolRoomArrow.scale.set(4.5,2.1,4.5)
 			// PoolRoomArrow.scale.copy(navArrowScale)
 			// PoolEntranceArrow.scale.copy(navArrowScale)
-
+			calculateScale(glowPoolEntracen,4.5,2.1,4.5)
+			calculateScale(glowPool,4.5,2.1,4.5)
 			RoomVideoPlayScene.add(RoomVideoPlay);
 			RoomVideoPlay.position.set(200,-21,2)
 			RoomVideoPlay.rotation.set(0,4.7,0)
@@ -632,6 +659,8 @@ function init() {
 			ProductRoomScene.add(ProductRoomArrow);
 			MiddleRoomScene.add(MiddleRoomArrow);
 
+			glowScene.add(glowMiddle);
+			glowScene.add(glowEntrace);
 
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 			VideoPlayBottleScene.position.set(-342,26,-450);
@@ -644,11 +673,16 @@ function init() {
 			ProductRoomArrow.position.set(1.25*arrowDist * Math.sin(toRadians(-40)) , arrowHeight, -arrowDist*1.25 * Math.cos(toRadians(-40)));
 			MiddleRoomArrow.position.set(3*arrowDist * Math.sin(toRadians(-90)) , arrowHeight, -arrowDist *3* Math.cos(toRadians(-90)));
 			MiddleRoomArrow.scale.set(6,3,6)
+			glowEntrace.position.set(1.25*arrowDist * Math.sin(toRadians(-40)) , arrowHeight, -arrowDist*1.25 * Math.cos(toRadians(-40)));
+			glowMiddle.position.set(3*arrowDist * Math.sin(toRadians(-90)) , arrowHeight, -arrowDist *3* Math.cos(toRadians(-90)));
+			calculateScale(glowEntrace,5,2.4,5)
+			calculateScale(glowMiddle,6,3,6)
 			// MiddleRoomArrow.scale.copy(navArrowScale)
 			ProductRoomArrow.scale.set(5,2.4,5)
 			// ProductRoomArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
 			TweenFadeInForBilboardVideos()
+
 			// tweenScaleForArrows(MiddleRoomArrow,6,3,6)
 			// tweenScaleForArrows(ProductRoomArrow,5,2.4,5)
 		}
@@ -662,25 +696,40 @@ function init() {
 			MiddleRoomScene.add(MiddleRoomArrow);
 
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
-			if(selectedPersonality === 'th'){
-				VideoPlayBottleScene.position.set(-20,1.4,-31.5);
-				VideoPlayBottleScene.rotation.set(0,1.5,0)
-				VideoPlayBottleScene.scale.set(0.75,0.81,1)
-			}else{
-				VideoPlayBottleScene.position.set(-20,1.4,-36.5);
-				VideoPlayBottleScene.rotation.set(0,1.5,0)
-				VideoPlayBottleScene.scale.set(0.75,0.81,1)
-			}
+			VideoPlayBottleScene.position.set(-20,1.4,-31.5);
+			VideoPlayBottleScene.rotation.set(0,1.5,0)
+			VideoPlayBottleScene.scale.set(0.75,0.81,1)
+
+
+			VideoPlayBottleScene.scale.set(0.75,0.81,1)
+
+			glowScene.add(glowCoach);
+			glowScene.add(glowMiddle);
+			glowScene.add(glowBeauty);
+			glowScene.add(glowProduct);
 
 			bilboardVideo.play();
 			videoRoomArrow.position.set(1.5*arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
 			BottleRoomArrow.position.set(2*arrowDist * Math.sin(toRadians(20)) , arrowHeight, -arrowDist *2* Math.cos(toRadians(20)));
 			CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(120)) , arrowHeight, -arrowDist * Math.cos(toRadians(120)));
 			MiddleRoomArrow.position.set(1.8* arrowDist * Math.sin(toRadians(-110)) , arrowHeight, -arrowDist*1.8 * Math.cos(toRadians(-110)));
+			
+			
+			glowBeauty.position.set(1.5*arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
+			glowProduct.position.set(2*arrowDist * Math.sin(toRadians(20)) , arrowHeight, -arrowDist *2* Math.cos(toRadians(20)));
+			glowCoach.position.set(arrowDist * Math.sin(toRadians(120)) , arrowHeight, -arrowDist * Math.cos(toRadians(120)));
+			glowMiddle.position.set(1.8* arrowDist * Math.sin(toRadians(-110)) , arrowHeight, -arrowDist*1.8 * Math.cos(toRadians(-110)));
+
+
 			videoRoomArrow.scale.set(5.5,2.8,5.5)
 			BottleRoomArrow.scale.set(6,3,6)
 			MiddleRoomArrow.scale.set(5,2.4,5)
 			CoachRoomArrow.scale.copy(navArrowScale)
+
+			calculateScale(glowBeauty,5.5,2.8,5.5)
+			calculateScale(glowProduct,6,3,6)
+			calculateScale(glowCoach,4,2,4)
+			calculateScale(glowMiddle,5,2.4,5)
 			// MiddleRoomArrow.scale.copy(navArrowScale)
 			// videoRoomArrow.scale.copy(navArrowScale)
 			// BottleRoomArrow.scale.copy(navArrowScale)
@@ -699,15 +748,24 @@ function init() {
 			document.getElementById('beauty-btn').style.display = 'block';
 			document.getElementById('beauty-btn').style.pointerEvents = "auto";
 			ProductRoomScene.add(ProductRoomArrow)
+
+			glowScene.add(glowEntrace);
+			glowScene.add(glowBaseProduct);
+			
 			ProductRoomArrow.position.set(0.6*arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.6* Math.cos(toRadians(180)));
+			glowEntrace.position.set(0.6*arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.6* Math.cos(toRadians(180)));
+			
 			ProductRoomArrow.scale.set(3,1.5,3)
+			calculateScale(glowEntrace,3,1.5,3)
 			// ProductRoomArrow.scale.copy(navArrowScale)
 
 			ProcuctBaseScene.add(ProcuctBaseArrow)
 			ProcuctBaseArrow.position.set( arrowDist * Math.sin(toRadians(45)) , arrowHeight, -arrowDist* 0.5 * Math.cos(toRadians(45)));
+			glowBaseProduct.position.set( arrowDist * Math.sin(toRadians(45)) , arrowHeight, -arrowDist* 0.5 * Math.cos(toRadians(45)));
 			ProcuctBaseArrow.scale.copy(navArrowScale)
 			bilboardVideo.play()
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
+			calculateScale(glowBaseProduct,4,2,4)
 
 			VideoPlayBottleScene.position.set(-22,-1.75,-19.8);
 
@@ -731,6 +789,13 @@ function init() {
 			ProductRoomScene.add(ProductRoomArrow)
 			ProductRoomArrow.position.set(1.2*arrowDist * Math.sin(toRadians(210)) , arrowHeight, -arrowDist *1.2* Math.cos(toRadians(210)));
 			ProductRoomArrow.scale.copy(navArrowScale)
+			glowEntrace.position.set(1.2*arrowDist * Math.sin(toRadians(210)) , arrowHeight, -arrowDist *1.2* Math.cos(toRadians(210)));
+			calculateScale(glowEntrace,4,2,4)
+			glowScene.add(glowEntrace);
+			glowScene.add(glowBaseProduct);
+			// glowScene.add(productGlow1);
+			// glowScene.add(productGlow2);
+			// glowScene.add(productGlow3);
 
 			bilboardVideo.play()
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
@@ -755,9 +820,21 @@ function init() {
 			ProductIcon3.scale.set(0.28,0.28,0.28)
 			ProductIcon3.rotation.set(0,-5,0)
 
+			
+			// productGlow1.rotation.set(0,-5.7,0)
+			// productGlow2.rotation.set(0,-5.7,0)
+			// productGlow3.rotation.set(0,-5.7,0)
+			// productGlow1.position.set(-3.801,0,-2.035)
+			// productGlow2.position.set(-2.801,0.2,-2.035)
+			// productGlow3.position.set(-1.701,0.2,-2.035)
+			// calculateScale(productGlow1,0.4,0.4,0.4)
+			// calculateScale(productGlow2,0.3,0.3,0.3)
+			// calculateScale(productGlow3,0.28,0.28,0.28)
 
 			ProcuctBaseScene.add(ProcuctBaseArrow)
 			ProcuctBaseArrow.position.set(0.65*arrowDist * Math.sin(toRadians(-110)) , arrowHeight, -arrowDist *0.65* Math.cos(toRadians(-110)));
+			glowBaseProduct.position.set(0.65*arrowDist * Math.sin(toRadians(-110)) , arrowHeight, -arrowDist *0.65* Math.cos(toRadians(-110)));
+			calculateScale(glowBaseProduct,4,2,4)
 			ProcuctBaseArrow.scale.copy(navArrowScale)
 			TweenFadeInForArrow()
 			TweenFadeInForBilboardVideos()
@@ -777,6 +854,15 @@ function init() {
 			bilboardVideo.play()
 			VideoRoomScene.add(videoRoomArrow)
 			BottleRoomScene.add(BottleRoomArrow)
+
+			glowScene.add(glowEntrace);
+			glowScene.add(glowBeauty);
+			glowScene.add(glowProduct);
+
+			// glowScene.add(productGlow1);
+			// glowScene.add(productGlow2);
+			// glowScene.add(productGlow3);
+
 			BottleRoomArrow.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist*0.5 * Math.cos(toRadians(30)));
 			videoRoomArrow.position.set(0.6*arrowDist * Math.sin(toRadians(-90)) , arrowHeight, -arrowDist *0.6* Math.cos(toRadians(-90)));
 			BottleRoomArrow.scale.copy(navArrowScale)
@@ -785,6 +871,14 @@ function init() {
 			ProductRoomArrow.position.set(arrowDist * Math.sin(toRadians(190)) , arrowHeight, -arrowDist *0.8* Math.cos(toRadians(190)));
 			ProductRoomArrow.scale.copy(navArrowScale)
 			ProductIconScene1.add(ProductIcon1)
+
+			glowProduct.position.set(arrowDist * Math.sin(toRadians(30)) , arrowHeight, -arrowDist*0.5 * Math.cos(toRadians(30)));
+			glowBeauty.position.set(0.6*arrowDist * Math.sin(toRadians(-90)) , arrowHeight, -arrowDist *0.6* Math.cos(toRadians(-90)));
+			glowEntrace.position.set(arrowDist * Math.sin(toRadians(190)) , arrowHeight, -arrowDist *0.8* Math.cos(toRadians(190)));
+			calculateScale(glowProduct,4,2,4)
+			calculateScale(glowEntrace,4,2,4)
+			calculateScale(glowBeauty,4,2,4)
+
 			ProductIcon1.position.set(0,-0.25,-1)
 			ProductIcon1.scale.set(0.1,0.1,0.1)
 			ProductIcon1.rotation.set(0,0,0)
@@ -793,6 +887,13 @@ function init() {
 			ProductIcon2.position.set(-0.3,-0.28,-1)
 			ProductIcon2.scale.set(0.085,0.085,0.085)
 			ProductIcon2.rotation.set(0,0,0)
+
+			// productGlow1.position.set(0,-0.25,-1.01)
+			// productGlow2.position.set(-0.3,-0.28,-1.01)
+			// productGlow3.position.set(0.225,-0.28,-1.01)
+			// calculateScale(productGlow1,0.1,0.1,0.1)
+			// calculateScale(productGlow2,0.085,0.085,0.085)
+			// calculateScale(productGlow3,0.09,0.09,0.09)
 
 			ProductIconScene3.add(ProductIcon3)
 			ProductIcon3.position.set(0.225,-0.28,-1)
@@ -816,6 +917,19 @@ function init() {
 			RoomVideoPlayScene.add(RoomVideoPlay);
 
 			MiddleRoomScene.add(MiddleRoomArrow)
+
+			glowScene.add(glowMiddle);
+			glowScene.add(glow);
+			glowScene.add(glowSlefie);
+			glowScene.add(glowPool);
+
+				
+			calculateScale(glowSlefie,6,3,6)
+			calculateScale(glowPool,6.2,3.1,6.2)
+			calculateScale(glowMiddle,5,2.5,5)
+			calculateScale(glow,4,2,4)
+
+
 			selfieRoomArrow.scale.set(6,3,6)
 			PoolRoomArrow.scale.set(6.2,3.1,6.2)
 			MiddleRoomArrow.scale.set(5,2.5,5)
@@ -827,6 +941,13 @@ function init() {
 			PoolRoomArrow.position.set(3.3*arrowDist * Math.sin(toRadians(15)) , arrowHeight, -arrowDist *3.3* Math.cos(toRadians(15)));
 			MiddleRoomArrow.position.set(1.8*arrowDist * Math.sin(toRadians(135)) , arrowHeight, -arrowDist *1.8* Math.cos(toRadians(135)));
 			MainRoomArrow.position.set(arrowDist * Math.sin(toRadians(190)) , arrowHeight, -arrowDist * Math.cos(toRadians(190)));
+
+
+			glowSlefie.position.set(2.3*arrowDist * Math.sin(toRadians(-40)) , arrowHeight, -arrowDist *2.3* Math.cos(toRadians(-40)));
+			glowPool.position.set(3.3*arrowDist * Math.sin(toRadians(15)) , arrowHeight, -arrowDist *3.3* Math.cos(toRadians(15)));
+			glowMiddle.position.set(1.8*arrowDist * Math.sin(toRadians(135)) , arrowHeight, -arrowDist *1.8* Math.cos(toRadians(135)));
+			glow.position.set(arrowDist * Math.sin(toRadians(190)) , arrowHeight, -arrowDist * Math.cos(toRadians(190)));
+
 
 
 			RoomVideoPlay.position.set(120,-9,-100)
@@ -845,22 +966,25 @@ function init() {
 			runTween()
 		}
 		if(currState === MAIN){
-			videoManager.itemStart( "video/Ahc.Reveal.v5.BASE.mp4" );
+			videoManager.itemStart(orbVideoUrl);
 			video.currentTime = 0;
 			video3.currentTime = 0;
 			orbVideo.currentTime = 0;
 			orbVideoMask.currentTime = 0;
-			orbProductVideo.currentTime = 0;
-			orbProductVideoMask.currentTime = 0;
-			orbGlowVideo.currentTime = 0;
-			orbGlowVideoMask.currentTime = 0;
+			// orbProductVideo.currentTime = 0;
+			// orbProductVideoMask.currentTime = 0;
+			// orbGlowVideo.currentTime = 0;
+			// orbGlowVideoMask.currentTime = 0;
 			document.getElementById('orb-text').style.display = 'block';
 			document.getElementById('orb-btn').style.display = 'block';
 			document.getElementById('orb-btn').style.pointerEvents = "auto";
 			console.log("MAIN scene runned")
-			orbGlowScene.add(orbGlow)
+
+			glowScene.add(glowPoolEntracen);
+			glowScene.add(glowMiddle);
+			// orbGlowScene.add(orbGlow)
 			OrbVideoScene.add(orbVideoMesh)
-			orbProductScene.add(orbProduct)
+			// orbProductScene.add(orbProduct)
 			MiddleRoomScene.add(MiddleRoomArrow)
 			PoolEntranceScene.add(PoolEntranceArrow);
 			RoomVideoPlayScene.add(RoomVideoPlay);
@@ -868,10 +992,10 @@ function init() {
 
 
 
-			  orbProduct.position.set(-8.2,1.75,1.1)
-			  orbProduct.rotation.set(0,2,0)
-			  orbGlow.position.set(-8.3,1.75,1.1)
-			  orbGlow.rotation.set(0,1.9,0)
+			//   orbProduct.position.set(-8.2,1.75,1.1)
+			//   orbProduct.rotation.set(0,2,0)
+			//   orbGlow.position.set(-8.3,1.75,1.1)
+			//   orbGlow.rotation.set(0,1.9,0)
 
 			  orbVideoMesh.position.set(-8,1.75,1.01)
 			  orbVideoMesh.rotation.set(0,2,0)
@@ -884,31 +1008,34 @@ function init() {
 			//   MiddleRoomArrow.scale.copy(navArrowScale)
 			  PoolEntranceArrow.position.set(1.2*arrowDist * Math.sin(toRadians(15)) , arrowHeight, -arrowDist*1.2 * Math.cos(toRadians(15)));
 			  PoolEntranceArrow.scale.copy(navArrowScale)
+
+			  glowMiddle.position.set(1.8*arrowDist * Math.sin(toRadians(95)) , arrowHeight, -arrowDist*1.8 * Math.cos(toRadians(95)));
+			  glowPoolEntracen.position.set(1.2*arrowDist * Math.sin(toRadians(15)) , arrowHeight, -arrowDist*1.2 * Math.cos(toRadians(15)));
+			  calculateScale(glowMiddle,5,2.5,5)
+			  calculateScale(glowPoolEntracen,4,2,4)
 			//   orbVideoMask.play()
 			//   orbVideo.play()
-			// async function playProductVideo(){
-			// 	let played = await productVideoFunc()
 
-			// 	if(played == true){
-			// 		orbProductVideo.currentTime = 0;
-			// 		orbProductVideoMask.currentTime = 0;
-			// 		orbProductVideo.play()
-			// 		orbProductVideoMask.play()
-
-			// 	}
-			// }
-				// playProductVideo()
+			// playProductVideo()
 			  video.play()
 			  video3.play()
-			  orbProductVideo.play()
-			  orbProductVideoMask.play()
-			  setTimeout(function(){
-				  if(orbProductVideo.currentTime != orbProductVideoMask.currentTime){
-					  console.log("RUNNED")
-					  orbProductVideo.currentTime = 0;
-					  orbProductVideoMask.currentTime = 0;
-				  }
-			  }, 2500);
+
+
+			//   orbProductVideo.play()
+			// 	orbProductVideoMask.play()
+				// setTimeout(function(){
+				// 	if(orbProductVideo.currentTime != orbProductVideoMask.currentTime){
+				// 		console.log("RUNNED")
+				// 		orbProductVideo.currentTime = 0;
+				// 		orbProductVideoMask.currentTime = 0;
+				// 	}
+				// }, 2500);
+
+
+
+
+
+
 			  videoMat.alphaMap = videoMask2
 
 			  TweenFadeInForVideos(videoMat)
@@ -921,8 +1048,21 @@ function init() {
 				hoverButtonChecker = false
 				orbClickable = true
 			});
+
 			orbVideo.addEventListener("ended",function(){
 				orbClickable = true
+				orbVideo.pause()
+				orbVideoMask.pause()
+				orbVideoFinished = true
+
+				orbVideoMask.loop = true;
+				orbVideo.loop = true;
+				orbVideo.currentTime = 12.5;
+				orbVideoMask.currentTime = 12.5;
+				orbVideo.play()
+
+				orbVideoMask.play()
+	
 			})
 		}
 		else{
@@ -937,6 +1077,11 @@ function init() {
 		  CoachRoomScene.add(CoachRoomArrow)
 		  ProductRoomScene.add(ProductRoomArrow);
 
+		  glowScene.add(glow);
+		  glowScene.add(glowPoolEntracen);
+		  glowScene.add(glowCoach);
+		glowScene.add(glowEntrace);
+
 		  CoachRoomArrow.position.set(3.2*arrowDist * Math.sin(toRadians(82.5)) , arrowHeight, -arrowDist*3.2 * Math.cos(toRadians(82.5)));
 		//   CoachRoomArrow.scale.copy(navArrowScale)
 		CoachRoomArrow.scale.set(5.5,3,5.5)
@@ -948,9 +1093,19 @@ function init() {
 		  MainRoomArrow.scale.set(5.5,3,5.5)
 		  PoolEntranceArrow.position.set(2*arrowDist * Math.sin(toRadians(-30)) , arrowHeight, -arrowDist*2 * Math.cos(toRadians(-30)));
 		  PoolEntranceArrow.scale.set(6,3,6)
+
+		  glowCoach.position.set(3.2*arrowDist * Math.sin(toRadians(82.5)) , arrowHeight, -arrowDist*3.2 * Math.cos(toRadians(82.5)));
+		  glowEntrace.position.set(2.5*arrowDist * Math.sin(toRadians(52)) , arrowHeight, -arrowDist*2.5 * Math.cos(toRadians(52)));
+		  glow.position.set(1.9*arrowDist * Math.sin(toRadians(-75)) , arrowHeight, -arrowDist*1.9 * Math.cos(toRadians(-75)));
+		  glowPoolEntracen.position.set(2*arrowDist * Math.sin(toRadians(-30)) , arrowHeight, -arrowDist*2 * Math.cos(toRadians(-30)));
+
 		//   PoolEntranceArrow.scale.copy(navArrowScale)
 
 		  TweenFadeInForArrow()
+		  calculateScale(glowPoolEntracen,6,3,6)
+		  calculateScale(glowCoach,5.5,3,5.5)
+		  calculateScale(glowEntrace,5.5,3,5.5)
+		  calculateScale(glow,5.5,3,5.5)
 		//   tweenScaleForArrows(CoachRoomArrow,5.5,3,5.5)
 		//   tweenScaleForArrows(ProductRoomArrow,5.5,3,5.5)
 		//   tweenScaleForArrows(MainRoomArrow,5.5,3,5.5)
@@ -977,6 +1132,30 @@ function init() {
 	var glowTex = new THREE.TextureLoader().load( glowUrl );
 	glowMat = new THREE.SpriteMaterial( { map: glowTex ,rotation:0,transparent: true ,opacity:0.6} );
 	glow = new THREE.Sprite( glowMat );
+
+	glowMiddle = new THREE.Sprite( glowMat );
+	glowPoolEntracen = new THREE.Sprite( glowMat );
+	glowSlefie = new THREE.Sprite( glowMat );
+	glowPool = new THREE.Sprite( glowMat );
+	glowCoach = new THREE.Sprite( glowMat );
+	glowBeauty = new THREE.Sprite( glowMat );
+	glowEntrace = new THREE.Sprite( glowMat );
+	glowBaseProduct = new THREE.Sprite( glowMat );
+	glowProduct = new THREE.Sprite( glowMat );
+	productGlow1 = new THREE.Sprite( glowMat );
+	productGlow2 = new THREE.Sprite( glowMat );
+	productGlow3 = new THREE.Sprite( glowMat );
+	
+
+	glow.scale.copy(navArrowScale)
+	glowMiddle.scale.copy(navArrowScale)
+	glowSlefie.scale.copy(navArrowScale)
+	glowPool.scale.copy(navArrowScale)
+	glowCoach.scale.copy(navArrowScale)
+	glowBeauty.scale.copy(navArrowScale)
+	glowEntrace.scale.copy(navArrowScale)
+	glowBaseProduct.scale.copy(navArrowScale)
+	glowProduct.scale.copy(navArrowScale)
 	glow.scale.copy(navArrowScale)
 	//***********************ARROWS********************
 	var arrowTexture = new THREE.TextureLoader().load( arrowUrl );
@@ -1030,8 +1209,8 @@ function init() {
 
 	const ProductMesh = new THREE.PlaneGeometry( 1, 1, 1 );
 	var ProductTexture = new THREE.TextureLoader().load( ProductIconUrl );
-	var ProductMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:1,side: THREE.DoubleSide} );
-orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:0,side: THREE.DoubleSide} );
+	ProductMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:1,side: THREE.DoubleSide} );
+	orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: true,opacity:0,side: THREE.DoubleSide} );
 
 
 	ProductIcon1 = new THREE.Mesh( ProductMesh, ProductMat );
@@ -1043,56 +1222,59 @@ orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: tru
 	const selfiMat = new THREE.MeshBasicMaterial( {color: 0xffff00, transparent: true,opacity:0, side: THREE.DoubleSide} );
 	SelfiePlane = new THREE.Mesh( selfiMesh, selfiMat );
 	//***********************ORB GLOW VIDEO********************
-	orbGlowPlane = new THREE.PlaneGeometry( 4, 4 );
-	orbGlowVideo = document.createElement('video');
-	orbGlowVideo.src = "video/Glitter2.mp4";
-	orbGlowVideo.muted = true;
-	orbGlowVideo.playsInline = true;
+	// orbGlowPlane = new THREE.PlaneGeometry( 4, 4 );
+	// orbGlowVideo = document.createElement('video');
+	// orbGlowVideo.src = "video/Glitter2.mp4";
+	// orbGlowVideo.muted = true;
+	// orbGlowVideo.playsInline = true;
 
-	orbGlowVideoMask = document.createElement('video');
-	orbGlowVideoMask.src = "video/Glitter_Alpha.mp4";
-	orbGlowVideoMask.muted = true;
-	orbGlowVideoMask.playsInline = true;
+	// orbGlowVideoMask = document.createElement('video');
+	// orbGlowVideoMask.src = "video/Glitter_Alpha.mp4";
+	// orbGlowVideoMask.muted = true;
+	// orbGlowVideoMask.playsInline = true;
 
-	orbGlowVideoTex =  new THREE.VideoTexture(orbGlowVideo)
-	orbGlowVideoMaskTex = new THREE.VideoTexture(orbGlowVideoMask)
+	// orbGlowVideoTex =  new THREE.VideoTexture(orbGlowVideo)
+	// orbGlowVideoMaskTex = new THREE.VideoTexture(orbGlowVideoMask)
 
-	orbGlowMat = new THREE.MeshBasicMaterial( {map:orbGlowVideoTex , transparent: true,opacity:1,side: THREE.DoubleSide});
-	orbGlowMat.alphaMap = orbGlowVideoMaskTex
-	orbGlow = new THREE.Mesh( orbGlowPlane, orbGlowMat );
+	// orbGlowMat = new THREE.MeshBasicMaterial( {map:orbGlowVideoTex , transparent: true,opacity:1,side: THREE.DoubleSide});
+	// orbGlowMat.alphaMap = orbGlowVideoMaskTex
+	// orbGlow = new THREE.Mesh( orbGlowPlane, orbGlowMat );
 
 	//***********************ORB PRODUCT VIDEO********************
-	orbProductPlane = new THREE.PlaneGeometry( 4, 4 );
-	orbProductVideo = document.createElement('video');
-	orbProductVideo.src = "video/AHC_Cream.mp4";
-	orbProductVideo.playsInline = true;
-	orbProductVideo.muted = true;
-	orbProductVideo.loop = true;
+	// orbProductPlane = new THREE.PlaneGeometry( 4, 4 );
+	// orbProductVideo = document.createElement('video');
+	// orbProductVideo.src = "video/AHC_Cream.mp4";
+	// orbProductVideo.playsInline = true;
+	// orbProductVideo.muted = true;
+	// orbProductVideo.loop = true;
 
-	orbProductVideoMask = document.createElement('video');
-	orbProductVideoMask.src = "video/AHC_Cream_Alpha.mp4";
-	orbProductVideoMask.playsInline = true;
-	orbProductVideoMask.muted = true;
-	orbProductVideoMask.loop = true
-	orbProductVideoTex =  new THREE.VideoTexture(orbProductVideo)
-	orbProductVideoMaskTex = new THREE.VideoTexture(orbProductVideoMask)
+	// orbProductVideoMask = document.createElement('video');
+	// orbProductVideoMask.src = "video/AHC_Cream_Alpha.mp4";
+	// orbProductVideoMask.playsInline = true;
+	// orbProductVideoMask.muted = true;
+	// orbProductVideoMask.loop = true
+	// orbProductVideoTex =  new THREE.VideoTexture(orbProductVideo)
+	// orbProductVideoMaskTex = new THREE.VideoTexture(orbProductVideoMask)
 
 
-	orbProductMat = new THREE.MeshBasicMaterial( {map:orbProductVideoTex , transparent: true,opacity:1,side: THREE.DoubleSide});
-	orbProductMat.alphaMap = orbProductVideoMaskTex
-	orbProduct = new THREE.Mesh( orbProductPlane, orbProductMat );
+	// orbProductMat = new THREE.MeshBasicMaterial( {map:orbProductVideoTex , transparent: true,opacity:1,side: THREE.DoubleSide});
+	// orbProductMat.alphaMap = orbProductVideoMaskTex
+	// orbProduct = new THREE.Mesh( orbProductPlane, orbProductMat );
 	//***********************ORB VIDEO********************
 
 		//***********************ORB VIDEO********************
+		
+
 		orbVideoPlane = new THREE.PlaneGeometry( 9, 9 );
 		orbVideo = document.createElement('video');
-		orbVideo.src = "video/Ahc.Reveal.v5.BASE.mp4";
+
+		orbVideo.src = orbVideoUrl;
 		orbVideo.playsInline = true;
 		orbVideo.muted = true;
 		orbVideo.loop = false;
 
 		orbVideoMask = document.createElement('video');
-		orbVideoMask.src = "video/Ahc.Reveal.v6.ALPHA.mp4";
+		orbVideoMask.src = "video/orb/Orb.Alpha.V8.mp4";
 		orbVideoMask.muted = true;
 		orbVideoMask.playsInline = true;
 
@@ -1164,8 +1346,8 @@ orbPlusMat = new THREE.MeshBasicMaterial( {map: ProductTexture, transparent: tru
 	// const selfieText = new THREE.Mesh( selfieTextGeo, selfieTextMat );
 
 
-	// window.addEventListener( 'resize', onWindowResize );
-
+	// window.addE999ventListener( 'resize', onWindowResize );
+	ProductButtons();
 	clickTrigger();
 	console.log("v2");
 	renderer.autoclear = false;
@@ -1193,6 +1375,28 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 		}
 	} );
 	return textures;
+}
+
+function ProductButtons(){
+	document.getElementById('productButton-1').addEventListener("click", function(){
+		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+	 });
+	document.getElementById('productButton-2').addEventListener("click", function(){
+		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+	 });
+	document.getElementById('productButton-3').addEventListener("click", function(){
+		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+	 });
+	 document.getElementById('close-product').addEventListener("click", function(){
+		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+	 });
+	document.getElementById('close-product2').addEventListener("click", function(){
+		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+	 });
+	document.getElementById('close-product3').addEventListener("click", function(){
+		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+	 });
+
 }
 
 function onWindowResize() {
@@ -1300,7 +1504,11 @@ function loadOrbVide(){
 var setonetime = false
 var videoClickfalse = false
 function animate() {
+	if ((orbVideo.currentTime < 12.5|| orbVideo.currentTime >= 17.95) && orbVideoFinished == true ) {
+		orbVideo.currentTime =12.5;
+		orbVideoMask.currentTime =12.5;
 
+	}
 
 
 	//***********************TWEEN********************
@@ -1310,6 +1518,19 @@ function animate() {
 
 
 	var dirVector = new THREE.Vector3();
+	camera.getWorldDirection(dirVector)
+
+
+	if(dirVector.distanceTo(prevDirVector) > 0.005){
+		clickAllowed = false;
+		bilboardClickable = false
+		orbClickable =false
+	} else {
+		clickAllowed = true;
+		bilboardClickable = true
+		orbClickable = true
+	}
+		camera.getWorldDirection(prevDirVector)
 
 	if(currState === SELFIE){
 		camera.getWorldDirection(dirVector)
@@ -1381,18 +1602,18 @@ function animate() {
 			if(orbVideoPlayed == false){
 
 
-				orbVideo.addEventListener("ended",function(){
+				// orbVideo.addEventListener("ended",function(){
 
-					if(orbProductVideo.currentTime != orbProductVideoMask.currentTime){
-						orbProductVideo.currentTime = 2;
-						orbProductVideoMask.currentTime = 2;
-					}
-					orbGlowVideo.play()
-					orbGlowVideoMask.play()
+				// 	if(orbProductVideo.currentTime != orbProductVideoMask.currentTime){
+				// 		orbProductVideo.currentTime = 2;
+				// 		orbProductVideoMask.currentTime = 2;
+				// 	}
+				// 	// orbGlowVideo.play()
+				// 	// orbGlowVideoMask.play()
 
 
 
-				})
+				// })
 				orbVideo.currentTime = 0;
 				orbVideoMask.currentTime = 0;
 				onVideoLoad()
@@ -1406,13 +1627,13 @@ function animate() {
 
 			}
 
-			orbVideo.addEventListener("ended",function(){
+			if(orbVideo.currentTime >7 &&orbVideo.currentTime <7.1){
+				orbClickable = true
 				flagOrb = true
 				document.getElementById('orb-text').style.opacity = 1;
 				document.getElementById('orb-btn').style.opacity = 1;
 				document.getElementById('orb-btn').style.pointerEvents = "auto";
-
-			})
+			}
 			if(flagOrb ===true){
 				document.getElementById('orb-text').style.opacity = 1;
 				document.getElementById('orb-btn').style.opacity = 1;
@@ -1490,7 +1711,7 @@ function clickTrigger(){
 		var intersectsProductBase = raycaster.intersectObjects( ProcuctBaseScene.children, false );
 		var intersectsMiddleRoom = raycaster.intersectObjects( MiddleRoomScene.children, false );
 		var intersectsOrbPlus = raycaster.intersectObjects( orbPlusScene.children, false );
-		var intersectsorbProductScene = raycaster.intersectObjects( orbProductScene.children, false );
+		var intersectsorbProductScene = raycaster.intersectObjects( OrbVideoScene.children, false );
 		if ( intersectsOrbPlus.length > 0 ) {
 
 
@@ -1665,6 +1886,7 @@ function clickTrigger(){
             console.log("video clicked")
             document.getElementById('product1').style.display = 'block';
 			document.getElementById('productButton-1').style.display = 'block';
+			new TWEEN.Tween( ProductMat ).to( { opacity: 0 }, 250 ).start();
 
             //window.open('https://us.ahcbeauty.com/')
         }
@@ -1673,6 +1895,7 @@ function clickTrigger(){
             console.log("video clicked")
             document.getElementById('product2').style.display = 'block';
 			document.getElementById('productButton-2').style.display = 'block';
+			new TWEEN.Tween( ProductMat ).to( { opacity: 0 }, 250 ).start();
             //window.open('https://us.ahcbeauty.com/')
         }
         if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon3.length > 0 ) {
@@ -1680,6 +1903,7 @@ function clickTrigger(){
             console.log("video clicked")
             document.getElementById('product3').style.display = 'block';
 			document.getElementById('productButton-3').style.display = 'block';
+			new TWEEN.Tween( ProductMat ).to( { opacity: 0 }, 250 ).start();
 
 
             //window.open('https://us.ahcbeauty.com/')
@@ -1690,16 +1914,19 @@ function clickTrigger(){
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
 		if (poolLoad == true && intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
-			document.getElementById('pool-btn').click();
-
+			if(clickAllowed){
+				document.getElementById('pool-btn').click();
+			}
 		}
 		if (beautyLoad == true && intersectsMultipleVideo.length > 0 && bilboardClickable == true) {
-			document.getElementById('beauty-btn').click();
-
+			if(clickAllowed){
+				document.getElementById('beauty-btn').click();
+			}
 		}
 		if ( intersectsorbProductScene.length > 0 && orbClickable == true) {
-			document.getElementById('orb-btn').click();
-
+			if(clickAllowed){
+				document.getElementById('orb-btn').click();
+			}
 		}
 	});
 }
@@ -1755,8 +1982,8 @@ function DisableEverything(){
 	orbVideo.pause();
 	bilboardVideo.pause();
 	orbVideoMask.pause()
-	orbProductVideo.pause()
-	orbProductVideoMask.pause()
+	// orbProductVideo.pause()
+	// orbProductVideoMask.pause()
 	loaderCheck = false
 	orbVideoPlayed = false
 	bilboardClickable = false
@@ -1767,6 +1994,10 @@ function DisableEverything(){
 	beautyLoad = false
 	productBaseLoad = false
 	procutLoad = false
+	orbVideoFinished =false
+
+	orbVideoMask.loop = false;
+	orbVideo.loop = false;
 	console.log(loaderCheck)
 	new TWEEN.Tween( orbPlusMat ).to( { opacity: 0 }, 250 ).start();
 	document.getElementById('selfie-text').style.display = 'none';
@@ -1783,9 +2014,15 @@ function DisableEverything(){
 	document.getElementById('pool-btn').style.pointerEvents = 'none';
 	document.getElementById('selfie-btn').style.pointerEvents = 'none';
 
-	let ArrowArray = [glowScene,orbPlus,orbGlow,orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
-	let ArrowScene = [glow,orbPlusScene,orbGlowScene,orbProductScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
-	glowScene.remove(glow)
+	let ArrowArray = [glowScene,orbPlus,orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
+	let ArrowScene = [glow,orbPlusScene,orbProductScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
+	let glowArray = [productGlow1,productGlow2,productGlow3,glow, glowMiddle,glowPoolEntracen,glowSlefie,glowPool,glowCoach,glowBeauty,glowEntrace,glowBaseProduct,glowProduct]
+	setTimeout(function(){
+		for (var i = 0; i < glowArray.length; i++) {
+			glowScene.remove(glowArray[i]);
+
+		}
+	}, 200);
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {
 			ArrowScene[i].remove(ArrowArray[i]);

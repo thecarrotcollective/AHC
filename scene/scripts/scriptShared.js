@@ -273,7 +273,7 @@ function openTherapy(){
     }else if(selectedLanguage == "ko"){
       player.src('video/therapy/ext-ko.mp4')
     }else{
-      player.src('video/therapy/ext-en.mp4')
+      player.src('video/therapy/ext-zh.mp4')
     }
   }else{
     if(selectedLanguage == "en"){
@@ -281,7 +281,7 @@ function openTherapy(){
     }else if(selectedLanguage == "ko"){
       player.src('video/therapy/int-ko.mp4')
     }else{
-      player.src('video/therapy/int-en.mp4')
+      player.src('video/therapy/int-zh.mp4')
     }
   }
 
@@ -342,7 +342,7 @@ function playVideo1(){
   if(selectedLanguage == "en"){
     player.src('video/beauty/Amp-Eng.mp4')
   }else if(selectedLanguage == "ko"){
-    player.src('video/beauty/Amp-Eng.mp4')
+    player.src('video/beauty/Amp-Kor.mp4')
   }else{
     player.src('video/beauty/Amp.mp4')
   }
@@ -368,20 +368,20 @@ function playVideo1(){
     }, 50)
   player.on('ended', function () {
     document.getElementById('close-btn').style.display = 'none'
-        document.getElementById('vid-1').style.display = 'none';
-        document.getElementById('video_id').style.display = 'none';
-        videojs('#vid-1').reset()
-        setTimeout(function(){
-        document.getElementById('close-btn').addEventListener("click", openBeauty);
-        openBeauty();
-        }, 50)
-      })
-      player.on('closed', function () {
-        document.getElementById('close-btn').style.display = 'none'
-        document.getElementById('vid-1').style.display = 'none';
-        document.getElementById('video_id').style.display = 'none';
-        videojs('#vid-1').reset()
-      })
+    document.getElementById('vid-1').style.display = 'none';
+    document.getElementById('video_id').style.display = 'none';
+    videojs('#vid-1').reset()
+    setTimeout(function(){
+    document.getElementById('close-btn').addEventListener("click", openBeauty);
+    openBeauty();
+    }, 50)
+  })
+  player.on('closed', function () {
+    document.getElementById('close-btn').style.display = 'none'
+    document.getElementById('vid-1').style.display = 'none';
+    document.getElementById('video_id').style.display = 'none';
+    videojs('#vid-1').reset()
+  })
 }
 
 function playVideo2(){
@@ -403,9 +403,9 @@ function playVideo2(){
   if(selectedLanguage == "en"){
     player.src('video/beauty/Eff-Eng.mp4')
   }else if(selectedLanguage == "ko"){
-    player.src('video/beauty/Eff-Eng.mp4')
+    player.src('video/beauty/Eff-Kor.mp4')
   }else{
-    player.src('video/beauty/Eff-Eng.mp4')
+    player.src('video/beauty/Eff.mp4')
   }
 
 
@@ -465,7 +465,7 @@ function playVideo3(){
   if(selectedLanguage == "en"){
     player.src('video/beauty/Ton-Eng.mp4')
   }else if(selectedLanguage == "ko"){
-    player.src('video/beauty/Ton-Eng.mp4')
+    player.src('video/beauty/Ton-Kor.mp4')
   }else{
     player.src('video/beauty/Ton.mp4')
   }
