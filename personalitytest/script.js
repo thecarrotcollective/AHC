@@ -415,8 +415,8 @@ function onDOMLoaded(){
   console.log("Dom Loaded");
   document.getElementById('controlsIntro').style.opacity = 1;
   // document.getElementById('video-element-container').innerHTML = "<video playsInline  id=\"firstVideo\"> <source src=\"personalitytest/videos/Spa_Zoom_8mbps_37.mp4\" type=\"video/mp4\"></video>";
-  // CDN Video link
-  document.getElementById('video-element-container').innerHTML = "<video playsInline  id=\"firstVideo\"> <source src=\"https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/personalitytest/videos/Spa_Zoom_8mbps_37.mp4\" type=\"video/mp4\"></video>";
+  // CDN Video link d2c33fbhlldtf9.cloudfront.net
+  document.getElementById('video-element-container').innerHTML = "<video playsInline  id=\"firstVideo\"> <source src=\"https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/personalitytest/videos/introV27_q35.mp4\" type=\"video/mp4\"></video>";
 
   document.getElementById('firstVideo').addEventListener("ended",function(){
     setTimeout(function(){
