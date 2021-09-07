@@ -1,6 +1,6 @@
 var canvasHeight = window.innerHeight;
 var canvasWidth = window.innerWidth;
-
+ 
 var copyJSON;
 var languageID = 0;
 
