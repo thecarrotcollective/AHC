@@ -1,6 +1,6 @@
 var canvasHeight = window.innerHeight;
 var canvasWidth = window.innerWidth;
- 
+
 var copyJSON;
 var languageID = 0;
 
@@ -101,7 +101,7 @@ console.log("selfie not ready");
 var deepAR = DeepAR({
     canvasWidth: canvasWidth,
     canvasHeight: canvasHeight,
-    licenseKey: '9671256f94cf868474e49130dba67da26c375e9757d4124d6a7e58f44b767bd193b6b07dec402130',
+    licenseKey: '2b42831f8aceda39a40d2d10a2e2e58b03f858d8083276ec58442cc0ecbc6d3c3d19f9215608cb1c',
     canvas: document.getElementById('deepar-canvas'),
     numberOfFaces: 1,
     libPath: './lib',
