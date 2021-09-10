@@ -50,7 +50,7 @@ fetch('https://extreme-ip-lookup.com/json/')
   .catch((data, status) => {
     console.log('Request failed');
     region =  CHINA;
-    console.log("region set failed");
+    console.log("region set failed. default is China");
   })
 
 function setLang(id){
@@ -266,12 +266,13 @@ shareBtn.addEventListener("click", async () => {
   if(region === CHINA){
   	document.getElementById('share-experience-title').innerHTML = copyJSON.SharePopUp[languageID]
   	document.getElementById('enter-phone').innerHTML = copyJSON.EnterPhone[languageID]
+    sharePopup();
   } else {
-  	document.getElementById('share-experience-title').innerHTML = ""
-    document.getElementById('enter-phone').innerHTML = copyJSON.SharePopUp[languageID]
-    document.getElementById('phone').style.display = 'none'
+    transferComplete()
+  	// document.getElementById('share-experience-title').innerHTML = ""
+    // document.getElementById('enter-phone').innerHTML = copyJSON.SharePopUp[languageID]
+    // document.getElementById('phone').style.display = 'none'
   }
-  sharePopup();
 
     // share(screenshot);
 });
@@ -282,7 +283,11 @@ backBtn.addEventListener("click", async () => {
   } else if(url_params[url_params.length-1] === 'm'){
     url_params = url_params.substr(0, url_params.length-1) + "M"
   }
-  window.location.href="../scene/index.html#"+url_params;
+  if(region === CHINA){
+    window.location.href="../scene/index.html#"+url_params;
+  } else {
+    window.location.href="https://main.d2rqjo3h6tvw72.amplifyapp.com/scene/index.html#"+url_params;
+  }
 });
 
 /* Canvas Donwload */
@@ -330,9 +335,6 @@ async function share(image){
   };
   console.log(shareData);
   console.log("shareData = " + shareData);
-  // console.log(typeof(shareData));
-
-  // navigator.share(shareData).then(r =>  console.log('share image'));
 
   if (navigator.canShare && navigator.canShare({ files: filesArray })) {
       // Supported Browsers - Share image with UX share dialog
@@ -351,17 +353,6 @@ async function share(image){
   }
 
 }
-
-// Share Link UI
-// shareButton.addEventListener("click", async () => {
-//   try {
-//     await navigator.share({ title: "Example Page", url: "" });
-//     console.log("Data was shared successfully");
-//   } catch (err) {
-//     console.error("Share failed:", err.message);
-//   }
-// });
-
 
 const shareSubmit = document.getElementById('share-submit');
 shareSubmit.addEventListener('click', sendUser)
@@ -401,13 +392,8 @@ function transferComplete(evt) {
     console.log("The transfer is complete.");
     input.value = "";
     shareContainer.style.display = 'none';
-
-    // copyLink();
     share(screenshot);
-
-
 }
-
 
 function sharePopup() {
     shareContainer.style.display = 'block';
@@ -420,34 +406,3 @@ function sharePopup() {
 function closeSharePopup() {
     shareContainer.style.display = 'none'
 }
-
-// function copyLink() {
-//     const linkToCopy = "https://us.ahcbeauty.com/";
-//
-//     if (navigator.share) {
-//         navigator.share({
-//             title: 'AHC You Spa',
-//             url: linkToCopy
-//         }).then(() => {
-//
-//             setTimeout(() => {
-//                 shareContainer.style.display = 'none;'
-//             }, 2000)
-//         })
-//             .catch(console.error);
-//     } else {
-//         // TODO Add fallback to copy Link
-//         navigator.clipboard.writeText(linkToCopy)
-//             .then(() => {
-//                 shareSubmit.innerText = 'LINK COPIED'
-//                 setTimeout(() => {
-//                     shareSubmit.innerText = 'Share Experience With a Friend'
-//                     shareContainer.style.display = 'none;'
-//                 }, 2000)
-//
-//             })
-//             .catch((error) => {
-//                 alert('Copy failed! ${error}')
-//             })
-//     }
-// }

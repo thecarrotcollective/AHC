@@ -11,10 +11,43 @@ var url = window.location.href;
 var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
 var url_params = url.substr(url.indexOf('#')+1)
 var selectedPersonality = url_params.substr(url_params.indexOf('-')+1, 2);
-
+// console.log("local? " + url.includes("localh"));
 var clickAllowed = true;
 var prevDirVector = new THREE.Vector3();
-//
+
+var CHINA = 0
+var KOREA = 1
+var TAIWAN = 2
+var JAPAN = 3
+
+var region =  CHINA;
+
+fetch('https://extreme-ip-lookup.com/json/')
+    .then(res => res.json())
+    .then(response => {
+      code =  response.countryCode
+      console.log("Country: ", response.countryCode);
+      if (code.localeCompare('CN') === 0) {
+        region =  CHINA;
+      } else if (code.localeCompare('KR') === 0) {
+        region =  KOREA;
+      } else if (code.localeCompare('TW') === 0) {
+        region =  TAIWAN;
+      } else if (code.localeCompare('JP') === 0) {
+        region =  JAPAN;
+      } else {
+        region =  CHINA;
+      }
+      console.log("region set to " + region);
+    })
+    .catch((data, status) => {
+      console.log('Request failed');
+      region =  CHINA;
+      console.log("region set failed");
+    })
+
+
+
 // function loadJSON(callback) {
 //    var xobj = new XMLHttpRequest();
 //    xobj.overrideMimeType("application/json");
@@ -130,7 +163,9 @@ var orbVideoUrl,sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,scen
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
 if(selectedPersonality === 'fe'){
-	orbVideoUrl = "video/orb/Feeler.V5.mp4"
+	// if(region === CHINA || )
+	// orbVideoUrl = "video/orb/Feeler.V5.mp4"
+	orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Feeler.V5.mp4"
 	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
 	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
@@ -144,7 +179,8 @@ if(selectedPersonality === 'fe'){
 	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0009.jpg"
 
 }else if(selectedPersonality === 'in'){
-	orbVideoUrl = "video/orb/Introvert.V5.mp4"
+	// orbVideoUrl = "video/orb/Introvert.V5.mp4"
+	orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Introvert.V5.mp4"
 	sceneUrl0 ="scenes/INTROVERT/INTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/INTROVERT/INTRO_CUBEMAP_0010.jpg"
 	sceneUrl2 ="scenes/INTROVERT/INTRO_CUBEMAP_0001.jpg"
@@ -158,8 +194,9 @@ if(selectedPersonality === 'fe'){
 	sceneUrl10 ="scenes/INTROVERT/INTRO_CUBEMAP_0009.jpg"
 }
 else if(selectedPersonality === 'th'){
-	
-	orbVideoUrl = "video/orb/Thinker.V5.mp4"
+
+	// orbVideoUrl = "video/orb/Thinker.V5.mp4"
+	orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Thinker.V5.mp4"
 	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
 	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
@@ -172,7 +209,8 @@ else if(selectedPersonality === 'th'){
 	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
 }else{
-	orbVideoUrl = "video/orb/Extrovert.V5.mp4"
+	// orbVideoUrl = "video/orb/Extrovert.V5.mp4"
+	orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Extrovert.V5.mp4"
 	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0010.jpg"
 	sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0001.jpg"
@@ -211,7 +249,7 @@ let glowUrl ="UIAssets/glow.png";
 var bool = false
 var currState = -1 // use this for statemachine
 var ProductMat,orbVideoFinished ;
-
+var orbVideoPlayCheck = false
 let glowMain, glowMiddle, glowPoolEntracen, glowSlefie, glowPool,glowCoach,glowBeauty, glowEntrace, glowBaseProduct,glowProduct
 let productGlow1, productGlow2,productGlow3
 // Please reorder this to match the assets
@@ -228,10 +266,10 @@ var POOLENTRACE =9
 var PRODUCTBASE = 10
 
 var startScenePos = 0
-
+var dragOrb,dragBilboard, dragTherapy
 if(url_params[url_params.length-1].indexOf('M') ===0 || url_params[url_params.length-1].indexOf('U') === 0){
 	console.log("starting at selfie");
-  startScenePos = 2
+	startScenePos = 2
 }
 
 document.getElementById("start-btn").addEventListener("click", function() {
@@ -241,22 +279,26 @@ document.getElementById("start-btn").addEventListener("click", function() {
 
 	if(selectedPersonality == 'fe'){
 
-		playAudio('sounds/sfx/feeler.mp3')
-	
+		// playAudio('sounds/sfx/feeler.mp3')
+		playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/feeler.mp3')
+
 
 
 	}else if(selectedPersonality == 'in'){
-		playAudio('sounds/sfx/introvert.mp3')
-	
+		// playAudio('sounds/sfx/introvert.mp3')
+		playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/introvert.mp3')
+
 	}
 	else if(selectedPersonality == 'th'){
-		playAudio('sounds/sfx/thinker.mp3')
+		// playAudio('sounds/sfx/thinker.mp3')
+		playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/thinker.mp3')
 
 	}else{
-		playAudio('sounds/sfx/extrovert.mp3')
-		
+		// playAudio('sounds/sfx/extrovert.mp3')
+		playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/extrovert.mp3')
+
 	}
-	
+
 	init();
 	animate();
 
@@ -285,7 +327,7 @@ document.getElementById("start-btn").addEventListener("click", function() {
 	document.getElementById('start-btn').style.display = 'none';
 	// document.getElementById('questionDiv').style.display = 'none';
 	loadSounds()
-  });
+});
 
 
 
@@ -297,20 +339,20 @@ var mainVolumeMultiplier = muted?0:1
 document.getElementById("mute-unmute-btn").src=muted?"../shared/images/Mute_Icon.svg":"../shared/images/Speaker_Icon.svg";
 
 document.getElementById('mute-unmute-btn').addEventListener('click', function(e) {
-  muted = !muted;
-  console.log(muted);
-  if(muted){
-    document.getElementById("mute-unmute-btn").src="../shared/images/Mute_Icon.svg";
-    mainVolumeMultiplier = 0;
-  } else {
-    document.getElementById("mute-unmute-btn").src="../shared/images/Speaker_Icon.svg";
-    mainVolumeMultiplier = 1;
-  }
-  sound.setVolume( volume * mainVolumeMultiplier);
-  flashSound.setVolume( volume * mainVolumeMultiplier);
+	muted = !muted;
+	console.log(muted);
+	if(muted){
+		document.getElementById("mute-unmute-btn").src="../shared/images/Mute_Icon.svg";
+		mainVolumeMultiplier = 0;
+	} else {
+		document.getElementById("mute-unmute-btn").src="../shared/images/Speaker_Icon.svg";
+		mainVolumeMultiplier = 1;
+	}
+	sound.setVolume( volume * mainVolumeMultiplier);
+	flashSound.setVolume( volume * mainVolumeMultiplier);
 
-  console.log(volume * mainVolumeMultiplier);
-  // sound.gain = volume * mainVolumeMultiplier
+	console.log(volume * mainVolumeMultiplier);
+	// sound.gain = volume * mainVolumeMultiplier
 });
 
 function playAudio(audioUrl){
@@ -346,8 +388,8 @@ const navArrowScale = new THREE.Vector3(4,2,4)
 const navVideoScale = new THREE.Vector3(9,16,1)
 
 function toRadians(degrees) {
-  var pi = Math.PI;
-  return degrees * (pi/180);
+	var pi = Math.PI;
+	return degrees * (pi/180);
 }
 var flashSound, listener, audioLoader;
 
@@ -356,7 +398,8 @@ var flashSound, listener, audioLoader;
 function loadSounds(){
 	audioLoader = new THREE.AudioLoader();
 	flashSound = new THREE.Audio(listener);
-	audioLoader.load('sounds/sfx/flash.mp3', function( buffer ) {
+	// audioLoader.load('sounds/sfx/flash.mp3', function( buffer ) {
+	audioLoader.load('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/flash.mp3', function( buffer ) {
 		flashSound.setBuffer( buffer );
 		flashSound.setLoop( false );
 		flashSound.setVolume( 0.5 * mainVolumeMultiplier);
@@ -464,7 +507,7 @@ function init() {
 	manager = new THREE.LoadingManager();
 	manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
 
-	console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+		console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
 
 	};
 
@@ -627,11 +670,11 @@ function init() {
 
 			PoolEntranceArrow.position.set(1.5*arrowDist * Math.sin(toRadians(-210)) , arrowHeight, -arrowDist*1.5 * Math.cos(toRadians(-210)));
 			PoolRoomArrow.position.set(1.65*arrowDist * Math.sin(toRadians(65)) , arrowHeight, -arrowDist *1.65* Math.cos(toRadians(65)));
-			
+
 			glowPoolEntracen.position.set(1.5*arrowDist * Math.sin(toRadians(-210)) , arrowHeight, -arrowDist*1.5 * Math.cos(toRadians(-210)));
 			glowPool.position.set(1.65*arrowDist * Math.sin(toRadians(65)) , arrowHeight, -arrowDist *1.65* Math.cos(toRadians(65)));
-			
-			
+
+
 			PoolEntranceArrow.scale.set(4.5,2.1,4.5)
 			PoolRoomArrow.scale.set(4.5,2.1,4.5)
 			// PoolRoomArrow.scale.copy(navArrowScale)
@@ -713,8 +756,8 @@ function init() {
 			BottleRoomArrow.position.set(2*arrowDist * Math.sin(toRadians(20)) , arrowHeight, -arrowDist *2* Math.cos(toRadians(20)));
 			CoachRoomArrow.position.set(arrowDist * Math.sin(toRadians(120)) , arrowHeight, -arrowDist * Math.cos(toRadians(120)));
 			MiddleRoomArrow.position.set(1.8* arrowDist * Math.sin(toRadians(-110)) , arrowHeight, -arrowDist*1.8 * Math.cos(toRadians(-110)));
-			
-			
+
+
 			glowBeauty.position.set(1.5*arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
 			glowProduct.position.set(2*arrowDist * Math.sin(toRadians(20)) , arrowHeight, -arrowDist *2* Math.cos(toRadians(20)));
 			glowCoach.position.set(arrowDist * Math.sin(toRadians(120)) , arrowHeight, -arrowDist * Math.cos(toRadians(120)));
@@ -751,10 +794,10 @@ function init() {
 
 			glowScene.add(glowEntrace);
 			glowScene.add(glowBaseProduct);
-			
+
 			ProductRoomArrow.position.set(0.6*arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.6* Math.cos(toRadians(180)));
 			glowEntrace.position.set(0.6*arrowDist * Math.sin(toRadians(180)) , arrowHeight, -arrowDist *0.6* Math.cos(toRadians(180)));
-			
+
 			ProductRoomArrow.scale.set(3,1.5,3)
 			calculateScale(glowEntrace,3,1.5,3)
 			// ProductRoomArrow.scale.copy(navArrowScale)
@@ -820,7 +863,7 @@ function init() {
 			ProductIcon3.scale.set(0.28,0.28,0.28)
 			ProductIcon3.rotation.set(0,-5,0)
 
-			
+
 			// productGlow1.rotation.set(0,-5.7,0)
 			// productGlow2.rotation.set(0,-5.7,0)
 			// productGlow3.rotation.set(0,-5.7,0)
@@ -923,7 +966,7 @@ function init() {
 			glowScene.add(glowSlefie);
 			glowScene.add(glowPool);
 
-				
+
 			calculateScale(glowSlefie,6,3,6)
 			calculateScale(glowPool,6.2,3.1,6.2)
 			calculateScale(glowMiddle,5,2.5,5)
@@ -997,73 +1040,64 @@ function init() {
 			//   orbGlow.position.set(-8.3,1.75,1.1)
 			//   orbGlow.rotation.set(0,1.9,0)
 
-			  orbVideoMesh.position.set(-8,1.75,1.01)
-			  orbVideoMesh.rotation.set(0,2,0)
-			  RoomVideoPlay.position.set(88,-8.5,-118)
-			  RoomVideoPlay.rotation.set(0,-1.5,-0.01)
-			  RoomVideoPlay.scale.set(2.4,2.5,2.1)
-				  // RoomVideoPlay.rotation.set(0,90,0)
-			  MiddleRoomArrow.position.set(1.8*arrowDist * Math.sin(toRadians(95)) , arrowHeight, -arrowDist*1.8 * Math.cos(toRadians(95)));
-			  MiddleRoomArrow.scale.set(5,2.5,5)
+			orbVideoMesh.position.set(-8,1.75,1.01)
+			orbVideoMesh.rotation.set(0,2,0)
+			RoomVideoPlay.position.set(88,-8.5,-118)
+			RoomVideoPlay.rotation.set(0,-1.5,-0.01)
+			RoomVideoPlay.scale.set(2.4,2.5,2.1)
+			// RoomVideoPlay.rotation.set(0,90,0)
+			MiddleRoomArrow.position.set(1.8*arrowDist * Math.sin(toRadians(95)) , arrowHeight, -arrowDist*1.8 * Math.cos(toRadians(95)));
+			MiddleRoomArrow.scale.set(5,2.5,5)
 			//   MiddleRoomArrow.scale.copy(navArrowScale)
-			  PoolEntranceArrow.position.set(1.2*arrowDist * Math.sin(toRadians(15)) , arrowHeight, -arrowDist*1.2 * Math.cos(toRadians(15)));
-			  PoolEntranceArrow.scale.copy(navArrowScale)
+			PoolEntranceArrow.position.set(1.2*arrowDist * Math.sin(toRadians(15)) , arrowHeight, -arrowDist*1.2 * Math.cos(toRadians(15)));
+			PoolEntranceArrow.scale.copy(navArrowScale)
 
-			  glowMiddle.position.set(1.8*arrowDist * Math.sin(toRadians(95)) , arrowHeight, -arrowDist*1.8 * Math.cos(toRadians(95)));
-			  glowPoolEntracen.position.set(1.2*arrowDist * Math.sin(toRadians(15)) , arrowHeight, -arrowDist*1.2 * Math.cos(toRadians(15)));
-			  calculateScale(glowMiddle,5,2.5,5)
-			  calculateScale(glowPoolEntracen,4,2,4)
+			glowMiddle.position.set(1.8*arrowDist * Math.sin(toRadians(95)) , arrowHeight, -arrowDist*1.8 * Math.cos(toRadians(95)));
+			glowPoolEntracen.position.set(1.2*arrowDist * Math.sin(toRadians(15)) , arrowHeight, -arrowDist*1.2 * Math.cos(toRadians(15)));
+			calculateScale(glowMiddle,5,2.5,5)
+			calculateScale(glowPoolEntracen,4,2,4)
 			//   orbVideoMask.play()
 			//   orbVideo.play()
 
 			// playProductVideo()
-			  video.play()
-			  video3.play()
+			video.play()
+			video3.play()
 
 
 			//   orbProductVideo.play()
 			// 	orbProductVideoMask.play()
-				// setTimeout(function(){
-				// 	if(orbProductVideo.currentTime != orbProductVideoMask.currentTime){
-				// 		console.log("RUNNED")
-				// 		orbProductVideo.currentTime = 0;
-				// 		orbProductVideoMask.currentTime = 0;
-				// 	}
-				// }, 2500);
+			// setTimeout(function(){
+			// 	if(orbProductVideo.currentTime != orbProductVideoMask.currentTime){
+			// 		console.log("RUNNED")
+			// 		orbProductVideo.currentTime = 0;
+			// 		orbProductVideoMask.currentTime = 0;
+			// 	}
+			// }, 2500);
 
 
 
 
 
 
-			  videoMat.alphaMap = videoMask2
+			videoMat.alphaMap = videoMask2
 
-			  TweenFadeInForVideos(videoMat)
-			  TweenFadeInForArrow()
+			TweenFadeInForVideos(videoMat)
+			TweenFadeInForArrow()
 			//   orbClickable = true
 			//   tweenScaleForArrows(PoolEntranceArrow,4,2,4)
 			//   tweenScaleForArrows(MiddleRoomArrow,5,2.5,5)
-			  runTween()
-			  document.getElementById('close-btn').addEventListener("click", function(e){
+			runTween()
+			document.getElementById('close-btn').addEventListener("click", function(e){
 				hoverButtonChecker = false
 				orbClickable = true
 			});
 
-			orbVideo.addEventListener("ended",function(){
-				orbClickable = true
-				orbVideo.pause()
-				orbVideoMask.pause()
-				orbVideoFinished = true
-
-				orbVideoMask.loop = true;
-				orbVideo.loop = true;
-				orbVideo.currentTime = 12.5;
-				orbVideoMask.currentTime = 12.5;
-				orbVideo.play()
-
-				orbVideoMask.play()
-	
-			})
+			orbVideo.addEventListener("ended", function () {
+				orbVideo.currentTime = 12;
+				orbVideoMask.currentTime = 12.2;
+				orbVideo.play();
+				orbVideoMask.play();
+			}, false);
 		}
 		else{
 			video.currentTime = 0;
@@ -1072,46 +1106,46 @@ function init() {
 		}
 		if(currState === MIDDLE){
 			console.log("middle scene runned")
-		  MainRoomScene.add(MainRoomArrow)
-		  PoolEntranceScene.add(PoolEntranceArrow);
-		  CoachRoomScene.add(CoachRoomArrow)
-		  ProductRoomScene.add(ProductRoomArrow);
+			MainRoomScene.add(MainRoomArrow)
+			PoolEntranceScene.add(PoolEntranceArrow);
+			CoachRoomScene.add(CoachRoomArrow)
+			ProductRoomScene.add(ProductRoomArrow);
 
-		  glowScene.add(glow);
-		  glowScene.add(glowPoolEntracen);
-		  glowScene.add(glowCoach);
-		glowScene.add(glowEntrace);
+			glowScene.add(glow);
+			glowScene.add(glowPoolEntracen);
+			glowScene.add(glowCoach);
+			glowScene.add(glowEntrace);
 
-		  CoachRoomArrow.position.set(3.2*arrowDist * Math.sin(toRadians(82.5)) , arrowHeight, -arrowDist*3.2 * Math.cos(toRadians(82.5)));
-		//   CoachRoomArrow.scale.copy(navArrowScale)
-		CoachRoomArrow.scale.set(5.5,3,5.5)
-		  ProductRoomArrow.position.set(2.5*arrowDist * Math.sin(toRadians(52)) , arrowHeight, -arrowDist*2.5 * Math.cos(toRadians(52)));
-		//   ProductRoomArrow.scale.copy(navArrowScale)
-		  ProductRoomArrow.scale.set(5.5,3,5.5)
-		  MainRoomArrow.position.set(1.9*arrowDist * Math.sin(toRadians(-75)) , arrowHeight, -arrowDist*1.9 * Math.cos(toRadians(-75)));
-		//   MainRoomArrow.scale.copy(navArrowScale)
-		  MainRoomArrow.scale.set(5.5,3,5.5)
-		  PoolEntranceArrow.position.set(2*arrowDist * Math.sin(toRadians(-30)) , arrowHeight, -arrowDist*2 * Math.cos(toRadians(-30)));
-		  PoolEntranceArrow.scale.set(6,3,6)
+			CoachRoomArrow.position.set(3.2*arrowDist * Math.sin(toRadians(82.5)) , arrowHeight, -arrowDist*3.2 * Math.cos(toRadians(82.5)));
+			//   CoachRoomArrow.scale.copy(navArrowScale)
+			CoachRoomArrow.scale.set(5.5,3,5.5)
+			ProductRoomArrow.position.set(2.5*arrowDist * Math.sin(toRadians(52)) , arrowHeight, -arrowDist*2.5 * Math.cos(toRadians(52)));
+			//   ProductRoomArrow.scale.copy(navArrowScale)
+			ProductRoomArrow.scale.set(5.5,3,5.5)
+			MainRoomArrow.position.set(1.9*arrowDist * Math.sin(toRadians(-75)) , arrowHeight, -arrowDist*1.9 * Math.cos(toRadians(-75)));
+			//   MainRoomArrow.scale.copy(navArrowScale)
+			MainRoomArrow.scale.set(5.5,3,5.5)
+			PoolEntranceArrow.position.set(2*arrowDist * Math.sin(toRadians(-30)) , arrowHeight, -arrowDist*2 * Math.cos(toRadians(-30)));
+			PoolEntranceArrow.scale.set(6,3,6)
 
-		  glowCoach.position.set(3.2*arrowDist * Math.sin(toRadians(82.5)) , arrowHeight, -arrowDist*3.2 * Math.cos(toRadians(82.5)));
-		  glowEntrace.position.set(2.5*arrowDist * Math.sin(toRadians(52)) , arrowHeight, -arrowDist*2.5 * Math.cos(toRadians(52)));
-		  glow.position.set(1.9*arrowDist * Math.sin(toRadians(-75)) , arrowHeight, -arrowDist*1.9 * Math.cos(toRadians(-75)));
-		  glowPoolEntracen.position.set(2*arrowDist * Math.sin(toRadians(-30)) , arrowHeight, -arrowDist*2 * Math.cos(toRadians(-30)));
+			glowCoach.position.set(3.2*arrowDist * Math.sin(toRadians(82.5)) , arrowHeight, -arrowDist*3.2 * Math.cos(toRadians(82.5)));
+			glowEntrace.position.set(2.5*arrowDist * Math.sin(toRadians(52)) , arrowHeight, -arrowDist*2.5 * Math.cos(toRadians(52)));
+			glow.position.set(1.9*arrowDist * Math.sin(toRadians(-75)) , arrowHeight, -arrowDist*1.9 * Math.cos(toRadians(-75)));
+			glowPoolEntracen.position.set(2*arrowDist * Math.sin(toRadians(-30)) , arrowHeight, -arrowDist*2 * Math.cos(toRadians(-30)));
 
-		//   PoolEntranceArrow.scale.copy(navArrowScale)
+			//   PoolEntranceArrow.scale.copy(navArrowScale)
 
-		  TweenFadeInForArrow()
-		  calculateScale(glowPoolEntracen,6,3,6)
-		  calculateScale(glowCoach,5.5,3,5.5)
-		  calculateScale(glowEntrace,5.5,3,5.5)
-		  calculateScale(glow,5.5,3,5.5)
-		//   tweenScaleForArrows(CoachRoomArrow,5.5,3,5.5)
-		//   tweenScaleForArrows(ProductRoomArrow,5.5,3,5.5)
-		//   tweenScaleForArrows(MainRoomArrow,5.5,3,5.5)
-		//   tweenScaleForArrows(PoolEntranceArrow,6,3,6)
+			TweenFadeInForArrow()
+			calculateScale(glowPoolEntracen,6,3,6)
+			calculateScale(glowCoach,5.5,3,5.5)
+			calculateScale(glowEntrace,5.5,3,5.5)
+			calculateScale(glow,5.5,3,5.5)
+			//   tweenScaleForArrows(CoachRoomArrow,5.5,3,5.5)
+			//   tweenScaleForArrows(ProductRoomArrow,5.5,3,5.5)
+			//   tweenScaleForArrows(MainRoomArrow,5.5,3,5.5)
+			//   tweenScaleForArrows(PoolEntranceArrow,6,3,6)
 
-	}
+		}
 	};
 
 
@@ -1145,7 +1179,7 @@ function init() {
 	productGlow1 = new THREE.Sprite( glowMat );
 	productGlow2 = new THREE.Sprite( glowMat );
 	productGlow3 = new THREE.Sprite( glowMat );
-	
+
 
 	glow.scale.copy(navArrowScale)
 	glowMiddle.scale.copy(navArrowScale)
@@ -1262,32 +1296,35 @@ function init() {
 	// orbProduct = new THREE.Mesh( orbProductPlane, orbProductMat );
 	//***********************ORB VIDEO********************
 
-		//***********************ORB VIDEO********************
-		
+	//***********************ORB VIDEO********************
 
-		orbVideoPlane = new THREE.PlaneGeometry( 9, 9 );
-		orbVideo = document.createElement('video');
 
-		orbVideo.src = orbVideoUrl;
-		orbVideo.playsInline = true;
-		orbVideo.muted = true;
-		orbVideo.loop = false;
+	orbVideoPlane = new THREE.PlaneGeometry( 9, 9 );
+	orbVideo = document.createElement('video');
 
-		orbVideoMask = document.createElement('video');
-		orbVideoMask.src = "video/orb/Orb.Alpha.V8.mp4";
-		orbVideoMask.muted = true;
-		orbVideoMask.playsInline = true;
+	orbVideo.src = orbVideoUrl;
+	orbVideo.playsInline = true;
+	orbVideo.muted = true;
+	orbVideo.loop = false;
 
-		orbVideoMask.loop = false
-		orbVideoTex =  new THREE.VideoTexture(orbVideo)
-		orbVideoMaskTex = new THREE.VideoTexture(orbVideoMask)
-		orbVideoMat = new THREE.MeshBasicMaterial( {map: orbVideoTex, transparent: true,opacity:1,side: THREE.DoubleSide} );
-		orbVideoMat.alphaMap = orbVideoMaskTex
-		orbVideoMesh = new THREE.Mesh( orbVideoPlane, orbVideoMat );
+	orbVideoMask = document.createElement('video');
+	orbVideoMask.setsrc = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Orb.Alpha.V8.mp4";
+	orbVideoMask.src = "video/orb/Orb.Alpha.V8.mp4";
+	orbVideoMask.muted = true;
+	orbVideoMask.playsInline = true;
+	orbVideoMask.loop = true;
+	orbVideo.loop = true;
+	orbVideoMask.loop = false
+	orbVideoTex =  new THREE.VideoTexture(orbVideo)
+	orbVideoMaskTex = new THREE.VideoTexture(orbVideoMask)
+	orbVideoMat = new THREE.MeshBasicMaterial( {map: orbVideoTex, transparent: true,opacity:1,side: THREE.DoubleSide} );
+	orbVideoMat.alphaMap = orbVideoMaskTex
+	orbVideoMesh = new THREE.Mesh( orbVideoPlane, orbVideoMat );
 
 	//***********************VIDEO1********************
 	videoPlane = new THREE.PlaneGeometry( 16, 9 );
 	video = document.createElement('video');
+	video.setsrc = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideo.mp4"; // Set video address
 	video.src = "video/sceneVideo.mp4"; // Set video address
 	video.setAttribute("id", "videoScene");
 	video.preload = true
@@ -1296,6 +1333,7 @@ function init() {
 	video.loop = true;
 
 	video2 = document.createElement('video');
+	video2.setsrc = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideoAlpha.mp4";
 	video2.src = "video/sceneVideoAlpha.mp4";
 	video2.setAttribute("id", "videoSceneAlpha1");
 
@@ -1304,6 +1342,7 @@ function init() {
 	video2.loop = true;
 	video2.playsInline = true;
 	video3 = document.createElement('video');
+	video3.setsrc = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideoAlpha3.mp4";
 	video3.src = "video/sceneVideoAlpha3.mp4";
 	video3.setAttribute("id", "videoSceneAlpha2");
 
@@ -1320,18 +1359,19 @@ function init() {
 
 	RoomVideoPlay = new THREE.Mesh( videoPlane, videoMat );
 
-    // ***********************VIDEO2********************
+	// ***********************VIDEO2********************
 	videoMeshBottleScene = new THREE.PlaneGeometry( 9, 16 );
 	bilboardVideo  = document.createElement('video');
+	bilboardVideo.setsrc = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/K-BeautyTreatmentAreaKrystalLogo-1.mp4"; // Set video address
 	bilboardVideo.src = "video/K-BeautyTreatmentAreaKrystalLogo-1.mp4"; // Set video address
 	bilboardVideo.playsInline = true;
 	bilboardVideo.muted = true;
 	bilboardVideo.loop = true;
 	bilboardVideoTex = new THREE.VideoTexture(bilboardVideo)
 
-    videoMatBottleScene = new THREE.MeshBasicMaterial( {map: bilboardVideoTex,opacity:1,side: THREE.DoubleSide} );
-    // videoMatBottleScene.alphaMap = alphaMaskBottleScene
-    VideoPlayBottleScene = new THREE.Mesh( videoMeshBottleScene, videoMatBottleScene );
+	videoMatBottleScene = new THREE.MeshBasicMaterial( {map: bilboardVideoTex,opacity:1,side: THREE.DoubleSide} );
+	// videoMatBottleScene.alphaMap = alphaMaskBottleScene
+	VideoPlayBottleScene = new THREE.Mesh( videoMeshBottleScene, videoMatBottleScene );
 	VideoPlayBottleScene.scale.copy(navVideoScale)
 
 
@@ -1359,43 +1399,43 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 		textures[ i ] = new THREE.Texture();
 	}
 	new THREE.ImageLoader(manager)
-	.load( atlasImgUrl, ( image ) => {
+		.load( atlasImgUrl, ( image ) => {
 
-		let canvas, context;
-		const tileWidth = image.height;
+			let canvas, context;
+			const tileWidth = image.height;
 
-		for ( let i = 0; i < textures.length; i ++ ) {
-			canvas = document.createElement( 'canvas' );
-			context = canvas.getContext( '2d' );
-			canvas.height = tileWidth;
-			canvas.width = tileWidth;
-			context.drawImage( image, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
-			textures[ i ].image = canvas;
-			textures[ i ].needsUpdate = true;
-		}
-	} );
+			for ( let i = 0; i < textures.length; i ++ ) {
+				canvas = document.createElement( 'canvas' );
+				context = canvas.getContext( '2d' );
+				canvas.height = tileWidth;
+				canvas.width = tileWidth;
+				context.drawImage( image, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
+				textures[ i ].image = canvas;
+				textures[ i ].needsUpdate = true;
+			}
+		} );
 	return textures;
 }
 
 function ProductButtons(){
 	document.getElementById('productButton-1').addEventListener("click", function(){
 		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
-	 });
+	});
 	document.getElementById('productButton-2').addEventListener("click", function(){
 		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
-	 });
+	});
 	document.getElementById('productButton-3').addEventListener("click", function(){
 		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
-	 });
-	 document.getElementById('close-product').addEventListener("click", function(){
+	});
+	document.getElementById('close-product').addEventListener("click", function(){
 		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
-	 });
+	});
 	document.getElementById('close-product2').addEventListener("click", function(){
 		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
-	 });
+	});
 	document.getElementById('close-product3').addEventListener("click", function(){
 		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
-	 });
+	});
 
 }
 
@@ -1408,7 +1448,8 @@ var endbool;
 function onVideoLoad() {
 
 	orbVideo.removeEventListener( 'loadedmetadata', onVideoLoad, false );
-	videoManager.itemEnd( "video/Ahc.Reveal.v5.BASE.mp4" ); // notifying about end of loading process
+	// videoManager.itemEnd( "video/Ahc.Reveal.v5.BASE.mp4" ); // notifying about end of loading process
+	videoManager.itemEnd( "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/Ahc.Reveal.v5.BASE.mp4" ); // notifying about end of loading process
 	orbVideo.play();
 	orbVideoMask.play()
 	console.log("LOADED")
@@ -1460,28 +1501,26 @@ var player = videojs('#video2');
 player.on('ended', function () {
 	hoverButtonChecker = false
 	volumeUp()
-  })
+})
 
-//   var player1 = videojs('#vid-1');
-//   player1.on('ended', function () {
-// 	sound.pause()
-// 	hoverButtonChecker = false
-//   })
-//   var player2 = videojs('#vid-2');
-//   player2.on('ended', function () {
-// 	sound.pause()
-// 	hoverButtonChecker = false
-//   })
-//   var player3 = videojs('#vid-3');
-//   player3.on('ended', function () {
-// 	sound.pause()
-// 	hoverButtonChecker = false
-//   })
-  var player3 = videojs('#orb-vid');
-  player3.on('ended', function () {
 
+var player1 = videojs('#vid-1');
+player1.on('ended', function () {
+  volumeUp()
+})
+var player2 = videojs('#vid-2');
+player2.on('ended', function () {
+  volumeUp()
+})
+var player4 = videojs('#vid-3');
+player4.on('ended', function () {
+  volumeUp()
+})
+var player3 = videojs('#orb-vid');
+player3.on('ended', function () {
+	orbClickable = true
 	hoverButtonChecker = false
-  })
+})
 
 var orbVideoPlayed = false
 var flagOrb = false
@@ -1504,11 +1543,11 @@ function loadOrbVide(){
 var setonetime = false
 var videoClickfalse = false
 function animate() {
-	if ((orbVideo.currentTime < 12.5|| orbVideo.currentTime >= 17.95) && orbVideoFinished == true ) {
-		orbVideo.currentTime =12.5;
-		orbVideoMask.currentTime =12.5;
+	// if ((orbVideo.currentTime < 12.5|| orbVideo.currentTime >= 17.95) && orbVideoFinished == true ) {
+	// 	orbVideo.currentTime =12.5;
+	// 	orbVideoMask.currentTime =12.5;
 
-	}
+	// }
 
 
 	//***********************TWEEN********************
@@ -1522,15 +1561,15 @@ function animate() {
 
 
 	if(dirVector.distanceTo(prevDirVector) > 0.005){
-		clickAllowed = false;
-		bilboardClickable = false
-		orbClickable =false
+		dragOrb = false;
+		dragBilboard = false
+		dragTherapy =false
 	} else {
-		clickAllowed = true;
-		bilboardClickable = true
-		orbClickable = true
+		dragOrb = true;
+		dragBilboard = true
+		dragTherapy =true
 	}
-		camera.getWorldDirection(prevDirVector)
+	camera.getWorldDirection(prevDirVector)
 
 	if(currState === SELFIE){
 		camera.getWorldDirection(dirVector)
@@ -1556,7 +1595,7 @@ function animate() {
 
 		}
 	}
-	 else if(currState === POOL){
+	else if(currState === POOL){
 		camera.getWorldDirection(dirVector)
 		// console.log(dirVector.x +', '+dirVector.y +', '+dirVector.z);
 
@@ -1686,8 +1725,8 @@ function clickTrigger(){
 	console.log("clickTrigger is run");
 	renderer.domElement.addEventListener("touchstart", event => {
 		console.log("touch event registered");
-	// })
-	// document.addEventListener("click", event => {
+		// })
+		// document.addEventListener("click", event => {
 		console.log(event);
 		mouse.x = event.touches[0].pageX / window.innerWidth * 2 - 1;
 		mouse.y = -(event.touches[0].pageY / window.innerHeight) * 2 +1 ;
@@ -1719,11 +1758,11 @@ function clickTrigger(){
 
 		//***********************POOL SCENE**************************
 		if ( intersectsPoolRoom.length > 0 ) {
-				setTimeout(function(){
-					envLoad(sceneUrl9)
-					currState = POOL
+			setTimeout(function(){
+				envLoad(sceneUrl9)
+				currState = POOL
 
-				}, 500)
+			}, 500)
 
 			DisableEverything()
 
@@ -1883,49 +1922,52 @@ function clickTrigger(){
 		var productbool;
 		if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon1.length > 0 ) {
 			productbool = true
-            console.log("video clicked")
-            document.getElementById('product1').style.display = 'block';
+			console.log("video clicked")
+			document.getElementById('product1').style.display = 'block';
 			document.getElementById('productButton-1').style.display = 'block';
 			new TWEEN.Tween( ProductMat ).to( { opacity: 0 }, 250 ).start();
 
-            //window.open('https://us.ahcbeauty.com/')
-        }
-        if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon2.length > 0) {
+			//window.open('https://us.ahcbeauty.com/')
+		}
+		if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon2.length > 0) {
 			productbool = true
-            console.log("video clicked")
-            document.getElementById('product2').style.display = 'block';
+			console.log("video clicked")
+			document.getElementById('product2').style.display = 'block';
 			document.getElementById('productButton-2').style.display = 'block';
 			new TWEEN.Tween( ProductMat ).to( { opacity: 0 }, 250 ).start();
-            //window.open('https://us.ahcbeauty.com/')
-        }
-        if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon3.length > 0 ) {
+			//window.open('https://us.ahcbeauty.com/')
+		}
+		if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon3.length > 0 ) {
 			productbool = true
-            console.log("video clicked")
-            document.getElementById('product3').style.display = 'block';
+			console.log("video clicked")
+			document.getElementById('product3').style.display = 'block';
 			document.getElementById('productButton-3').style.display = 'block';
 			new TWEEN.Tween( ProductMat ).to( { opacity: 0 }, 250 ).start();
 
 
-            //window.open('https://us.ahcbeauty.com/')
-        }
+			//window.open('https://us.ahcbeauty.com/')
+		}
 		if(intersectsSelfieClick.length > 0 && selfieSceneClick == true) {
 			// alert("Selfie Clicked")
 		}
 
 		//***********************PLAY VIDEO ON PRODUCT SCENE**************************
-		if (poolLoad == true && intersectsRoomVideoPlay.length > 0 && clickableVideo == true) {
+		if (poolLoad == true && intersectsRoomVideoPlay.length > 0 && clickableVideo == true && dragTherapy == true) {
 			if(clickAllowed){
 				document.getElementById('pool-btn').click();
+				clickableVideo = false
 			}
 		}
-		if (beautyLoad == true && intersectsMultipleVideo.length > 0 && bilboardClickable == true) {
+		if (beautyLoad == true && intersectsMultipleVideo.length > 0 && bilboardClickable == true && dragBilboard == true) {
 			if(clickAllowed){
 				document.getElementById('beauty-btn').click();
+				bilboardClickable = false
 			}
 		}
-		if ( intersectsorbProductScene.length > 0 && orbClickable == true) {
+		if ( intersectsorbProductScene.length > 0 && orbClickable == true && dragOrb == true) {
 			if(clickAllowed){
 				document.getElementById('orb-btn').click();
+				orbClickable = false
 			}
 		}
 	});
@@ -1995,7 +2037,7 @@ function DisableEverything(){
 	productBaseLoad = false
 	procutLoad = false
 	orbVideoFinished =false
-
+	orbVideoPlayCheck = false
 	orbVideoMask.loop = false;
 	orbVideo.loop = false;
 	console.log(loaderCheck)
@@ -2048,37 +2090,37 @@ function TweenFadeInForVideos(VideoOpacityMat){
 function volumeDown(){
 
 	new TWEEN.Tween(sound.gain.gain)
-	.to(
-	{
-		value: 0,
-	},
-	1500
-	).start()
+		.to(
+			{
+				value: 0,
+			},
+			1500
+		).start()
 }
 function volumeUp(){
 
-new TWEEN.Tween(sound.gain.gain)
-.to(
-{
-	value: 0.65*mainVolumeMultiplier,
-},
-1250
-).start()
+	new TWEEN.Tween(sound.gain.gain)
+		.to(
+			{
+				value: 0.65*mainVolumeMultiplier,
+			},
+			1250
+		).start()
 }
 function tweenScaleForArrows(){
 	// var scaleX = sx+sx*0.1;
 	// var scaleY = sy + sy*0.1;
 	// var scaleZ =  sz + sz*0.1;
 	new TweenMax.fromTo(glowMat, 1,{
-		opacity:0,
+			opacity:0,
 		},
 		{ opacity:0.45,
-		  ease: Sine.easeInOut,
-		  yoyo: true,
+			ease: Sine.easeInOut,
+			yoyo: true,
 
-		  repeat:-1,
+			repeat:-1,
 
-	});
+		});
 }
 function TweenFadeInForArrow(){
 
@@ -2151,11 +2193,14 @@ function transferComplete(evt) {
 // }
 
 function sharePopup() {
-	shareContainer.style.display = 'block';
-	console.log('show share-container')
-
-	// add close button listener
-	shareClose.addEventListener('click', closeSharePopup);
+	if(region === CHINA){
+		shareContainer.style.display = 'block';
+		console.log('show share-container')
+		// add close button listener
+		shareClose.addEventListener('click', closeSharePopup);
+	} else {
+		copyLink();
+	}
 }
 
 function closeSharePopup() {
@@ -2163,7 +2208,7 @@ function closeSharePopup() {
 }
 
 function copyLink() {
-	const linkToCopy = "https://us.ahcbeauty.com/";
+	const linkToCopy = "https://ahc-spa.ulcampaign.com/";
 
 	if (navigator.share) {
 		navigator.share({
@@ -2180,9 +2225,19 @@ function copyLink() {
 		// TODO Add fallback to copy Link
 		navigator.clipboard.writeText(linkToCopy)
 			.then(() => {
-				shareSubmit.innerText = 'LINK COPIED'
+				console.log("copied");
+				var copiedText = "LINK COPIED"
+				if(selectedLanguage.localeCompare("zh") === 0){
+					copiedText = "链接已复制"
+				} else if(selectedLanguage.localeCompare("ko") === 0){
+					copiedText = "링크 복사됨"
+				}
+				shareSubmit.innerText = copiedText
+				var tempText = document.getElementById('share-btn').innerHTML
+				document.getElementById('share-btn').innerHTML = copiedText
 				setTimeout(() => {
-					shareSubmit.innerText = 'Share Experience With a Friend'
+					shareSubmit.innerText = tempText
+					document.getElementById('share-btn').innerHTML = tempText
 					shareContainer.style.display = 'none;'
 				}, 2000)
 

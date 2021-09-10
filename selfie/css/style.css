@@ -1,6 +1,50 @@
+
 @font-face {
   font-family: "Pangram-Regular";
-  src:url("../../shared/fonts/Pangram-Regular.otf") format("opentype");
+  src:url("../shared/fonts/Pangram-Regular.otf") format("opentype");
+  unicode-range: U+0000, U+04F0;
+}
+
+@font-face {
+  font-family: "Pangram-Light";
+  src:url("../shared/fonts/Pangram-Light.otf") format("opentype");
+  unicode-range: U+0000, U+04F0;
+}
+
+@font-face {
+  font-family: "Pangram-Bold";
+  src:url("../../shared/fonts/Pangram-Bold.otf") format("opentype");
+  unicode-range: U+0000, U+04F0;
+}
+
+@font-face {
+  font-family: "Noto-CN-Regular";
+  src:url("../../shared/fonts/NotoSansSC-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Noto-CN-Bold";
+  src:url("../../shared/fonts/NotoSansSC-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Noto-CN-Light";
+  src:url("../../shared/fonts/NotoSansSC-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Noto-KR-Regular";
+  src:url("../../shared/fonts/NotoSansKR-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Noto-KR-Bold";
+  src:url("../../shared/fonts/NotoSansKR-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Noto-KR-Light";
+  src:url("../../shared/fonts/NotoSansKR-Light.otf") format("opentype");
 }
 
 canvas.deepar {
@@ -15,7 +59,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #fff4ee;
-    font-family: "Pangram-Regular";
+    font-family: Pangram-Regular, Noto-CN-Regular, Noto-KR-Regular !important;
 }
 
 
@@ -181,7 +225,7 @@ body {
   border-radius:2em;
   box-sizing: border-box;
   text-decoration:none;
-  font-family: "Pangram-Regular";
+  font-family: inherit;
   /* font-weight:300; */
   text-transform: uppercase;
   color:#000000;
@@ -224,7 +268,7 @@ body {
   border-radius:2em;
   box-sizing: border-box;
   text-decoration:none;
-  font-family: "Pangram-Regular";
+  font-family: inherit;
   /* font-weight:300; */
   text-transform: uppercase;
   color:#000000;
@@ -263,7 +307,7 @@ body {
     background-color: #FFFFFF;
 
     padding: 2rem;
-    font-family: "Pangram-Regular";
+    font-family: inherit;
     /*letter-spacing: 5px;*/
     text-transform: uppercase;
     font-weight: 700;

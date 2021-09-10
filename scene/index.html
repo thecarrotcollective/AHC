@@ -1,276 +1,281 @@
 <html>
-  <head>
-    <meta charset="UTF-8">
+<head>
+  <meta charset="UTF-8">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-    <link rel="manifest" href="../favicon/site.webmanifest">
-    <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#ffffff">
-    <!-- <script src="sceneFolder/scripts/scriptPhone.js"></script> -->
-    <title>AHC Spa at Home</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#ffffff">
+  <!-- <script src="sceneFolder/scripts/scriptPhone.js"></script> -->
+  <title>AHC Spa at Home</title>
 
-    <!-- <meta name="viewport" content="width=999, maximum-scale=1.0" /> -->
-    <link rel="stylesheet" type="text/css" href="../shared/start-page.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="video/sceneVideo.mp4" as="video" type="video/mp4">
-<!--      <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />-->
-    <link href="styles/video-js.css" rel="stylesheet" />
-<!--      <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet"/>-->
-    <link href="styles/vjs-index.css" rel="stylesheet"/>
-    <!-- <link href="intro.css" rel="stylesheet"/> -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!--  <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>-->
-    <script src="scripts/video.min.js"></script>
-    <script type="text/javascript" src="scripts/enquire.js"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>-->
-    <script src="scripts/Tween.min.js"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>-->
-    <script src="scripts/TweenMax.min.js"></script>
+  <!-- <meta name="viewport" content="width=999, maximum-scale=1.0" /> -->
+  <link rel="stylesheet" type="text/css" href="../shared/start-page.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--    <link rel="preload" href="video/sceneVideo.mp4" as="video" type="video/mp4">-->
+  <link crossorigin="anonymous" rel="preload" href="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideo.mp4" as="video" type="video/mp4">
+  <!--      <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />-->
+  <link href="styles/video-js.css" rel="stylesheet" />
+  <!--      <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet"/>-->
+  <link href="styles/vjs-index.css" rel="stylesheet"/>
+  <!-- <link href="intro.css" rel="stylesheet"/> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!--  <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>-->
+  <script src="scripts/video.min.js"></script>
+  <script type="text/javascript" src="scripts/enquire.js"></script>
+  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>-->
+  <script src="scripts/Tween.min.js"></script>
+  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>-->
+  <script src="scripts/TweenMax.min.js"></script>
 
-  <!-- <script src="//vjs.zencdn.net/5.4.6/video.min.js"></script> TODO delete this later if it doesnt break anything-->
   <script type="text/javascript">
 
     // This loads JS files in the head element
-        function loadJS(url)
-        {
-            // adding the script tag to the head
-           var head = document.getElementsByTagName('head')[0];
-           var script = document.createElement('script');
-           script.type = 'module';
-           script.src = url;
+    function loadJS(url)
+    {
+      // adding the script tag to the head
+      var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.type = 'module';
+      script.src = url;
 
-           // fire the loading
-           head.appendChild(script);
-        }
+      // fire the loading
+      head.appendChild(script);
+    }
 
-        // document.getElementById('question').style.opacity = 1;
-        // document.getElementById('questionDiv').style.top = '12%';
+    // document.getElementById('question').style.opacity = 1;
+    // document.getElementById('questionDiv').style.top = '12%';
 
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          console.log("PHONE LOADED")
-          loadJS('scripts/scriptPhone.js');
-        }else{
-          console.log("WEB LOADED")
-          loadJS('scripts/scriptWeb.js');
-        }
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      console.log("PHONE LOADED")
+      loadJS('scripts/scriptPhone.js');
+    }else{
+      console.log("WEB LOADED")
+      loadJS('scripts/scriptWeb.js');
+    }
 
 
   </script>
 
-    <!-- <script src="https://unpkg.com/three"></script>
-    <script src="https://unpkg.com/@seregpie/three.text-texture"></script>
-    <script src="https://unpkg.com/@seregpie/three.text-sprite"></script> -->
-  </head>
-  <body id="mainPage" >
-    <div id="IntroDiv" >
+  <!-- <script src="https://unpkg.com/three"></script>
+  <script src="https://unpkg.com/@seregpie/three.text-texture"></script>
+  <script src="https://unpkg.com/@seregpie/three.text-sprite"></script> -->
+</head>
+<body id="mainPage" >
+<div id="IntroDiv" >
 
-      <div class="container" >
-              <div class="safe_area">
-                  <div class="ahc-logo-Intro ahc-logo" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="../shared/images/AHCLOGO.webp"></div>
-                  <div class="quizquestion" id="questionDiv">
-                      <div id='question' class="question"></div>
-                  </div>
-                  <section>
-                      <div class="content" id="content">
-                          <div class ="arch" id="archid">
-                              <img id="arch-image" src=""alt="" >
-                          </div>
-                          <div class="middleText2" id="middleText">
-                              <h1 id="personality"></h1>
-                              <div id="infoText"></div>
-                          </div>
-                      </div>
-                  </section>
-                  <div class="grid_container" id="grid_container">
-                      <button id='start-btn' class='bottomButtonsMain bottomBtn blackClr noTextShadow'></button>
-                  </div>
-              </div>
-          </div>
+  <div class="container" >
+    <div class="safe_area">
+      <div class="ahc-logo-Intro ahc-logo" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="../shared/images/AHCLOGO.webp"></div>
+      <div class="quizquestion" id="questionDiv">
+        <div id='question' class="question"></div>
       </div>
+      <section>
+        <div class="content" id="content">
+          <div class ="arch" id="archid">
+            <img id="arch-image" src=""alt="" >
+          </div>
+          <div class="middleText2" id="middleText">
+            <h1 id="personality"></h1>
+            <div id="infoText"></div>
+          </div>
+        </div>
+      </section>
+      <div class="grid_container" id="grid_container">
+        <button id='start-btn' class='bottomButtonsMain bottomBtn blackClr noTextShadow'></button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div id="main" style="display: none;">
+  <div id="blackScreen"></div>
+  <div id="whiteScreen"></div>
+
+  <div id="container_2">
+    <div class="lds-ring" id="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div id="beauty-treatment-overlay">
+      <div class="ahc-logo" id = "ahc-logo-beauty"><img id="ahc-logo-beauty-img" src="UIAssets/AHCLOGO_white.png"></div>
+      <div id="beauty-title" class="quizquestion"><h2 class="beauty-treatment-title">CHOOSE YOUR <br> AHC KOREAN AESTHETIC TREATMENT</h2></div>
+      <div class="beauty-options-container">
+        <div class="beauty-options" id="beauty-vid-1"><img class="beauty-thumbnails" src="images/treatment1.jpg"></div>
+        <div class="beauty-options" id="beauty-vid-2"><img class="beauty-thumbnails" src="images/treatment2.jpg"></div>
+        <div class="beauty-options" id="beauty-vid-3"><img class="beauty-thumbnails" src="images/treatment3.jpg"></div>
+      </div>
+      <div id = "back-btn"><img id="back-btn-img" src="UIAssets/arrow_white_rotated.png"></div>
+    </div>
+    <img id="close-btn" src="UIAssets/close.png">
+    <div id="video_id">
+      <video
+              id="video2"
+              class="video-js vjs-default-skin vjs-big-play-centered"
+              controls: true
+              preload="none"
+              width="auto"
+              height="auto"
+              aspectRatio= '9:16'
+              data-setup='{"controls": true}'>
+        <!--          <source src="video/therapy/int-en.mp4" type="video/mp4" />-->
+        <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/therapy/int-en.mp4" type="video/mp4" />
+      </video>
+      <video
+              id="vid-1"
+              preload="none"
+              controls: true
+              class="video-js vjs-default-skin vjs-big-play-centered"
+              width="auto"
+              height="auto"
+              aspectRatio= '9:16'
+              data-setup='{"controls": true}'>
+        <!--            <source src="video/beauty/Ton.mp4" type="video/mp4">-->
+        <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/beauty/Ton.mp4" type="video/mp4" >
+      </video>
+      <video
+              id="vid-2"
+              preload="none"
+              controls: true
+              class="video-js vjs-default-skin vjs-big-play-centered"
+              width="auto"
+              height="auto"
+              aspectRatio= '9:16'
+              data-setup='{"controls": true}'>
+        <!--            <source src="video/beauty/Eff-Eng.mp4" type="video/mp4">-->
+        <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/beauty/Eff-Eng.mp4" type="video/mp4">
+      </video>
+      <video
+              id="vid-3"
+              preload="none"
+              class="video-js vjs-default-skin vjs-big-play-centered"
+              controls: true
+              width="auto"
+              height="auto"
+              aspectRatio= '9:16'
+              data-setup='{"controls": true}'>
+        <!--            <source src="video/beauty/Amp.mp4" type="video/mp4">-->
+        <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/beauty/Amp.mp4" type="video/mp4"  >
+      </video>
+      <video
+              id="orb-vid"
+              preload="none"
+              class="video-js vjs-default-skin vjs-big-play-centered"
+              controls: true
+              width="auto"
+              height="auto"
+              aspectRatio= '9:16'
+              data-setup='{"controls": true}'>
+        <!--            <source src="video/orb/orbvideo.mp4" type="video/mp4">-->
+        <source src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/orbvideo.mp4" type="video/mp4" crossorigin="anonymous">
+      </video>
+
+    </div>
+    <!-- <div id="video-close-overlay"></div> -->
+
   </div>
 
 
-  <div id="main" style="display: none;">
-      <div id="blackScreen"></div>
-      <div id="whiteScreen"></div>
+  <div class="product" style="display: none;" id="product1">
 
-      <div id="container_2">
-        <div class="lds-ring" id="lds-ring"><div></div><div></div><div></div><div></div></div>
-        <div id="beauty-treatment-overlay">
-          <div class="ahc-logo" id = "ahc-logo-beauty"><img id="ahc-logo-beauty-img" src="UIAssets/AHCLOGO_white.png"></div>
-          <div id="beauty-title" class="quizquestion"><h2 class="beauty-treatment-title">CHOOSE YOUR <br> AHC KOREAN AESTHETIC TREATMENT</h2></div>
-          <div class="beauty-options-container">
-            <div class="beauty-options" id="beauty-vid-1"><img class="beauty-thumbnails" src="images/treatment1.jpg"></div>
-            <div class="beauty-options" id="beauty-vid-2"><img class="beauty-thumbnails" src="images/treatment2.jpg"></div>
-            <div class="beauty-options" id="beauty-vid-3"><img class="beauty-thumbnails" src="images/treatment3.jpg"></div>
-          </div>
-          <div id = "back-btn"><img id="back-btn-img" src="UIAssets/arrow_white_rotated.png"></div>
-        </div>
-        <img id="close-btn" src="UIAssets/close.png">
-        <div id="video_id">
-          <video
-          id="video2"
-          class="video-js vjs-default-skin vjs-big-play-centered"
-          controls: true
-          preload="none"
-          width="auto"
-          height="auto"
-          aspectRatio= '9:16'
-          data-setup='{"controls": true}'>
-          <source src="video/therapy/int-en.mp4" type="video/mp4" />
-          </video>
-          <video
-          id="vid-1"
-          preload="none"
-          controls: true
-          class="video-js vjs-default-skin vjs-big-play-centered"
-          width="auto"
-          height="auto"
-          aspectRatio= '9:16'
-          data-setup='{"controls": true}'>
-            <source src="video/beauty/Ton.mp4" type="video/mp4">
-          </video>
-          <video
-          id="vid-2"
-          preload="none"
-          controls: true
-          class="video-js vjs-default-skin vjs-big-play-centered"
-          width="auto"
-          height="auto"
-          aspectRatio= '9:16'
-          data-setup='{"controls": true}'>
-            <source src="video/beauty/Eff-Eng.mp4" type="video/mp4">
-          </video>
-          <video
-          id="vid-3"
-          preload="none"
-          class="video-js vjs-default-skin vjs-big-play-centered"
-          controls: true
-          width="auto"
-          height="auto"
-          aspectRatio= '9:16'
-          data-setup='{"controls": true}'>
-            <source src="video/beauty/Amp.mp4" type="video/mp4">
-          </video>
-          <video
-          id="orb-vid"
-          preload="none"
-          class="video-js vjs-default-skin vjs-big-play-centered"
-          controls: true
-          width="auto"
-          height="auto"
-          aspectRatio= '9:16'
-          data-setup='{"controls": true}'>
-            <source src="video/orb/orbvideo.mp4" type="video/mp4">
-          </video>
+    <div class="square">
+      <h2>Premium EX Hydra B5 Biome Capsule Concentrate</h2>
+      <img src="./UIAssets/just_product3.png">
+    </div>
+    <img id="close-product" src="UIAssets/close.png">
+    <button id="productButton-1" class="btn" >SHOP NOW</button>
+  </div>
 
-        </div>
-        <!-- <div id="video-close-overlay"></div> -->
-
-      </div>
-
-
-        <div class="product" style="display: none;" id="product1">
-
-          <div class="square">
-              <h2>Premium EX Hydra B5 Biome Capsule Concentrate</h2>
-             <img src="./UIAssets/just_product3.png">
-          </div>
-          <img id="close-product" src="UIAssets/close.png">
-          <button id="productButton-1" class="btn" >SHOP NOW</button>
-        </div>
-
-        <div class="product" style="display: none;" id="product2">
-          <img id="close-product2" src="UIAssets/close.png">
-          <div class="square">
-            <h2>Premium EX Hydra B5 Toner</h2>
-           <img src="./UIAssets/just_product2.png">
-        </div>
-
-          <button id="productButton-2" class="btn">SHOP NOW</button>
-        </div>
-
-        <div  class="product" style="display: none;" id="product3">
-          <img id="close-product3" src="UIAssets/close.png">
-          <div class="square">
-            <h2>EFF Gold</h2>
-           <img src="./UIAssets/just_product1.png">
-        </div>
-
-          <button id="productButton-3"  class="btn">SHOP NOW</button>
-        </div>
-
-
-
-    <div id="ui-container">
-      <button id="share-btn">Share With a Friend</button>
+  <div class="product" style="display: none;" id="product2">
+    <img id="close-product2" src="UIAssets/close.png">
+    <div class="square">
+      <h2>Premium EX Hydra B5 Toner</h2>
+      <img src="./UIAssets/just_product2.png">
     </div>
 
-    <div id="share-container">
-      <div id="share-ui">
-        <img id="share-close" src="UIAssets/close-black.png">
-        <div id="share-experience-title">Share this experience</div>
+    <button id="productButton-2" class="btn">SHOP NOW</button>
+  </div>
+
+  <div  class="product" style="display: none;" id="product3">
+    <img id="close-product3" src="UIAssets/close.png">
+    <div class="square">
+      <h2>EFF Gold</h2>
+      <img src="./UIAssets/just_product1.png">
+    </div>
+
+    <button id="productButton-3"  class="btn">SHOP NOW</button>
+  </div>
+
+
+
+  <div id="ui-container">
+    <button id="share-btn">Share With a Friend</button>
+  </div>
+
+  <div id="share-container">
+    <div id="share-ui">
+      <img id="share-close" src="UIAssets/close-black.png">
+      <div id="share-experience-title">Share this experience</div>
+      <br><br>
+
+      <form id="userform" method="post">
+        <label id="enter-phone" for="phone">Enter Your Phone Number</label><br>
+        <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="+86 139 1099 8888"
+                pattern="[0-9]{1,18}">
         <br><br>
-
-        <form id="userform" method="post">
-          <label id="enter-phone" for="phone">Enter Your Phone Number</label><br>
-          <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  placeholder="+86 139 1099 8888"
-                  pattern="[0-9]{1,18}">
-          <br><br>
-          <button id="share-submit" type="button">SHARE</button>
-        </form>
-      </div>
-
+        <button id="share-submit" type="button">SHARE</button>
+      </form>
     </div>
 
-    <div id="hover-container">
-      <div id="selfie-text" class="hover-text" style="display: none;">
-        <!-- Take a selfie with K-drama superstar Krystal Jung!! -->
-      </div>
-
-      <div id="pool-text" class="hover-text">
-
-      </div>
-      <div id="orb-text" class="hover-text">
-
-      </div>
-
-      <div id="beauty-text" class="hover-text">
-        <!-- Watch AHC's KOREAN AESTHETIC TUTORIALS here. -->
-      </div>
-
-    </div>
-
-    <div id="buttons-container">
-      <button id="selfie-btn" class="CTA-btn">
-        TAKE A SELFIE WITH OUR SUPERSTAR AMBASSADOR KRYSTAL JUNG!!
-      </button>
-
-      <button id="pool-btn" class="CTA-btn">
-        TRY AHC SENSORIAL BRAIN MASSAGE. START YOUR THERAPY.
-      </button>
-
-      <button id="beauty-btn" class="CTA-btn">
-        WATCH AHC'S KOREAN AESTHETIC TUTORIALS HERE
-      </button>
-      <button id="orb-btn" class="CTA-btn">
-        FOUND OUT MORE
-      </button>
-
-    </div>
   </div>
-  <div class="audio-btn">
-    <img class="speaker-btn beigeBtn" id="mute-unmute-btn"
-      src="../shared/images/Speaker_Icon.svg"
-      alt="mute/unmute"/>
+
+  <div id="hover-container">
+    <div id="selfie-text" class="hover-text" style="display: none;">
+      <!-- Take a selfie with K-drama superstar Krystal Jung!! -->
+    </div>
+
+    <div id="pool-text" class="hover-text">
+
+    </div>
+    <div id="orb-text" class="hover-text">
+
+    </div>
+
+    <div id="beauty-text" class="hover-text">
+      <!-- Watch AHC's KOREAN AESTHETIC TUTORIALS here. -->
+    </div>
+
   </div>
-  <script type="text/javascript" src="scripts/scriptShared.js"></script>
-  </body>
+
+  <div id="buttons-container">
+    <button id="selfie-btn" class="CTA-btn">
+      TAKE A SELFIE WITH OUR SUPERSTAR AMBASSADOR KRYSTAL JUNG!!
+    </button>
+
+    <button id="pool-btn" class="CTA-btn">
+      TRY AHC SENSORIAL BRAIN MASSAGE. START YOUR THERAPY.
+    </button>
+
+    <button id="beauty-btn" class="CTA-btn">
+      WATCH AHC'S KOREAN AESTHETIC TUTORIALS HERE
+    </button>
+    <button id="orb-btn" class="CTA-btn">
+      FOUND OUT MORE
+    </button>
+
+  </div>
+</div>
+<div class="audio-btn">
+  <img class="speaker-btn beigeBtn" id="mute-unmute-btn"
+       src="../shared/images/Speaker_Icon.svg"
+       alt="mute/unmute"/>
+</div>
+<script type="text/javascript" src="scripts/scriptShared.js"></script>
+</body>
 
 </html>
