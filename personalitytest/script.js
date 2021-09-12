@@ -85,7 +85,7 @@ loadJSON(function(response) {
      languageID = 0
    }
    setLang(languageID)
-   setChinese();
+   setKorean();
 
    document.getElementById('en-btn').addEventListener('click', setEnglish)
    document.getElementById('ko-btn').addEventListener('click', setKorean)
