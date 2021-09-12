@@ -282,10 +282,25 @@ if(!pathIsLocal){
 if(url_params[url_params.length-1].indexOf('M') ===0 || url_params[url_params.length-1].indexOf('U') === 0){
 	console.log("starting at selfie");
 	startScenePos = 2
+  document.getElementById('question').style.display = "none"
+  document.getElementById('middleText').style.display = "none"
+  document.getElementById('start-btn').style.bottom = "45%"
 }
 
 document.getElementById("start-btn").addEventListener("click", function() {
 	document.getElementById("mute-unmute-btn").style.display="block"
+
+  document.getElementById("look-around").style.display="block"
+  document.getElementById("finger-icon").style.opacity=1
+
+  setTimeout(function(){
+    document.getElementById("finger-icon").style.opacity=0
+  }, 5000)
+
+  setTimeout(function(){
+    document.getElementById("look-around").style.display="none"
+  }, 6000)
+
 	if(selectedPersonality === 'fe'){
 		playAudio(leadingURL+'sounds/sfx/feeler.mp3')
 		orbVideoUrl = leadingURL+"video/orb/Feeler.V5.webm"

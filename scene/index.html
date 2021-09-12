@@ -100,13 +100,16 @@
     <div class="lds-ring" id="lds-ring"><div></div><div></div><div></div><div></div></div>
     <div id="beauty-treatment-overlay">
       <div class="ahc-logo" id = "ahc-logo-beauty"><img id="ahc-logo-beauty-img" src="UIAssets/AHCLOGO_white.png"></div>
-      <div id="beauty-title" class="quizquestion"><h2 class="beauty-treatment-title">CHOOSE YOUR <br> AHC KOREAN AESTHETIC TREATMENT</h2></div>
+      <div id="beauty-title" class="quizquestion"><h2 class="beauty-treatment-title" id="beauty-video-title">CHOOSE YOUR <br> AHC KOREAN AESTHETIC TREATMENT</h2></div>
       <div class="beauty-options-container">
-        <div class="beauty-options" id="beauty-vid-1"><img class="beauty-thumbnails" src="images/treatment1.jpg"></div>
-        <div class="beauty-options" id="beauty-vid-2"><img class="beauty-thumbnails" src="images/treatment2.jpg"></div>
-        <div class="beauty-options" id="beauty-vid-3"><img class="beauty-thumbnails" src="images/treatment3.jpg"></div>
+        <div class="beauty-options" id="beauty-vid-1"></div>
+        <div class="beauty-options" id="beauty-vid-2"></div>
+        <div class="beauty-options" id="beauty-vid-3"></div>
+        <!-- <div class="beauty-options" id="beauty-vid-2"><img class="beauty-thumbnails" src="images/treatment2.jpg"></div>
+        <div class="beauty-options" id="beauty-vid-3"><img class="beauty-thumbnails" src="images/treatment3.jpg"></div> -->
       </div>
-      <div id = "back-btn"><img id="back-btn-img" src="UIAssets/arrow_white_rotated.png"></div>
+      <div id = "back-btn">
+      </div>
     </div>
     <img id="close-btn" src="UIAssets/close.png">
     <div id="video_id">
@@ -180,7 +183,7 @@
   <div class="product" style="display: none;" id="product1">
 
     <div class="square">
-      <h2>Premium EX Hydra B5 Biome Capsule Concentrate</h2>
+      <h2 id="prod1-title">Premium EX Hydra B5 Biome Capsule Concentrate</h2>
       <img src="./UIAssets/just_product3.png">
     </div>
     <img id="close-product" src="UIAssets/close.png">
@@ -190,7 +193,7 @@
   <div class="product" style="display: none;" id="product2">
     <img id="close-product2" src="UIAssets/close.png">
     <div class="square">
-      <h2>Premium EX Hydra B5 Toner</h2>
+      <h2 id="prod2-title">Premium EX Hydra B5 Toner</h2>
       <img src="./UIAssets/just_product2.png">
     </div>
 
@@ -200,7 +203,7 @@
   <div  class="product" style="display: none;" id="product3">
     <img id="close-product3" src="UIAssets/close.png">
     <div class="square">
-      <h2>EFF Gold</h2>
+      <h2 id="prod3-title">EFF Gold</h2>
       <img src="./UIAssets/just_product1.png">
     </div>
 
@@ -274,6 +277,14 @@
   <img class="speaker-btn beigeBtn" id="mute-unmute-btn"
        src="../shared/images/Speaker_Icon.svg"
        alt="mute/unmute"/>
+</div>
+<div class="look-around-icon" id="look-around">
+  <img class="look-around-image" id="finger-icon"
+       src="images/finger-icon.png"
+       alt=""/>
+   <img class="look-around-image" id="phone-icon"
+        src="images/phone-icon.png"
+        alt=""/>
 </div>
 <script type="text/javascript" src="scripts/scriptShared.js"></script>
 </body>

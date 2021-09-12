@@ -170,7 +170,7 @@ video{
 .product {
   display: none;
   position: absolute;
-  height: 840px;
+  height: 1000px;
   width: 840px;
   font-family: inherit;
   transform: translate(-50%, -50%)scale(0.35);
@@ -604,7 +604,6 @@ video{
   width: 30%;
   margin: 0 auto;
 }
-
 
 #beauty-treatment-overlay {
   display: none;

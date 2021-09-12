@@ -86,12 +86,12 @@ function openSelfie(){
 
 function setLang(id){
   document.getElementById('share-btn').innerHTML = copyJSON.ShareWithFriend[id]
-  if(selectedPersonality.localeCompare("fe") === 0 || selectedPersonality.localeCompare("ex") === 0){
-    therapyOption = 0;
-    document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAExtrovertFeeler[id] +' '+ copyJSON.StartTherapyButton[id]
-  } else {
+  if(selectedPersonality.localeCompare("th") === 0 || selectedPersonality.localeCompare("in") === 0){
     therapyOption = 1;
     document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAIntrovertThinker[id] +' '+ copyJSON.StartTherapyButton[id]
+  } else {
+    therapyOption = 0;
+    document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAExtrovertFeeler[id] +' '+ copyJSON.StartTherapyButton[id]
   }
   document.getElementById('selfie-btn').innerHTML = copyJSON.TakeSelfieCTA[id]
   document.getElementById('beauty-btn').innerHTML = copyJSON.WatchAHCKBeauty[id]
@@ -99,6 +99,22 @@ function setLang(id){
   document.getElementById('productButton-1').innerHTML = copyJSON.FindOutMore[id]
   document.getElementById('productButton-2').innerHTML = copyJSON.FindOutMore[id]
   document.getElementById('productButton-3').innerHTML = copyJSON.FindOutMore[id]
+  document.getElementById('prod1-title').innerHTML = copyJSON.Product1[id]
+  document.getElementById('prod2-title').innerHTML = copyJSON.Product2[id]
+  document.getElementById('prod3-title').innerHTML = copyJSON.Product3[id]
+  document.getElementById('beauty-video-title').innerHTML = copyJSON.ChooseKoreanAesthetic[id]
+
+  var prodImageURL = ""
+  if(languageID == 2){
+    prodImageURL = "ZH"
+  } else if (languageID == 1){
+    prodImageURL = "KO"
+  }
+
+  document.getElementById('beauty-vid-1').innerHTML = "<img class=\"beauty-thumbnails\" src=\"images/treatment1" + prodImageURL+ ".jpg\">"
+  document.getElementById('beauty-vid-2').innerHTML = "<img class=\"beauty-thumbnails\" src=\"images/treatment2" + prodImageURL+ ".jpg\">"
+  document.getElementById('beauty-vid-3').innerHTML = "<img class=\"beauty-thumbnails\" src=\"images/treatment3" + prodImageURL+ ".jpg\">"
+  document.getElementById('back-btn').innerHTML = "<img id=\"back-btn-img\" src=\"UIAssets/arrow_white_rotated" + prodImageURL+ ".png\">"
 
   if(region === CHINA){
     document.getElementById('share-experience-title').innerHTML = copyJSON.SharePopUp[id]
@@ -135,6 +151,7 @@ loadJSON(function(response) {
 
 });
 
+var skipped = false;
 
 function LoadPage() {
   if(selectedPersonality === 'fe'){
@@ -155,12 +172,18 @@ function LoadPage() {
     spaText=copyJSON.Thinker[languageID]
     infoText=copyJSON.ThinkerExplanation[languageID]
     personiltyType = copyJSON.ThinkerHeadline[languageID]
-  }else{
+  }else if(selectedPersonality === 'ex'){
     imageurl ="../personalitytest/images/opt/arch2.webp";
     spaText=copyJSON.Extrovert[languageID]
     personiltyType = copyJSON.ExtrovertHeadline[languageID]
     spaText=copyJSON.Extrovert[languageID]
     infoText=copyJSON.ExtrovertExplanation[languageID]
+  } else {
+    imageurl ="../personalitytest/images/opt/arch5.webp";
+    spaText=copyJSON.Feeler[languageID]
+    personiltyType = copyJSON.FeelerHeadline[languageID]
+    infoText=copyJSON.FeelerExplanation[languageID]
+    skipped = true;
   }
   var personiltyTypeHtml = personiltyType;
   var element2 = document.getElementById("question")
@@ -186,7 +209,11 @@ function LoadPage() {
   var infoTextHtml = infoText;
   var element5 = document.getElementById("infoText")
   element5.innerHTML = infoTextHtml;
-
+  if(skipped){
+    document.getElementById('question').style.display = "none"
+    document.getElementById('middleText').style.display = "none"
+    document.getElementById('start-btn').style.bottom = "45%"  
+  }
   // document.getElementById("video2").innerHTML= "<source src=\"video/AHC-SPA-VIDEO.mp4\" type=\"video/mp4\" />"
 
 }
@@ -253,9 +280,9 @@ function openOrbVideo(){
       player.exitFullscreen();
       console.log("fullScreenClosed")
     }
-    // 
+    //
     // if(player.isFullscreen(true)){
-     
+
     // }
     document.getElementById('orb-text').style.opacity = 1;
     document.getElementById('orb-btn').style.opacity = 1;
@@ -333,8 +360,8 @@ function openTherapy(){
     closeVideo();
     if (this.isFullscreen()){
       player.exitFullscreen();
-     
-    }   
+
+    }
     document.getElementById('pool-text').style.opacity = 1;
     document.getElementById('pool-btn').style.opacity = 1;
     document.getElementById('pool-btn').style.pointerEvents = "auto";
@@ -401,8 +428,8 @@ function playVideo1(){
   player.on('ended', function () {
     if (this.isFullscreen()){
       player.exitFullscreen();
-     
-    }  
+
+    }
      document.getElementById('close-btn').style.display = 'none'
     document.getElementById('vid-1').style.display = 'none';
     document.getElementById('video_id').style.display = 'none';
@@ -470,8 +497,8 @@ function playVideo2(){
   player.on('ended', function () {
     if (this.isFullscreen()){
       player.exitFullscreen();
-     
-    } 
+
+    }
     document.getElementById('close-btn').style.display = 'none'
     document.getElementById('vid-2').style.display = 'none';
     document.getElementById('video_id').style.display = 'none';
@@ -537,8 +564,8 @@ function playVideo3(){
   player.on('ended', function () {
     if (this.isFullscreen()){
       player.exitFullscreen();
-     
-    } 
+
+    }
     document.getElementById('close-btn').style.display = 'none'
     document.getElementById('vid-3').style.display = 'none';
     document.getElementById('video_id').style.display = 'none';

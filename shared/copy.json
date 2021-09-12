@@ -24,6 +24,11 @@
     "건너뛰기",
     "跳过"
   ],
+  "Back":[
+    "Go Back",
+    "돌아가다",
+    "回去"
+  ],
   "SensorsPermission":[
     "THIS EXPERIENCE NEEDS TO ACCESS TO YOUR DEVICE'S ORIENTATION SENSORS.",
     "원활한 서비스 이용을 위해 방향센서 접근 권한을 요청합니다",
@@ -131,7 +136,7 @@
   ],
   "TakeSelfieCTA":[
     "TAKE A SELFIE WITH OUR SUPERSTAR AMBASSADOR<br> KRYSTAL JUNG!",
-    "AHC의 앰버서더 크리스탈과 셀카를 찍어보세요!",
+    "AHC의 앰버서더 크리스탈과<br> 셀카를 찍어보세요!",
     "与韩国巨星Krystal郑秀晶合影吧！"
   ],
   "TakeSelfieBtn":[
@@ -166,12 +171,12 @@
   ],
   "SensorialCTAExtrovertFeeler":[
     "TRY AHC COLOR THERAPY",
-    "컬러 테라피로 에너지를 충전해보세요",
+    "컬러 테라피로<br> 에너지를 충전해보세요",
     "尝试AHC色彩肌疗法"
   ],
   "SensorialCTAIntrovertThinker":[
     "TRY AHC SENSORIAL THERAPY",
-    "디지털 스파 테라피로 안정을 취해보세요",
+    "디지털 스파 테라피로 <br>안정을 취해보세요",
     "尝试AHC脑电波肌疗法"
   ],
   "StartTherapyButton":[
@@ -186,12 +191,33 @@
   ],
   "WatchAHCKBeauty":[
     "WATCH AHC'S KOREAN AESTHETIC TUTORIALS HERE.",
-    "튜토리얼을 통해 K-뷰티 사용법을 확인해보세요!",
+    "튜토리얼을 통해<br> K-뷰티 사용법을 확인해보세요!",
     "观看AHC肌疗美肤私教课"
   ],
+  "ChooseKoreanAesthetic":[
+    "CHOOSE YOUR <br> AHC KOREAN AESTHETIC TREATMENT",
+    "",
+    ""
+  ],
+  "Product1":[
+    "Premium EX Hydra B5 Biome Capsule Concentrate",
+    "프리미엄 EX 하이드라 B5 바이옴 캡슐 컨센트레이트",
+    "专研B5玻尿酸水盈修护肌底精华"
+  ],
+  "Product2":[
+    "Premium EX Hydra B5 Toner",
+    "프리미엄 EX 하이드라 B5 토너",
+    "专研B5玻尿酸水盈柔肤水"
+  ],
+  "Product3":[
+    "Age Defense Real Eye Cream For Face",
+    "에이지 디펜스 리얼 아이크림 포 페이스",
+    "大长金全脸眼霜"
+  ],
+
   "FindOutMore":[
     "FIND OUT MORE",
-    "AHC 제품 둘러보기",
+    "더 알아보기",
     "探索更多精彩"
   ],
   "Krystal":[

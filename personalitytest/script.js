@@ -233,8 +233,10 @@ function showProgress() {
   }
   document.getElementById('btnCSS2').style.display = 'block';
   document.getElementById('skipLinkScene').addEventListener('click', function(e) {
-    console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[2]);
-    window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[2]+'-'+mutedString;
+    console.log("navigating to " + copyJSON.code[languageID]+'-skipped');
+    window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+'skipped'+'-'+mutedString;
+    // alert("236")
+
   })
 };
 var personiltyType;
@@ -300,6 +302,8 @@ function showScores() {
   // element5.innerHTML = infoTextHtml;
 
   window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[currState]+'-'+mutedString;
+  // alert("306")
+
   // document.getElementById('start-btn').addEventListener('click', function(e) {
   //   console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[currState]);
   //
@@ -502,8 +506,9 @@ function endVideo(){
   document.getElementById('btnCSS2').style.display = 'block';
   setTimeout(function(){
     document.getElementById('skipLinkScene').addEventListener('click', function(e) {
-      console.log("navigating to " + copyJSON.code[languageID]+'-'+personalityTypes[2]);
-      window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+personalityTypes[2]+'-'+mutedString;
+      console.log("navigating to " + copyJSON.code[languageID]+'-skipped');
+      // alert("506")
+      window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+'skipped'+'-'+mutedString;
     })
   }, 500);
 

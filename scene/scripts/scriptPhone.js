@@ -269,11 +269,25 @@ var startScenePos = 0
 var dragOrb,dragBilboard, dragTherapy
 if(url_params[url_params.length-1].indexOf('M') ===0 || url_params[url_params.length-1].indexOf('U') === 0){
 	console.log("starting at selfie");
+
+  document.getElementById('question').style.display = "none"
+  document.getElementById('middleText').style.display = "none"
+  document.getElementById('start-btn').style.bottom = "45%"
 	startScenePos = 2
 }
 
 document.getElementById("start-btn").addEventListener("click", function() {
-	document.getElementById("mute-unmute-btn").style.display="block"
+  document.getElementById("mute-unmute-btn").style.display="block"
+  document.getElementById("look-around").style.display="block"
+  document.getElementById("phone-icon").style.opacity=1
+
+  setTimeout(function(){
+    document.getElementById("phone-icon").style.opacity=0
+  }, 5000)
+
+  setTimeout(function(){
+    document.getElementById("look-around").style.display="none"
+  }, 6000)
 
 	console.log("clicked")
 
