@@ -9,6 +9,7 @@ console.log("test");
 
 var personalityTypes = ["extrovert", "introvert", "feeler", "thinker"]
 
+
 function loadJSON(callback) {
    var xobj = new XMLHttpRequest();
    xobj.overrideMimeType("application/json");
@@ -51,6 +52,10 @@ function setLang(id){
   document.getElementById('question').innerHTML = copyJSON.PersonalityTestTitle[id]
   document.getElementById('personality2').innerHTML = copyJSON.PersonalityTest[id]
   document.getElementById('tandc').innerHTML = copyJSON.PrivacyPolicy[id]
+  document.getElementById('subtitles').innerHTML = copyJSON.Subtitles1[id]
+  document.getElementById('krystal-name').innerHTML = copyJSON.Krystal[id]
+  document.getElementById('krystal-title').innerHTML = copyJSON.BrandAmbassador[id]
+
   document.documentElement.lang = copyJSON.code[id];
 
   questions = [
@@ -80,6 +85,8 @@ loadJSON(function(response) {
      languageID = 0
    }
    setLang(languageID)
+   setChinese();
+
    document.getElementById('en-btn').addEventListener('click', setEnglish)
    document.getElementById('ko-btn').addEventListener('click', setKorean)
    document.getElementById('zh-btn').addEventListener('click', setChinese)
@@ -410,13 +417,22 @@ else {
 // window.addEventListener('DOMContentLoaded', (event) => {
 //
 // });
-
+var flag = false
 function onDOMLoaded(){
   console.log("Dom Loaded");
   document.getElementById('controlsIntro').style.opacity = 1;
+
+
   // document.getElementById('video-element-container').innerHTML = "<video playsInline  id=\"firstVideo\"> <source src=\"personalitytest/videos/Spa_Zoom_8mbps_37.mp4\" type=\"video/mp4\"></video>";
   // CDN Video link d2c33fbhlldtf9.cloudfront.net
   document.getElementById('video-element-container').innerHTML = "<video playsInline  id=\"firstVideo\"> <source setsrc=\"personalitytest/videos/Spa_Zoom_8mbps_37.mp4\" src=\"https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/personalitytest/videos/introV27_q35.mp4\" type=\"video/mp4\"></video>";
+  document.getElementById("firstVideo").onplaying = function() {
+    console.log("video is playing")
+    document.getElementById('black-screen').style.animation="reverseOpacity 1s ease-in-out forwards";
+    setTimeout(function(){
+      document.getElementById('black-screen').style.display="none"
+    }, 1000)
+  };
 
   document.getElementById('firstVideo').addEventListener("ended",function(){
     setTimeout(function(){
@@ -428,6 +444,7 @@ function onDOMLoaded(){
 
 
 document.getElementById('start-btnIntro').addEventListener('click', function(e) {
+  document.getElementById('black-screen').style.display="block";
   document.getElementById('firstVideo').style.display="block";
   document.getElementById('language').style.display="none";
   document.getElementById('skipButton').style.display="flex";
@@ -435,8 +452,42 @@ document.getElementById('start-btnIntro').addEventListener('click', function(e) 
   document.getElementById('controlsIntro').style.display = "none";
   document.getElementById('mute-unmute-btn').style.display="block";
   document.getElementById('firstVideo').play();
+  document.getElementById('krystal-name').style.display="block";
+  document.getElementById('krystal-title').style.display="block";
+  runSubtitles();
   console.log("video played");
  });
+
+ function runSubtitles(){
+   setTimeout(function(){
+
+    document.getElementById('krystal-name').style.opacity=1;
+    document.getElementById('krystal-title').style.opacity=1;
+
+     document.getElementById('subtitles').style.display="block";
+     document.getElementById('subtitles').innerHTML = copyJSON.Subtitles1[languageID]
+   }, 8500);
+   setTimeout(function(){
+     document.getElementById('subtitles').innerHTML = copyJSON.Subtitles2[languageID]
+   }, 11000);
+   setTimeout(function(){
+    document.getElementById('krystal-name').style.opacity=0;
+    document.getElementById('krystal-title').style.opacity=0;
+     document.getElementById('subtitles').innerHTML = copyJSON.Subtitles3[languageID]
+   }, 19000);
+   setTimeout(function(){
+      document.getElementById('krystal-name').style.display="none";
+      document.getElementById('krystal-title').style.display="none";
+      document.getElementById('subtitles').innerHTML = copyJSON.Subtitles4[languageID]
+   }, 26000);
+   setTimeout(function(){
+     document.getElementById('subtitles').innerHTML = copyJSON.Subtitles5[languageID]
+   }, 29000);
+   setTimeout(function(){
+     document.getElementById('subtitles').innerHTML = copyJSON.Subtitles6[languageID]
+   }, 32000);
+
+ }
 
 
 document.getElementById('skipLink').addEventListener('click', endVideo)

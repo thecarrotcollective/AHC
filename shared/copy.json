@@ -16,7 +16,7 @@
   ],
   "PrivacyPolicy":[
     "BY CLICKING \"START YOUR JOURNEY!\"<br> YOU AGREE TO OUR <a class=\"links\" href=\"legal/privacy.html\">PRIVACY POLICY</a>",
-    "시작하기 버튼을 누르면 <br><a class=\"links\" href=\"legal/privacy.html\">개인정보보호방침</a>에 동의하게 됩니다",
+    "시작하기 버튼을 누르면 <br><a class=\"links\" href=\"legal/privacy-ko.html\">개인정보보호방침</a>에 동의하게 됩니다",
     "<a class=\"links\" href=\"legal/privacy-cn.html\">智能测肤隐私政策</a>"
   ],
   "Skip":[
@@ -193,5 +193,45 @@
     "FIND OUT MORE",
     "AHC 제품 둘러보기",
     "探索更多精彩"
+  ],
+  "Krystal":[
+    "KRYSTAL JUNG",
+    "크리스탈",
+    "郑秀晶"
+  ],
+  "BrandAmbassador":[
+    "BRAND AMBASSADOR ",
+    "AHC의 앰버서더 ",
+    ""
+  ],
+  "Subtitles1":[
+    "Welcome to the AHC Virtual Spa! I am Krystal Jung, ",
+    "안녕하세요, 크리스탈입니다. ",
+    "Hello~我是郑秀晶"
+  ],
+  "Subtitles2":[
+    "and I'm happy to introduce you to the world's first ever virtual spa, presented to you by AHC, the #1 aesthetic care brand in Korea.",
+    "대한민국 1위 에스테틱케어 브랜드 AHC가 마련한 세계 최초 버츄얼 스파를 소개해드립니다.",
+    "很高兴在韩国第一院线护肤品牌AHC的美肤SPA与你相遇！"
+  ],
+  "Subtitles3":[
+    "Since you're here at Gangnam, I would like to ask you one of the most popular questions Koreans love to ask each other! ",
+    "스파에 입장하시기 전, 한 가지 질문을 드리겠습니다.",
+    "先做个小测试"
+  ],
+  "Subtitles4":[
+    "What is your personality type?",
+    "여러분은 어떤 성향의 소유자인가요? ",
+    "然后尽情享受我们为你量身定制的美肤之旅吧！"
+  ],
+  "Subtitles5":[
+    "We'll lead you to our spa designed specially for your type.  ",
+    "여러분의 성향에 맞춰 디자인된 스파로 안내해드리겠습니다. ",
+    "然后尽情享受我们为你量身定制的美肤之旅吧！"
+  ],
+  "Subtitles6":[
+    "Enjoy! ",
+    "즐거운 시간 보내세요!",
+    "然后尽情享受我们为你量身定制的美肤之旅吧！"
   ]
 }

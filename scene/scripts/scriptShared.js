@@ -205,6 +205,7 @@ document.getElementById('orb-btn').addEventListener("click", openOrbVideo);
 
 function openOrbVideo(){
   document.getElementById('orb-vid').style.display = 'block';
+  document.getElementById('beauty-treatment-overlay').style.display = "none"
   document.getElementById('vid-2').style.display = "none"
   document.getElementById('vid-1').style.display = "none"
   document.getElementById('vid-3').style.display = "none"
@@ -248,9 +249,14 @@ function openOrbVideo(){
 
   player.on('ended', function () {
     closeVideo();
-    if(player.isFullscreen(false)){
+    if (this.isFullscreen()){
       player.exitFullscreen();
+      console.log("fullScreenClosed")
     }
+    // 
+    // if(player.isFullscreen(true)){
+     
+    // }
     document.getElementById('orb-text').style.opacity = 1;
     document.getElementById('orb-btn').style.opacity = 1;
     document.getElementById('orb-btn').style.pointerEvents = "auto";
@@ -325,9 +331,11 @@ function openTherapy(){
 
   player.on('ended', function () {
     closeVideo();
-    if(player.isFullscreen(false)){
+    if (this.isFullscreen()){
       player.exitFullscreen();
-    }    document.getElementById('pool-text').style.opacity = 1;
+     
+    }   
+    document.getElementById('pool-text').style.opacity = 1;
     document.getElementById('pool-btn').style.opacity = 1;
     document.getElementById('pool-btn').style.pointerEvents = "auto";
   })
@@ -391,9 +399,11 @@ function playVideo1(){
 
   }, 50)
   player.on('ended', function () {
-    if(player.isFullscreen(false)){
+    if (this.isFullscreen()){
       player.exitFullscreen();
-    }    document.getElementById('close-btn').style.display = 'none'
+     
+    }  
+     document.getElementById('close-btn').style.display = 'none'
     document.getElementById('vid-1').style.display = 'none';
     document.getElementById('video_id').style.display = 'none';
     videojs('#vid-1').reset()
@@ -458,9 +468,11 @@ function playVideo2(){
 
 
   player.on('ended', function () {
-    if(player.isFullscreen(false)){
+    if (this.isFullscreen()){
       player.exitFullscreen();
-    }    document.getElementById('close-btn').style.display = 'none'
+     
+    } 
+    document.getElementById('close-btn').style.display = 'none'
     document.getElementById('vid-2').style.display = 'none';
     document.getElementById('video_id').style.display = 'none';
     videojs('#vid-2').reset()
@@ -523,9 +535,11 @@ function playVideo3(){
   }, 50)
   // document.getElementById('vid-3').addEventListener("ended",closeVideo);
   player.on('ended', function () {
-    if(player.isFullscreen(false)){
+    if (this.isFullscreen()){
       player.exitFullscreen();
-    }    document.getElementById('close-btn').style.display = 'none'
+     
+    } 
+    document.getElementById('close-btn').style.display = 'none'
     document.getElementById('vid-3').style.display = 'none';
     document.getElementById('video_id').style.display = 'none';
     videojs('#vid-3').reset()

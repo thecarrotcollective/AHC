@@ -58,7 +58,69 @@ body {
 a {
   color: inherit;
 }
+#black-screen{
+  display: none;
+  position: absolute;
+  height: 100%;
+  width:100%;
+  background-color: black;
+  z-index: 1;
+  opacity: 1;
+}
 
+#krystal-name{
+  display: none;
+  opacity: 0;
+  font-size: 2em;
+  position: absolute;
+  bottom: 19%;
+  left:50%;
+  transform: translate(-50%, 0%);
+  transition: all 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
+}
+
+#krystal-title{
+  opacity: 0;
+  display: none;
+  position: absolute;
+  bottom: 16%;
+  left:50%;
+  transform: translate(-50%, 0%);
+  transition: all 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
+}
+
+#subtitles {
+  display: none;
+  position: absolute;
+  bottom: 24%;
+  left:50%;
+  transform: translate(-50%, 0%);
+  background-color: rgba(0,0,0,0.5);
+  padding: 1em;
+  border-radius: 1em;
+}
+
+@keyframes reverseOpacity {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes Opacity {
+  0% {
+
+
+    opacity: 0;
+  }
+
+  100% {
+
+    opacity: 1;
+  }
+}
 #IntroDiv{
   position: fixed;
   display: block;
@@ -99,6 +161,7 @@ a {
 }
 
 .audio-btn{
+
   position: absolute;
   right: 50px;
   top: 50px;
@@ -509,6 +572,9 @@ a {
 
 /* phone */
 @media(max-width: 999px){
+  #subtitles {
+    width: 80%;
+  }
 }
 
 /* desktop / landscape */
