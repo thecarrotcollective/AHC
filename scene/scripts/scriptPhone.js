@@ -23,28 +23,28 @@ var JAPAN = 3
 var region =  CHINA;
 
 fetch('https://extreme-ip-lookup.com/json/')
-    .then(res => res.json())
-    .then(response => {
-      code =  response.countryCode
-      console.log("Country: ", response.countryCode);
-      if (code.localeCompare('CN') === 0) {
-        region =  CHINA;
-      } else if (code.localeCompare('KR') === 0) {
-        region =  KOREA;
-      } else if (code.localeCompare('TW') === 0) {
-        region =  TAIWAN;
-      } else if (code.localeCompare('JP') === 0) {
-        region =  JAPAN;
-      } else {
-        region =  CHINA;
-      }
-      console.log("region set to " + region);
-    })
-    .catch((data, status) => {
-      console.log('Request failed');
-      region =  CHINA;
-      console.log("region set failed");
-    })
+	.then(res => res.json())
+	.then(response => {
+		code =  response.countryCode
+		console.log("Country: ", response.countryCode);
+		if (code.localeCompare('CN') === 0) {
+			region =  CHINA;
+		} else if (code.localeCompare('KR') === 0) {
+			region =  KOREA;
+		} else if (code.localeCompare('TW') === 0) {
+			region =  TAIWAN;
+		} else if (code.localeCompare('JP') === 0) {
+			region =  JAPAN;
+		} else {
+			region =  CHINA;
+		}
+		console.log("region set to " + region);
+	})
+	.catch((data, status) => {
+		console.log('Request failed');
+		region =  CHINA;
+		console.log("region set failed");
+	})
 
 
 
@@ -164,8 +164,8 @@ console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
 if(selectedPersonality === 'fe'){
 	// if(region === CHINA || )
-	// orbVideoUrl = "video/orb/Feeler.V5.mp4"
-	orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Feeler.V5.mp4"
+	orbVideoUrl = "video/orb/Feeler.V5.mp4"
+	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Feeler.V5.mp4"
 	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
 	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
@@ -179,8 +179,8 @@ if(selectedPersonality === 'fe'){
 	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0009.jpg"
 
 }else if(selectedPersonality === 'in'){
-	// orbVideoUrl = "video/orb/Introvert.V5.mp4"
-	orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Introvert.V5.mp4"
+	orbVideoUrl = "video/orb/Introvert.V5.mp4"
+	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Introvert.V5.mp4"
 	sceneUrl0 ="scenes/INTROVERT/INTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/INTROVERT/INTRO_CUBEMAP_0010.jpg"
 	sceneUrl2 ="scenes/INTROVERT/INTRO_CUBEMAP_0001.jpg"
@@ -195,8 +195,8 @@ if(selectedPersonality === 'fe'){
 }
 else if(selectedPersonality === 'th'){
 
-	// orbVideoUrl = "video/orb/Thinker.V5.mp4"
-	orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Thinker.V5.mp4"
+	orbVideoUrl = "video/orb/Thinker.V5.mp4"
+	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Thinker.V5.mp4"
 	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
 	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
@@ -209,8 +209,8 @@ else if(selectedPersonality === 'th'){
 	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
 }else{
-	// orbVideoUrl = "video/orb/Extrovert.V5.mp4"
-	orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Extrovert.V5.mp4"
+	orbVideoUrl = "video/orb/Extrovert.V5.mp4"
+	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Extrovert.V5.mp4"
 	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0010.jpg"
 	sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0001.jpg"
@@ -265,51 +265,62 @@ var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
 
+
+var pathIsLocal =  (url.includes("localh") || region === CHINA)
+console.log("path is local? " + pathIsLocal);
+
+var leadingURL = ""
+
+if(!pathIsLocal){
+	leadingURL = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/"
+	console.log(leadingURL);
+}
+
 var startScenePos = 0
 var dragOrb,dragBilboard, dragTherapy
 if(url_params[url_params.length-1].indexOf('M') ===0 || url_params[url_params.length-1].indexOf('U') === 0){
 	console.log("starting at selfie");
 
-  document.getElementById('question').style.display = "none"
-  document.getElementById('middleText').style.display = "none"
-  document.getElementById('start-btn').style.bottom = "45%"
+	document.getElementById('question').style.display = "none"
+	document.getElementById('middleText').style.display = "none"
+	document.getElementById('start-btn').style.bottom = "45%"
 	startScenePos = 2
 }
 
 document.getElementById("start-btn").addEventListener("click", function() {
-  document.getElementById("mute-unmute-btn").style.display="block"
-  document.getElementById("look-around").style.display="block"
-  document.getElementById("phone-icon").style.opacity=1
+	document.getElementById("mute-unmute-btn").style.display="block"
+	document.getElementById("look-around").style.display="block"
+	document.getElementById("phone-icon").style.opacity=1
 
-  setTimeout(function(){
-    document.getElementById("phone-icon").style.opacity=0
-  }, 5000)
+	setTimeout(function(){
+		document.getElementById("phone-icon").style.opacity=0
+	}, 5000)
 
-  setTimeout(function(){
-    document.getElementById("look-around").style.display="none"
-  }, 6000)
+	setTimeout(function(){
+		document.getElementById("look-around").style.display="none"
+	}, 6000)
 
 	console.log("clicked")
 
 	if(selectedPersonality == 'fe'){
 
-		// playAudio('sounds/sfx/feeler.mp3')
-		playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/feeler.mp3')
+		playAudio('sounds/sfx/feeler.mp3')
+		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/feeler.mp3')
 
 
 
 	}else if(selectedPersonality == 'in'){
-		// playAudio('sounds/sfx/introvert.mp3')
-		playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/introvert.mp3')
+		playAudio('sounds/sfx/introvert.mp3')
+		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/introvert.mp3')
 
 	}
 	else if(selectedPersonality == 'th'){
-		// playAudio('sounds/sfx/thinker.mp3')
-		playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/thinker.mp3')
+		playAudio('sounds/sfx/thinker.mp3')
+		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/thinker.mp3')
 
 	}else{
-		// playAudio('sounds/sfx/extrovert.mp3')
-		playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/extrovert.mp3')
+		playAudio('sounds/sfx/extrovert.mp3')
+		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/extrovert.mp3')
 
 	}
 
@@ -1322,8 +1333,9 @@ function init() {
 	orbVideo.loop = false;
 
 	orbVideoMask = document.createElement('video');
-	orbVideoMask.setsrc = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Orb.Alpha.V8.mp4";
-	orbVideoMask.src = "video/orb/Orb.Alpha.V8.mp4";
+	// orbVideoMask.setsrc = "video/orb/Orb.Alpha.V8.mp4";
+	// orbVideoMask.src = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Orb.Alpha.V8.mp4";
+	orbVideoMask.src = leadingURL+"video/orb/Orb.Alpha.V8.mp4";
 	orbVideoMask.muted = true;
 	orbVideoMask.playsInline = true;
 	orbVideoMask.loop = true;
@@ -1338,8 +1350,10 @@ function init() {
 	//***********************VIDEO1********************
 	videoPlane = new THREE.PlaneGeometry( 16, 9 );
 	video = document.createElement('video');
-	video.setsrc = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideo.mp4"; // Set video address
 	video.src = "video/sceneVideo.mp4"; // Set video address
+	// video.src = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideo.mp4"; // Set video address
+	// video.src = leadingURL+"video/sceneVideo.mp4"; // Set video address
+
 	video.setAttribute("id", "videoScene");
 	video.preload = true
 	video.playsInline = true;
@@ -1347,8 +1361,9 @@ function init() {
 	video.loop = true;
 
 	video2 = document.createElement('video');
-	video2.setsrc = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideoAlpha.mp4";
 	video2.src = "video/sceneVideoAlpha.mp4";
+	// video2.src = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideoAlpha.mp4";
+	// video.src = leadingURL+"video/sceneVideoAlpha.mp4"; // Set video address
 	video2.setAttribute("id", "videoSceneAlpha1");
 
 
@@ -1356,8 +1371,9 @@ function init() {
 	video2.loop = true;
 	video2.playsInline = true;
 	video3 = document.createElement('video');
-	video3.setsrc = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideoAlpha3.mp4";
 	video3.src = "video/sceneVideoAlpha3.mp4";
+	// video3.src = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideoAlpha3.mp4";
+	// video.src = leadingURL+"video/sceneVideoAlpha3.mp4"; // Set video address
 	video3.setAttribute("id", "videoSceneAlpha2");
 
 	video3.muted = true;
@@ -1376,8 +1392,10 @@ function init() {
 	// ***********************VIDEO2********************
 	videoMeshBottleScene = new THREE.PlaneGeometry( 9, 16 );
 	bilboardVideo  = document.createElement('video');
-	bilboardVideo.setsrc = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/K-BeautyTreatmentAreaKrystalLogo-1.mp4"; // Set video address
-	bilboardVideo.src = "video/K-BeautyTreatmentAreaKrystalLogo-1.mp4"; // Set video address
+	// bilboardVideo.setsrc = "video/K-BeautyTreatmentAreaKrystalLogo-1.mp4"; // Set video address
+	// bilboardVideo.src = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/K-BeautyTreatmentAreaKrystalLogo-1.mp4"; // Set video address
+	bilboardVideo.src = leadingURL+"video/K-BeautyTreatmentAreaKrystalLogo-1.mp4"; // Set video address
+
 	bilboardVideo.playsInline = true;
 	bilboardVideo.muted = true;
 	bilboardVideo.loop = true;
@@ -1520,15 +1538,15 @@ player.on('ended', function () {
 
 var player1 = videojs('#vid-1');
 player1.on('ended', function () {
-  volumeUp()
+	volumeUp()
 })
 var player2 = videojs('#vid-2');
 player2.on('ended', function () {
-  volumeUp()
+	volumeUp()
 })
 var player4 = videojs('#vid-3');
 player4.on('ended', function () {
-  volumeUp()
+	volumeUp()
 })
 var player3 = videojs('#orb-vid');
 player3.on('ended', function () {
