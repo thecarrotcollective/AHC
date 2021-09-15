@@ -24,6 +24,35 @@ video{
   transform: translateY(-50%); */
 }
 
+.privacy{
+  display: none;
+  background-color: #fff;
+  color: black;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.policy-content{
+  padding:2em;
+}
+
+.back-btn{
+  padding-left:2em;
+}
+
+#privacy-link{
+  font-size: 0.7em;
+  padding: 1em;
+}
+
+#privacy-btn{
+  background-color: rgba(0,0,0,0);
+  border: none;
+}
 
 @keyframes glow {
   0% {
@@ -235,6 +264,54 @@ video{
   font-weight: 700;
   /* border: 0.3rem solid transparent; */
   border-radius: 6rem;
+}
+#copied-button1{
+  /* display: none; */
+  /* height: 100%; */
+  width: 90%;
+  z-index: 32;
+  position: absolute;
+  top: 77.5%;
+  font-family: inherit;
+  padding: 0% 5%;
+  font-size: 2.75em;
+  color: rgb(0, 0, 0);
+  position: absolute;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+#copied-button2{
+  display: none;
+  /* height: 100%; */
+  width: 90%;
+  z-index: 32;
+  position: absolute;
+  top: 77.5%;
+  font-family: inherit;
+  padding: 0% 5%;
+  font-size: 2.75em;
+  color: rgb(0, 0, 0);
+  position: absolute;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+#copied-button3{
+  display: none;
+  /* height: 100%; */
+  width: 90%;
+  z-index: 32;
+  position: absolute;
+  top: 77.5%;
+  font-family: inherit;
+  padding: 0% 5%;
+  font-size: 2.75em;
+  color: rgb(0, 0, 0);
+  position: absolute;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.5s;
 }
 
 #overlay {

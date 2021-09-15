@@ -303,17 +303,17 @@ document.getElementById("start-btn").addEventListener("click", function() {
 
 	if(selectedPersonality === 'fe'){
 		playAudio(leadingURL+'sounds/sfx/feeler.mp3')
-		orbVideoUrl = leadingURL+"video/orb/Feeler.V5.webm"
+		orbVideoUrl = leadingURL+"video/orb/Feeler.V5.mp4"
 	}else if(selectedPersonality === 'in'){
 		playAudio(leadingURL+'sounds/sfx/introvert.mp3')
-		orbVideoUrl = leadingURL+"video/orb/Introvert.V5.webm"
+		orbVideoUrl = leadingURL+"video/orb/Introvert.V5.mp4"
 	}
 	else if(selectedPersonality === 'th'){
 		playAudio(leadingURL+'sounds/sfx/thinker.mp3')
-		orbVideoUrl = leadingURL+"video/orb/Thinker.V5.webm"
+		orbVideoUrl = leadingURL+"video/orb/Thinker.V5.mp4"
 	}else{
 		playAudio(leadingURL+'sounds/sfx/extrovert.mp3')
-		orbVideoUrl = leadingURL+"video/orb/Extrovert.V5.webm"
+		orbVideoUrl = leadingURL+"video/orb/Extrovert.V5.mp4"
 	}
 	console.log("clicked")
 	init();
@@ -330,6 +330,7 @@ document.getElementById("start-btn").addEventListener("click", function() {
 		envLoad(sceneUrl10)
 	}
 	loadSounds()
+	videoManager.itemStart( leadingURL+"video/sceneVideo.mp4" );
 	renderer.autoclear = false;
 	// TweenFadeInForVideos(videoMat)
 	// checkTheVideoLoad()
@@ -567,7 +568,7 @@ function init() {
 		}
 		if(currState === INTRO){
 
-			videoManager.itemStart( leadingURL+"video/sceneVideo.mp4" );
+			
 
 			video.currentTime = 0;
 			video2.currentTime = 0;
@@ -677,6 +678,7 @@ function init() {
 		}
 
 		if(currState === SELFIE){
+			
 			video.currentTime = 0;
 			video2.currentTime = 0;
 			console.log("selfie scene runned")
@@ -2065,6 +2067,26 @@ function clickTrigger(){
 				document.getElementById('orb-btn').click();
 				orbClickable = false
 			}
+		}
+		if ( intersectsRoomVideoPlay.length > 0 &&   currState == INTRO) {
+			setTimeout(function(){
+				envLoad(sceneUrl9)
+				currState = POOL
+
+			}, 500)
+
+			DisableEverything()
+
+		}
+		if ( intersectsMultipleVideo.length > 0 && currState == COUCH ) {
+			console.log("VIDEO ROOM SCENE - 1")
+
+			setTimeout(function(){
+				envLoad(sceneUrl6)
+				currState = BEAUTY
+			}, 500);
+
+			DisableEverything()
 		}
 
 

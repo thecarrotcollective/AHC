@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preload" href="video/sceneVideo.mp4" as="video" type="video/mp4">
-  <!--  <link crossorigin="anonymous" rel="preload" href="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideo.mp4" as="video" type="video/mp4">-->
+<!--  <link crossorigin="anonymous" rel="preload" href="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/sceneVideo.mp4" as="video" type="video/mp4">-->
   <!--      <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />-->
   <link href="styles/video-js.css" rel="stylesheet" />
   <!--      <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet"/>-->
@@ -188,6 +188,8 @@
     </div>
     <img id="close-product" src="UIAssets/close.png">
     <button id="productButton-1" class="btn" >SHOP NOW</button>
+    <!-- MITHRU HERE IS THE TEXT -->
+    <h2 id="copied-button1" style="display: none;">Link copied. Open it in a browser</h2>
   </div>
 
   <div class="product" style="display: none;" id="product2">
@@ -198,6 +200,8 @@
     </div>
 
     <button id="productButton-2" class="btn">SHOP NOW</button>
+       <!-- MITHRU HERE IS THE TEXT -->
+    <h2 id="copied-button2">Link copied. Open it in a browser</h2>
   </div>
 
   <div  class="product" style="display: none;" id="product3">
@@ -208,6 +212,8 @@
     </div>
 
     <button id="productButton-3"  class="btn">SHOP NOW</button>
+       <!-- MITHRU HERE IS THE TEXT -->
+    <h2 id="copied-button3">Link copied. Open it in a browser</h2>
   </div>
 
 
@@ -228,11 +234,12 @@
                 type="tel"
                 id="phone"
                 name="phone"
-                placeholder="+86 139 1099 8888"
+                placeholder="+86 100 0000 0000"
                 pattern="[0-9]{1,18}">
         <br><br>
         <button id="share-submit" type="button">SHARE</button>
       </form>
+      <div id="privacy-link"></div>
     </div>
 
   </div>
@@ -282,11 +289,204 @@
   <img class="look-around-image" id="finger-icon"
        src="images/finger-icon.png"
        alt=""/>
-  <img class="look-around-image" id="phone-icon"
-       src="images/phone-icon.png"
-       alt=""/>
+   <img class="look-around-image" id="phone-icon"
+        src="images/phone-icon.png"
+        alt=""/>
 </div>
+<div class="privacy" id="privacy-cn">
+  <div id="back-cn" class="back-btn"><h2><a class="links blackClr">回去</a></h2>  <hr></div>
+  <div class="policy-content">
+    <h1>智能测肤隐私政策 </h1>
+
+    <h2> 引言 </h2>
+    <p>上海科浡化妆品有限公司（以下简称为“我们”）尊重并保护所有使用智能测肤服务用户的个人隐私权。为同时给您提供更准确、有个性化的服务和更安全的互联网环境，我们依据相关法律法规和技术规范制定本隐私政策。
+  本政策与您所使用的我们的产品与/或服务息息相关，注册、登录、使用我们的产品与/或服务（以下统称“使用我们的产品与/或服务”）时，我们将按照本政策的约定处理和保护您的个人信息。我们尽量以简明扼要的表述向您解释本政策所涉及的技术词汇，以便于您理解。
+  <b>本政策中与您权益（可能）存在重大关系的条款，我们已使用加粗字体予以区别，请您重点查阅。</b>
+    </p>
+    <p><b>特别提请未满18周岁的未成年（特别是未满十四周岁的儿童）及其监护人的注意，我们已使用加粗字体标注未成年人个人信息的相关的条款，请您仔细阅读。</b></p>
+  <p>请在使用/继续使用我们的各项产品与服务前，仔细阅读并充分理解本政策，并在需要时，按照本政策的指引，作出适当的选择。如果您不同意本政策的内容，将可能导致我们的产品与/或服务无法正常运行，或者无法达到我们拟达到的服务效果，您应立即停止访问/使用我们的产品与/或服务。您使用或继续使用我们提供的产品与/或服务的行为，都表示您充分理解和同意本《智能测肤隐私政策》（包括更新版本）的全部内容。</p>
+
+
+    <h2>一、信息收集范围 </h2>
+    <p>我们会遵循正当、合法、必要的原则，出于本政策所述的以下目的，收集和使用您在使用我们服务过程中主动提供或因使用我们产品和/或服务而产生的个人信息。如果我们要将您的个人信息用于本政策未载明的其它用途，或基于特定目的将收集而来的信息用于其他目的，我们将以合理的方式向您告知，并在使用前再次征得您的同意：
+    </p>
+
+    <ol>
+      <li><b>我们会收集您的淘宝昵称，用于展示检测结果以及个性化推荐</b></li>
+      <li>您可以根据自身需求选择填写性别、年龄、肤质和生活习惯来完善您的信息，填写上述信息将使您的肌肤检测结果更加精准。
+      </li>
+      <li><b>您用于测试所拍摄的面部影像，将仅用于面部肌肤的肤质分析，不会提取您的个人生物识别信息。我们将在完成服务后及时删除面部图像，不再保存。</b>同时，我们将储存您每一次测试的数值，所有数值的精确记录便于您随时查看任何时间段的肌肤细微变化
+      </li>
+      <li><b>  我们可能通过构建细分受众（创建具有某些共同特征的组群）以及将您的个人信息放在一个或多个细分受众群体中来分析您与我们品牌传播的互动，从而创建您的个人画像。
+      </b>
+      </li>
+      <li><b> 征得授权同意的例外： </b> 根据相关法律法规的规定，在以下情形中，我们可以在不征得您的授权同意的情况下收集、使用一些必要的个人信息：（1）与国家安全、国防安全直接相关的；（2）与公共安全、公共卫生、重大公共利益直接相关的；（3）与犯罪侦查、起诉、审判和判决执行等直接相关的；（4）出于维护您或其他个人的生命、财产等重大合法权益但又很难得到本人同意的；（5）所收集的个人信息是您自行向社会公众公开的；（6）从合法公开披露的信息中收集到您的个人信息，如从合法的新闻报道、政府信息公开等渠道；（7）根据您与平台签署的在线协议或合同所必需的；（8）用于维护我们产品和/或服务的安全稳定运行所必需的，例如发现、处置产品或服务的故障；（9）法律法规规定的其他情形。
+      </li>
+    </ol>
+
+    <h2>二、我们如何共享、转让、公开披露您的个人信息 </h2>
+
+    <ol>
+      <li><b>共享：</b>对于您的个人信息，我们不会与任何公司、组织和个人进行共享，除非存在以下一种或多种情形：（1）事先已得到您的授权；（2）您自行提出的；（3）按照法律规定、司法机关或行政机关要求的情形；（4）与我们的关联公司必要共享：我们可能会与我们的关联公司共享您的个人信息(AHC是联合利华集团旗下品牌，上海科浡化妆品有限公司隶属于联合利华集团)。我们只会共享必要的个人信息，且这种共享受本政策所声明的目的的约束。关联公司如要改变个人信息的处理目的，将再次征得您的授权和同意。
+      </li>
+      <li><b>转让：</b>转让是指将取得您个人信息的控制权转让给其他公司、组织或个人。除非获取您的明确同意，否则我们不会将您的个人信息转让给任何公司、组织或个人。但下述情形除外：（1）事先已征得您的同意；（2）您自行提出的；（3）如果公司发生合并、收购或破产清算，将可能涉及到个人信息转让，此种情况下我们会要求新的持有您个人信息的公司、组织继续受本政策的约束。否则我们将要求其重新获取您的明示同意；（4）其他法律法规规定的情形。
+      </li>
+      <li><b>公开披露：</b>公开披露是指向社会或不特定人群发布信息的行为。除非获取您的明确同意，否则我们不会将您的个人信息公开披露给任何公司、组织或个人。但下述情况除外：基于法律规定、司法机关或行政机关强制性要求的情况下，我们可能会向有权机关披露您的个人信息。但我们保证，在上述情况发生时，我们会要求披露请求方必须出具与之相应的有效法律文件，并对被披露的信息采取符合法律和业界标准的安全防护措施。
+      </li>
+      <li><b>共享、转让、公开披露个人信息授权同意的例外情形：</b>根据相关法律法规的规定，在以下情形中，我们可以在不征得您的授权同意的情况下共享、转让、公开披露您的个人信息：（1）与公共安全、公共卫生、重大公共利益有关的；（2）与犯罪侦查、起诉、审判和判决执行等有关的；（3）出于维护您或其他个人的生命、财产等重大合法权益但又很难得到本人同意的；（4）您自行向社会公众公开的个人信息；（5）从合法公开披露的信息中收集到的个人信息的，如合法的新闻报道、政府信息公开等渠道；（6）法律法规规定的其他情形：根据法律规定，共享、转让经去标识化处理的个人信息，且确保数据接收方无法复原并重新识别个人信息主体的，不属于个人信息的对外共享、转让及公开披露行为，对此类数据的保存及处理将无需另行向您通知并征得您的同意。
+      </li>
+
+    </ol>
+
+    <h2>三、我们如何存储和保护您的个人信息 </h2>
+    <ol>
+      <li><b>存储：</b>（1）存储地点：我们将从中华人民共和国境内获得的信息存放于中华人民共和国境内。如果发生数据的跨境传输，我们会单独向您以站内通知或邮件的方式告知您数据出境的目的、接收方等，并征得您的授权同意，我们会严格遵守中国的法律法规，确保数据接收方有充足的数据保护能力来保护您的个人信息；（2）存储时间：我们承诺始终按照法律的规定在合理必要期限内在存储您个人信息。
+      </li>
+      <li><b>保护：</b>为了保护您的个人信息安全，我们将努力采取各种符合行业标准的安全措施来保护您的个人信息以最大程度降低您的信息被毁损、盗用、泄露、非授权访问、使用、披露和更改的风险。尽管有前述安全措施，但同时也请您注意在信息网络上不存在“完善的安全措施”。为防止安全事故的发生，我们已按照法律法规的规定，制定了妥善的预警机制和应急预案。同时，我们还将按照监管部门要求，主动上报个人信息安全事件的处置情况，紧密配合政府机关的工作。
+      </li>
+    </ol>
+
+    <h2>四、我们如何更新隐私政策
+    </h2>
+    <ol>
+      <li>我们保留不时更新或修订本隐私政策的权利。
+      </li>
+      <li>如遇本隐私政策更新，我们会通过微信公众号推送通知等合理方式通知您，以便您能及时了解本隐私政策所做的任何变更。
+      </li>
+    </ol>
+
+    <h2>五、未成年人保护 </h2>
+    <ol>
+      <li>若用户是未满18周岁的未成年人，应在监护人监护、指导并获得监护人同意情况下阅读本协议和使用肌肤管家相关服务。
+      </li>
+      <li>本公司重视对未成年人个人信息的保护，未成年用户在填写个人信息时，请加强个人保护意识并谨慎对待，请在监护人指导时正确使用肌肤管家相关服务。
+      </li>
+      <li>若您是未成年人的监护人，当您对您所监护的未成年人使用我们的服务或其向我们提供的用户信息有任何疑问时，请您及时与我们联系。我们将根据国家相关法律法规及本政策的规定保护未成年人用户信息的保密性及安全性。如果我们发现自己在未事先获得可证实的父母或法定监护人同意的情况下收集了未成年人的个人信息，则会设法尽快删除相关数据。
+      </li>
+    </ol>
+    <h2>六、如何联系我们</h2>
+    <p>当您对本政策有任何疑问，可以拨打热线电话4000037993。我们会在十五天内回复你的任何疑问和咨询。  </p>
+
+    <h2>七、其他 </h2>
+    <ol>
+      <li>因本政策以及我们处理您个人信息事宜引起的任何争议，您可诉至上海市长宁区人民法院。
+      </li>
+      <li>如果您认为我们的个人信息处理行为损害了您的合法权益，您也可向有关政府部门进行反映。
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="privacy" id="privacy-kr">
+  <div id="back-kr" class="back-btn"><h2><a class="links blackClr">돌아가다</a></h2>  <hr></div>
+  <div class="policy-content">
+    <h1>스마트 스킨 개인 정보 보호 정책</h1>
+
+    <h2> 소개 </h2>
+    <p>(주)상하이 카버 코스메틱(이하 "우리"라고 함)은 스마트 스킨 측정 서비스를 사용하는 모든 사용자의 개인 정보를 존중하고 보호합니다. 보다 정확하고 개인화된 서비스와 안전한 인터넷 환경을 동시에 제공하기 위해 관련 법률, 규정 및 기술 사양에 따라 본 개인정보 보호 정책을 수립합니다. 이 정책은 사용자가 사용하는 당사의 제품 및/또는 서비스와 밀접한 관련이 있습니다. 당사의 제품 및/또는 서비스(이하 "당사 제품 및/또는 서비스 사용"이라고 함)를 등록, 로그인 및 사용할 때 당사는 사용자의 개인 정보를 처리하고 보호하기 위해 이 정책 계약을 따릅니다. 우리는 사용자가 이해할 수 있도록 간결하고 간결한 방식으로 이 정책에 관련된 기술적 용어를 설명하기 위해 최선을 다하고 있습니다. 당사는 아래와 같이 사용자의 권리와 이익과 중요한 관계를 맺고 있는 이 정책의 조항을 나열했습니다. 18세 미만의 미성년자(특히 14세 미만의 어린이)와 보호자에게 특별한 주의가 필요합니다. 우리는 미성년자의 개인 정보의 관련 이용 약관을 표시하기 위해 굵은 글꼴을 사용했습니다. 제품 및 서비스를 사용/계속 사용하기 전에 이 정책을 주의 깊게 읽고 완전히 이해하시기 바랍니다. 본 정책의 내용에 동의하지 않는 경우, 당사의 제품 및/또는 서비스가 정상적으로 작동하지 않거나 당사가 달성하고자 하는 서비스 효과를 달성하도록 원인이 될 수 있으며, 사용자는 즉시 당사의 제품 및/또는 서비스에 대한 액세스를 중지해야 합니다. 당사가 제공하는 제품 및/또는 서비스의 사용 또는 지속적인 사용은 사용자가 이 "스마트 스킨 테스트 개인 정보 보호 정책"(업데이트된 버전 포함)의 모든 내용을 완전히 이해하고 동의한다는 것을 의미합니다.</p>
+
+    <h2>1. 정보 수집 범위 </h2>
+    <p>당사는 공정성, 적법성 및 필요성의 원칙을 준수하며, 본 정책에 설명된 다음 목적을 위해 당사의 제품 및/또는 서비스를 사용하여 사용자가 사전에 제공하는 개인 정보를 수집하고 사용합니다. 당사가 본 정책에 명시되지 않은 다른 목적으로 사용자의 개인 정보를 사용하거나 특정 목적에 따라 수집된 정보를 다른 목적으로 사용하려는 경우, 당사는 사용자에게 합리적인 방법으로 알리고 이를 사용하기 전에 다시 요청할 것입니다. 사용자의 동의: 1). 우리는 테스트 결과와 개인화 된 권장 사항을 표시하기 위해 타오바오 별명을 수집합니다 2). 사용자의 정보를 완료하기 위해 자신의 필요에 따라 성별, 나이, 피부 유형및 생활 습관을 채우기 위해 선택할 수 있습니다. 위의 정보를 입력하면 피부 테스트 결과가 더 정확해집니다. 3). 시험에 사용되는 얼굴 이미지는 얼굴 피부의 피부 질감 분석에만 사용되며 개인 생체 정보는 추출되지 않습니다. 우리는 서비스를 완료 한 후 시간에 얼굴 이미지를 삭제하고 더 이상 저장하지 않습니다. 동시에 각 테스트의 가치를 저장합니다. 모든 값의 정확한 기록은 언제든지 피부의 미묘한 변화를 확인하는 데 편리합니다. 4) 당사는 잠재고객 세그먼트를 구축하고(특정 공통특성을 가진 그룹을 생성) 개인 정보를 하나 이상의 잠재고객 세그먼트에 배치하여 브랜드 커뮤니케이션과의 상호 작용을 분석하여 개인 초상화를 만들 수 있습니다. 5). 승인 및 동의를 얻기 위한 예외: 관련 법률 및 규정에 따라, 다음 상황에서 당사는 사용자의 승인 및 동의 없이 필요한 일부 개인 정보를 수집하고 사용할 수 있습니다: (a) 국가 안보, 국방 안보와 직접 관련; (b) 공공 안전, 공중 보건 및 주요 공공 이익과 직접 관련; (c) 형사수사, 기소, 재판, 판결집행과 직결하는 행위 (d) 사용자 또는 기타 개인 생활, 재산 및 기타 주요 법적 권리와 이익을 보호하기 위한 사유  (e) 사용자 스스로 대중에게 공개하는 개인 정보. (f) 사용자의 개인정보는 법률뉴스 보도, 정부정보공개 등 법적으로 공개된 정보정보로부터 수집되는 행위 (g) 사용자와 플랫폼이 서명한 온라인 계약 또는 계약에 따라 필요한 경우 (h) 제품 또는 서비스의 오작동을 발견하고 폐기하는 등 당사제품 및/또는 서비스의 안전하고 안정적인 운영을 유지하는 데 필요한 경우 (i) 법령에 규정된 기타 사정
+    </p>
+
+    <h2>2. 사용자의 개인 정보를 공유, 전송 및 공개하는 방법</h2>
+
+    <p>1) 공유: 당사는 다음 상황 중 하나 이상이 없는 한 사용자의 개인 정보를 회사, 조직 또는 개인과 공유하지 않습니다. (b) 본인의 요청; (c) 법률 또는 사법 또는 행정 기관에서 요구하는 상황; (d) 계열사와 필요한 공유: 당사는 사용자의 개인 정보를 계열사와 공유할 수 있습니다(AHC는 유니레버 그룹의 브랜드이며, 상하이 카버 코스메틱(주)는 유니레버 그룹의 자회사입니다. 당사는 필요한 개인 정보만 공유하며, 본 정책에 명시된 목적의 이러한 종류의 공유 즐거움은 구속됩니다. 계열사가 개인정보 처리 목적을 변경하려는 경우, 사용자의 승인 및 동의를 다시 얻습니다.
+    </p><p>
+      2) 이전: 이전은 사용자의 개인 정보를 다른 회사, 조직 또는 개인에게 전달할 수 있는 통제권의 이전을 말합니다. 당사가 사용자의 명시적인 동의를 얻지 않는 한, 당사는 사용자의 개인 정보를 회사, 조직 또는 개인에게 전송하지 않습니다. 그러나 다음과 같은 상황은 제외됩니다: (a) 사용자의 동의는 사전에 얻어졌습니다. (b) 자신의 제안; (c) 회사가 합병, 인수 또는 파산 청산을 겪는 경우 개인정보의 양도가 포함될 수 있습니다. 이 경우 당사는 사용자의 개인 정보를 보유한 새로운 회사 및 조직이 이 정책에 계속 구속될 것을 요구할 것입니다. 그렇지 않으면, 당사는 사용자의 명시적인 동의를 다시 얻어야 합니다. (d) 법령에 규정된 기타 사정
+    </p><p>
+      3). 공시: 공개는 사회에 정보를 게시하거나 불특정 집단에 대한 정보 공개입니다. 당사가 사용자의 명시적인 동의를 얻지 않는 한, 당사는 사용자의 개인 정보를 회사, 조직 또는 개인에게 공개하지 않습니다. 다만, 사법또는 행정기관의 의무요건에 따라 사용자의 개인정보를 관할당국에 공개할 수 있습니다. 다만, 상기 상황이 발생하면 해당 유효한 법적 서류를 발급하고 공개된 정보에 대한 법률 및 업계 기준을 준수하는 안전보호조치를 취하도록 요청하는 공시를 요구할 것을 보장합니다.
+    </p><p>
+      4) 개인정보의 공유, 양도 및 공개승인의 예외: 관련 법령에 따라 다음 상황에서 당사는 사용자의 승인 및 동의 정보 없이 사용자의 개인정보를 공유, 전송 및 공개할 수 있습니다: (a) 공공 안전, 공중 보건 및 주요 공공의 이익과 관련된 행위 (b) 형사수사, 기소, 재판, 판결집행과 관련 (c) 사용자의 또는 다른 개인의 생명, 재산 등을 보호하기 위해 상당한 정당한 권리와 이익을 얻지만 사람의 동의를 얻기는 어렵습니다. (d) 사용자가 직접 공개하는 개인정보 (e) 법률 뉴스 보도, 정부 정보 공개 및 기타 채널과 같이 법적으로 공개된 정보로부터 수집된 개인정보 (f) 법령에 규정된 기타 상황: 법령에 따라 식별되지 않은 개인정보의 공유 및 전송, 개인정보의 주제를 복원 및 다시 식별할 수 없도록 하는 것은 외부 공유, 전송 및 공개를 위해 개인정보가 아니며, 그러한 데이터의 저장 및 처리는 사용자에게 알리고 동의를 구할 필요가 없습니다.
+    </p>
+    <h2>3. 사용자의 개인 정보를 저장하고 보호하는 방법 </h2>
+    <p>
+      1) 저장: (a) 저장 위치: 중화인민공화국 영토에서 얻은 정보를 중화인민공화국 영토에 저장합니다. 국경 간 데이터 전송이 발생하는 경우, 당사는 현장 통보 또는 이메일을 통해 해당 국가의 데이터 목적 및 수령인에게 별도로 알리고 사용자의 승인 및 동의를 얻습니다. 당사는 중국 법률 및 규정을 엄격히 준수하여 수신자가 사용자의 개인 정보를 보호하기에 충분한 데이터 보호 기능을 갖도록 합니다. (b) 보관 시간 : 당사는 법률에 따라 합리적이고 필요한 기간 내에 항상 사용자의 개인 정보를 저장할 것을 약속합니다.
+    </p>
+    <p>
+      2) 보호: 개인정보의 안전을 보호하기 위해 개인정보의 피해, 도난, 유출, 무단 접속, 이용, 공개 및 변경 위험을 최소화하기 위해 사용자의 개인정보를 보호하기 위해 업계 표준에 따라 다양한 보안 조치를 강구합니다. 앞서 언급한 보안 조치에도 불구하고 정보 네트워크에는 "완벽한 보안 조치"가 없습니다. 안전사고 발생을 방지하기 위해 법령의 규정에 따라 적절한 조기 경보 메커니즘과 비상대응방안을 수립했습니다. 아울러 규제당국의 요구에 따라 개인정보 보안사고 의 취급을 적극 보고하고 정부기관의 업무에 긴밀히 협조할 것입니다.
+    </p>
+
+
+    <h2>4. 개인정보 보호정책을 어떻게 업데이트하나요?
+    </h2>
+    <p>1). 당사는 때때로 본 개인정보 보호정책을 업데이트하거나 수정할 권리를 보유합니다. 2) 본 개인정보 보호정책이 업데이트되는 경우, 당사는 사용자가 본 개인정보 보호정책에 대한 변경 사항을 최신 상태로 유지할 수 있도록 WeChat 공개 계정 푸시 알림 및 기타 합리적인 방법을 통해 사용자에게 통지합니다.
+    </p>
+
+    <h2>5. 미성년자 보호 </h2>
+    <p>1). 18세 미만의 미성년자인 경우, 보호자의 감독 및 지도 및 보호자의 동의하에 본 계약을 읽고 스킨케어 관련 서비스를 이용해야 합니다.
+    </p>
+    <p>
+      2). 당사는 미성년자의 개인정보 보호에 큰 중요성을 부여합니다. 미성년자가 개인 정보를 입력 하는 경우, 개인 보호의 그들의 인식을 강화 하 고 주의 하 게 취급 하시기 바랍니다. 보호자의 지시에 따라 스킨케어 관련 서비스를 올바르게 사용하십시오. 3). 미성년자의 보호자인 경우, 당사의 서비스 또는 당사에 제공된 사용자 정보를 사용하여 미성년자에 대한 질문이 있는 시간에 당사에 문의하시기 바랍니다. 당사는 관련 국가법률 및 규정 및 본 정책의 규정에 따라 미성년자 의 정보의 기밀성 및 보안을 보호합니다. 당사가 검증 가능한 부모 또는 법적 보호자의 사전 동의 없이 미성년자의 개인 정보를 수집한 것으로 확인되면 가능한 한 빨리 관련 데이터를 삭제하려고 노력할 것입니다.
+    </p>
+    <h2>6. 저희에게 연락하는 방법</h2>
+    <p>
+      이 정책에 대한 질문이 있으면 핫라인 4000037993 호출할 수 있습니다. 당사는 사용자가 15일 이내에 가지고 있는 질문과 문의에 응답할 것입니다.
+    </p>
+    <h2>7. 기타</h2>
+    <ol>
+      <p>
+        1). 본 정책으로 인해 발생하는 모든 분쟁과 사용자의 개인 정보 취급은 상하이 창닝 구인민법원에 제기될 수 있습니다.      </p>
+      <p>
+        2) 당사의 개인정보 처리 행위가 사용자의 정당한 권리와 이익을 해쳤다고 판단되는 경우, 관련 정부 부처에 신고할 수도 있습니다.      </p>
+  </div>
+</div>
+
+
+<div class="privacy" id="privacy-en">
+  <div id="back-en" class="back-btn"><h2><a class="links blackClr">BACK TO EXPERIENCE</a></h2>  <hr></div>
+  <div class="policy-content">
+    <h1>Smart Skin Privacy Policy </h1>
+
+    <h2> Introduction </h2>
+    <p>Shanghai Carver Cosmetics Co., Ltd. (hereinafter referred to as "we") respects and protects the personal privacy of all users who use the smart skin measurement service. In order to provide you with more accurate and personalized services and a safer Internet environment at the same time, we formulate this privacy policy in accordance with relevant laws, regulations and technical specifications. This policy is closely related to our products and/or services you use. When registering, logging in, and using our products and/or services (hereinafter collectively referred to as "using our products and/or services"), we will follow this policy agreement to handle and protect your personal information. We try our best to explain to you the technical vocabulary involved in this policy in a concise and concise manner so that you can understand it. We have used bold fonts to distinguish the clauses in this policy that have a significant relationship with your rights and interests. Special attention is drawn to minors under the age of 18 (especially children under the age of 14) and their guardians. We have used bold fonts to mark the relevant terms and conditions of minors’ personal information, please read them carefully. Please carefully read and fully understand this policy before using/continuing to use our products and services, and when necessary, make appropriate choices in accordance with the guidelines of this policy. If you do not agree with the content of this policy, it may cause our products and/or services to fail to operate normally, or to achieve the service effects we intend to achieve, and you should immediately stop accessing/using our products and/or services. Your use or continued use of the products and/or services provided by us means that you fully understand and agree to all the contents of this "Smart Skin Test Privacy Policy" (including updated versions).
+    </p>
+
+    <h2>1. Scope of information collection </h2>
+    <p>We will follow the principles of fairness, lawfulness and necessity, and collect and use personal information that you proactively provide during the use of our services or generated by using our products and/or services for the following purposes described in this policy. If we want to use your personal information for other purposes not specified in this policy or use the collected information for other purposes based on a specific purpose, we will inform you in a reasonable way and ask for it again before using it. With your consent: 1). We will collect your Taobao nickname to display the test results and personalized recommendations 2). You can choose to fill in your gender, age, skin type and living habits according to your own needs to complete your information. Filling in the above information will make your skin test results more accurate. 3). The facial image you used for the test will only be used for skin texture analysis of the facial skin, and your personal biometric information will not be extracted. We will delete the facial image in time after completing the service and will no longer save it. At the same time, we will store the value of each test. The accurate record of all the values ​​is convenient for you to check the subtle changes of the skin at any time at any time. 4). We may analyze your interaction with our brand communication by building audience segments (creating groups with certain common characteristics) and placing your personal information in one or more audience segments to create your Personal portrait. 5). Exceptions for obtaining authorization and consent: According to relevant laws and regulations, in the following situations, we can collect and use some necessary personal information without your authorization and consent: (a) With national security, Directly related to national defense security; (b) Directly related to public safety, public health, and major public interests; (c) Directly related to criminal investigation, prosecution, trial, and execution of judgments; (d) To protect you or other Personal life, property and other major legal rights and interests but it is difficult to obtain the consent of the person; (e) The personal information collected is disclosed to the public by yourself; (f) Your personal information is collected from the legally publicly disclosed information Information, such as from legal news reports, government information disclosure, etc.; (g) Necessary according to the online agreement or contract signed by you and the platform; (h) Necessary to maintain the safe and stable operation of our products and/or services , Such as discovering and disposing of malfunctions of products or services; (i) Other circumstances stipulated by laws and regulations.
+    </p>
+
+    <h2>2. How do we share, transfer, and publicly disclose your personal information </h2>
+    <p>1). Sharing: We will not share your personal information with any company, organization or individual, unless there are one or more of the following situations: (a) Your authorization has been obtained in advance; (b) Your own request ; (c) Circumstances required by law or judicial or administrative agency; (d) Necessary sharing with our affiliates: We may share your personal information with our affiliates (AHC is a brand of Unilever Group , Shanghai Carver Cosmetics Co., Ltd. is a subsidiary of Unilever Group). We will only share necessary personal information, and this kind of shared enjoyment of the purpose stated in this policy is bound. If the affiliated company wants to change the purpose of processing personal information, it will obtain your authorization and consent again.
+    </p><p>
+    2). Transfer: Transfer refers to the transfer of the control right to obtain your personal information to another company, organization or individual. Unless we obtain your explicit consent, we will not transfer your personal information to any company, organization or individual. However, the following circumstances are excluded: (a) Your consent has been obtained in advance; (b) Your own proposal; (c) If the company undergoes a merger, acquisition or bankruptcy liquidation, the transfer of personal information may be involved. In this case We will require new companies and organizations that hold your personal information to continue to be bound by this policy. Otherwise, we will require them to re-obtain your express consent; (d) Other circumstances stipulated by laws and regulations.
+    </p><p>
+    3). Public disclosure: Public disclosure is the act of publishing information to the society or unspecified groups of people. Unless we obtain your explicit consent, we will not publicly disclose your personal information to any company, organization or individual. However, the following circumstances are excluded: We may disclose your personal information to competent authorities based on legal regulations or mandatory requirements of judicial or administrative agencies. However, we guarantee that when the above situation occurs, we will require the disclosure requesting party to issue corresponding valid legal documents, and take safety protection measures that comply with laws and industry standards for the disclosed information.
+    </p><p>
+    4). Exceptions to the authorization to share, transfer, and publicly disclose personal information: According to relevant laws and regulations, in the following circumstances, we can share, transfer, and publicly disclose your personal information without your authorization and consent Information: (a) Related to public safety, public health, and major public interests; (b) Related to criminal investigation, prosecution, trial, and execution of judgments; (c) To protect your or other individuals’ lives, property, etc. Significant legitimate rights and interests but it is difficult to obtain the consent of the person; (d) Personal information that you disclose to the public on your own; (e) Personal information collected from legally publicly disclosed information, such as legal news reports, government information Disclosure and other channels; (f) Other situations stipulated by laws and regulations: sharing and transferring personal information that has been de-identified in accordance with laws and regulations, and ensuring that the data recipient cannot restore and re-identify the subject of personal information is not personal information For external sharing, transfer and public disclosure, the storage and processing of such data will not be required to notify you and obtain your consent.
+    </p>
+
+    <h2>3. How do we store and protect your personal information </h2>
+    <p>
+    1). Storage: (a) Storage location: We store the information obtained from the territory of the People's Republic of China in the territory of the People's Republic of China. If cross-border transmission of data occurs, we will separately inform you of the purpose and recipient of the data out of the country by means of on-site notice or email, and obtain your authorization and consent. We will strictly abide by Chinese laws and regulations to ensure data The recipient has sufficient data protection capabilities to protect your personal information; (b) Storage time: We promise to always store your personal information within a reasonable and necessary period in accordance with the law.
+    </p><p>
+    2). Protection: In order to protect the safety of your personal information, we will work hard to adopt various security measures in line with industry standards to protect your personal information to minimize the damage, theft, leakage, unauthorized access, use, Risk of disclosure and change. Despite the aforementioned security measures, please also note that there is no "perfect security measure" on the information network. In order to prevent the occurrence of safety accidents, we have formulated a proper early warning mechanism and emergency response plan in accordance with the provisions of laws and regulations. At the same time, we will also actively report the handling of personal information security incidents in accordance with the requirements of the regulatory authorities, and closely cooperate with the work of government agencies.
+    </p>
+
+    <h2>4. how do we update the privacy policy </h2>
+    <p>1). We reserve the right to update or revise this privacy policy from time to time. 2). In case of updates to this privacy policy, we will notify you through WeChat public account push notifications and other reasonable methods so that you can keep abreast of any changes made to this privacy policy.
+    </p>
+
+    <h2>5. Protection of minors </h2>
+    <p>1). If the user is a minor under the age of 18, he should read this agreement and use skincare related services under the supervision and guidance of the guardian and the consent of the guardian.
+    </p><p>
+    2). The company attaches great importance to the protection of the personal information of minors. When underage users fill in personal information, please strengthen their awareness of personal protection and treat it with caution. Please use the skincare related services correctly when instructed by the guardian. 3). If you are the guardian of a minor, please contact us in time when you have any questions about the minors under your supervision using our services or the user information provided to us. We will protect the confidentiality and security of minor user information in accordance with relevant national laws and regulations and the provisions of this policy. If we find that we have collected personal information of minors without the prior consent of a verifiable parent or legal guardian, we will try to delete the relevant data as soon as possible.
+    </p>
+    <h2>6. How to contact us </h2>
+    <p>When you have any questions about this policy, you can call the hotline 4000037993. We will respond to any questions and inquiries you have within fifteen days.
+    </p>
+
+    <h2>7. Miscellaneous </h2>
+    <p>
+    1). Any disputes arising from this policy and our handling of your personal information can be brought to the People's Court of Changning District, Shanghai.
+    </p><p>
+    2). If you believe that our personal information processing behavior has harmed your legitimate rights and interests, you can also report to the relevant government departments
+    </p>
+  </div>
+</div>
+
 <script type="text/javascript" src="scripts/scriptShared.js"></script>
+
 </body>
 
 </html>

@@ -19,6 +19,11 @@
     "시작하기 버튼을 누르면 <br><a class=\"links\" href=\"legal/privacy-ko.html\">개인정보보호방침</a>에 동의하게 됩니다",
     "<a class=\"links\" href=\"legal/privacy-cn.html\">智能测肤隐私政策</a>"
   ],
+  "PrivacyPolicy2":[
+    "<button id='privacy-btn'>PRIVACY POLICY</button>",
+    "<button id='privacy-btn'>개인정보보호방침</button>",
+    "<button id='privacy-btn'>智能测肤隐私政策</button>"
+  ],
   "Skip":[
     "SKIP",
     "건너뛰기",

@@ -23,28 +23,28 @@ var JAPAN = 3
 var region =  CHINA;
 
 fetch('https://extreme-ip-lookup.com/json/')
-	.then(res => res.json())
-	.then(response => {
-		code =  response.countryCode
-		console.log("Country: ", response.countryCode);
-		if (code.localeCompare('CN') === 0) {
-			region =  CHINA;
-		} else if (code.localeCompare('KR') === 0) {
-			region =  KOREA;
-		} else if (code.localeCompare('TW') === 0) {
-			region =  TAIWAN;
-		} else if (code.localeCompare('JP') === 0) {
-			region =  JAPAN;
-		} else {
-			region =  CHINA;
-		}
-		console.log("region set to " + region);
-	})
-	.catch((data, status) => {
-		console.log('Request failed');
-		region =  CHINA;
-		console.log("region set failed");
-	})
+    .then(res => res.json())
+    .then(response => {
+      code =  response.countryCode
+      console.log("Country: ", response.countryCode);
+      if (code.localeCompare('CN') === 0) {
+        region =  CHINA;
+      } else if (code.localeCompare('KR') === 0) {
+        region =  KOREA;
+      } else if (code.localeCompare('TW') === 0) {
+        region =  TAIWAN;
+      } else if (code.localeCompare('JP') === 0) {
+        region =  JAPAN;
+      } else {
+        region =  CHINA;
+      }
+      console.log("region set to " + region);
+    })
+    .catch((data, status) => {
+      console.log('Request failed');
+      region =  CHINA;
+      console.log("region set failed");
+    })
 
 
 
@@ -164,7 +164,7 @@ console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
 if(selectedPersonality === 'fe'){
 	// if(region === CHINA || )
-	orbVideoUrl = "video/orb/Feeler.V5.mp4"
+	// orbVideoUrl = "video/orb/Feeler.V5.mp4"
 	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Feeler.V5.mp4"
 	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
@@ -179,7 +179,7 @@ if(selectedPersonality === 'fe'){
 	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0009.jpg"
 
 }else if(selectedPersonality === 'in'){
-	orbVideoUrl = "video/orb/Introvert.V5.mp4"
+	// orbVideoUrl = "video/orb/Introvert.V5.mp4"
 	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Introvert.V5.mp4"
 	sceneUrl0 ="scenes/INTROVERT/INTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/INTROVERT/INTRO_CUBEMAP_0010.jpg"
@@ -195,7 +195,7 @@ if(selectedPersonality === 'fe'){
 }
 else if(selectedPersonality === 'th'){
 
-	orbVideoUrl = "video/orb/Thinker.V5.mp4"
+	// orbVideoUrl = "video/orb/Thinker.V5.mp4"
 	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Thinker.V5.mp4"
 	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
@@ -209,7 +209,7 @@ else if(selectedPersonality === 'th'){
 	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
 }else{
-	orbVideoUrl = "video/orb/Extrovert.V5.mp4"
+	// orbVideoUrl = "video/orb/Extrovert.V5.mp4"
 	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Extrovert.V5.mp4"
 	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0010.jpg"
@@ -281,24 +281,24 @@ var dragOrb,dragBilboard, dragTherapy
 if(url_params[url_params.length-1].indexOf('M') ===0 || url_params[url_params.length-1].indexOf('U') === 0){
 	console.log("starting at selfie");
 
-	document.getElementById('question').style.display = "none"
-	document.getElementById('middleText').style.display = "none"
-	document.getElementById('start-btn').style.bottom = "45%"
+  document.getElementById('question').style.display = "none"
+  document.getElementById('middleText').style.display = "none"
+  document.getElementById('start-btn').style.bottom = "45%"
 	startScenePos = 2
 }
 
 document.getElementById("start-btn").addEventListener("click", function() {
-	document.getElementById("mute-unmute-btn").style.display="block"
-	document.getElementById("look-around").style.display="block"
-	document.getElementById("phone-icon").style.opacity=1
+  document.getElementById("mute-unmute-btn").style.display="block"
+  document.getElementById("look-around").style.display="block"
+  document.getElementById("phone-icon").style.opacity=1
 
-	setTimeout(function(){
-		document.getElementById("phone-icon").style.opacity=0
-	}, 5000)
+  setTimeout(function(){
+    document.getElementById("phone-icon").style.opacity=0
+  }, 5000)
 
-	setTimeout(function(){
-		document.getElementById("look-around").style.display="none"
-	}, 6000)
+  setTimeout(function(){
+    document.getElementById("look-around").style.display="none"
+  }, 6000)
 
 	console.log("clicked")
 
@@ -306,22 +306,22 @@ document.getElementById("start-btn").addEventListener("click", function() {
 
 		playAudio('sounds/sfx/feeler.mp3')
 		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/feeler.mp3')
-
+		orbVideoUrl = leadingURL+"video/orb/Feeler.V5.mp4"
 
 
 	}else if(selectedPersonality == 'in'){
 		playAudio('sounds/sfx/introvert.mp3')
 		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/introvert.mp3')
-
+		orbVideoUrl = leadingURL+"video/orb/Introvert.V5.mp4"
 	}
 	else if(selectedPersonality == 'th'){
 		playAudio('sounds/sfx/thinker.mp3')
 		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/thinker.mp3')
-
+		orbVideoUrl = leadingURL+"video/orb/Thinker.V5.mp4"
 	}else{
 		playAudio('sounds/sfx/extrovert.mp3')
 		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/extrovert.mp3')
-
+		orbVideoUrl = leadingURL+"video/orb/Extrovert.V5.mp4"
 	}
 
 	init();
@@ -1451,13 +1451,20 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 
 function ProductButtons(){
 	document.getElementById('productButton-1').addEventListener("click", function(){
-		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+		setTimeout(function(){
+			new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+		  }, 1200)
+	
 	});
 	document.getElementById('productButton-2').addEventListener("click", function(){
-		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+		setTimeout(function(){
+			new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+		  }, 1200)
 	});
 	document.getElementById('productButton-3').addEventListener("click", function(){
-		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+		setTimeout(function(){
+			new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
+		  }, 1200)
 	});
 	document.getElementById('close-product').addEventListener("click", function(){
 		new TWEEN.Tween( ProductMat ).to( { opacity: 1 }, 500 ).start();
@@ -1538,15 +1545,15 @@ player.on('ended', function () {
 
 var player1 = videojs('#vid-1');
 player1.on('ended', function () {
-	volumeUp()
+  volumeUp()
 })
 var player2 = videojs('#vid-2');
 player2.on('ended', function () {
-	volumeUp()
+  volumeUp()
 })
 var player4 = videojs('#vid-3');
 player4.on('ended', function () {
-	volumeUp()
+  volumeUp()
 })
 var player3 = videojs('#orb-vid');
 player3.on('ended', function () {
@@ -2002,6 +2009,26 @@ function clickTrigger(){
 				orbClickable = false
 			}
 		}
+		if ( intersectsRoomVideoPlay.length > 0 &&  currState == INTRO) {
+			setTimeout(function(){
+				envLoad(sceneUrl9)
+				currState = POOL
+
+			}, 500)
+
+			DisableEverything()
+
+		}
+		if ( intersectsMultipleVideo.length > 0 && currState == COUCH ) {
+			console.log("VIDEO ROOM SCENE - 1")
+
+			setTimeout(function(){
+				envLoad(sceneUrl6)
+				currState = BEAUTY
+			}, 500);
+
+			DisableEverything()
+		}
 	});
 }
 
@@ -2073,7 +2100,7 @@ function DisableEverything(){
 	orbVideoMask.loop = false;
 	orbVideo.loop = false;
 	console.log(loaderCheck)
-	new TWEEN.Tween( orbPlusMat ).to( { opacity: 0 }, 250 ).start();
+
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('selfie-btn').style.display = 'none';
 	document.getElementById('pool-text').style.display = 'none';

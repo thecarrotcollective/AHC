@@ -141,6 +141,7 @@ var gameStarted = false;
 document.getElementById('skipLink').addEventListener('click', function(e) {
   setTimeout(function(){
     startGame()
+    document.getElementById('black-screen').style.display="none"
   }, 5000)
 });
 
@@ -508,7 +509,7 @@ function endVideo(){
     document.getElementById('skipLinkScene').addEventListener('click', function(e) {
       console.log("navigating to " + copyJSON.code[languageID]+'-skipped');
       // alert("506")
-      window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+'skipped'+'-'+mutedString;
+      window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+'feeler'+'-'+mutedString;
     })
   }, 500);
 

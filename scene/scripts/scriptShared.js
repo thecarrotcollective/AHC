@@ -103,7 +103,25 @@ function setLang(id){
   document.getElementById('prod2-title').innerHTML = copyJSON.Product2[id]
   document.getElementById('prod3-title').innerHTML = copyJSON.Product3[id]
   document.getElementById('beauty-video-title').innerHTML = copyJSON.ChooseKoreanAesthetic[id]
-
+  document.getElementById('privacy-link').innerHTML = copyJSON.PrivacyPolicy2[id]
+  document.getElementById('privacy-btn').addEventListener('click', function(e) {
+    if(languageID == 2){
+      document.getElementById('privacy-cn').style.display = "block"
+      document.getElementById('back-cn').addEventListener('click', function(e) {
+        document.getElementById('privacy-cn').style.display = "none"
+      })
+    } else if(languageID == 1){
+      document.getElementById('privacy-kr').style.display = "block"
+      document.getElementById('back-kr').addEventListener('click', function(e) {
+        document.getElementById('privacy-kr').style.display = "none"
+      })
+    } else {
+      document.getElementById('privacy-en').style.display = "block"
+      document.getElementById('back-en').addEventListener('click', function(e) {
+        document.getElementById('privacy-en').style.display = "none"
+      })
+    }
+  });
   var prodImageURL = ""
   if(languageID == 2){
     prodImageURL = "ZH"
@@ -212,7 +230,7 @@ function LoadPage() {
   if(skipped){
     document.getElementById('question').style.display = "none"
     document.getElementById('middleText').style.display = "none"
-    document.getElementById('start-btn').style.bottom = "45%"  
+    document.getElementById('start-btn').style.bottom = "45%"
   }
   // document.getElementById("video2").innerHTML= "<source src=\"video/AHC-SPA-VIDEO.mp4\" type=\"video/mp4\" />"
 
@@ -272,10 +290,19 @@ function openOrbVideo(){
     document.getElementById('orb-btn').style.opacity = 1;
     document.getElementById('orb-btn').style.pointerEvents = "auto";
   });
-  document.getElementById('close-btn').addEventListener("click", closeVideo);
+  document.getElementById('close-btn').addEventListener("click", function(e){
+    closeVideo();
+    document.getElementById('blackScreen').style.display = 'none';
+    document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
+  });
 
   player.on('ended', function () {
+    // document.getElementById('close-btn').addEventListener("click", function(e){
+     
+    // });
     closeVideo();
+    document.getElementById('blackScreen').style.display = 'none';
+    document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
     if (this.isFullscreen()){
       player.exitFullscreen();
       console.log("fullScreenClosed")
@@ -354,10 +381,16 @@ function openTherapy(){
   });
 
 
-  document.getElementById('close-btn').addEventListener("click", closeVideo);
+  document.getElementById('close-btn').addEventListener("click", function(e){
+    closeVideo();
+    document.getElementById('blackScreen').style.display = 'none';
+    document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
+  });
 
   player.on('ended', function () {
     closeVideo();
+    document.getElementById('blackScreen').style.display = 'none';
+    document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
     if (this.isFullscreen()){
       player.exitFullscreen();
 
@@ -388,6 +421,7 @@ function playVideo1(){
   document.getElementById('vid-1').style.display = 'block';
   document.getElementById('vid-2').style.display = 'none';
   document.getElementById('vid-3').style.display = 'none';
+  document.getElementById('video2').style.display = 'none';
   document.getElementById('video_id').style.display = 'block';
   document.getElementById('blackScreen').style.display = 'block';
   document.getElementById('close-btn').style.display = 'block';
@@ -426,18 +460,21 @@ function playVideo1(){
 
   }, 50)
   player.on('ended', function () {
+    closeVideo()
     if (this.isFullscreen()){
       player.exitFullscreen();
 
     }
-     document.getElementById('close-btn').style.display = 'none'
-    document.getElementById('vid-1').style.display = 'none';
-    document.getElementById('video_id').style.display = 'none';
+    
+    //  document.getElementById('close-btn').style.display = 'none'
+    // document.getElementById('vid-1').style.display = 'none';
+    // document.getElementById('video_id').style.display = 'none';
+    document.getElementById('vid-1_html5_api').style.display = "none"
     videojs('#vid-1').reset()
     setTimeout(function(){
       document.getElementById('close-btn').addEventListener("click", openBeauty);
       openBeauty();
-    }, 50)
+    }, 20)
   })
   player.on('closed', function () {
     document.getElementById('close-btn').style.display = 'none'
@@ -495,19 +532,21 @@ function playVideo2(){
 
 
   player.on('ended', function () {
+    closeVideo()
     if (this.isFullscreen()){
       player.exitFullscreen();
 
     }
-    document.getElementById('close-btn').style.display = 'none'
-    document.getElementById('vid-2').style.display = 'none';
-    document.getElementById('video_id').style.display = 'none';
+    // document.getElementById('close-btn').style.display = 'none'
+    // document.getElementById('vid-2').style.display = 'none';
+    // document.getElementById('video_id').style.display = 'none';
+    document.getElementById('vid-2_html5_api').style.display = "none"
     videojs('#vid-2').reset()
     // document.getElementById('blackScreen').style.display = 'block';
     setTimeout(function(){
       document.getElementById('close-btn').addEventListener("click", openBeauty);
       openBeauty();
-    }, 50)
+    }, 20)
   })
   player.on('closed', function () {
     document.getElementById('close-btn').style.display = 'none'
@@ -562,19 +601,21 @@ function playVideo3(){
   }, 50)
   // document.getElementById('vid-3').addEventListener("ended",closeVideo);
   player.on('ended', function () {
+    closeVideo()
     if (this.isFullscreen()){
       player.exitFullscreen();
 
     }
-    document.getElementById('close-btn').style.display = 'none'
-    document.getElementById('vid-3').style.display = 'none';
-    document.getElementById('video_id').style.display = 'none';
+    // document.getElementById('close-btn').style.display = 'none'
+    // document.getElementById('vid-3').style.display = 'none';
+    // document.getElementById('video_id').style.display = 'none';
+    document.getElementById('vid-3_html5_api').style.display = "none"
     videojs('#vid-3').reset()
 
     setTimeout(function(){
       document.getElementById('close-btn').addEventListener("click", openBeauty);
       openBeauty();
-    }, 50)
+    }, 20)
   })
   player.on('closed', function () {
     document.getElementById('close-btn').style.display = 'none'
@@ -603,45 +644,143 @@ document.getElementById('close-product').addEventListener("click", closeProductP
 document.getElementById('close-product2').addEventListener("click", closeProductPreview);
 document.getElementById('close-product3').addEventListener("click", closeProductPreview);
 function productLink1(){
-  if(region === CHINA){
-    window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517')
-  } else if(region === TAIWAN){
-    window.open('https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8841698&str_category_code=2148400075&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813b&scm_activity=2021081305184iwwgtv3')
-  } else if(region === KOREA){
-    window.open('https://www.ahc.co.kr/shop/product/productView?prdIdx=1140')
-  } else {
-    window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517')
+
+  var producturl;
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    if(region === CHINA){
+      producturl = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517'
+      // window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517')
+    } else if(region === TAIWAN){
+      producturl = 'https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8841698&str_category_code=2148400075&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813b&scm_activity=2021081305184iwwgtv3'
+      // window.open('https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8841698&str_category_code=2148400075&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813b&scm_activity=2021081305184iwwgtv3')
+    } else if(region === KOREA){
+      producturl = 'https://www.ahc.co.kr/shop/product/productView?prdIdx=1140'
+      // window.open('https://www.ahc.co.kr/shop/product/productView?prdIdx=1140')
+    } else {
+      producturl = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517'
+      // window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517')
+    }
+    copyToClipboard(producturl)
+    // MITHRU IN HERE BUTTON IS NONE TEXT IS BLOCK
+    document.getElementById("productButton-1").style.display = 'none'
+    document.getElementById("copied-button1").style.display = 'block'
+  }else{
+    if(region === CHINA){
+      // producturl = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517'
+      window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517')
+    } else if(region === TAIWAN){
+      // producturl = 'https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8841698&str_category_code=2148400075&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813b&scm_activity=2021081305184iwwgtv3'
+      window.open('https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8841698&str_category_code=2148400075&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813b&scm_activity=2021081305184iwwgtv3')
+    } else if(region === KOREA){
+      // producturl = 'https://www.ahc.co.kr/shop/product/productView?prdIdx=1140'
+      window.open('https://www.ahc.co.kr/shop/product/productView?prdIdx=1140')
+    } else {
+      // producturl = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517'
+      window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517')
+    }
   }
 
-  document.getElementById('product1').style.display = 'none';
+  setTimeout(function(){
+    document.getElementById('product1').style.display = 'none';
+    document.getElementById("copied-button1").style.display = 'none';
+  }, 1200)
+
 
 }
-function productLink2(){
-  if(region === CHINA){
-    window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67')
-  } else if(region === TAIWAN){
-    window.open('https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8095641&str_category_code=2148400075&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813a&scm_activity=2021081305184iwwgtv3')
-  } else if(region === KOREA){
-    window.open('https://www.ahc.co.kr/brand/product/productView?prdIdx=462')
-  } else {
-    window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67')
-  }
 
-  document.getElementById('product2').style.display = 'none';
+
+function productLink2(){
+  var producturl2;
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    if(region === CHINA){
+      producturl2 = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67'
+      // window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67')
+    } else if(region === TAIWAN){
+      producturl2 = 'https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8095641&str_category_code=2148400075&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813a&scm_activity=2021081305184iwwgtv3'
+      // window.open('https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8095641&str_category_code=2148400075&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813a&scm_activity=2021081305184iwwgtv3')
+    } else if(region === KOREA){
+      producturl2 = 'https://www.ahc.co.kr/brand/product/productView?prdIdx=462'
+      // window.open('https://www.ahc.co.kr/brand/product/productView?prdIdx=462')
+    } else {
+      producturl2 = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67'
+      // window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67')
+    }
+    // MITHRU IN HERE BUTTON IS NONE TEXT IS BLOCK
+    document.getElementById("productButton-2").style.display = 'none'
+    document.getElementById("copied-button2").style.display = 'block'
+    copyToClipboard(producturl2)
+  }else{
+    if(region === CHINA){
+      // producturl2 = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67'
+      window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67')
+    } else if(region === TAIWAN){
+      // producturl2 = 'https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8095641&str_category_code=2148400075&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813a&scm_activity=2021081305184iwwgtv3'
+      window.open('https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8095641&str_category_code=2148400075&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813a&scm_activity=2021081305184iwwgtv3')
+    } else if(region === KOREA){
+      // producturl2 = 'https://www.ahc.co.kr/brand/product/productView?prdIdx=462'
+      window.open('https://www.ahc.co.kr/brand/product/productView?prdIdx=462')
+    } else {
+      // producturl2 = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67'
+      window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.6.300f7213tYa0So&id=573553160799&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67')
+    }
+  }
+  setTimeout(function(){
+    document.getElementById('product2').style.display = 'none';
+    document.getElementById("copied-button2").style.display = 'none';
+  }, 1200)
+
 
 }
 function productLink3(){
-  if(region === CHINA){
-    window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085')
-  } else if(region === TAIWAN){
-    window.open('https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8399533&str_category_code=2148400075&ctype=B&Area=DgrpCategory&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813c&scm_activity=2021081305184iwwgtv3')
-  } else if(region === KOREA){
-    window.open('https://www.ahc.co.kr/shop/product/productView?prdIdx=270&prdCategory=0078&skinCategory=0089')
-  } else {
-    window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085')
+  var producturl3
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    if(region === CHINA){
+      producturl3= 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085'
+      // window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085')
+    } else if(region === TAIWAN){
+      producturl3 = 'https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8399533&str_category_code=2148400075&ctype=B&Area=DgrpCategory&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813c&scm_activity=2021081305184iwwgtv3'
+      // window.open('https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8399533&str_category_code=2148400075&ctype=B&Area=DgrpCategory&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813c&scm_activity=2021081305184iwwgtv3')
+    } else if(region === KOREA){
+      producturl3 = 'https://www.ahc.co.kr/shop/product/productView?prdIdx=270&prdCategory=0078&skinCategory=0089'
+      // window.open('https://www.ahc.co.kr/shop/product/productView?prdIdx=270&prdCategory=0078&skinCategory=0089')
+    } else {
+      producturl3 = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085'
+      // window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085')
+    }
+    // MITHRU IN HERE BUTTON IS NONE TEXT IS BLOCK
+    document.getElementById("productButton-3").style.display = 'none'
+    document.getElementById("copied-button3").style.display = 'block'
+    copyToClipboard(producturl3)
+  }else{
+    if(region === CHINA){
+      // producturl3= 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085'
+      window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085')
+    } else if(region === TAIWAN){
+      // producturl3 = 'https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8399533&str_category_code=2148400075&ctype=B&Area=DgrpCategory&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813c&scm_activity=2021081305184iwwgtv3'
+      window.open('https://www.momoshop.com.tw/goods/GoodsDetail.jsp?i_code=8399533&str_category_code=2148400075&ctype=B&Area=DgrpCategory&osm=t04&utm_source=BD_017217&utm_medium=ARvirtualspa-0813c&scm_activity=2021081305184iwwgtv3')
+    } else if(region === KOREA){
+      // producturl3 = 'https://www.ahc.co.kr/shop/product/productView?prdIdx=270&prdCategory=0078&skinCategory=0089'
+      window.open('https://www.ahc.co.kr/shop/product/productView?prdIdx=270&prdCategory=0078&skinCategory=0089')
+    } else {
+      // producturl3 = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085'
+      window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.41.300f7213tYa0So&id=610989133474&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4299658944085')
+    }
   }
-  document.getElementById('product3').style.display = 'none';
+  setTimeout(function(){
+    document.getElementById('product3').style.display = 'none';
+    document.getElementById("copied-button3").style.display = 'none';
+  }, 1200)
 
+
+
+}
+function copyToClipboard(text) {
+  var input = document.body.appendChild(document.createElement("input"));
+  input.value = text;
+  input.focus();
+  input.select();
+  document.execCommand('copy');
+  input.parentNode.removeChild(input);
 }
 function closeProductPreview(){
   console.log("clicked")
@@ -690,10 +829,10 @@ function closeVideo(){
   document.getElementById('vid-1').style.display = 'none';
   document.getElementById('vid-2').style.display = 'none';
   document.getElementById('vid-3').style.display = 'none';
-  document.getElementById('blackScreen').style.display = 'none';
+
   document.getElementById('beauty-treatment-overlay').style.display = "none"
   document.getElementById('close-btn').style.display = 'none';
-  document.getElementById('blackScreen').style.animation = " opacityAnim2 1.5s ease-in-out forwards";
+ 
   // player
   videojs('#video2').reset()
   videojs('#orb-vid').reset()
