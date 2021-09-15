@@ -283,11 +283,13 @@ backBtn.addEventListener("click", async () => {
   } else if(url_params[url_params.length-1] === 'm'){
     url_params = url_params.substr(0, url_params.length-1) + "M"
   }
-  if(region === CHINA){
+  // if(region === CHINA){
+  //   window.location.href="../scene/index.html#"+url_params;
+  // } else {
+  //   window.location.href="https://main.d2rqjo3h6tvw72.amplifyapp.com/scene/index.html#"+url_params;
+  // }
     window.location.href="../scene/index.html#"+url_params;
-  } else {
-    window.location.href="https://main.d2rqjo3h6tvw72.amplifyapp.com/scene/index.html#"+url_params;
-  }
+
 });
 
 /* Canvas Donwload */
