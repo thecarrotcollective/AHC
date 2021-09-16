@@ -43,7 +43,7 @@ fetch('https://extreme-ip-lookup.com/json/')
     } else if (code.localeCompare('JP') === 0) {
       region =  JAPAN;
     } else {
-      region =  CHINA;
+      region =  CHINA; // other
     }
     console.log("region set to " + region);
   })
@@ -55,6 +55,26 @@ fetch('https://extreme-ip-lookup.com/json/')
 
 function setLang(id){
   document.getElementById('takepic-button').innerHTML = copyJSON.TakeSelfieBtn[id]
+  document.getElementById('privacy-link').innerHTML = copyJSON.PrivacyPolicy2[id]
+  document.getElementById('web-browser-request').innerHTML = copyJSON.WebBrowserRequest[id]
+  document.getElementById('privacy-btn').addEventListener('click', function(e) {
+    if(languageID == 2){
+      document.getElementById('privacy-cn').style.display = "block"
+      document.getElementById('back-cn').addEventListener('click', function(e) {
+        document.getElementById('privacy-cn').style.display = "none"
+      })
+    } else if(languageID == 1){
+      document.getElementById('privacy-kr').style.display = "block"
+      document.getElementById('back-kr').addEventListener('click', function(e) {
+        document.getElementById('privacy-kr').style.display = "none"
+      })
+    } else {
+      document.getElementById('privacy-en').style.display = "block"
+      document.getElementById('back-en').addEventListener('click', function(e) {
+        document.getElementById('privacy-en').style.display = "none"
+      })
+    }
+  });
 }
 
 loadJSON(function(response) {
@@ -264,8 +284,10 @@ downloadBtn.addEventListener("click", async () => {
 shareBtn.addEventListener("click", async () => {
 
   if(region === CHINA){
+    console.log("Opening share popup");
   	document.getElementById('share-experience-title').innerHTML = copyJSON.SharePopUp[languageID]
-  	document.getElementById('enter-phone').innerHTML = copyJSON.EnterPhone[languageID]
+    document.getElementById('enter-phone').innerHTML = copyJSON.EnterPhone[languageID]
+    document.getElementById('share-submit').innerHTML = copyJSON.ShareButton[languageID]
     sharePopup();
   } else {
     transferComplete()
@@ -351,7 +373,13 @@ async function share(image){
   } else {
       // Fallback - Save image, prompt user to share
       console.log(`Your system doesn't support sharing files.`);
-      alert("Your device does not allow sharing of files from the web browser. Please download the image instead.");
+      if(languageID === 2){
+        alert("您的设备不允许从网络浏览器共享文件。 请改为下载图像。");
+      } else if (languageID === 1){
+        alert("귀하의 장치는 웹 브라우저에서 파일 공유를 허용하지 않습니다. 대신 이미지를 다운로드하십시오. ");
+      } else {
+        alert("Your device does not allow sharing of files from the web browser. Please download the image instead.");
+      }
   }
 
 }

@@ -63,9 +63,9 @@ function loadJSON(callback) {
 }
 
 var leadingURL = ""
-if(region === CHINA){
-  leadingURL = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/"
-}
+// if(region === CHINA){
+//   leadingURL = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/"
+// }
 
 document.getElementById('selfie-btn').addEventListener("click", openSelfie);
 console.log(url_params);
@@ -80,7 +80,7 @@ function openSelfie(){
       url_params = url_params.substr(0, url_params.length-1) + "u"
     }
   }
-  window.location.href="https://ahc-spa.ulcampaign.com/selfie/camera.html#"+url_params
+  window.location.href="../selfie/camera.html#"+url_params
 }
 
 
@@ -103,8 +103,13 @@ function setLang(id){
   document.getElementById('prod2-title').innerHTML = copyJSON.Product2[id]
   document.getElementById('prod3-title').innerHTML = copyJSON.Product3[id]
   document.getElementById('beauty-video-title').innerHTML = copyJSON.ChooseKoreanAesthetic[id]
+  document.getElementById('privacy-link-start').innerHTML = copyJSON.PrivacyPolicyStart[id]
+
   document.getElementById('privacy-link').innerHTML = copyJSON.PrivacyPolicy2[id]
-  document.getElementById('privacy-btn').addEventListener('click', function(e) {
+  document.getElementById('privacy-btn').addEventListener('click', handlePrivacyPolicyPopUp);
+  document.getElementById('privacy-btn-start').addEventListener('click', handlePrivacyPolicyPopUp);
+
+  function handlePrivacyPolicyPopUp(){
     if(languageID == 2){
       document.getElementById('privacy-cn').style.display = "block"
       document.getElementById('back-cn').addEventListener('click', function(e) {
@@ -121,7 +126,7 @@ function setLang(id){
         document.getElementById('privacy-en').style.display = "none"
       })
     }
-  });
+  }
   var prodImageURL = ""
   if(languageID == 2){
     prodImageURL = "ZH"
@@ -263,13 +268,12 @@ function openOrbVideo(){
 
   //MITHRU DIFFERENT LANGUAGE FOR DIFFERENT VIDEO STATEMENT IS WORKING
   if(selectedLanguage == "en"){
-
     // player.src('video/orb/orbvideo_en.mp4')
     player.src(leadingURL+'video/orb/orbvideo_en.mp4')
-  }else if(selectedLanguage == "ko"){
+  } else if (selectedLanguage == "ko"){
     // player.src('video/orb/orbvideo_ko.mp4')
     player.src(leadingURL+'video/orb/orbvideo_ko.mp4')
-  }else{
+  } else {
     // player.src('video/orb/orbvideo.mp4')
     player.src(leadingURL+'video/orb/orbvideo.mp4')
   }
@@ -298,7 +302,7 @@ function openOrbVideo(){
 
   player.on('ended', function () {
     // document.getElementById('close-btn').addEventListener("click", function(e){
-     
+
     // });
     closeVideo();
     document.getElementById('blackScreen').style.display = 'none';
@@ -465,7 +469,7 @@ function playVideo1(){
       player.exitFullscreen();
 
     }
-    
+
     //  document.getElementById('close-btn').style.display = 'none'
     // document.getElementById('vid-1').style.display = 'none';
     // document.getElementById('video_id').style.display = 'none';
@@ -512,7 +516,6 @@ function playVideo2(){
     player.src(leadingURL+'video/beauty/Eff.mp4')
   }
 
-
   var video = document.getElementById('vid-2');
   // video.requestFullscreen();
   player.muted(muted);
@@ -527,9 +530,7 @@ function playVideo2(){
   })
   setTimeout(function(){
     document.getElementById('close-btn').addEventListener("click", openBeauty);
-
   }, 50)
-
 
   player.on('ended', function () {
     closeVideo()
@@ -604,7 +605,6 @@ function playVideo3(){
     closeVideo()
     if (this.isFullscreen()){
       player.exitFullscreen();
-
     }
     // document.getElementById('close-btn').style.display = 'none'
     // document.getElementById('vid-3').style.display = 'none';
@@ -664,7 +664,8 @@ function productLink1(){
     // MITHRU IN HERE BUTTON IS NONE TEXT IS BLOCK
     document.getElementById("productButton-1").style.display = 'none'
     document.getElementById("copied-button1").style.display = 'block'
-  }else{
+    document.getElementById("copied-button1").innerHTML = copyJSON.LinkCopiedOpenBrowser[languageID]
+  } else {
     if(region === CHINA){
       // producturl = 'https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517'
       window.open('https://detail.tmall.com/item.htm?spm=a220m.1000862.1000725.76.300f7213tYa0So&id=626005790965&is_b=1&cat_id=2&rn=218e0d3db53bf7935454047221f8ba67&skuId=4605078918517')
@@ -683,7 +684,7 @@ function productLink1(){
   setTimeout(function(){
     document.getElementById('product1').style.display = 'none';
     document.getElementById("copied-button1").style.display = 'none';
-  }, 1200)
+  }, 2200)
 
 
 }
@@ -708,6 +709,7 @@ function productLink2(){
     // MITHRU IN HERE BUTTON IS NONE TEXT IS BLOCK
     document.getElementById("productButton-2").style.display = 'none'
     document.getElementById("copied-button2").style.display = 'block'
+    document.getElementById("copied-button2").innerHTML = copyJSON.LinkCopiedOpenBrowser[languageID]
     copyToClipboard(producturl2)
   }else{
     if(region === CHINA){
@@ -727,7 +729,7 @@ function productLink2(){
   setTimeout(function(){
     document.getElementById('product2').style.display = 'none';
     document.getElementById("copied-button2").style.display = 'none';
-  }, 1200)
+  }, 2200)
 
 
 }
@@ -750,6 +752,8 @@ function productLink3(){
     // MITHRU IN HERE BUTTON IS NONE TEXT IS BLOCK
     document.getElementById("productButton-3").style.display = 'none'
     document.getElementById("copied-button3").style.display = 'block'
+    document.getElementById("copied-button3").innerHTML = copyJSON.LinkCopiedOpenBrowser[languageID]
+
     copyToClipboard(producturl3)
   }else{
     if(region === CHINA){
@@ -769,10 +773,7 @@ function productLink3(){
   setTimeout(function(){
     document.getElementById('product3').style.display = 'none';
     document.getElementById("copied-button3").style.display = 'none';
-  }, 1200)
-
-
-
+  }, 2200)
 }
 function copyToClipboard(text) {
   var input = document.body.appendChild(document.createElement("input"));
@@ -832,7 +833,7 @@ function closeVideo(){
 
   document.getElementById('beauty-treatment-overlay').style.display = "none"
   document.getElementById('close-btn').style.display = 'none';
- 
+
   // player
   videojs('#video2').reset()
   videojs('#orb-vid').reset()

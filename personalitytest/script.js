@@ -9,7 +9,6 @@ console.log("test");
 
 var personalityTypes = ["extrovert", "introvert", "feeler", "thinker"]
 
-
 function loadJSON(callback) {
    var xobj = new XMLHttpRequest();
    xobj.overrideMimeType("application/json");
@@ -84,8 +83,8 @@ loadJSON(function(response) {
    } else {
      languageID = 0
    }
-   setLang(languageID)
-   setKorean();
+   // setLang(languageID)
+   setChinese();
 
    document.getElementById('en-btn').addEventListener('click', setEnglish)
    document.getElementById('ko-btn').addEventListener('click', setKorean)
@@ -427,10 +426,9 @@ function onDOMLoaded(){
   console.log("Dom Loaded");
   document.getElementById('controlsIntro').style.opacity = 1;
 
-
   // document.getElementById('video-element-container').innerHTML = "<video playsInline  id=\"firstVideo\"> <source src=\"personalitytest/videos/Spa_Zoom_8mbps_37.mp4\" type=\"video/mp4\"></video>";
   // CDN Video link d2c33fbhlldtf9.cloudfront.net
-  document.getElementById('video-element-container').innerHTML = "<video playsInline  id=\"firstVideo\"> <source setsrc=\"personalitytest/videos/Spa_Zoom_8mbps_37.mp4\" src=\"https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/personalitytest/videos/introV27_q35.mp4\" type=\"video/mp4\"></video>";
+  document.getElementById('video-element-container').innerHTML = "<video playsInline  id=\"firstVideo\"> <source setsrc=\"personalitytest/videos/Spa_Zoom_8mbps_37.mp4\" src=\"personalitytest/videos/Spa_Zoom_8mbps_37.mp4\" type=\"video/mp4\"></video>";
   document.getElementById("firstVideo").onplaying = function() {
     console.log("video is playing")
     document.getElementById('black-screen').style.animation="reverseOpacity 1s ease-in-out forwards";
@@ -476,13 +474,18 @@ document.getElementById('start-btnIntro').addEventListener('click', function(e) 
      document.getElementById('subtitles').innerHTML = copyJSON.Subtitles2[languageID]
    }, 11000);
    setTimeout(function(){
-    document.getElementById('krystal-name').style.opacity=0;
-    document.getElementById('krystal-title').style.opacity=0;
-     document.getElementById('subtitles').innerHTML = copyJSON.Subtitles3[languageID]
-   }, 19000);
+     document.getElementById('krystal-name').style.opacity=0;
+     document.getElementById('krystal-title').style.opacity=0;
+   }, 12000);
    setTimeout(function(){
       document.getElementById('krystal-name').style.display="none";
       document.getElementById('krystal-title').style.display="none";
+      document.getElementById('subtitles').innerHTML = copyJSON.Subtitles2B[languageID]
+   }, 15000);
+   setTimeout(function(){
+      document.getElementById('subtitles').innerHTML = copyJSON.Subtitles3[languageID]
+   }, 19000);
+   setTimeout(function(){
       document.getElementById('subtitles').innerHTML = copyJSON.Subtitles4[languageID]
    }, 26000);
    setTimeout(function(){
@@ -509,7 +512,7 @@ function endVideo(){
     document.getElementById('skipLinkScene').addEventListener('click', function(e) {
       console.log("navigating to " + copyJSON.code[languageID]+'-skipped');
       // alert("506")
-      window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+'feeler'+'-'+mutedString;
+      window.location.href="scene/index.html#"+copyJSON.code[languageID]+'-'+'skipped'+'-'+mutedString;
     })
   }, 500);
 

@@ -71,7 +71,7 @@ a {
 #krystal-name{
   display: none;
   opacity: 0;
-  font-size: 2em;
+  font-size: 1.5em;
   position: absolute;
   bottom: 40%;
   left:50%;
@@ -161,10 +161,9 @@ a {
 }
 
 .audio-btn{
-
   position: absolute;
-  right: 40px;
-  top: 35px;
+  right: 20px;
+  top: 20px;
   transition: all 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
 }
 

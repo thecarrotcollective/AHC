@@ -24,6 +24,11 @@
     "<button id='privacy-btn'>개인정보보호방침</button>",
     "<button id='privacy-btn'>智能测肤隐私政策</button>"
   ],
+  "PrivacyPolicyStart":[
+    "<button id='privacy-btn-start'>PRIVACY POLICY</button>",
+    "<button id='privacy-btn-start'>개인정보보호방침</button>",
+    "<button id='privacy-btn-start'>智能测肤隐私政策</button>"
+  ],
   "Skip":[
     "SKIP",
     "건너뛰기",
@@ -35,7 +40,7 @@
     "回去"
   ],
   "SensorsPermission":[
-    "THIS EXPERIENCE NEEDS TO ACCESS TO YOUR DEVICE'S ORIENTATION SENSORS.",
+    "THIS EXPERIENCE NEEDS TO ACCESS TO YOUR DEVICE'S ORIENTATION SENSORS",
     "원활한 서비스 이용을 위해 방향센서 접근 권한을 요청합니다",
     "体验需要获取您的设备定位"
   ],
@@ -45,7 +50,7 @@
     "接受"
   ],
   "PersonalityTestTitle":[
-    "PERSONALITY TESTS ARE AN ESSENTIAL<br>TRAIT OF KOREAN CULTURE.",
+    "PERSONALITY TESTS ARE AN ESSENTIAL<br>TRAIT OF KOREAN CULTURE",
     "내 성향에 따른 맞춤형 <br>스파를 경험해보세요",
     "性格测试，开启你的专属肌疗SPA之旅"
   ],
@@ -160,7 +165,7 @@
     "访问"
   ],
   "SharePopUp":[
-    "SHARE THIS EXPERIENCE. ",
+    "SHARE THIS EXPERIENCE ",
     "친구에게 AHC SPA 공유하기",
     "分享"
   ],
@@ -189,13 +194,23 @@
     "",
     ""
   ],
+  "LinkCopiedOpenBrowser":[
+    "Link copied. Open it in a browser.",
+    "링크가 복사되었습니다. 브라우저에서 열려.",
+    "链接已复制。 在浏览器中打开它。"
+  ],
+  "WebBrowserRequest":[
+    "Please open this experience in a web browser",
+    "웹 브라우저에서 이 경험을 열어주세요",
+    "请用网络浏览器打开"
+  ],
   "ShareWithFriend":[
     "SHARE WITH A FRIEND",
     "친구와 공유하기",
     "分享"
   ],
   "WatchAHCKBeauty":[
-    "WATCH AHC'S KOREAN AESTHETIC TUTORIALS HERE.",
+    "WATCH AHC'S KOREAN AESTHETIC TUTORIALS HERE",
     "튜토리얼을 통해<br> K-뷰티 사용법을 확인해보세요!",
     "观看AHC肌疗美肤私教课"
   ],
@@ -231,17 +246,22 @@
     "郑秀晶"
   ],
   "BrandAmbassador":[
-    "BRAND AMBASSADOR ",
+    "AHC BRAND AMBASSADOR ",
     "AHC의 앰버서더 ",
     ""
   ],
   "Subtitles1":[
-    "Welcome to the AHC Virtual Spa! I am Krystal Jung, ",
+    "Welcome to the AHC Virtual Spa!<br> I am Krystal Jung, ",
     "안녕하세요, 크리스탈입니다. ",
     "Hello~我是郑秀晶"
   ],
   "Subtitles2":[
-    "and I'm happy to introduce you to the world's first ever virtual spa, presented to you by AHC, the #1 aesthetic care brand in Korea.",
+    "and I'm happy to introduce you to the world's first ever virtual spa",
+    "대한민국 1위 에스테틱케어 브랜드 AHC가 마련한 세계 최초 버츄얼 스파를 소개해드립니다.",
+    "很高兴在韩国第一院线护肤品牌AHC的美肤SPA与你相遇！"
+  ],
+  "Subtitles2B":[
+    "presented to you by AHC, the #1 aesthetic care brand in Korea.",
     "대한민국 1위 에스테틱케어 브랜드 AHC가 마련한 세계 최초 버츄얼 스파를 소개해드립니다.",
     "很高兴在韩国第一院线护肤品牌AHC的美肤SPA与你相遇！"
   ],
@@ -256,7 +276,7 @@
     "然后尽情享受我们为你量身定制的美肤之旅吧！"
   ],
   "Subtitles5":[
-    "We'll lead you to our spa designed specially for your type.  ",
+    "We'll lead you to our spa, designed specially for your type.  ",
     "여러분의 성향에 맞춰 디자인된 스파로 안내해드리겠습니다. ",
     "然后尽情享受我们为你量身定制的美肤之旅吧！"
   ],

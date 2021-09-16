@@ -10,12 +10,15 @@ var url = window.location.href;
 var selectedLanguage = url.substr(url.indexOf('#')+1, 2);
 var url_params = url.substr(url.indexOf('#')+1)
 var selectedPersonality = url_params.substr(url_params.indexOf('-')+1, 2);
-
+console.log(selectedPersonality);
 var clickAllowed = true;
 
 var prevDirVector = new THREE.Vector3();
 // console.log("local? " + url.includes("localh"));
 
+if(selectedPersonality === 'sk'){
+  selectedPersonality = 'fe'
+}
 
 var CHINA = 0
 var KOREA = 1
@@ -48,140 +51,13 @@ fetch('https://extreme-ip-lookup.com/json/')
       console.log("region set failed");
     })
 
-
-
-//
-// function loadJSON(callback) {
-//    var xobj = new XMLHttpRequest();
-//    xobj.overrideMimeType("application/json");
-//    xobj.open('GET', '../shared/copy.json', true);
-//    xobj.onreadystatechange = function (){
-//      console.log('xobj ready');
-//      if (xobj.readyState == 4 && xobj.status == "200") {
-//        // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-//        callback(xobj.responseText);
-//        copyJSON = JSON.parse(xobj.responseText);
-//        console.log('JSON parse begun');
-//      }
-//    };
-//    xobj.send(null);
-// }
-//
-// function setLang(id){
-//   document.getElementById('share-btn').innerHTML = copyJSON.ShareWithFriend[id]
-// 	if(selectedPersonality.localeCompare("fe") === 0 || selectedPersonality.localeCompare("ex") === 0){
-// 		document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAExtrovertFeeler[id] +' '+ copyJSON.StartTherapyButton[id]
-// 	} else {
-// 		document.getElementById('pool-btn').innerHTML = copyJSON.SensorialCTAIntrovertThinker[id] +' '+ copyJSON.StartTherapyButton[id]
-// 	}
-// 	document.getElementById('selfie-btn').innerHTML = copyJSON.TakeSelfieCTA[id]
-// 	document.getElementById('beauty-btn').innerHTML = copyJSON.WatchAHCKBeauty[id]
-// 	document.getElementById('orb-btn').innerHTML = copyJSON.FindOutMore[id]
-// 	document.getElementById('productButton-1').innerHTML = copyJSON.FindOutMore[id]
-// 	document.getElementById('productButton-2').innerHTML = copyJSON.FindOutMore[id]
-// 	document.getElementById('productButton-3').innerHTML = copyJSON.FindOutMore[id]
-// 	document.getElementById('share-experience-title').innerHTML = copyJSON.SharePopUp[id]
-// 	document.getElementById('enter-phone').innerHTML = copyJSON.EnterPhone[id]
-// 	document.getElementById('share-submit').innerHTML = copyJSON.ShareButton[id]
-//
-// 	document.documentElement.lang = copyJSON.code[id];
-//
-//   console.log("language set to " + document.documentElement.lang);
-// }
-//
-// loadJSON(function(response) {
-//   console.log("started loading JSON");
-//  // Parse JSON string into object
-//    copyJSON = JSON.parse(response);
-// //    console.log(copyJSON);
-//    console.log("language is "+selectedLanguage);
-//    if(selectedLanguage.localeCompare("zh") === 0){
-//      languageID = 2
-//    } else if (selectedLanguage.localeCompare("ko") === 0){
-//      languageID = 1
-//    } else {
-//      languageID = 0
-//    }
-//    setLang(languageID)
-//
-//    LoadPage();
-//
-// });
 var imageurl,personiltyType,infoText
 var endbool;
-//
-// function LoadPage() {
-// 	if(selectedPersonality === 'fe'){
-//
-// 	imageurl ="../personalitytest/images/opt/arch5.webp";
-// 	spaText=copyJSON.Feeler[languageID]
-// 	personiltyType = copyJSON.FeelerHeadline[languageID]
-// 	infoText=copyJSON.FeelerExplanation[languageID]
-//
-// 	}else if(selectedPersonality === 'in'){
-// 		imageurl ="../personalitytest/images/opt/arch4.webp";
-// 		spaText=copyJSON.Introvert[languageID]
-// 		infoText=copyJSON.IntrovertExplanation[languageID]
-// 		personiltyType = copyJSON.IntrovertHeadline[languageID]
-// 	}
-// 	else if(selectedPersonality === 'th'){
-// 		imageurl ="../personalitytest/images/opt/arch3.webp";
-// 		spaText=copyJSON.Thinker[languageID]
-// 		infoText=copyJSON.ThinkerExplanation[languageID]
-// 		personiltyType = copyJSON.ThinkerHeadline[languageID]
-// 	}else{
-// 		imageurl ="../personalitytest/images/opt/arch2.webp";
-// 		spaText=copyJSON.Extrovert[languageID]
-// 		personiltyType = copyJSON.ExtrovertHeadline[languageID]
-// 		spaText=copyJSON.Extrovert[languageID]
-// 		infoText=copyJSON.ExtrovertExplanation[languageID]
-// 	}
-// 	var personiltyTypeHtml = personiltyType;
-// 	var element2 = document.getElementById("question")
-// 	element2.innerHTML = personiltyTypeHtml;
-// 	// document.getElementById('archid').style.display = 'flex';
-// 	// document.getElementById('infoText').style.display = 'flex';
-// 	// document.getElementById('middleText').style.display = 'flex';
-// 	// document.getElementById('controls_id').style.display = 'flex';
-// 	// document.getElementById('questionDiv').style.display = 'flex';
-// 	var spaText = "<h1 >"+spaText+"</h1>";
-// 	var element = document.getElementById("personality");
-// 	// element.style.display = "flex"
-// 	element.innerHTML = spaText;
-//
-//   var buttonText = copyJSON.GoToSpa[languageID];
-// 	var element3 = document.getElementById("start-btn")
-// 	element3.innerHTML = buttonText;
-//
-// 	var resultImg = "<img id=\"arch-image\" src="+ imageurl +">";
-// 	var element4 = document.getElementById("archid");
-// 	element4.innerHTML = resultImg
-//
-//
-// 	var infoTextHtml = infoText;
-// 	var element5 = document.getElementById("infoText")
-// 	element5.innerHTML = infoTextHtml;
-// }
-
 
 var sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneUrl7,sceneUrl8,sceneUrl9,sceneUrl10
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
-if(selectedPersonality === 'fe'){
-
-	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
-	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
-	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
-	sceneUrl3 ="scenes/FEELER/FEELER_CUBEMAP_0002.jpg"
-	sceneUrl4 ="scenes/FEELER/FEELER_CUBEMAP_0003.jpg"
-	sceneUrl5 ="scenes/FEELER/FEELER_CUBEMAP_0004.jpg"
-	sceneUrl6 ="scenes/FEELER/FEELER_CUBEMAP_0005.jpg"
-	sceneUrl7 ="scenes/FEELER/FEELER_CUBEMAP_0006.jpg"
-	sceneUrl8 ="scenes/FEELER/FEELER_CUBEMAP_0007.jpg"
-	sceneUrl9 ="scenes/FEELER/FEELER_CUBEMAP_0008.jpg"
-	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0009.jpg"
-
-}else if(selectedPersonality === 'in'){
+if(selectedPersonality === 'in'){
 
 	sceneUrl0 ="scenes/INTROVERT/INTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/INTROVERT/INTRO_CUBEMAP_0010.jpg"
@@ -208,7 +84,8 @@ else if(selectedPersonality === 'th'){
 	sceneUrl8 ="scenes/THINKER/THINKER_CUBEMAP_0007.jpg"
 	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
 	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
-}else{
+}
+else if(selectedPersonality === 'th'){
 
 	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
 	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0010.jpg"
@@ -221,6 +98,18 @@ else if(selectedPersonality === 'th'){
 	sceneUrl8 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0007.jpg"
 	sceneUrl9 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0008.jpg"
 	sceneUrl10 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0009.jpg"
+} else {
+	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
+	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
+	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
+	sceneUrl3 ="scenes/FEELER/FEELER_CUBEMAP_0002.jpg"
+	sceneUrl4 ="scenes/FEELER/FEELER_CUBEMAP_0003.jpg"
+	sceneUrl5 ="scenes/FEELER/FEELER_CUBEMAP_0004.jpg"
+	sceneUrl6 ="scenes/FEELER/FEELER_CUBEMAP_0005.jpg"
+	sceneUrl7 ="scenes/FEELER/FEELER_CUBEMAP_0006.jpg"
+	sceneUrl8 ="scenes/FEELER/FEELER_CUBEMAP_0007.jpg"
+	sceneUrl9 ="scenes/FEELER/FEELER_CUBEMAP_0008.jpg"
+	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0009.jpg"
 }
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
@@ -275,7 +164,7 @@ console.log("path is local? " + pathIsLocal);
 var leadingURL = ""
 
 if(!pathIsLocal){
-	leadingURL = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/"
+	// leadingURL = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/"
 	console.log(leadingURL);
 }
 
@@ -568,7 +457,7 @@ function init() {
 		}
 		if(currState === INTRO){
 
-			
+
 
 			video.currentTime = 0;
 			video2.currentTime = 0;
@@ -678,7 +567,7 @@ function init() {
 		}
 
 		if(currState === SELFIE){
-			
+
 			video.currentTime = 0;
 			video2.currentTime = 0;
 			console.log("selfie scene runned")

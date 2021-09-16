@@ -8,7 +8,7 @@
   <link rel="manifest" href="../favicon/site.webmanifest">
   <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#ffffff">
   <!-- <script src="sceneFolder/scripts/scriptPhone.js"></script> -->
-  <title>AHC Spa at Home</title>
+  <title>AHC</title>
 
   <!-- <meta name="viewport" content="width=999, maximum-scale=1.0" /> -->
   <link rel="stylesheet" type="text/css" href="../shared/start-page.css">
@@ -55,8 +55,6 @@
       console.log("WEB LOADED")
       loadJS('scripts/scriptWeb.js');
     }
-
-
   </script>
 
   <!-- <script src="https://unpkg.com/three"></script>
@@ -85,17 +83,16 @@
       </section>
       <div class="grid_container" id="grid_container">
         <button id='start-btn' class='bottomButtonsMain bottomBtn blackClr noTextShadow'></button>
+        <div id="privacy-link-start"></div>
       </div>
     </div>
   </div>
 </div>
 </div>
 
-
 <div id="main" style="display: none;">
   <div id="blackScreen"></div>
   <div id="whiteScreen"></div>
-
   <div id="container_2">
     <div class="lds-ring" id="lds-ring"><div></div><div></div><div></div><div></div></div>
     <div id="beauty-treatment-overlay">
@@ -122,8 +119,8 @@
               height="auto"
               aspectRatio= '9:16'
               data-setup='{"controls": true}'>
-        <!--          <source src="video/therapy/int-en.mp4" type="video/mp4" />-->
-        <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/therapy/int-en.mp4" type="video/mp4" />
+                 <source src="video/therapy/int-en.mp4" type="video/mp4" />
+        <!-- <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/therapy/int-en.mp4" type="video/mp4" /> -->
       </video>
       <video
               id="vid-1"
@@ -134,8 +131,8 @@
               height="auto"
               aspectRatio= '9:16'
               data-setup='{"controls": true}'>
-        <!--            <source src="video/beauty/Ton.mp4" type="video/mp4">-->
-        <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/beauty/Ton.mp4" type="video/mp4" >
+                   <source src="video/beauty/Ton.mp4" type="video/mp4">
+        <!-- <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/beauty/Ton.mp4" type="video/mp4" > -->
       </video>
       <video
               id="vid-2"
@@ -146,8 +143,8 @@
               height="auto"
               aspectRatio= '9:16'
               data-setup='{"controls": true}'>
-        <!--            <source src="video/beauty/Eff-Eng.mp4" type="video/mp4">-->
-        <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/beauty/Eff-Eng.mp4" type="video/mp4">
+                   <source src="video/beauty/Eff-Eng.mp4" type="video/mp4">
+        <!-- <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/beauty/Eff-Eng.mp4" type="video/mp4"> -->
       </video>
       <video
               id="vid-3"
@@ -158,8 +155,8 @@
               height="auto"
               aspectRatio= '9:16'
               data-setup='{"controls": true}'>
-        <!--            <source src="video/beauty/Amp.mp4" type="video/mp4">-->
-        <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/beauty/Amp.mp4" type="video/mp4"  >
+                   <source src="video/beauty/Amp.mp4" type="video/mp4">
+        <!-- <source crossorigin="anonymous" src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/beauty/Amp.mp4" type="video/mp4"  > -->
       </video>
       <video
               id="orb-vid"
@@ -170,8 +167,8 @@
               height="auto"
               aspectRatio= '9:16'
               data-setup='{"controls": true}'>
-        <!--            <source src="video/orb/orbvideo.mp4" type="video/mp4">-->
-        <source src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/orbvideo.mp4" type="video/mp4" crossorigin="anonymous">
+                   <source src="video/orb/orbvideo.mp4" type="video/mp4">
+        <!-- <source src="https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/orbvideo.mp4" type="video/mp4" crossorigin="anonymous"> -->
       </video>
 
     </div>
@@ -188,8 +185,7 @@
     </div>
     <img id="close-product" src="UIAssets/close.png">
     <button id="productButton-1" class="btn" >SHOP NOW</button>
-    <!-- MITHRU HERE IS THE TEXT -->
-    <h2 id="copied-button1" style="display: none;">Link copied. Open it in a browser</h2>
+    <h2 id="copied-button1" style="display: none;">Link copied. Open it in a browser.</h2>
   </div>
 
   <div class="product" style="display: none;" id="product2">

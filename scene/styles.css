@@ -52,6 +52,16 @@ video{
 #privacy-btn{
   background-color: rgba(0,0,0,0);
   border: none;
+  color: black;
+}
+#privacy-btn-start{
+  position: absolute;
+  color: black;
+  bottom: 5%;
+  left: 50%;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes glow {
