@@ -499,7 +499,7 @@ document.getElementById('start-btnIntro').addEventListener('click', function(e) 
   document.getElementById('skipButton').style.display="flex";
   document.getElementById('skipLink').style.display="flex";
   document.getElementById('controlsIntro').style.display = "none";
-  if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+  if( /iPhone|iPad|iPod/i.test(navigator.userAgent) === false) {
     document.getElementById('mute-unmute-btn').style.display="block";
   }
   document.getElementById('firstVideo').play();
