@@ -34,17 +34,17 @@
 
 @font-face {
   font-family: "Noto-KR-Regular";
-  src:url("../../shared/fonts/NotoSansKR-Regular.otf") format("opentype");
+  src:url("fonts/NotoSansKR-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Noto-KR-Bold";
-  src:url("../../shared/fonts/NotoSansKR-Bold.otf") format("opentype");
+  src:url("fonts/NotoSansKR-Bold.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Noto-KR-Light";
-  src:url("../../shared/fonts/NotoSansKR-Light.otf") format("opentype");
+  src:url("fonts/NotoSansKR-Light.woff2") format("woff2");
 }
 
 canvas.deepar {

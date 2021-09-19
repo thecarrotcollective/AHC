@@ -162,10 +162,13 @@ loadJSON(function(response) {
 //    console.log(copyJSON);
   console.log("language is "+selectedLanguage);
   if(selectedLanguage.localeCompare("zh") === 0){
+    document.getElementsByTagName("BODY")[0].style.fontFamily = "Noto-CN-Regular  !important";
     languageID = 2
   } else if (selectedLanguage.localeCompare("ko") === 0){
+    document.getElementsByTagName("BODY")[0].style.fontFamily = "Noto-KR-Regular  !important"
     languageID = 1
   } else {
+    document.getElementsByTagName("BODY")[0].style.fontFamily = "Pangram-Regular  !important";
     languageID = 0
   }
   setLang(languageID)

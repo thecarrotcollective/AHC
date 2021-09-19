@@ -51,10 +51,19 @@ fetch('https://extreme-ip-lookup.com/json/')
     })
 
 var imageurl,personiltyType,infoText
-
+var textUrl
 var orbVideoUrl,sceneUrl0,sceneUrl1,sceneUrl2,sceneUrl3,sceneUrl4,sceneUrl5,sceneUrl6,sceneUrl7,sceneUrl8,sceneUrl9,sceneUrl10
 console.log("language is " + selectedLanguage);
 console.log("personality is " + selectedPersonality);
+
+if(selectedLanguage == "en"){
+	textUrl= "eng"
+}else if(selectedLanguage == "ko"){
+	textUrl = "kr"
+}else{
+	textUrl ="zh"
+}
+
 if(selectedPersonality === 'in'){
 	// orbVideoUrl = "video/orb/Introvert.V5.mp4"
 	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Introvert.V5.mp4"
@@ -146,6 +155,7 @@ var ProductMat,orbVideoFinished ;
 var orbVideoPlayCheck = false
 let glowMain, glowMiddle, glowPoolEntracen, glowSlefie, glowPool,glowCoach,glowBeauty, glowEntrace, glowBaseProduct,glowProduct
 let productGlow1, productGlow2,productGlow3
+let textMainRoom, textScene1, textMat1 , textMat2,textMiddleRoom,textMat3 ,textPoolEntrance ,textMat4, textProdentrance ,textMat5,textProduct,textMat6,textMat7,textPool, textSelfie
 // Please reorder this to match the assets
 var INTRO = 0
 var MAIN = 1
@@ -158,7 +168,13 @@ var PRODENTRANCE = 7
 var MIDDLE = 8
 var POOLENTRACE =9
 var PRODUCTBASE = 10
-
+var textMainRoomUrl = "texts/"+textUrl+"/EFFGold.png"
+var textMiddleRoomUrl = "texts/"+textUrl+"/koreanAestheticTutorials.png"
+var textPoolEntranceUrl = "texts/"+textUrl+"/poolEntranceText.png"
+var textProdentranceUrl = "texts/"+textUrl+"/PRODENTRANCETEXT.png"
+var textProductUrl = "texts/"+textUrl+"/productScene.png"
+var textSelfieUrl = "texts/"+textUrl+"/textSelfie.png"
+var textPoolUrl = "texts/"+textUrl+"/textPool.png"
 
 var pathIsLocal =  (url.includes("localh") || region === CHINA)
 console.log("path is local? " + pathIsLocal);
@@ -366,6 +382,8 @@ function init() {
 	orbGlowScene = new THREE.Scene();
 	orbPlusScene = new THREE.Scene();
 	glowScene = new THREE.Scene();
+	textScene1 = new THREE.Scene();
+	scene.add(textScene1)
 	scene.add(glowScene)
 	scene.add(orbPlusScene)
 	scene.add(orbGlowScene)
@@ -496,7 +514,8 @@ function init() {
 			RoomVideoPlay.position.set(101.4,-11.5,-176)
 			RoomVideoPlay.rotation.set(0,-1.58,-0.01)
 			RoomVideoPlay.scale.set(3.1,3,2.1)
-
+			textScene1.add(textMainRoom)
+			textScene1.add(textMiddleRoom)
 
 			MainRoomScene.add(MainRoomArrow);
 			glowScene.add(glow);
@@ -508,6 +527,22 @@ function init() {
 			glowMiddle.position.set(1.8*arrowDist * Math.sin(toRadians(80)) , arrowHeight, -arrowDist* 1.8 * Math.cos(toRadians(80)));
 			// MiddleRoomArrow.scale.copy(navArrowScale)
 			MiddleRoomArrow.scale.set(5,2.5,5)
+			textMainRoom.position.set(arrowDist * Math.sin(toRadians(0)) , arrowHeight*1.2, -arrowDist * Math.cos(toRadians(0)));
+			textMiddleRoom.position.set(1.8*arrowDist * Math.sin(toRadians(80)) , arrowHeight*1.25, -arrowDist* 1.8 * Math.cos(toRadians(80)));
+			if(selectedLanguage == "ko"){
+				textMiddleRoom.scale.set(20,20,20)
+				textMainRoom.scale.set(12,12,12)
+			}else if(selectedLanguage == "zh"){
+				textMainRoom.scale.set(10,10,10)
+				textMiddleRoom.scale.set(15,15,15)
+			}else{
+				textMiddleRoom.scale.set(12,12,12)
+				textMainRoom.scale.set(12,12,12)
+			}
+			// textMainRoom.scale.set(10,10,10)
+			textMainRoom.rotation.y = -1
+			// textMiddleRoom.scale.set(12,12,12)
+			textMiddleRoom.rotation.y = -0.5
 
 			calculateScale(glow,4,2,4)
 			calculateScale(glowMiddle,5,2.5,5)
@@ -538,6 +573,7 @@ function init() {
 
 			glowScene.add(glowPoolEntracen);
 			glowScene.add(glowSlefie);
+			// textScene1.add(textSelfie)
 			// PoolEntranceArrow.scale.copy(navArrowScale)
 			// selfieRoomArrow.scale.copy(navArrowScale)
 			glowPoolEntracen.position.set(2.5*arrowDist * Math.sin(toRadians(-146)) , arrowHeight, -arrowDist*2.5 * Math.cos(toRadians(-146)));
@@ -546,6 +582,12 @@ function init() {
 			RoomVideoPlay.position.set(100,-20.5,52.5)
 			RoomVideoPlay.rotation.set(0,4.7,0)
 			RoomVideoPlay.scale.set(7.2,6.9,1)
+
+			// textSelfie.position.set(3*arrowDist * Math.sin(toRadians(-103)) , arrowHeight*1.3, -arrowDist *3* Math.cos(toRadians(-103)));
+
+			// textSelfie.scale.set(25,25,25)
+			// textSelfie.rotation.y = -0.5
+
 			TweenFadeInForVideos(videoMat)
 			video.play()
 			video2.play()
@@ -581,6 +623,7 @@ function init() {
 
 			glowScene.add(glowPoolEntracen);
 			glowScene.add(glowPool);
+			// textScene1.add(textPool)
 
 			SelfiePlane.position.set(-1,0,1)
 			SelfiePlane.rotation.set(0,-1,0)
@@ -592,6 +635,9 @@ function init() {
 			glowPoolEntracen.position.set(1.5*arrowDist * Math.sin(toRadians(-210)) , arrowHeight, -arrowDist*1.5 * Math.cos(toRadians(-210)));
 			glowPool.position.set(1.65*arrowDist * Math.sin(toRadians(65)) , arrowHeight, -arrowDist *1.65* Math.cos(toRadians(65)));
 
+			// textPool.position.set(1.65*arrowDist * Math.sin(toRadians(65)) , arrowHeight*1.25, -arrowDist *1.65* Math.cos(toRadians(65)));
+			// textPool.scale.set(20,20,20)
+			// textPool.rotation.y = -0.5
 
 			PoolEntranceArrow.scale.set(4.5,2.1,4.5)
 			PoolRoomArrow.scale.set(4.5,2.1,4.5)
@@ -622,6 +668,7 @@ function init() {
 
 			glowScene.add(glowMiddle);
 			glowScene.add(glowEntrace);
+			textScene1.add(textProdentrance)
 
 			BottleRoomVideoPlayScene.add(VideoPlayBottleScene)
 			VideoPlayBottleScene.position.set(-342,26,-450);
@@ -636,6 +683,10 @@ function init() {
 			MiddleRoomArrow.scale.set(6,3,6)
 			glowEntrace.position.set(1.25*arrowDist * Math.sin(toRadians(-40)) , arrowHeight, -arrowDist*1.25 * Math.cos(toRadians(-40)));
 			glowMiddle.position.set(3*arrowDist * Math.sin(toRadians(-90)) , arrowHeight, -arrowDist *3* Math.cos(toRadians(-90)));
+			
+			textProdentrance.position.set(1.25*arrowDist * Math.sin(toRadians(-40)) , arrowHeight*1.25, -arrowDist*1.25 * Math.cos(toRadians(-40)));
+			textProdentrance.scale.set(15,15,15)
+			textProdentrance.rotation.y = -0.
 			calculateScale(glowEntrace,5,2.4,5)
 			calculateScale(glowMiddle,6,3,6)
 			// MiddleRoomArrow.scale.copy(navArrowScale)
@@ -668,6 +719,9 @@ function init() {
 			glowScene.add(glowMiddle);
 			glowScene.add(glowBeauty);
 			glowScene.add(glowProduct);
+			textScene1.add(textProdentrance)
+			textScene1.add(textProduct)
+			textScene1.add(textMainRoom)
 
 			bilboardVideo.play();
 			videoRoomArrow.position.set(1.5*arrowDist * Math.sin(toRadians(-20)) , arrowHeight, -arrowDist *1.5* Math.cos(toRadians(-20)));
@@ -681,6 +735,22 @@ function init() {
 			glowCoach.position.set(arrowDist * Math.sin(toRadians(120)) , arrowHeight, -arrowDist * Math.cos(toRadians(120)));
 			glowMiddle.position.set(1.8* arrowDist * Math.sin(toRadians(-110)) , arrowHeight, -arrowDist*1.8 * Math.cos(toRadians(-110)));
 
+			textProdentrance.position.set(1.5*arrowDist * Math.sin(toRadians(-20)) , arrowHeight*1.3, -arrowDist *1.5* Math.cos(toRadians(-20)));
+			textProduct.position.set(2*arrowDist * Math.sin(toRadians(20)) , arrowHeight*1.3, -arrowDist *2* Math.cos(toRadians(20)));
+			textMainRoom.position.set(1.8* arrowDist * Math.sin(toRadians(-110)) , arrowHeight*1.25, -arrowDist*1.8 * Math.cos(toRadians(-110)));
+			if(selectedLanguage == "zh"){
+				textProdentrance.scale.set(15,15,15)
+				textProduct.scale.set(18,18,18)
+				textMainRoom.scale.set(18,18,18)
+			}else{
+				textProdentrance.scale.set(18,18,18)
+				textProduct.scale.set(20,20,20)
+				textMainRoom.scale.set(18,18,18)
+			}
+			textProdentrance.rotation.y = -0.5
+			textMainRoom.rotation.y = -0.5
+			// textProduct.scale.set(20,20,20)
+			textProduct.rotation.y = -0.5
 
 			videoRoomArrow.scale.set(5.5,2.8,5.5)
 			BottleRoomArrow.scale.set(6,3,6)
@@ -884,6 +954,11 @@ function init() {
 			glowScene.add(glowSlefie);
 			glowScene.add(glowPool);
 
+			textScene1.add(textMainRoom)
+			textScene1.add(textMiddleRoom)
+			// textScene1.add(textPool)
+			// textScene1.add(textSelfie)
+
 
 			calculateScale(glowSlefie,6,3,6)
 			calculateScale(glowPool,6.2,3.1,6.2)
@@ -909,7 +984,25 @@ function init() {
 			glowMiddle.position.set(1.8*arrowDist * Math.sin(toRadians(135)) , arrowHeight, -arrowDist *1.8* Math.cos(toRadians(135)));
 			glow.position.set(arrowDist * Math.sin(toRadians(190)) , arrowHeight, -arrowDist * Math.cos(toRadians(190)));
 
+			textMainRoom.position.set(arrowDist * Math.sin(toRadians(190)) , arrowHeight*1.2, -arrowDist * Math.cos(toRadians(190)));
+			textMiddleRoom.position.set(1.8*arrowDist * Math.sin(toRadians(135)) , arrowHeight*1.25, -arrowDist *1.8* Math.cos(toRadians(135)));
+			// textSelfie.position.set(2.3*arrowDist * Math.sin(toRadians(-40)) , arrowHeight*1.25, -arrowDist *2.3* Math.cos(toRadians(-40)));
+			// textPool.position.set(3.3*arrowDist * Math.sin(toRadians(15)) , arrowHeight*1.25, -arrowDist *3.3* Math.cos(toRadians(15)));
 
+			if(selectedLanguage == "ko"){
+				textMiddleRoom.scale.set(20,20,20)
+			}else{
+				textMiddleRoom.scale.set(12,12,12)
+			}
+
+			// textSelfie.scale.set(20,20,20)
+			// textSelfie.rotation.y = -0.5
+			// textPool.scale.set(30,30,30)
+			// textPool.rotation.y = -0.5
+			// textMiddleRoom.scale.set(12,12,12)
+			textMiddleRoom.rotation.y = -0.5
+			textMainRoom.scale.set(12,12,12)
+			textMainRoom.rotation.y = -0.5
 
 			RoomVideoPlay.position.set(120,-9,-100)
 			RoomVideoPlay.rotation.set(0,-1.5,-0.01)
@@ -949,9 +1042,28 @@ function init() {
 			MiddleRoomScene.add(MiddleRoomArrow)
 			PoolEntranceScene.add(PoolEntranceArrow);
 			RoomVideoPlayScene.add(RoomVideoPlay);
+			textScene1.add(textPoolEntrance)
+			textScene1.add(textMiddleRoom)
 
 
+			textMiddleRoom.position.set(1.8*arrowDist * Math.sin(toRadians(95)) , arrowHeight*1.25, -arrowDist*1.8 * Math.cos(toRadians(95)));
+			textPoolEntrance.position.set(1.2*arrowDist * Math.sin(toRadians(15)) , arrowHeight*1.2, -arrowDist*1.2 * Math.cos(toRadians(15)))
+			
 
+			if(selectedLanguage == "ko"){
+				textPoolEntrance.scale.set(15,15,15)
+				textMiddleRoom.scale.set(20,20,20)
+			}else if(selectedLanguage == "zh"){
+				textPoolEntrance.scale.set(15,15,15)
+				textMiddleRoom.scale.set(15,15,15)
+			}else{
+				textPoolEntrance.scale.set(12,12,12)
+				textMiddleRoom.scale.set(12,12,12)
+			}
+			// textPoolEntrance.scale.set(12,12,12)
+			textPoolEntrance.rotation.y = -0.5
+			// textMiddleRoom.scale.set(12,12,12)
+			textMiddleRoom.rotation.y = -0.5
 
 			//   orbProduct.position.set(-8.2,1.75,1.1)
 			//   orbProduct.rotation.set(0,2,0)
@@ -1033,6 +1145,9 @@ function init() {
 			glowScene.add(glowPoolEntracen);
 			glowScene.add(glowCoach);
 			glowScene.add(glowEntrace);
+			textScene1.add(textPoolEntrance)
+			textScene1.add(textMainRoom)
+			textScene1.add(textProdentrance)
 
 			CoachRoomArrow.position.set(3.2*arrowDist * Math.sin(toRadians(82.5)) , arrowHeight, -arrowDist*3.2 * Math.cos(toRadians(82.5)));
 			//   CoachRoomArrow.scale.copy(navArrowScale)
@@ -1052,6 +1167,30 @@ function init() {
 			glowPoolEntracen.position.set(2*arrowDist * Math.sin(toRadians(-30)) , arrowHeight, -arrowDist*2 * Math.cos(toRadians(-30)));
 
 			//   PoolEntranceArrow.scale.copy(navArrowScale)
+
+
+			textMainRoom.position.set(1.9*arrowDist * Math.sin(toRadians(-75)) , arrowHeight*1.3, -arrowDist*1.9 * Math.cos(toRadians(-75)));
+			textPoolEntrance.position.set(2*arrowDist * Math.sin(toRadians(-30)) , arrowHeight*1.3, -arrowDist*2 * Math.cos(toRadians(-30)));
+			textProdentrance.position.set(2.5*arrowDist * Math.sin(toRadians(52)) , arrowHeight*1.3, -arrowDist*2.5 * Math.cos(toRadians(52)));
+			
+			if(selectedLanguage == "ko"){
+				textPoolEntrance.scale.set(20,20,20)
+				textMainRoom.scale.set(20,20,20)
+				textProdentrance.scale.set(25,25,25)
+			}else if(selectedLanguage == "zh"){
+				textPoolEntrance.scale.set(22.5,22.5,22.5)
+				textMainRoom.scale.set(18,18,18)
+				textProdentrance.scale.set(18,18,18)
+			}else{
+				textPoolEntrance.scale.set(18,18,18)
+				textMainRoom.scale.set(20,20,20)
+				textProdentrance.scale.set(22.5,22.5,22.5)
+			}
+			textPoolEntrance.rotation.y = -0.5
+
+			textMainRoom.rotation.y = -0.5
+		
+			textProdentrance.rotation.y = -0.5
 
 			TweenFadeInForArrow()
 			calculateScale(glowPoolEntracen,6,3,6)
@@ -1109,6 +1248,34 @@ function init() {
 	glowBaseProduct.scale.copy(navArrowScale)
 	glowProduct.scale.copy(navArrowScale)
 	glow.scale.copy(navArrowScale)
+
+
+
+
+	var textTex1 = new THREE.TextureLoader().load( textMainRoomUrl );
+	textMat1 = new THREE.SpriteMaterial( { map: textTex1 ,transparent: true ,opacity:0.8} );
+	textMainRoom= new THREE.Sprite( textMat1 );
+	var textTex2 = new THREE.TextureLoader().load( textMiddleRoomUrl );
+	textMat2 = new THREE.SpriteMaterial( { map: textTex2 ,transparent: true ,opacity:0.8} );
+	textMiddleRoom= new THREE.Sprite( textMat2 );
+	var textTex3 = new THREE.TextureLoader().load( textPoolEntranceUrl );
+	textMat3 = new THREE.SpriteMaterial( { map: textTex3 ,transparent: true ,opacity:0.8} );
+	textPoolEntrance= new THREE.Sprite( textMat3 );
+	var textTex4 = new THREE.TextureLoader().load( textProdentranceUrl );
+	textMat4 = new THREE.SpriteMaterial( { map: textTex4 ,transparent: true ,opacity:0.8} );
+	textProdentrance= new THREE.Sprite( textMat4 );
+
+	var textTex5 = new THREE.TextureLoader().load( textProductUrl);
+	textMat5 = new THREE.SpriteMaterial( { map: textTex5 ,transparent: true ,opacity:0.8} );
+	textProduct= new THREE.Sprite( textMat5 );
+
+	var textTex6 = new THREE.TextureLoader().load( textSelfieUrl );
+	textMat6 = new THREE.SpriteMaterial( { map: textTex6 ,transparent: true ,opacity:0.8} );
+	textSelfie= new THREE.Sprite( textMat6 );
+	var textTex7 = new THREE.TextureLoader().load(textPoolUrl);
+	textMat7 = new THREE.SpriteMaterial( { map: textTex7 ,transparent: true ,opacity:0.8} );
+	textPool= new THREE.Sprite( textMat7 );
+
 	//***********************ARROWS********************
 	var arrowTexture = new THREE.TextureLoader().load( arrowUrl );
 	arrowMat = new THREE.SpriteMaterial( { map: arrowTexture ,rotation:0,transparent: true,opacity:1} );
@@ -1902,7 +2069,7 @@ function clickTrigger(){
 				orbClickable = false
 			}
 		}
-		if ( intersectsRoomVideoPlay.length > 0 &&  currState == INTRO) {
+		if ( intersectsRoomVideoPlay.length > 0 &&   (currState == INTRO || currState == MAIN || currState == POOLENTRACE || currState == SELFIE) ) {
 			setTimeout(function(){
 				envLoad(sceneUrl9)
 				currState = POOL
@@ -1912,7 +2079,7 @@ function clickTrigger(){
 			DisableEverything()
 
 		}
-		if ( intersectsMultipleVideo.length > 0 && currState == COUCH ) {
+		if ( intersectsMultipleVideo.length > 0 && (currState == COUCH || currState == PRODENTRANCE || currState == PRODUCTBASE || currState== PRODUCTS) ) {
 			console.log("VIDEO ROOM SCENE - 1")
 
 			setTimeout(function(){
@@ -2011,6 +2178,13 @@ function DisableEverything(){
 	let ArrowArray = [glowScene,orbPlus,orbProduct,ProcuctBaseArrow,PoolEntranceArrow,orbVideoMesh,MainRoomArrow,PoolRoomArrow,selfieRoomArrow,CoachRoomArrow,videoRoomArrow,ProductRoomArrow,BottleRoomArrow,RoomVideoPlay,VideoPlayBottleScene,ProductIcon1,ProductIcon2,ProductIcon3,VideoPlayBottleScene,SelfiePlane,MiddleRoomArrow]
 	let ArrowScene = [glow,orbPlusScene,orbProductScene,ProcuctBaseScene,PoolEntranceScene,OrbVideoScene,MainRoomScene,PoolRoomScene,selfieScene,CoachRoomScene,VideoRoomScene,ProductRoomScene,BottleRoomScene,RoomVideoPlayScene,BottleRoomVideoPlayScene,ProductIconScene1,ProductIconScene2,ProductIconScene3,BottleRoomVideoPlayScene,SelfiePlaneScene,MiddleRoomScene]
 	let glowArray = [productGlow1,productGlow2,productGlow3,glow, glowMiddle,glowPoolEntracen,glowSlefie,glowPool,glowCoach,glowBeauty,glowEntrace,glowBaseProduct,glowProduct]
+	let textArray = [textMiddleRoom,textMainRoom,textPoolEntrance,textProdentrance,textProduct,textSelfie,textPool]
+	setTimeout(function(){
+		for (var i = 0; i < textArray.length; i++) {
+			textScene1.remove(textArray[i]);
+
+		}
+	}, 200);
 	setTimeout(function(){
 		for (var i = 0; i < glowArray.length; i++) {
 			glowScene.remove(glowArray[i]);

@@ -25,14 +25,17 @@ function loadJSON(callback) {
 function setEnglish(){
   languageID = 0
   setLang(languageID)
+  // document.getElementsByTagName("BODY")[0].style.fontFamily = "Pangram-Regular  !important";
 }
 function setKorean(){
   languageID = 1
   setLang(languageID)
+  // document.getElementsByTagName("BODY")[0].style.fontFamily = "Noto-KR-Regular  !important";
 }
 function setChinese(){
   languageID = 2
   setLang(languageID)
+  // document.getElementsByTagName("BODY")[0].style.fontFamily = "Noto-CN-Regular  !important";
 }
 
 function setLang(id){
@@ -68,6 +71,41 @@ function setLang(id){
 var copyJSON;
 var languageID = 0;
 
+var CHINA = 0
+var KOREA = 1
+var TAIWAN = 2
+var JAPAN = 3
+
+var region =  -1;
+
+fetch('https://extreme-ip-lookup.com/json/')
+  .then(res => res.json())
+  .then(response => {
+    code =  response.countryCode
+    console.log("Country: ", response.countryCode);
+    if (code.localeCompare('CN') === 0) {
+      region =  CHINA;
+      // setChinese();
+    } else if (code.localeCompare('KR') === 0) {
+      region =  KOREA;
+      // setKorean();
+    } else if (code.localeCompare('TW') === 0) {
+      region =  TAIWAN;
+      // setChinese();
+    } else if (code.localeCompare('JP') === 0) {
+      region =  JAPAN;
+    } else {
+      region =  -1; // other.
+      // setEnglish();
+    }
+    console.log("region set to " + region);
+  })
+  .catch((data, status) => {
+    console.log('Request failed');
+    region =  CHINA;
+    console.log("region set failed. default is China");
+  })
+
 loadJSON(function(response) {
 
  // Parse JSON string into object
@@ -83,8 +121,16 @@ loadJSON(function(response) {
    } else {
      languageID = 0
    }
-   // setLang(languageID)
    setChinese();
+
+   // setLang(languageID)
+   // if(region===CHINA){
+   //   setChinese();
+   // } else if(region === KOREA) {
+   //   setKorean();
+   // } else {
+   //   setEnglish();
+   // }
 
    document.getElementById('en-btn').addEventListener('click', setEnglish)
    document.getElementById('ko-btn').addEventListener('click', setKorean)
@@ -453,7 +499,9 @@ document.getElementById('start-btnIntro').addEventListener('click', function(e) 
   document.getElementById('skipButton').style.display="flex";
   document.getElementById('skipLink').style.display="flex";
   document.getElementById('controlsIntro').style.display = "none";
-  document.getElementById('mute-unmute-btn').style.display="block";
+  if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+    document.getElementById('mute-unmute-btn').style.display="block";
+  }
   document.getElementById('firstVideo').play();
   document.getElementById('krystal-name').style.display="block";
   document.getElementById('krystal-title').style.display="block";
@@ -472,7 +520,7 @@ document.getElementById('start-btnIntro').addEventListener('click', function(e) 
    }, 8500);
    setTimeout(function(){
      document.getElementById('subtitles').innerHTML = copyJSON.Subtitles2[languageID]
-   }, 11000);
+   }, 12000);
    setTimeout(function(){
      document.getElementById('krystal-name').style.opacity=0;
      document.getElementById('krystal-title').style.opacity=0;
@@ -484,7 +532,7 @@ document.getElementById('start-btnIntro').addEventListener('click', function(e) 
    }, 15000);
    setTimeout(function(){
       document.getElementById('subtitles').innerHTML = copyJSON.Subtitles3[languageID]
-   }, 19000);
+   }, 20000);
    setTimeout(function(){
       document.getElementById('subtitles').innerHTML = copyJSON.Subtitles4[languageID]
    }, 26000);
