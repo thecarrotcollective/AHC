@@ -2,19 +2,16 @@
 @font-face {
   font-family: "Pangram-Regular";
   src:url("../shared/fonts/Pangram-Regular.otf") format("opentype");
-  unicode-range: U+0000, U+04F0;
 }
 
 @font-face {
   font-family: "Pangram-Light";
   src:url("../shared/fonts/Pangram-Light.otf") format("opentype");
-  unicode-range: U+0000, U+04F0;
 }
 
 @font-face {
   font-family: "Pangram-Bold";
   src:url("../../shared/fonts/Pangram-Bold.otf") format("opentype");
-  unicode-range: U+0000, U+04F0;
 }
 
 @font-face {
@@ -59,7 +56,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #fff4ee;
-    font-family: Pangram-Regular, Noto-CN-Regular, Noto-KR-Regular !important;
+    font-family: Noto-CN-Regular, Noto-KR-Regular, Pangram-Regular !important;
 }
 
 .privacy{
