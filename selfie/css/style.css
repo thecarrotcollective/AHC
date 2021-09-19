@@ -56,7 +56,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #fff4ee;
-    font-family: Noto-CN-Regular, Noto-KR-Regular, Pangram-Regular !important;
+    font-family: Pangram-Regular, Noto-CN-Regular, Noto-KR-Regular !important;
 }
 
 .privacy{

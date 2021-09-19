@@ -3,10 +3,15 @@ body {
   height: 100%;
   margin: 0 !important;
   padding: 0 !important;
-  /* font-family: "Pangram-Regular"; */
+  /* font-family: inherit; */
+  /* font-family: Noto-CN-Regular, Noto-KR-Regular, Pangram-Regular !important; */
   background-color: black;
   background-position: center; /* Center the image */
   background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+button {
+  font-family: inherit;
 }
 
 canvas{

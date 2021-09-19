@@ -122,8 +122,6 @@ loadJSON(function(response) {
      languageID = 0
    }
    setChinese();
-
-   // setLang(languageID)
    // if(region===CHINA){
    //   setChinese();
    // } else if(region === KOREA) {
