@@ -1,113 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#ffffff">
-    <!-- <script src="sceneFolder/scripts/scriptPhone.js"></script> -->
-    <title>AHC</title>
-    <!-- <link rel="stylesheet" href="shared/intro.css"> -->
-    <link rel="stylesheet" href="shared/start-page.css">
-    <link rel="preload" href="personalitytest/script.js" as="script">
-    <!-- <link rel="preload" href="style.css" as="style"> -->
+  <style>
+    body{
+      padding: 0;
+      margin: 0;
+      background: black;
+    }
+    video{
+      /* display: block; */
+      width:100%;
+      max-height: 100%;
+      margin: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  </style>
 </head>
-<body class="mainIntroPage">
-    <div id="IntroDiv" class="introBG">
-      <div class="container">
-          <div class="safe_area">
-              <div id="black-screen" class="black-screen"></div>
-              <div class="ahc-logo-Intro ahc-logo" id = "ahc-logo-Intro"><img id="ahc-logo-beauty-imgIntro" src="shared/images/AHCLOGO_white.webp"></div>
-              <div class="quizquestion" id="quesitonDiv">
-                  <h2 id='question' class="question">PERSONALITY TESTS ARE AN ESSENTIAL<br>TRAIT OF KOREAN CULTURE.</h2>
-              </div>
-              <section>
-                  <div class="content" id="content">
-                      <div class ="arch", id="archid">
-                          <img id="arch-img" class="image" src="personalitytest/images/opt/arch1.webp" alt="" >
-                      </div>
-                      <div class="middleText" id="middleText">
-                          <h1 id="personality"></h1>
-                      </div>
-                      <div class="middleText2" id="middleText2">
-                          <h1 id="personality2">START<br>PERSONALITY<br>TEST</h1>
-                      </div>
-                      <div class="infoText" id="infoText">
-                          <h2 id="infoText"></h2>
-                      </div>
-                      <div class="quiz"style="display: none;" id="quiz_id">
 
-                          <div id="buttons_id" class="buttons">
-                              <button class = "btnContainer btnAnim" id="btn0" class="btn0_class"><span id="choice0" ></span></button>
-                              <button class = "btnContainer btnAnim" id="btn1" class="btn1_class"><span id="choice1"></span></button>
-                              <button class = "btnContainer btnAnim" id="btn2" class="btn2_class"><span id="choice2"></span></button>
-                              <button class = "btnContainer btnAnim" id="btn3" class="btn3_class"><span id="choice3"></span></button>
-                          </div>
-                      </div>
-                  </div>
-              </section>
-              <div class="grid_container" id="grid_container">
-                  <section>
-                      <div class="header" id="header">
+<body>
 
-                      </div>
-                  </section>
+<video controls>
+  <source src="movie.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-                  <section>
-                      <div class="footer" id="footer">
-                          <div class="controlsIntro" id="controlsIntro">
-                              <button id="start-btnIntro" class="startBtn startBtn1 bottomBtn transparentClr" >START YOUR JOURNEY!</button>
-                              <div id="tandc">BY CLICKING "START YOUR JOURNEY!"<br> YOU AGREE TO OUR <a class="links" href="legal/privacy.html">PRIVACY POLICY</a></div>
-                              <div id="language" class="language">
-                                  <button id="en-btn" class="language-btn language-btn1">EN</button>
-                                  <button id="ko-btn" class="language-btn language-btn1" style="opacity: 0.5;">한국어</button>
-                                  <button id="zh-btn" class="language-btn language-btn1" style="opacity: 0.5;">中文</button>
-                              </div>
-                          </div>
-                          <div id="skipButton" class="skipButton">
-                              <button class="skipBtn beigeClr" id="skipLink" style="display: none;">SKIP</button>
-                              <!-- <button class="skipBtn skipBtn38" id="skipLink2" style="display: none;">SKIP</button> -->
-                          </div>
-                          <div class="controls", id="controls_id">
-                              <button id="start-quiz-btn" class="bn3639 bn39" >START EXPERIENCE!</button>
-                          </div>
-                          <div class="process", id="process_id">
-                              <!-- <div>
-                                  <label for="i1" class="dots" id="dot1"></label>
-                                  <label for="i2" class="dots" id="dot2"></label>
-                                  <label for="i3" class="dots" id="dot3"></label>
-                              </div> -->
-                              <div id="btnCSS2" class="skipButton"><button class="skipBtn blackClrTextOnly" id="skipLinkScene">SKIP</button></div>
-                          </div>
-                      </div>
-                  </section>
-              </div>
-          </div>
-      </div>
-      <div id="video-container">
-        <div id="video-element-container">
-          <!-- <video playsInline  id="firstVideo">
-              <source src="personalitytest/videos/Spa_Zoom_8mbps_37.mp4" type="video/mp4">
-          </video> -->
-        </div>
-        <div id="krystal-name">
-        </div>
-        <div id="krystal-title">
-        </div>
-        <div id="subtitles">
-        </div>
-        <div class="audio-btn">
-          <img class="speaker-btn" id="mute-unmute-btn"
-            src="shared/images/Speaker_Icon.svg"
-            alt="mute/unmute"/>
-        </div>
-      </div>
-    </div>
 </body>
-<script src="personalitytest/script.js"></script>
-
 </html>
