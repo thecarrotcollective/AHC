@@ -1,47 +1,59 @@
 
 @font-face {
   font-family: "Pangram-Regular";
-  src:url("../shared/fonts/Pangram-Regular.otf") format("opentype");
+  src:url("../shared/fonts/Pangram-Regular.woff2") format("woff2"),
+      url("../shared/fonts/Pangram-Regular.otf") format("opentype");
+  font-display: swap
 }
 
 @font-face {
   font-family: "Pangram-Light";
-  src:url("../shared/fonts/Pangram-Light.otf") format("opentype");
+  src:url("../shared/fonts/Pangram-Light.woff2") format("woff2"),
+      url("../shared/fonts/Pangram-Light.otf") format("opentype");
+  font-display: swap
 }
 
 @font-face {
   font-family: "Pangram-Bold";
-  src:url("../../shared/fonts/Pangram-Bold.otf") format("opentype");
+  src:url("../../shared/fonts/Pangram-Bold.otf") format("opentype"),
+      url("../../shared/fonts/Pangram-Bold.woff2") format("woff2");
+  font-display: swap
 }
 
 @font-face {
   font-family: "Noto-CN-Regular";
   src:url("../../shared/fonts/NotoSansSC-Regular.otf") format("opentype");
+  font-display: swap
 }
 
 @font-face {
   font-family: "Noto-CN-Bold";
   src:url("../../shared/fonts/NotoSansSC-Bold.otf") format("opentype");
+  font-display: swap
 }
 
 @font-face {
   font-family: "Noto-CN-Light";
   src:url("../../shared/fonts/NotoSansSC-Light.otf") format("opentype");
+  font-display: swap
 }
 
 @font-face {
   font-family: "Noto-KR-Regular";
   src:url("fonts/NotoSansKR-Regular.woff2") format("woff2");
+  font-display: swap
 }
 
 @font-face {
   font-family: "Noto-KR-Bold";
   src:url("fonts/NotoSansKR-Bold.woff2") format("woff2");
+  font-display: swap
 }
 
 @font-face {
   font-family: "Noto-KR-Light";
   src:url("fonts/NotoSansKR-Light.woff2") format("woff2");
+  font-display: swap
 }
 
 canvas.deepar {
