@@ -47,7 +47,8 @@
 body {
   margin: 0;
   background-color: #F3E9E2;
-  font-family: Pangram-Regular, Noto-CN-Regular, Noto-KR-Regular !important;
+  /* font-family: Pangram-Regular, Noto-CN-Regular, Noto-KR-Regular !important; */
+  font-family: Pangram-Regular !important;
   color: white;
   transition: all 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
 }
