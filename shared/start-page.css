@@ -79,7 +79,6 @@ div{
 button {
   font-family: inherit;
 }
-
 #black-screen{
   display: none;
   position: absolute;
@@ -89,7 +88,6 @@ button {
   z-index: 1;
   opacity: 1;
 }
-
 #krystal-name{
   display: none;
   opacity: 0;
@@ -100,7 +98,6 @@ button {
   transform: translate(-50%, 0%);
   transition: all 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
 }
-
 #krystal-title{
   opacity: 0;
   display: none;
@@ -110,7 +107,6 @@ button {
   transform: translate(-50%, 0%);
   transition: all 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
 }
-
 #subtitles {
   display: none;
   position: absolute;
@@ -121,7 +117,6 @@ button {
   padding: 1em;
   border-radius: 1em;
 }
-
 @keyframes reverseOpacity {
   0% {
     opacity: 1;
@@ -160,11 +155,9 @@ button {
   color: white;
   text-shadow: 0px 0px 10px #333;
 }
-
 .introBG{
   background: url('../personalitytest/images/OPENNING.webp') no-repeat;
 }
-
 .ahc-logo{
   position: absolute;
   width: 150px;
