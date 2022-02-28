@@ -249,7 +249,8 @@ document.getElementById("start-btn").addEventListener("click", function() {
 	}
 
 
-	renderer.autoclear = false;
+	// renderer.autoclear = false;
+	renderer.autoclear = true;
 	// TweenFadeInForVideos(videoMat)
 	// checkTheVideoLoad()
 	document.getElementById('main').style.display = 'block'
@@ -351,6 +352,7 @@ function init() {
 	const container = document.getElementById( 'container_2' );
 
 	renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+	// renderer = new THREE.WebGLRenderer({alpha: true, antialias: true, preserveDrawingBuffer: true});
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	container.appendChild( renderer.domElement );
