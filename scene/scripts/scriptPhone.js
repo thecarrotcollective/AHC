@@ -128,6 +128,8 @@ else if(selectedPersonality === 'ex'){
 }
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
+let globalTextures;
+
 let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2,videoTexture;
 let renderer,video,skydome,BottleRoomVideoPlayScene,SelfiePlane,SelfiePlaneScene,video2;
 let videoMeshBottleScene,selfieScene,VideoRoomScene, BottleRoomScene, videoRoomArrow, BottleRoomArrow,MainRoomScene,MainRoomArrow,PoolRoomArrow,PoolRoomScene,CoachRoomScene,CoachRoomArrow;
@@ -415,6 +417,7 @@ function init() {
 
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
 
+	
 	skydome = {
 		scene: new THREE.Scene(),
 		camera : new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 ),
@@ -1492,6 +1495,8 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 	for ( let i = 0; i < tilesNum; i ++ ) {
 		textures[ i ] = new THREE.Texture();
 	}
+
+	// TODO
 	new THREE.ImageLoader(manager)
 		.load( atlasImgUrl, ( image ) => {
 
@@ -1797,12 +1802,14 @@ function animate() {
 	controls.update();
 	camera.quaternion.copy( skydome.camera.quaternion );
 
+	// out of memory error occurs here
+	// renderer.dispose();
+
 	renderer.render(skydome.scene, skydome.camera);
 
 	renderer.autoClear = false;
 
 	renderer.render(scene, camera );
-
 
 	// Hover Text
 	var vector = camera.position.clone();
@@ -2095,16 +2102,31 @@ function clickTrigger(){
 }
 
 function envLoad(textureUrl){
-	const textures = getTexturesFromAtlasFile( textureUrl, 6 );
+	globalTextures = null
+	globalTextures = getTexturesFromAtlasFile( textureUrl, 6 );
+	
+	// const textures = getTexturesFromAtlasFile( textureUrl, 6 );
+	if(materials){
+		materials = null;
+		console.log("materials nullified")
+	}
+	
 	materials = [];
 
 
 	for ( let i = 0; i < 6; i ++ ) {
-		materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
+		materials.push( new THREE.MeshBasicMaterial( { map: globalTextures[ i ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
+	}
+	console.log("skyBox=");
+	console.log(skyBox);
+	
+	if(skyBox){
+		skyBox = null;
+		console.log("skybox nullified")
 	}
 
 	skyBox = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), materials );
-
+	console.log(skyBox);
 
 
 	skyBox.geometry.scale( 1, 1, -1 );
@@ -2116,6 +2138,7 @@ function envLoad(textureUrl){
 	setTimeout(function(){
 		for ( let i = 0; i < 6; i ++ ) {
 			materials[i].transparent = true
+			// materials[i] = null;
 		}
 	}, 500);
 	// manager.onLoad = function ( ) {
