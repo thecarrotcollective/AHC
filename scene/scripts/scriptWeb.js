@@ -488,7 +488,7 @@ function init() {
 
 			orbProductVideo.play()
 			orbProductVideoMask.play()
-			console.log("intro scene runned")
+			console.log("intro scene ran")
 			async function playSceneVideo(){
 				let played = await sceneVideo()
 				let playedAlpha = await sceneAlphaVideo()
@@ -553,7 +553,7 @@ function init() {
 		if(currState === POOL){
 			video.currentTime = 0;
 			video2.currentTime = 0;
-			console.log("pool scene runned")
+			console.log("pool scene ran")
 			document.getElementById('pool-text').style.display = 'block';
 			document.getElementById('pool-btn').style.display = 'block';
 			document.getElementById('pool-btn').style.pointerEvents = "auto";
@@ -616,7 +616,7 @@ function init() {
 
 			video.currentTime = 0;
 			video2.currentTime = 0;
-			console.log("selfie scene runned")
+			console.log("selfie scene ran")
 			document.getElementById('selfie-text').style.display = 'block';
 			document.getElementById('selfie-btn').style.display = 'block';
 			document.getElementById('selfie-btn').style.pointerEvents = "auto";
@@ -669,7 +669,7 @@ function init() {
 		}
 		if(currState === COUCH){
 			bilboardVideo.currentTime = 0;
-			console.log("couch scene runned")
+			console.log("couch scene ran")
 			ProductRoomScene.add(ProductRoomArrow);
 			MiddleRoomScene.add(MiddleRoomArrow);
 
@@ -712,7 +712,7 @@ function init() {
 		if(currState === PRODENTRANCE){
 
 			bilboardVideo.currentTime = 0;
-			console.log("product scene runned")
+			console.log("product scene ran")
 			VideoRoomScene.add(videoRoomArrow)
 			BottleRoomScene.add(BottleRoomArrow)
 			CoachRoomScene.add(CoachRoomArrow)
@@ -784,7 +784,7 @@ function init() {
 		}
 		if(currState === BEAUTY){
 			bilboardVideo.currentTime = 0;
-			console.log("beauty scene runned")
+			console.log("beauty scene ran")
 			document.getElementById('beauty-text').style.display = 'block';
 			document.getElementById('beauty-btn').style.display = 'block';
 			document.getElementById('beauty-btn').style.pointerEvents = "auto";
@@ -826,7 +826,7 @@ function init() {
 		}
 		if(currState === PRODUCTS){
 			bilboardVideo.currentTime = 0;
-			console.log("product scene runned")
+			console.log("product scene ran")
 			ProductRoomScene.add(ProductRoomArrow)
 
 
@@ -1043,7 +1043,7 @@ function init() {
 			document.getElementById('orb-text').style.display = 'block';
 			document.getElementById('orb-btn').style.display = 'block';
 			document.getElementById('orb-btn').style.pointerEvents = "auto";
-			console.log("MAIN scene runned")
+			console.log("MAIN scene ran")
 			// orbGlowScene.add(orbGlow)
 			OrbVideoScene.add(orbVideoMesh)
 			// orbProductScene.add(orbProduct)
@@ -1103,7 +1103,7 @@ function init() {
 			// 	orbProductVideoMask.play()
 			setTimeout(function(){
 				if(orbProductVideo.currentTime != orbProductVideoMask.currentTime){
-					console.log("RUNNED")
+					console.log("ran")
 					orbProductVideo.currentTime = 0;
 					orbProductVideoMask.currentTime = 0;
 				}
@@ -1157,7 +1157,7 @@ function init() {
 			videoMat.alphaMap = videoMask
 		}
 		if(currState === MIDDLE){
-			console.log("middle scene runned")
+			console.log("middle scene ran")
 			MainRoomScene.add(MainRoomArrow)
 			PoolEntranceScene.add(PoolEntranceArrow);
 			CoachRoomScene.add(CoachRoomArrow)

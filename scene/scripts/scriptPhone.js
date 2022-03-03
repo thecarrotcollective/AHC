@@ -128,7 +128,9 @@ else if(selectedPersonality === 'ex'){
 }
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
-let globalTextures;
+let globalTextures, atlasTextures, loader;
+let canvas, context;
+let boxGeo;
 
 let camera, controls,videoMat,ProductIcon1,ProductIcon2,ProductIcon3,ProductIconScene1,ProductIconScene2,ProductIconScene3,video3,videoMask,videoMask2,videoTexture;
 let renderer,video,skydome,BottleRoomVideoPlayScene,SelfiePlane,SelfiePlaneScene,video2;
@@ -185,13 +187,13 @@ var leadingURL = ""
 
 if(!pathIsLocal){
 	// leadingURL = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/"
-	console.log(leadingURL);
+	// console.log(leadingURL);
 }
 
 var startScenePos = 0
 var dragOrb,dragBilboard, dragTherapy
 if(url_params[url_params.length-1].indexOf('M') ===0 || url_params[url_params.length-1].indexOf('U') === 0){
-	console.log("starting at selfie");
+	// console.log("starting at selfie");
 
   document.getElementById('question').style.display = "none"
   document.getElementById('middleText').style.display = "none"
@@ -212,7 +214,7 @@ document.getElementById("start-btn").addEventListener("click", function() {
     document.getElementById("look-around").style.display="none"
   }, 6000)
 
-	console.log("clicked")
+	// console.log("clicked")
 
 	if(selectedPersonality == 'fe'){
 
@@ -250,8 +252,6 @@ document.getElementById("start-btn").addEventListener("click", function() {
 		envLoad(sceneUrl10)
 	}
 
-
-	// renderer.autoclear = false;
 	renderer.autoclear = true;
 	// TweenFadeInForVideos(videoMat)
 	// checkTheVideoLoad()
@@ -272,13 +272,13 @@ document.getElementById("start-btn").addEventListener("click", function() {
 var sound;
 var volume;
 var muted = (url_params[url_params.length-1].indexOf('m')===0 || url_params[url_params.length-1].indexOf('M')===0 )
-console.log(muted);
+// console.log(muted);
 var mainVolumeMultiplier = muted?0:1
 document.getElementById("mute-unmute-btn").src=muted?"../shared/images/Mute_Icon.svg":"../shared/images/Speaker_Icon.svg";
 
 document.getElementById('mute-unmute-btn').addEventListener('click', function(e) {
 	muted = !muted;
-	console.log(muted);
+	// console.log(muted);
 	if(muted){
 		document.getElementById("mute-unmute-btn").src="../shared/images/Mute_Icon.svg";
 		mainVolumeMultiplier = 0;
@@ -289,13 +289,13 @@ document.getElementById('mute-unmute-btn').addEventListener('click', function(e)
 	sound.setVolume( volume * mainVolumeMultiplier);
 	flashSound.setVolume( volume * mainVolumeMultiplier);
 
-	console.log(volume * mainVolumeMultiplier);
+	// console.log(volume * mainVolumeMultiplier);
 	// sound.gain = volume * mainVolumeMultiplier
 });
 
 function playAudio(audioUrl){
 	volume = 0.65
-	console.log("play audio")
+	// console.log("play audio")
 	const listener = new THREE.AudioListener();
 	// camera.add( listener );
 
@@ -457,7 +457,7 @@ function init() {
 	var sceneVideoAlphaBooo = false
 	function sceneVideo(){
 		video.onloadeddata  = function() {
-			console.log("played")
+			// console.log("played")
 			sceneVideoBool = true
 
 		}
@@ -503,15 +503,15 @@ function init() {
 
 			// orbProductVideo.play()
 			// orbProductVideoMask.play()
-			console.log("intro scene runned")
+			// console.log("intro scene ran")
 			async function playSceneVideo(){
 				let played = await sceneVideo()
 				let playedAlpha = await sceneAlphaVideo()
-				console.log(played)
+				// console.log(played)
 				if(played == true && playedAlpha == true){
 					video.play()
 					video2.play()
-					console.log("viode is playing")
+					// console.log("viode is playing")
 				}
 			}
 			playSceneVideo()
@@ -561,7 +561,7 @@ function init() {
 		if(currState === POOL){
 			video.currentTime = 0;
 			video2.currentTime = 0;
-			console.log("pool scene runned")
+			// console.log("pool scene ran")
 			document.getElementById('pool-text').style.display = 'block';
 			document.getElementById('pool-btn').style.display = 'block';
 			document.getElementById('pool-btn').style.pointerEvents = "auto";
@@ -606,7 +606,7 @@ function init() {
 			// tweenScaleForArrows(selfieRoomArrow,7,3.4,7)
 			poolLoad = true
 			document.getElementById('close-btn').addEventListener("click", function(e){
-				console.log(" pool btn worked")
+				// console.log(" pool btn worked")
 				hoverButtonChecker = false
 				volumeUp()
 				clickableVideo = true
@@ -617,7 +617,7 @@ function init() {
 		if(currState === SELFIE){
 			video.currentTime = 0;
 			video2.currentTime = 0;
-			console.log("selfie scene runned")
+			console.log("selfie scene ran")
 			document.getElementById('selfie-text').style.display = 'block';
 			document.getElementById('selfie-btn').style.display = 'block';
 			document.getElementById('selfie-btn').style.pointerEvents = "auto";
@@ -667,7 +667,7 @@ function init() {
 		}
 		if(currState === COUCH){
 			bilboardVideo.currentTime = 0;
-			console.log("couch scene runned")
+			console.log("couch scene ran")
 			ProductRoomScene.add(ProductRoomArrow);
 			MiddleRoomScene.add(MiddleRoomArrow);
 
@@ -706,7 +706,7 @@ function init() {
 		if(currState === PRODENTRANCE){
 
 			bilboardVideo.currentTime = 0;
-			console.log("product scene runned")
+			console.log("product scene ran")
 			VideoRoomScene.add(videoRoomArrow)
 			BottleRoomScene.add(BottleRoomArrow)
 			CoachRoomScene.add(CoachRoomArrow)
@@ -779,7 +779,7 @@ function init() {
 		}
 		if(currState === BEAUTY){
 			bilboardVideo.currentTime = 0;
-			console.log("beauty scene runned")
+			console.log("beauty scene ran")
 			document.getElementById('beauty-text').style.display = 'block';
 			document.getElementById('beauty-btn').style.display = 'block';
 			document.getElementById('beauty-btn').style.pointerEvents = "auto";
@@ -821,7 +821,7 @@ function init() {
 		}
 		if(currState === PRODUCTS){
 			bilboardVideo.currentTime = 0;
-			console.log("product scene runned")
+			console.log("product scene ran")
 			ProductRoomScene.add(ProductRoomArrow)
 			ProductRoomArrow.position.set(1.2*arrowDist * Math.sin(toRadians(210)) , arrowHeight, -arrowDist *1.2* Math.cos(toRadians(210)));
 			ProductRoomArrow.scale.copy(navArrowScale)
@@ -1037,7 +1037,7 @@ function init() {
 			document.getElementById('orb-text').style.display = 'block';
 			document.getElementById('orb-btn').style.display = 'block';
 			document.getElementById('orb-btn').style.pointerEvents = "auto";
-			console.log("MAIN scene runned")
+			console.log("MAIN scene ran")
 
 			glowScene.add(glowPoolEntracen);
 			glowScene.add(glowMiddle);
@@ -1103,7 +1103,7 @@ function init() {
 			// 	orbProductVideoMask.play()
 			// setTimeout(function(){
 			// 	if(orbProductVideo.currentTime != orbProductVideoMask.currentTime){
-			// 		console.log("RUNNED")
+			// 		console.log("ran")
 			// 		orbProductVideo.currentTime = 0;
 			// 		orbProductVideoMask.currentTime = 0;
 			// 	}
@@ -1140,7 +1140,7 @@ function init() {
 			videoMat.alphaMap = videoMask
 		}
 		if(currState === MIDDLE){
-			console.log("middle scene runned")
+			console.log("middle scene ran")
 			MainRoomScene.add(MainRoomArrow)
 			PoolEntranceScene.add(PoolEntranceArrow);
 			CoachRoomScene.add(CoachRoomArrow)
@@ -1486,34 +1486,71 @@ function init() {
 	// window.addE999ventListener( 'resize', onWindowResize );
 	ProductButtons();
 	clickTrigger();
-	console.log("v2");
+	// console.log("v2");
 	renderer.autoclear = false;
 }
 
 function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
-	const textures = [];
+	if(atlasTextures){
+		for (let t = 0; t < atlasTextures.length; t++){
+			atlasTextures[t].dispose();
+			console.log('atlasTextures '+t+' nullified')
+		}
+		// atlasTextures = null
+		// console.log('atlasTextures nullified')
+	}
+	atlasTextures = []
+	// const textures = [];
 	for ( let i = 0; i < tilesNum; i ++ ) {
-		textures[ i ] = new THREE.Texture();
+		// textures[ i ] = new THREE.Texture();
+		atlasTextures[ i ] = new THREE.Texture();
 	}
 
 	// TODO
-	new THREE.ImageLoader(manager)
-		.load( atlasImgUrl, ( image ) => {
+	if(loader){
+		loader = null;
+		console.log('loader nullified');
+	}
+	loader = new THREE.ImageLoader(manager);
+	loader.load( atlasImgUrl, ( image ) => {
 
-			let canvas, context;
-			const tileWidth = image.height;
+		// let canvas, context;
+		const tileWidth = image.height;
 
-			for ( let i = 0; i < textures.length; i ++ ) {
-				canvas = document.createElement( 'canvas' );
-				context = canvas.getContext( '2d' );
-				canvas.height = tileWidth;
-				canvas.width = tileWidth;
-				context.drawImage( image, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
-				textures[ i ].image = canvas;
-				textures[ i ].needsUpdate = true;
-			}
-		} );
-	return textures;
+		for ( let i = 0; i < atlasTextures.length; i ++ ) {
+			canvas = document.createElement( 'canvas' );
+			context = canvas.getContext( '2d' );
+			canvas.height = tileWidth;
+			canvas.width = tileWidth;
+			context.drawImage( image, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
+			// textures[ i ].image = canvas;
+			atlasTextures[ i ].image = canvas;
+			// textures[ i ].needsUpdate = true;
+			atlasTextures[ i ].needsUpdate = true;
+		}
+	} );
+
+	// new THREE.ImageLoader(manager)
+	// 	.load( atlasImgUrl, ( image ) => {
+
+	// 		let canvas, context;
+	// 		const tileWidth = image.height;
+
+	// 		for ( let i = 0; i < atlasTextures.length; i ++ ) {
+	// 			canvas = document.createElement( 'canvas' );
+	// 			context = canvas.getContext( '2d' );
+	// 			canvas.height = tileWidth;
+	// 			canvas.width = tileWidth;
+	// 			context.drawImage( image, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
+	// 			// textures[ i ].image = canvas;
+	// 			atlasTextures[ i ].image = canvas;
+	// 			// textures[ i ].needsUpdate = true;
+	// 			atlasTextures[ i ].needsUpdate = true;
+	// 		}
+	// 	} );
+
+	// return textures;
+	return atlasTextures;
 }
 
 function ProductButtons(){
@@ -1558,7 +1595,7 @@ function onVideoLoad() {
 	// videoManager.itemEnd( "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/Ahc.Reveal.v5.BASE.mp4" ); // notifying about end of loading process
 	orbVideo.play();
 	orbVideoMask.play()
-	console.log("LOADED")
+	// console.log("LOADED")
 }
 
 
@@ -1575,7 +1612,7 @@ document.getElementById('orb-btn').addEventListener("click", function(e){
 
 });
 document.getElementById('beauty-btn').addEventListener("click", function(e){
-	console.log("clicked")
+	// console.log("clicked")
 	hoverButtonChecker = true
 	bilboardClickable = false
 
@@ -1636,11 +1673,11 @@ var orbVidMaskBool = false
 function loadOrbVide(){
 	orbVideo.onloadeddata  = function() {
 		orbVidBool = true
-		console.log("video Loaded")
+		// console.log("video Loaded")
 	}
 	orbVideoMask.onloadeddata  = function() {
 		orbVidMaskBool = true
-		console.log("video Loaded")
+		// console.log("video Loaded")
 	}
 	return true;
 
@@ -1818,7 +1855,7 @@ function animate() {
 	if (vector.x > 0.0005 && vector.x <0.013 && testBool == false){
 		new TWEEN.Tween( text.material ).to( { opacity: 1 }, 1000 ).start();
 		runTween()
-		console.log("tween started")
+		// console.log("tween started")
 		testBool = true;
 	} if(vector.x >0.013 || vector.x <0){
 		new TWEEN.Tween( text.material ).to( { opacity: 0 }, 500 ).start();
@@ -1830,16 +1867,16 @@ function animate() {
 
 function clickTrigger(){
 	const raycaster = new THREE.Raycaster();
-	console.log("clickTrigger is run");
+	// console.log("clickTrigger is run");
 	renderer.domElement.addEventListener("touchstart", event => {
-		console.log("touch event registered");
+		// console.log("touch event registered");
 		// })
 		// document.addEventListener("click", event => {
-		console.log(event);
+		// console.log(event);
 		mouse.x = event.touches[0].pageX / window.innerWidth * 2 - 1;
 		mouse.y = -(event.touches[0].pageY / window.innerHeight) * 2 +1 ;
 		raycaster.setFromCamera( mouse, camera );
-		console.log(mouse)
+		// console.log(mouse)
 
 		var intersectsPoolRoom = raycaster.intersectObjects( PoolRoomScene.children, false );
 		var intersectsMainRoom = raycaster.intersectObjects( MainRoomScene.children, false );
@@ -1891,7 +1928,7 @@ function clickTrigger(){
 				envLoad(sceneUrl10)
 				currState = SELFIE;
 			}, 500);
-			console.log("SELFIE SCENE - 1")
+			// console.log("SELFIE SCENE - 1")
 			DisableEverything()
 
 
@@ -2030,7 +2067,7 @@ function clickTrigger(){
 		var productbool;
 		if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon1.length > 0 ) {
 			productbool = true
-			console.log("video clicked")
+			// console.log("video clicked")
 			document.getElementById('product1').style.display = 'block';
 			document.getElementById('productButton-1').style.display = 'block';
 			new TWEEN.Tween( ProductMat ).to( { opacity: 0 }, 250 ).start();
@@ -2039,7 +2076,7 @@ function clickTrigger(){
 		}
 		if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon2.length > 0) {
 			productbool = true
-			console.log("video clicked")
+			// console.log("video clicked")
 			document.getElementById('product2').style.display = 'block';
 			document.getElementById('productButton-2').style.display = 'block';
 			new TWEEN.Tween( ProductMat ).to( { opacity: 0 }, 250 ).start();
@@ -2047,7 +2084,7 @@ function clickTrigger(){
 		}
 		if((productBaseLoad == true ||procutLoad == true) && intersectsProductPlusIcon3.length > 0 ) {
 			productbool = true
-			console.log("video clicked")
+			// console.log("video clicked")
 			document.getElementById('product3').style.display = 'block';
 			document.getElementById('productButton-3').style.display = 'block';
 			new TWEEN.Tween( ProductMat ).to( { opacity: 0 }, 250 ).start();
@@ -2102,31 +2139,54 @@ function clickTrigger(){
 }
 
 function envLoad(textureUrl){
-	globalTextures = null
-	globalTextures = getTexturesFromAtlasFile( textureUrl, 6 );
-	
-	// const textures = getTexturesFromAtlasFile( textureUrl, 6 );
-	if(materials){
-		materials = null;
-		console.log("materials nullified")
+	if (globalTextures){
+		for (let j = 0; j < globalTextures.length; j++){
+			globalTextures[j].dispose();
+			console.log("globalTextures " + j +" disposed");
+		}
+		
 	}
-	
+	// globalTextures = null
+	globalTextures = getTexturesFromAtlasFile( textureUrl, 6 );
+	// const textures = getTexturesFromAtlasFile( textureUrl, 6 );
+
+	if(materials){
+		for (let k = 0; k < globalTextures.length; k++){
+			materials[k].dispose();
+			console.log("materials " + k + " disposed")
+		}
+		// materials = null;
+		// console.log("materials nullified")
+	}
+
 	materials = [];
 
+	materials.push( new THREE.MeshBasicMaterial( { map: globalTextures[ 0 ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
+	materials.push( new THREE.MeshBasicMaterial( { map: globalTextures[ 1 ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
+	materials.push( new THREE.MeshBasicMaterial( { map: globalTextures[ 2 ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
+	materials.push( new THREE.MeshBasicMaterial( { map: globalTextures[ 3 ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
+	materials.push( new THREE.MeshBasicMaterial( { map: globalTextures[ 4 ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
+	materials.push( new THREE.MeshBasicMaterial( { map: globalTextures[ 5 ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
 
-	for ( let i = 0; i < 6; i ++ ) {
-		materials.push( new THREE.MeshBasicMaterial( { map: globalTextures[ i ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
-	}
-	console.log("skyBox=");
-	console.log(skyBox);
+	// for ( let i = 0; i < 6; i ++ ) {
+	// 	materials.push( new THREE.MeshBasicMaterial( { map: globalTextures[ i ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
+	// }
+	// console.log("skyBox=");
+	// console.log(skyBox);
 	
-	if(skyBox){
+	if(skyBox && boxGeo){
 		skyBox = null;
-		console.log("skybox nullified")
+		// boxGeo = null;
+		console.log("skyBox nullified")
+
+		// skyBox.dispose();
+		boxGeo.dispose();
+		console.log("boxGeo disposed")
 	}
 
-	skyBox = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), materials );
-	console.log(skyBox);
+	boxGeo = new THREE.BoxGeometry(1,1,1);
+	skyBox = new THREE.Mesh( boxGeo, materials );
+	// console.log(skyBox);
 
 
 	skyBox.geometry.scale( 1, 1, -1 );
@@ -2184,7 +2244,7 @@ function DisableEverything(){
 	orbVideoPlayCheck = false
 	orbVideoMask.loop = false;
 	orbVideo.loop = false;
-	console.log(loaderCheck)
+	// console.log(loaderCheck)
 
 	document.getElementById('selfie-text').style.display = 'none';
 	document.getElementById('selfie-btn').style.display = 'none';
@@ -2219,7 +2279,7 @@ function DisableEverything(){
 	setTimeout(function(){
 		for (var i = 0; i < ArrowArray.length; i++) {
 			ArrowScene[i].remove(ArrowArray[i]);
-			console.log("DISABLE THINGS RUNNED")
+			// console.log("DISABLE THINGS ran")
 		}
 	}, 200);
 	// TweenFadeOutForVideos(videoMat)
@@ -2292,7 +2352,7 @@ function checkTheVideoLoad(){
 		video3.play()
 		video.currentTime = 0;
 		video2.currentTime = 0;
-		console.log("LOADED")
+		// console.log("LOADED")
 
 	};
 
@@ -2315,7 +2375,7 @@ $(document).ready(function() {
 
 function sendUser() {
 	let phoneNumber = document.getElementById('phone').value;
-	console.log(phoneNumber)
+	// console.log(phoneNumber)
 	if (phoneNumber==null){
 		alert("Phone number invalid, try again");
 
@@ -2324,14 +2384,14 @@ function sendUser() {
 		xmlhttp.open("POST", post_url, true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-		console.log("sendUser phone = " + phoneNumber);
+		// console.log("sendUser phone = " + phoneNumber);
 		xmlhttp.send("phone="+phoneNumber);
 		xmlhttp.addEventListener("load", transferComplete);
 	}
 }
 
 function transferComplete(evt) {
-	console.log("The transfer is complete.");
+	// console.log("The transfer is complete.");
 	input.value = "";
 	shareContainer.style.display = 'none';
 	copyLink();
@@ -2346,7 +2406,7 @@ function transferComplete(evt) {
 function sharePopup() {
 	if(region === CHINA){
 		shareContainer.style.display = 'block';
-		console.log('show share-container')
+		// console.log('show share-container')
 		// add close button listener
 		shareClose.addEventListener('click', closeSharePopup);
 	} else {
@@ -2376,7 +2436,7 @@ function copyLink() {
 		// TODO Add fallback to copy Link
 		navigator.clipboard.writeText(linkToCopy)
 			.then(() => {
-				console.log("copied");
+				// console.log("copied");
 				var copiedText = "LINK COPIED"
 				if(selectedLanguage.localeCompare("zh") === 0){
 					copiedText = "链接已复制"

@@ -13,7 +13,7 @@ import {
  */
 
 var DeviceOrientationControls = function ( object, domElement ) {
-	console.log("loaded Dev Orientation with Orb");
+	// console.log("loaded Dev Orientation with Orb");
 	if ( window.isSecureContext === false ) {
 
 		console.error( 'THREE.DeviceOrientationControls: DeviceOrientationEvent is only available in secure contexts (https)' );
@@ -181,7 +181,7 @@ var DeviceOrientationControls = function ( object, domElement ) {
 	} )();
 
 	function rotateLeft( angle ) {
-		console.log('angle : ' + angle);
+		// console.log('angle : ' + angle);
 		// sphericalDelta.theta -= angle;
 	}
 
@@ -198,10 +198,10 @@ var DeviceOrientationControls = function ( object, domElement ) {
 
 	function handleTouchMoveRotate( event ) {
 		diffX = lastX - event.touches[ 0 ].pageX
-		console.log(diffX);
+		// console.log(diffX);
 		var deltaAmt = (2 * Math.PI * diffX) / (scope.domElement.clientHeight)
-		console.log(deltaAmt);
-		console.log(scope.domElement.clientHeight);
+		// console.log(deltaAmt);
+		// console.log(scope.domElement.clientHeight);
 		scope.alphaOffset -= deltaAmt
 		// var element = scope.domElement;
 		// rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientHeight ); // yes, height
