@@ -2167,17 +2167,12 @@ function envLoad(textureUrl){
 	const textures = getTexturesFromAtlasFile( textureUrl, 6 );
 	materials = [];
 
-
 	for ( let i = 0; i < 6; i ++ ) {
 		materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] ,opacity: 0, transparent: true, depthWrite:false, depthTest :false} ) );
 	}
 
 	skyBox = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), materials );
-
-
-
 	skyBox.geometry.scale( 1, 1, -1 );
-
 
 	setTimeout(function(){
 		for ( let i = 0; i < 6; i ++ ) {
@@ -2185,14 +2180,8 @@ function envLoad(textureUrl){
 		}
 
 	}, 500);
-	// manager.onLoad = function ( ) {
-
-	// 	console.log( 'Loading complete!');
-
-	// };
 
 	skydome.scene.add( skyBox );
-
 }
 
 function runTween(){

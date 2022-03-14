@@ -218,22 +218,26 @@ document.getElementById("start-btn").addEventListener("click", function() {
 
 	if(selectedPersonality == 'fe'){
 
-		playAudio('sounds/sfx/feeler.mp3')
+		// playAudio('sounds/sfx/feeler.mp3')
+		playAudio('sounds/sfx/scene_sounds_sfx_feeler.mp3')
 		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/feeler.mp3')
 		orbVideoUrl = leadingURL+"video/orb/Feeler.V5.mp4"
 
 
 	}else if(selectedPersonality == 'in'){
-		playAudio('sounds/sfx/introvert.mp3')
+		// playAudio('sounds/sfx/introvert.mp3')
+		playAudio('sounds/sfx/scene_sounds_sfx_introvert.mp3')
 		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/introvert.mp3')
 		orbVideoUrl = leadingURL+"video/orb/Introvert.V5.mp4"
 	}
 	else if(selectedPersonality == 'th'){
-		playAudio('sounds/sfx/thinker.mp3')
+		// playAudio('sounds/sfx/thinker.mp3')
+		playAudio('sounds/sfx/scene_sounds_sfx_thinker.mp3')
 		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/thinker.mp3')
 		orbVideoUrl = leadingURL+"video/orb/Thinker.V5.mp4"
 	}else{
-		playAudio('sounds/sfx/extrovert.mp3')
+		// playAudio('sounds/sfx/extrovert.mp3')
+		playAudio('sounds/sfx/scene_sounds_sfx_extrovert.mp3')
 		// playAudio('https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/sounds/sfx/extrovert.mp3')
 		orbVideoUrl = leadingURL+"video/orb/Extrovert.V5.mp4"
 	}
@@ -1494,10 +1498,8 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 	if(atlasTextures){
 		for (let t = 0; t < atlasTextures.length; t++){
 			atlasTextures[t].dispose();
-			console.log('atlasTextures '+t+' nullified')
+			// console.log('atlasTextures '+t+' nullified')
 		}
-		// atlasTextures = null
-		// console.log('atlasTextures nullified')
 	}
 	atlasTextures = []
 	// const textures = [];
@@ -1506,18 +1508,21 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 		atlasTextures[ i ] = new THREE.Texture();
 	}
 
-	// TODO
 	if(loader){
 		loader = null;
 		console.log('loader nullified');
 	}
 	loader = new THREE.ImageLoader(manager);
 	loader.load( atlasImgUrl, ( image ) => {
-
 		// let canvas, context;
 		const tileWidth = image.height;
 
 		for ( let i = 0; i < atlasTextures.length; i ++ ) {
+			// creates black textures, needs to be moved to a diff position?
+			// if(context){
+			// 	context.clearRect( 0, 0, tileWidth, tileWidth)
+			// }
+
 			canvas = document.createElement( 'canvas' );
 			context = canvas.getContext( '2d' );
 			canvas.height = tileWidth;
@@ -2142,7 +2147,7 @@ function envLoad(textureUrl){
 	if (globalTextures){
 		for (let j = 0; j < globalTextures.length; j++){
 			globalTextures[j].dispose();
-			console.log("globalTextures " + j +" disposed");
+			// console.log("globalTextures " + j +" disposed");
 		}
 		
 	}
@@ -2153,7 +2158,7 @@ function envLoad(textureUrl){
 	if(materials){
 		for (let k = 0; k < globalTextures.length; k++){
 			materials[k].dispose();
-			console.log("materials " + k + " disposed")
+			// console.log("materials " + k + " disposed")
 		}
 		// materials = null;
 		// console.log("materials nullified")
@@ -2181,7 +2186,7 @@ function envLoad(textureUrl){
 
 		// skyBox.dispose();
 		boxGeo.dispose();
-		console.log("boxGeo disposed")
+		// console.log("boxGeo disposed")
 	}
 
 	boxGeo = new THREE.BoxGeometry(1,1,1);
