@@ -1,4 +1,6 @@
-import * as THREE from './three.module.js';
+// import * as THREE from './three.module.js';
+import * as THREE from './138/three.module.js';
+
 import { DeviceOrientationControls } from './DeviceOrientationWithOrbit.js';
 
 //DELETE AFTER CSS FIX
@@ -64,67 +66,383 @@ if(selectedLanguage == "en"){
 	textUrl ="zh"
 }
 
+
+// personality override for testing
+// selectedPersonality = 'fe';
+
+
 if(selectedPersonality === 'in'){
 	// orbVideoUrl = "video/orb/Introvert.V5.mp4"
 	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Introvert.V5.mp4"
-	sceneUrl0 ="scenes/INTROVERT/INTRO_CUBEMAP_0000.jpg"
-	sceneUrl1 ="scenes/INTROVERT/INTRO_CUBEMAP_0010.jpg"
-	sceneUrl2 ="scenes/INTROVERT/INTRO_CUBEMAP_0001.jpg"
-	sceneUrl3 ="scenes/INTROVERT/INTRO_CUBEMAP_0002.jpg"
-	sceneUrl4 ="scenes/INTROVERT/INTRO_CUBEMAP_0003.jpg"
-	sceneUrl5 ="scenes/INTROVERT/INTRO_CUBEMAP_0004.jpg"
-	sceneUrl6 ="scenes/INTROVERT/INTRO_CUBEMAP_0005.jpg"
-	sceneUrl7 ="scenes/INTROVERT/INTRO_CUBEMAP_0006.jpg"
-	sceneUrl8 ="scenes/INTROVERT/INTRO_CUBEMAP_0007.jpg"
-	sceneUrl9 ="scenes/INTROVERT/INTRO_CUBEMAP_0008.jpg"
-	sceneUrl10 ="scenes/INTROVERT/INTRO_CUBEMAP_0009.jpg"
+	sceneUrl0 = [
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_5.jpg"
+	]
+	sceneUrl1 = [
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_5.jpg"
+	]
+	sceneUrl2 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_5.jpg"
+	]
+	sceneUrl3 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_5.jpg"
+	]
+	sceneUrl4 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_5.jpg"
+	]
+	sceneUrl5 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_5.jpg"
+	]
+	sceneUrl6 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_5.jpg"
+	]
+	sceneUrl7 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_5.jpg"
+	]
+	sceneUrl8 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_5.jpg"
+	]
+	sceneUrl9 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_5.jpg"
+	]
+	sceneUrl10 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_5.jpg"
+	]
 }
 else if(selectedPersonality === 'th'){
 
 	// orbVideoUrl = "video/orb/Thinker.V5.mp4"
 	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Thinker.V5.mp4"
-	sceneUrl0 ="scenes/THINKER/THINKER_CUBEMAP_0000.jpg"
-	sceneUrl1 ="scenes/THINKER/THINKER_CUBEMAP_0010.jpg"
-	sceneUrl2 ="scenes/THINKER/THINKER_CUBEMAP_0001.jpg"
-	sceneUrl3 ="scenes/THINKER/THINKER_CUBEMAP_0002.jpg"
-	sceneUrl4 ="scenes/THINKER/THINKER_CUBEMAP_0003.jpg"
-	sceneUrl5 ="scenes/THINKER/THINKER_CUBEMAP_0004.jpg"
-	sceneUrl6 ="scenes/THINKER/THINKER_CUBEMAP_0005.jpg"
-	sceneUrl7 ="scenes/THINKER/THINKER_CUBEMAP_0006.jpg"
-	sceneUrl8 ="scenes/THINKER/THINKER_CUBEMAP_0007.jpg"
-	sceneUrl9 ="scenes/THINKER/THINKER_CUBEMAP_0008.jpg"
-	sceneUrl10 ="scenes/THINKER/THINKER_CUBEMAP_0009.jpg"
+	sceneUrl0 = [
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_5.jpg"
+	]
+	sceneUrl1 = [
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_5.jpg"
+	]
+	sceneUrl2 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_5.jpg"
+	]
+	sceneUrl3 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_5.jpg"
+	]
+	sceneUrl4 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_5.jpg"
+	]
+	sceneUrl5 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_5.jpg"
+	]
+	sceneUrl6 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_5.jpg"
+	]
+	sceneUrl7 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_5.jpg"
+	]
+	sceneUrl8 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_5.jpg"
+	]
+	sceneUrl9 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_5.jpg"
+	]
+	sceneUrl10 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_5.jpg"
+	]
+
 }
 else if(selectedPersonality === 'ex'){
 
 	// orbVideoUrl = "video/orb/Extrovert.V5.mp4"
 	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Extrovert.V5.mp4"
-	sceneUrl0 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0000.jpg"
-	sceneUrl1 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0010.jpg"
-	sceneUrl2 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0001.jpg"
-	sceneUrl3 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0002.jpg"
-	sceneUrl4 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0003.jpg"
-	sceneUrl5 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0004.jpg"
-	sceneUrl6 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0005.jpg"
-	sceneUrl7 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0006.jpg"
-	sceneUrl8 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0007.jpg"
-	sceneUrl9 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0008.jpg"
-	sceneUrl10 ="scenes/EXTROVERT/EXTRO_CUBEMAP_0009.jpg"
+	sceneUrl0 = [
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_5.jpg"
+	]
+	sceneUrl1 = [
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_5.jpg"
+	]
+	sceneUrl2 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_5.jpg"
+	]
+	sceneUrl3 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_5.jpg"
+	]
+	sceneUrl4 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_5.jpg"
+	]
+	sceneUrl5 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_5.jpg"
+	]
+	sceneUrl6 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_5.jpg"
+	]
+	sceneUrl7 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_5.jpg"
+	]
+	sceneUrl8 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_5.jpg"
+	]
+	sceneUrl9 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_5.jpg"
+	]
+	sceneUrl10 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_5.jpg"
+	]
 } else {
 	// if(region === CHINA || )
 	// orbVideoUrl = "video/orb/Feeler.V5.mp4"
 	// orbVideoUrl = "https://d2c33fbhlldtf9.cloudfront.net/QReal-AHC-tests/scene/video/orb/Feeler.V5.mp4"
-	sceneUrl0 ="scenes/FEELER/FEELER_CUBEMAP_0000.jpg"
-	sceneUrl1 ="scenes/FEELER/FEELER_CUBEMAP_0010.jpg"
-	sceneUrl2 ="scenes/FEELER/FEELER_CUBEMAP_0001.jpg"
-	sceneUrl3 ="scenes/FEELER/FEELER_CUBEMAP_0002.jpg"
-	sceneUrl4 ="scenes/FEELER/FEELER_CUBEMAP_0003.jpg"
-	sceneUrl5 ="scenes/FEELER/FEELER_CUBEMAP_0004.jpg"
-	sceneUrl6 ="scenes/FEELER/FEELER_CUBEMAP_0005.jpg"
-	sceneUrl7 ="scenes/FEELER/FEELER_CUBEMAP_0006.jpg"
-	sceneUrl8 ="scenes/FEELER/FEELER_CUBEMAP_0007.jpg"
-	sceneUrl9 ="scenes/FEELER/FEELER_CUBEMAP_0008.jpg"
-	sceneUrl10 ="scenes/FEELER/FEELER_CUBEMAP_0009.jpg"
+
+	// FE scene
+	sceneUrl0 = [
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0000_5.jpg"
+	]
+	sceneUrl1 = [
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0010_5.jpg"
+	]
+	sceneUrl2 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0001_5.jpg"
+	]
+	sceneUrl3 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0002_5.jpg"
+	]
+	sceneUrl4 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0003_5.jpg"
+	]
+	sceneUrl5 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0004_5.jpg"
+	]
+	sceneUrl6 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0005_5.jpg"
+	]
+	sceneUrl7 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0006_5.jpg"
+	]
+	sceneUrl8 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0007_5.jpg"
+	]
+	sceneUrl9 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0008_5.jpg"
+	]
+	sceneUrl10 =[
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_0.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_1.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_2.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_3.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_4.jpg",
+		"scenes/FEELER_SPLIT/FEELER_CUBEMAP_0009_5.jpg"
+	]
 }
 
 // TODO - check if some of these can be lists / arrays + use as state machine?
@@ -1095,10 +1413,7 @@ function init() {
 			glowPoolEntracen.position.set(1.2*arrowDist * Math.sin(toRadians(15)) , arrowHeight, -arrowDist*1.2 * Math.cos(toRadians(15)));
 			calculateScale(glowMiddle,5,2.5,5)
 			calculateScale(glowPoolEntracen,4,2,4)
-			//   orbVideoMask.play()
-			//   orbVideo.play()
 
-			// playProductVideo()
 			video.play()
 			video3.play()
 
@@ -1508,53 +1823,19 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 		atlasTextures[ i ] = new THREE.Texture();
 	}
 
-	if(loader){
-		loader = null;
-		console.log('loader nullified');
-	}
-	loader = new THREE.ImageLoader(manager);
-	loader.load( atlasImgUrl, ( image ) => {
-		// let canvas, context;
-		const tileWidth = image.height;
-
-		for ( let i = 0; i < atlasTextures.length; i ++ ) {
-			// creates black textures, needs to be moved to a diff position?
-			// if(context){
-			// 	context.clearRect( 0, 0, tileWidth, tileWidth)
-			// }
-
-			canvas = document.createElement( 'canvas' );
-			context = canvas.getContext( '2d' );
-			canvas.height = tileWidth;
-			canvas.width = tileWidth;
-			context.drawImage( image, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
-			// textures[ i ].image = canvas;
-			atlasTextures[ i ].image = canvas;
-			// textures[ i ].needsUpdate = true;
-			atlasTextures[ i ].needsUpdate = true;
+	for(let l=0; l < atlasTextures.length; l++){
+		if(loader){
+			loader = null;
+			// console.log('loader nullified');
 		}
-	} );
+		loader = new THREE.ImageLoader(manager);
+	
+		loader.load( atlasImgUrl[l], ( image ) => {
+			atlasTextures[ l ].image = image;
+			atlasTextures[ l ].needsUpdate = true;
+		});
+	}	
 
-	// new THREE.ImageLoader(manager)
-	// 	.load( atlasImgUrl, ( image ) => {
-
-	// 		let canvas, context;
-	// 		const tileWidth = image.height;
-
-	// 		for ( let i = 0; i < atlasTextures.length; i ++ ) {
-	// 			canvas = document.createElement( 'canvas' );
-	// 			context = canvas.getContext( '2d' );
-	// 			canvas.height = tileWidth;
-	// 			canvas.width = tileWidth;
-	// 			context.drawImage( image, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
-	// 			// textures[ i ].image = canvas;
-	// 			atlasTextures[ i ].image = canvas;
-	// 			// textures[ i ].needsUpdate = true;
-	// 			atlasTextures[ i ].needsUpdate = true;
-	// 		}
-	// 	} );
-
-	// return textures;
 	return atlasTextures;
 }
 
@@ -1728,10 +2009,10 @@ function animate() {
 			document.getElementById('selfie-btn').style.opacity = 1;
 			document.getElementById('selfie-btn').style.pointerEvents = "auto";
 			document.getElementById('whiteScreen').style.display = 'block';
-			if(!flashHasPlayed){
-				flashSound.play();
-				flashHasPlayed = true;
-			}
+			// if(!flashHasPlayed){
+			// 	flashSound.play();
+			// 	flashHasPlayed = true;
+			// }
 
 		} else {
 			flashHasPlayed = false;
@@ -2144,12 +2425,13 @@ function clickTrigger(){
 }
 
 function envLoad(textureUrl){
+	renderer.renderLists.dispose();
+
 	if (globalTextures){
 		for (let j = 0; j < globalTextures.length; j++){
 			globalTextures[j].dispose();
 			// console.log("globalTextures " + j +" disposed");
-		}
-		
+		}	
 	}
 	// globalTextures = null
 	globalTextures = getTexturesFromAtlasFile( textureUrl, 6 );
@@ -2182,7 +2464,7 @@ function envLoad(textureUrl){
 	if(skyBox && boxGeo){
 		skyBox = null;
 		// boxGeo = null;
-		console.log("skyBox nullified")
+		// console.log("skyBox nullified")
 
 		// skyBox.dispose();
 		boxGeo.dispose();
@@ -2206,11 +2488,6 @@ function envLoad(textureUrl){
 			// materials[i] = null;
 		}
 	}, 500);
-	// manager.onLoad = function ( ) {
-
-	// 	console.log( 'Loading complete!');
-
-	// };
 
 	skydome.scene.add( skyBox );
 
