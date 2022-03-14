@@ -124,7 +124,7 @@ console.log("selfie not ready");
 var deepAR = DeepAR({
     canvasWidth: canvasWidth,
     canvasHeight: canvasHeight,
-    licenseKey: '2b42831f8aceda39a40d2d10a2e2e58b03f858d8083276ec58442cc0ecbc6d3c3d19f9215608cb1c',
+    licenseKey: 'd65219e533f814a3a6be1f10473c66696a920d7f47d4d8ffd5cb1ff24361305f6c7c8346c013e6ad',
     canvas: document.getElementById('deepar-canvas'),
     numberOfFaces: 1,
     libPath: './lib',
